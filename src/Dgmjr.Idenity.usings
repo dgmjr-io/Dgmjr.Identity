@@ -1,0 +1,24 @@
+<!--
+ * Identity.usings
+ * 
+ *   Created: 2023-01-03-01:00:39
+ *   Modified: 2023-01-03-01:00:40
+ * 
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *   
+ *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="UsingsSdk">
+  <ItemGroup>
+    <Using Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Alias="MSID" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="Dgmjr.Identity.Abstractions" />
+    <PackageReference Include="Dgmjr.Identity.AspNetCore" />
+    <PackageReference Include="Dgmjr.Identity.Claims" />
+    <PackageReference Include="Dgmjr.Identity.Constants" />
+    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" />
+    <PackageReference Include="Dgmjr.Identity.Models" />
+  </ItemGroup>
+</Project>

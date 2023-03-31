@@ -1,0 +1,21 @@
+<!--
+ * Dgmjr.Identity.EntityFrameworkCore.csproj
+ *
+ *   Created: 2022-12-05-08:05:41
+ *   Modified: 2022-12-05-08:05:41
+ *
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *
+ *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project>
+  <ItemGroup>
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
+    <!-- <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore.Constants" /> -->
+		<PackageReference Include="Microsoft.EntityFrameworkCore" />
+		<PackageReference Include="Microsoft.Extensions.Identity.Core" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+  </ItemGroup>
+</Project>

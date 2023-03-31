@@ -1,0 +1,22 @@
+<!--
+ * Microsoft.AspNetCore.Identity.Abstractions.csproj
+ * 
+ *   Created: 2023-03-31-12:24:36
+ *   Modified: 2023-03-31-12:24:37
+ * 
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *   
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <SourceGenerator  Include="Dgmjr.InterfaceGenerator" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" />
+    <PackageReference Include="System.Text.Json.Usings" />
+  </ItemGroup>
+</Project>

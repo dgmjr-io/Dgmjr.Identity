@@ -1,0 +1,37 @@
+<!--
+ * Dgmjr.Identity.All copy.slnproj
+ * 
+ *   Created: 2022-12-27-05:42:50
+ *   Modified: 2022-12-27-05:42:50
+ * 
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *   
+ *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+
+<Project Sdk="Microsoft.NET.Sdk">
+    <Sdk Name="MetapackageSdk" />
+    <PropertyGroup>
+        <IsAtRoot>true</IsAtRoot>
+        <IncludeInSolutionFile>false</IncludeInSolutionFile>
+        <TargetFramework>net7.0</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="./src/Abstractions/Dgmjr.Identity.Abstractions.csproj" />
+        <ProjectReference Include="./src/Authorization/Dgmjr.Identity.Authorization.csproj" />
+        <ProjectReference Include="./src/AspNetCore/Dgmjr.Identity.AspNetCore.csproj" />
+        <ProjectReference Include="./src/EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
+        <ProjectReference Include="./src/EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" />
+        <ProjectReference Include="./src/Dgmjr.com/Dgmjr.com.Identity.csproj" />
+        <ProjectReference Include="./src/Models/Dgmjr.Identity.Models.csproj" />
+        <ProjectReference Include="./src/Security/Dgmjr.Security.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Using Include="System.Runtime.CompilerServices" />
+    </ItemGroup>
+    <!-- <Target Name="CleanPreBuild" BeforeTargets="Restore">
+        <Exec Command="rm -rf '$(MSBuildProjectDirectory)/**/obj'" />
+    </Target> -->
+</Project>

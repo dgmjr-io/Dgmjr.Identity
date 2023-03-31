@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>netstandard1.3</TargetFrameworks>
+    </PropertyGroup>
+</Project>

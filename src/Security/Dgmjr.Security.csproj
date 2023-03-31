@@ -1,0 +1,27 @@
+<!--
+ * Dgmjr.Security.csproj
+ * 
+ *   Created: 2023-01-03-12:34:07
+ *   Modified: 2023-01-03-12:34:08
+ * 
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *   
+ *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <NoBuild>true</NoBuild>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <IncludeBuiltProjectOutputGroup>false</IncludeBuiltProjectOutputGroup>
+    <IncludeSourceFilesProjectOutputGroup>false</IncludeSourceFilesProjectOutputGroup>
+    <IncludeInSolutionFile>false</IncludeInSolutionFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="./Constants/Dgmjr.Security.Constants.csproj" Pack="true" />
+    <Compile Remove="@(Compile)" />
+    <Using Include="System.Runtime.CompilerServices" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+<!--
+ * Dgmjr.Identiy.EntityFrameworkCore.Constants.csproj
+ * 
+ *   Created: 2022-12-01-05:13:41
+ *   Modified: 2022-12-01-05:13:41
+ * 
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *   
+ *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.3</TargetFrameworks>
+  </PropertyGroup>
+</Project>

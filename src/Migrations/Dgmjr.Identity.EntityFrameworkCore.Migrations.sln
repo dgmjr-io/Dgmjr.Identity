@@ -1,0 +1,21 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dgmjr.Identity.EntityFrameworkCore.Migrations", "Dgmjr.Identity.EntityFrameworkCore.Migrations.csproj", "{0663C2ED-95BE-4B28-9CC5-AC02DCDED86F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0663C2ED-95BE-4B28-9CC5-AC02DCDED86F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0663C2ED-95BE-4B28-9CC5-AC02DCDED86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0663C2ED-95BE-4B28-9CC5-AC02DCDED86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0663C2ED-95BE-4B28-9CC5-AC02DCDED86F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E11827F-D990-43C0-8389-73A5A55C3B03}
+	EndGlobalSection
+EndGlobal

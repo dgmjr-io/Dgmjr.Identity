@@ -1,0 +1,17 @@
+<!--
+ * JustiWritesCode.Identity.Roles.props
+ * 
+ *   Created: 2023-02-15-02:13:25
+ *   Modified: 2023-02-15-02:13:26
+ * 
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *   
+ *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project>
+  <ItemGroup>
+    <Using Include="Dgmjr.Identity.Role" Alias="DgmjrR" />
+  </ItemGroup>
+</Project>

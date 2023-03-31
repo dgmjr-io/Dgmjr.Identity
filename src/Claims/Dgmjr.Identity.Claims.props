@@ -1,0 +1,44 @@
+<!--
+ * Dgmjr.Identity.Claims.props
+ * 
+ *   Created: 2023-03-19-03:04:51
+ *   Modified: 2023-03-25-12:51:28
+ * 
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *   
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project>
+    <ItemGroup>
+        <!-- <PackageReference Include="Dgmjr.Tuples" ExcludeAssets="ContentFiles" /> -->
+        <!-- <PackageReference Include="Dgmjr.System.Extensions" /> -->
+        <!-- <PackageReference Include="Dgmjr.ComponentModel" ExcludeAssets="ContentFiles" /> -->
+        <!-- <PackageReference Include="Dgmjr.Constants" IncludeAssets="ContentFiles; Build" ExculdeAssets="Lib; Runtime; Analyzers; Natice; Compile" /> -->
+        <!-- <PackageReference Include="Dgmjr.Enumerations.Enumeration" ExcludeAssets="ContentFiles" /> -->
+        <!-- <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" /> -->
+        <!-- <PackageReference Include="Dgmjr.Enumerations.CodeGeneration" IncludeAssets="Analyzers; Build" PrivateAssets="All" ExcludeAssets="ContentFiles" /> -->
+    </ItemGroup>
+    <ItemGroup>
+        <!-- <PackageReference Include="Ardalis.SmartEnum" />
+        <PackageReference Include="FluentValidation" /> -->
+        <!-- <PackageReference Include="FluentValidation.Usings" /> -->
+        <PackageReference Include="System.Security.Usings" />
+        <PackageReference Include="System.Usings" />
+        <PackageReference Include="System.Security.Claims" />
+        <PackageReference Include="System.ComponentModel.Annotations" />
+        <!-- <PackageReference Include="System.Text.Json.Usings" />
+        <PackageReference Include="System.Text.Json" /> -->
+        <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
+    </ItemGroup>
+    <ItemGroup>
+        <Using Include="Dgmjr.Identity" Alias="DgmjrId" />
+        <Using Include="Dgmjr.Identity.ClaimTypeUris" Alias="DgmjrCt" />
+        <Using Include="Dgmjr.Identity.ClaimValueTypeUris" Alias="DgmjrCvt" />
+        <!-- <Using Include="Dgmjr.Identity.Roles" Alias="DgmjrR" /> -->
+        <!-- <Using Include="Dgmjr.Identity.Uris" Alias="JwcIdUris" />
+        <Using Include="System.Uri" Alias="@uri" />
+        <Using Include="System.UriKind" Static="true" /> -->
+    </ItemGroup>
+</Project>

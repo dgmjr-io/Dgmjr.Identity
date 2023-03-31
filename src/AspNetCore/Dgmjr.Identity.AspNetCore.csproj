@@ -1,0 +1,48 @@
+<!--
+ * Dgmjr.Identity.AspNetCore.csproj
+ * 
+ *   Created: 2022-12-13-08:36:07
+ *   Modified: 2022-12-13-08:36:08
+ * 
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *   
+ *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
+    <!-- <TargetFrameworks>net7.0</TargetFrameworks> -->
+    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" /> 
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" /> 
+    <PackageReference Include="System.Usings" />
+    <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Payloads" />
+    <!-- <PackageReference Include="Dgmjr.Http.Extensions" /> -->
+  </ItemGroup>
+  
+  <ItemGroup Condition="true">
+    <ProjectReference Include="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />
+    <ProjectReference Include="../Roles/Dgmjr.Identity.Roles.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+  </ItemGroup>
+  <ItemGroup Condition="false">
+    <ProjectReference Include="Dgmjr.Identity.EntityFrameworkCore" />
+    <ProjectReference Include="Dgmjr.Payloads" />
+    <ProjectReference Include="Dgmjr.Identity.Models" />
+  </ItemGroup>
+  <Import Project="Sdk.targets" Sdk="DgmjrSdk" />
+  <Target Name="Compile" />
+  <Target Name="CoreCompile" />
+</Project>
