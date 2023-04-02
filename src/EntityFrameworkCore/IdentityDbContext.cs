@@ -25,6 +25,7 @@ using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 using IdentityClaimType = Dgmjr.Identity.Models.ClaimType;
 using MSID = Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using RoleModel = Dgmjr.Identity.Models.Role;
+using UserModel = Dgmjr.Identity.Models.User;
 using User = Dgmjr.Identity.Models.User;
 
 public class IdentityDbContext : MSID.IdentityDbContext<User, RoleModel, long, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>, IIdentityDbContext, IDbContext<IIdentityDbContext>

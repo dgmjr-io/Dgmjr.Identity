@@ -1,8 +1,8 @@
 /* 
- * IIdentityRole.cs
+ * IIdentityUser.cs
  * 
- *   Created: 2023-03-31-12:25:34
- *   Modified: 2023-03-31-12:25:34
+ *   Created: 2023-04-01-11:21:04
+ *   Modified: 2023-04-01-11:21:04
  * 
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
  *   
@@ -11,10 +11,9 @@
  */
 
 namespace Microsoft.AspNetCore.Identity.Abstractions;
-using Microsoft.AspNetCore.Identity;
 
-[GenerateInterfaceAttribute(typeof(IdentityRole<long>))]
-public partial interface IIdentityRole
+[InterfaceGenerator(typeof(IdentityUser<long>))]
+public interface IIdentityUser
 {
 
 }

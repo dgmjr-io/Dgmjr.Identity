@@ -23,13 +23,13 @@
 	  <PackageReference Include="System.Collections.Generic.Usings" />
   </ItemGroup>
   <ItemGroup Condition="true">
+    <SourceGenerator Include="Dgmjr.InterfaceGenerator" />
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.System.Extensions" />
     <PackageReference Include="Dgmjr.AspNetCore.Hashids" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Extensions" />
-    <SourceGenerator Include="Dgmjr.InterfaceGenerator" />
     <PackageReference Include="Dgmjr.Primitives" IncludeAssets="Compile" ExcludeAssets="Native;Analyzers;Runtime;Build" CopyLocal="false" />
     <PackageReference Include="Telegram.Identity" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" />
