@@ -13,9 +13,3 @@
 namespace Dgmjr.Identity.Abstractions;
 using Microsoft.AspNetCore.Identity;
 
-[GenerateInterfaceAttribute(typeof(IdentityRole<long>))]
-public partial interface IIdentityRole : Microsoft.AspNetCore.Identity.IdentityRole<long>
-{
-    string Name { get; set; }
-    uri Uri { get; set; }
-}
