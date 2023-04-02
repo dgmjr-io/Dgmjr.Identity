@@ -12,7 +12,7 @@
 
 namespace Microsoft.AspNetCore.Identity.Abstractions;
 
-[InterfaceGenerator(typeof(IdentityUser<long>))]
+[GenerateInterface(typeof(IdentityUser<long>))]
 public interface IIdentityUser
 {
 

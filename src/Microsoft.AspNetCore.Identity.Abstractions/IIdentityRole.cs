@@ -13,7 +13,7 @@
 namespace Microsoft.AspNetCore.Identity.Abstractions;
 using Microsoft.AspNetCore.Identity;
 
-[GenerateInterfaceAttribute(typeof(IdentityRole<long>))]
+[GenerateInterface(typeof(IdentityRole<long>))]
 public partial interface IIdentityRole
 {
 
