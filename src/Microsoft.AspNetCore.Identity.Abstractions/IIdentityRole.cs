@@ -10,11 +10,13 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace Microsoft.AspNetCore.Identity.Abstractions;
-using Microsoft.AspNetCore.Identity;
-
-[GenerateInterface(typeof(IdentityRole<long>))]
-public partial interface IIdentityRole
+namespace Microsoft.AspNetCore.Identity.Abstractions
 {
+    using Microsoft.AspNetCore.Identity;
 
+    [GenerateInterface(typeof(IdentityRole<long>), true)]
+    public partial interface IIdentityRole
+    {
+
+    }
 }
