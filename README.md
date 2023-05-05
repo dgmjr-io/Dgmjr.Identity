@@ -19,3 +19,5 @@ project: Dgmjr.Identity
 
 # Identity
 Identity classes
+
+Classes for identity and security.  Once I get the Decomposer working, I'll be rewriing this to move away from the ASP.NET identity classes. They're too rigid and shoudlv'e been implemented as interfaces anyway.
