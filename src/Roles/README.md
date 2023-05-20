@@ -1,19 +1,23 @@
 ---
-author: David G. Moore, Jr.
-author_email: david@dgmjr.io
-title: README.md
+author: 
+  - dgmjr
+title: Commmonly-Assigned Roles
 lastmod: 2023-02-15-02:19:27
 created: 2023-02-15-02:19:27
 license: MIT
 keywords: 
-  - justinwritescode
+  - dgmjr
+  - roles
 tags: 
-  - justinwritescode
+  - dgmjr
+  - roles
 categories: 
-  - justinwritescode
+  - dgmjr
+  - admin
+  - roles
 ---
 
-# Roles
+# Commmonly-Assigned Roles
 
 This project contains an enumeration of roles that can be assigned to users.
 
