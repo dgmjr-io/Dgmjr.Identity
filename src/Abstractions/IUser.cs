@@ -68,7 +68,8 @@ public interface IBasicUserInfo
     /// <summary>Gets or sets the user's first name</summary>
     /// <example>Justin</example>
     [JProp("givenName")
-    ][XElem("givenName")]
+    ]
+    [XElem("givenName")]
     string GivenName { get; set; }
     /// <summary>Gets or sets the user's surname</summary>
     /// <example>Chase</example>
