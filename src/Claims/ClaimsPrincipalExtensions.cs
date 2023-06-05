@@ -44,8 +44,8 @@ public static class ClaimsPrincipalExtensions
             "Unknown";
     }
 
-    #if !NET6_0_OR_GREATER
+#if !NET6_0_OR_GREATER
     public static string? FindFirstValue(this ClaimsPrincipal principal, string claimType)
         => principal.FindFirst(claimType)?.Value;
-    #endif
+#endif
 }
