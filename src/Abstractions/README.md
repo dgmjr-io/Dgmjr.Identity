@@ -5,12 +5,12 @@ title: Identity Abstractions
 lastmod: 2023-02-15-03:21:20
 created: 2023-02-15-03:21:20
 license: MIT
-keywords: 
-  - Dgmjr
-tags: 
-  - Dgmjr
-categories: 
-  - Dgmjr
+keywords:
+  - DGMJR-IO
+tags:
+  - DGMJR-IO
+categories:
+  - DGMJR-IO
 ---
 
 # Identity Abstractions
