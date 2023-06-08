@@ -5,10 +5,20 @@
         <IncludeInSolutionFile>false</IncludeInSolutionFile>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="**/*proj" Exclude="./*proj"/>
-        <ProjectReference Remove="*proj" />
-        <ProjectReference Remove="./src/Old/**/*" />
-        <ProjectReference Remove="./src/Migrations/*.csproj" />
-        <Compile Remove="@(Compile)" />
+        <ProjectReference Include="./src/Abstractions/Dgmjr.Identity.Abstractions.csproj" />
+        <ProjectReference Include="./src/AspNetCore/Dgmjr.Identity.AspNetCore.csproj" />
+        <ProjectReference Include="./src/Authorization/Dgmjr.Identity.Authorization.csproj" />
+        <ProjectReference Include="./src/Claims/Dgmjr.CIdentity.laims.csproj" />
+        <ProjectReference Include="./src/Constants/Dgmjr.CIdentity.Constants.csproj" />
+        <ProjectReference Include="./src//Dgmjr.com.Identity.csproj" />
+        <ProjectReference Include="./src/EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
+        <ProjectReference Include="./src/EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" />
+        <ProjectReference Include="./src/Microsoft.AspNetCore.Idenity.Abstractions/Microsoft.AspNetCore.Idenity.Abstractions.csproj" />
+        <ProjectReference Include="./src/Models/Dgmjr.Identity.Models.csproj" />
+        <ProjectReference Include="./src/Security/Dgmjr.Security.csproj" />
+        <ProjectReference Include="./src/Principal/Dgmjr.Security.Principal.csproj" />
+        <ProjectReference Include="./src/Roles/Dgmjr.Identiy.Roles.csproj" />
+        <ProjectReference Include="./src/Security/Dgmjr.Security.csproj" />
     </ItemGroup>
+    <Import Project="../../../EntityFrameworkCore/src/Constants/Dgmjr
 </Project>
