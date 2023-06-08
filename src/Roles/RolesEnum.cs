@@ -17,7 +17,7 @@ using System.ComponentModel.DataAnnotations;
 public enum Role
 {
     /// <summary>The base URI for roles</summary>
-    [Uri("urn:identity:role")]
+    [Uri("role:none")]
     BaseUri = 0,
 
     /// <summary>The <inheritdoc cref="Roles.Names.Admin" path="/value" /> role</summary>
