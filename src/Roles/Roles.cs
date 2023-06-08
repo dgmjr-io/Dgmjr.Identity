@@ -1,11 +1,11 @@
-/* 
+/*
  * Roles.cs
- * 
+ *
  *   Created: 2023-03-19-05:02:09
  *   Modified: 2023-03-19-05:02:09
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
@@ -20,7 +20,7 @@ public static class Roles
 {
     /// <summary>The base URI for roles</summary>
     /// <value>urn:identity:role</value>
-    public const string BaseUri = "urn:identity:role";
+    public const string BaseUri = "role";
 
     /// <summary>The URI for the <inheritdoc cref="Names.Admin" path="/value" /> role</summary>
     /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.Admin" path="/value" /></value>
