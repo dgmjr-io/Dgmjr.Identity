@@ -4,6 +4,7 @@ public static partial class ClaimValueTypeUris
 {
     public static class Namespaces
     {
+        public const string xs = "http://www.w3.org/2001/XMLSchema";
         /// <value><c>TR/</c></value>
         public const string TR = $"{nameof(TR)}/";
         /// <value><c>xmlschema11-2/</c></value>

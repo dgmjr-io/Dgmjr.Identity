@@ -13,6 +13,8 @@ public partial class ClaimType : IEquatable<ClaimType>
         return Uri == other.Uri;
     }
 
+    public override bool Equals(object? obj) => Equals(obj as ClaimType);
+
     public override int GetHashCode() => Uri.GetHashCode();
 }
 
