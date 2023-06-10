@@ -7,7 +7,7 @@ public static partial class ClaimValueTypeUris
         /// <value><c>TR/</c></value>
         public const string TR = $"{nameof(TR)}/";
         /// <value><c>xmlschema11-2/</c></value>
-        public const string XmlSchema11_2 = $"xmlschema11-2/";
+        public const string XmlSchema11_2 = "xmlschema11-2/";
         /// <value><c>#anyURI</c></value>
         public const string AnyUriAnchor = "#anyURI";
         /// <value><c>schema/</c></value>
