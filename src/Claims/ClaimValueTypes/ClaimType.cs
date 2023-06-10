@@ -1,11 +1,11 @@
-/* 
+/*
  * ClaimType.cs
- * 
+ *
  *   Created: 2023-03-30-12:44:53
  *   Modified: 2023-03-30-12:44:53
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
@@ -28,6 +28,28 @@ public partial class ClaimValueType : IEquatable<ClaimValueType>
     public override Equals(object? other) => Equals(other as ClamValueType);
 
     public override int GetHashCode() => Uri.GetHashCode();
+
+    /// <summary>
+    /// This function compares the <see cref="ClaimValueType.Uri"/> property of two <see cref="ClaimValueType"/> objects and returns an integer
+    /// indicating their relative order.
+    /// </summary>
+    /// <param name="other">other is a nullable <see cref="ClaimValueType" /> object that is being compared to the current
+    /// instance of the <see cref="ClaimValueType" /> class.</param>
+    /// <returns>
+    /// The method is returning an integer value that represents the result of the comparison between the
+    /// current instance of the <see cref="ClaimValueType" />  class and the specified <see cref="ClaimValueType" />  object. If the
+    /// specified object is null, the method returns 1. If the specified object is the same as the current
+    /// instance, the method returns 0. Otherwise, the method compares the <see cref="ClaimValueType.Uri"/> property of the current
+    /// instance with the <see cref="ClaimValueType.Uri"/> property of the specified
+    /// </returns>
+    public int CompareTo(ClaimValueType? other)
+    {
+        if (other is null)
+            return 1;
+        if (ReferenceEquals(this, other))
+            return 0;
+        return Uri.CompareTo(other.Uri);
+    }
 }
 
 // public class ClaimType : UriDescriptionTuple

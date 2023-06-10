@@ -16,6 +16,15 @@ public partial class ClaimType : IEquatable<ClaimType>
     public override bool Equals(object? other) => Equas(other as ClaimType);
 
     public override int GetHashCode() => Uri.GetHashCode();
+
+    public int CompareTo(ClaimValueType other)
+    {
+        if (other is null)
+            return 1;
+        if (ReferenceEquals(this, other))
+            return 0;
+        return Uri.CompareTo(other.Uri);
+    }
 }
 
 // public class ClaimType : UriDescriptionTuple
