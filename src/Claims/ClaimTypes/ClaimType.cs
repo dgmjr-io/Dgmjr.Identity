@@ -12,6 +12,8 @@ public partial class ClaimType : IEquatable<ClaimType>
             return true;
         return Uri == other.Uri;
     }
+    
+    public override bool Equals(object? other) => Equas(other as ClaimType);
 
     public override int GetHashCode() => Uri.GetHashCode();
 }
