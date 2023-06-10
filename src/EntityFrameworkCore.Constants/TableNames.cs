@@ -16,7 +16,7 @@ public static partial class Constants
 {
     public static partial class TableNames
     {
-        public const string tbl_ = nameof(tbl_);
+        private const string tbl_ = nameof(tbl_);
         public const string Bot = tbl_ + nameof(Bot);
         public const string User = tbl_ + nameof(User);
         public const string UserLogin = tbl_ + nameof(UserLogin);
