@@ -15,6 +15,8 @@ public partial class ClaimType : IEquatable<ClaimType>
 
     public override bool Equals(object? other) => Equas(other as ClaimType);
 
+    public override bool Equals(object? obj) => Equals(obj as ClaimType);
+
     public override int GetHashCode() => Uri.GetHashCode();
 
     public int CompareTo(ClaimValueType other)
