@@ -1,6 +1,5 @@
 ---
-
-title: DGMJR Idntity
+title: DGMJR-IO Idntity
 description: Classes for identity and security
 slug: dgmjr-idntity
 keywords:
@@ -16,9 +15,9 @@ license: MIT
 authors:
 - DGMJR-IO
 project: Dgmjr.Identity
------------------------
+---
 
-# Identity
+# DGMJR-IO Identity
 
 Identity classes
 
