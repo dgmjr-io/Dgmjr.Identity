@@ -12,7 +12,6 @@
 
 
 <Project Sdk="Microsoft.NET.Sdk">
-    <Sdk Name="MetapackageSdk" />
     <PropertyGroup>
         <IsAtRoot>true</IsAtRoot>
         <IncludeInSolutionFile>false</IncludeInSolutionFile>
@@ -24,7 +23,6 @@
         <ProjectReference Include="./src/AspNetCore/Dgmjr.Identity.AspNetCore.csproj" />
         <ProjectReference Include="./src/EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
         <ProjectReference Include="./src/EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" />
-        <ProjectReference Include="./src/Dgmjr.com/Dgmjr.com.Identity.csproj" />
         <ProjectReference Include="./src/Models/Dgmjr.Identity.Models.csproj" />
         <ProjectReference Include="./src/Security/Dgmjr.Security.csproj" />
     </ItemGroup>

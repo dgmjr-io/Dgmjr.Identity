@@ -13,7 +13,7 @@ date: 2023-03-30T22:39:06.273Z
 type: readme
 license: MIT
 authors:
-  - dgmjr
+  - DGMJR-IO
 project: Dgmjr.Identity
 ---
 
