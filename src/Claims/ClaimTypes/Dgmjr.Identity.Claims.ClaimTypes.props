@@ -1,0 +1,7 @@
+<Project>
+    <ItemGroup>
+        <Using Include="Dgmjr.Identity" Alias="DgmjrId" />
+        <Using Include="Dgmjr.Identity.Claims" Alias="DgmjrClaims" />
+        <Using Include="Dgmjr.Identity.Claims.Abstractions" />
+    </ItemGroup>
+</Project>
