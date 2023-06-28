@@ -12,17 +12,18 @@
 
 extern alias DgmjrCm;
 namespace Dgmjr.Identity.Models;
+using UriAttribute = DgmjrCm.System.ComponentModel.UriAttribute;
 
 [GenerateEnumerationRecordClass("UserLoginProvider", "Dgmjr.Identity.Models")]
 public enum UserLoginProviderEnum
 {
-    [DgmjrCm.System.ComponentModel.DataAnnotations.Uri(DgmjrCt.UnknownLoginProvider)]
+    [Ur(DgmjrCt.UnknownLoginProvider)]
     None = 0,
-    [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute(DgmjrCt.UnknownLoginProvider)]
+    [Ur(DgmjrCt.UnknownLoginProvider)]
     Any = -1,
-    [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute(global::Telegram.Identity.ClaimTypeNames.BaseUri)]
+    [Ur(global::Telegram.Identity.ClaimTypeNames.BaseUri)]
     Telegram = 1,
-    [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute(SpId.BaseUri)]
+    [Ur(SpId.BaseUri)]
     SendPulse = 2
 
     // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://google.com/")]

@@ -13,7 +13,7 @@
 namespace Dgmjr.Identity;
 using Microsoft.EntityFrameworkCore.Abstractions;
 
-[GenerateInterfaceAttribute(typeof(IdentityDbContext))]
+[GenerateInterface(typeof(IdentityDbContext))]
 public partial interface IIdentityDbContext : IDbContext, IDbContext<IIdentityDbContext>
 {
     // static string IDbContext.DefaultConnectionStringConfigurationKey => "IdentityDb";

@@ -10,10 +10,11 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace Microsoft.AspNetCore.Identity.Abstractions;
-
-[GenerateInterface(typeof(IdentityUser<long>))]
-public interface IIdentityUser
+namespace Microsoft.AspNetCore.Identity.Abstractions
 {
+    [GenerateInterface(typeof(IdentityUser<long>), true)]
+    public interface IIdentityUser
+    {
 
+    }
 }
