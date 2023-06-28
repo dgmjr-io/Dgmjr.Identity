@@ -11,10 +11,10 @@
  */
 
 #pragma warning disable
-namespace Dgmjr.Identity;
-using System.ComponentModel.DataAnnotations;
-using SysSecCt = System.Security.Claims.ClaimTypes;
-using SysSeVt = System.Security.Claims.ClaimValueTypes;
+namespace Dgmjr.Identity.Claims;
+// using System.ComponentModel.DataAnnotations;
+// using SysSecCt = System.Security.Claims.ClaimTypes;
+// using SysSeVt = System.Security.Claims.ClaimValueTypes;
 
 // /// <summary>Defines constants for the well-known claim types that can be assigned to a subject. This class cannot be inherited.</summary>
 // /// <remarks>These constants define URIs for well-known claim types.</remarks>

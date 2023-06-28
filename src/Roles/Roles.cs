@@ -10,118 +10,116 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 namespace Dgmjr.Identity;
+using Dgmjr.Identity.Claims.Abstractions;
 
-public partial class Role
+public abstract class Role : ClaimValueOrTypeBase
 {
-    public virtual bool Equals(Role? other) => other?.Uri == Uri;
+    /// <value>https://dgmjr.io/identity/role</value>
+    private const string LongUriPrefix = "https://dgmjr.io/identity/role";
+    /// <value>dgmjr:identity:role</value>
+    private const string ShortUriPrefix = "dgmjr:identity:role";
+
+    /// <value><inheritdoc cref="LongUriPrefix" /></value>
+    public override string LongUriPrefix => LongUriPrefix;
+    /// <value><inheritdoc cref="ShortUriPrefix" /></value>
+    public override string ShortUriPrefix => ShortUriPrefix;
 }
 
-public static class Roles
+public interface IRole : IClaimValueOrType
 {
-    /// <summary>The base URI for roles</summary>
-    /// <value>urn:identity:role</value>
-    public const string BaseUri = "role";
+}
 
-    /// <summary>The URI for the <inheritdoc cref="Names.Admin" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.Admin" path="/value" /></value>
-    public const string Admin = $"{BaseUri}:{Names.Admin}";
-    /// <summary>The URI for the <inheritdoc cref="Names.Administrator" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.Administrator" path="/value" /></value>
-    public const string Administrator = $"{BaseUri}:{Names.Administrator}";
-    /// <summary>The URI for the <inheritdoc cref="Names.GroupAdministrator" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.GroupAdministrator" path="/value" /></value>
-    public const string GroupAdministrator = $"{BaseUri}:{Names.GroupAdministrator}";
-    /// <summary>The URI for the <inheritdoc cref="Names.Owner" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.Owner" path="/value" /></value>
-    public const string Owner = $"{BaseUri}:{Names.Owner}";
-    /// <summary>The URI for the <inheritdoc cref="Names.User" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.User" path="/value" /></value>
-    public const string User = $"{BaseUri}:{Names.User}";
-    /// <summary>The URI for the <inheritdoc cref="Names.GroupMember" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.GroupMember" path="/value" /></value>
-    public const string GroupMember = $"{BaseUri}:{Names.GroupMember}";
-    /// <summary>The URI for the <inheritdoc cref="Names.Voter" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.Voter" path="/value" /></value>
-    public const string Voter = $"{BaseUri}:{Names.Voter}";
-    /// <summary>The URI for the <inheritdoc cref="Names.Contestant" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.Contestant" path="/value" /></value>
-    public const string Contestant = $"{BaseUri}:{Names.Contestant}";
-    /// <summary>The URI for the <inheritdoc cref="Names.Anonymous" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.Anonymous" path="/value" /></value>
-    public const string Anonymous = $"{BaseUri}:{Names.Anonymous}";
+/// <summary>The URI for the <see cref="Names.Admin" path="/value" /> role</summary>
+/// <value><inheritdoc cref="Role.LongUriPrefix" path="/value" /><inheritdoc cref="Names.Admin" path="/value" /></value>
+/// <seealso cref="Role" />
+/// <seealso cref="Names.Admin" />
+/// <seealso cref="Names.Administrator" />
+/// <seealso cref="Names.GroupAdministrator" />
+/// <seealso cref="Names.Owner" />
+/// <seealso cref="Names.User" />
+public class Admin : Role
+{
+    /// <value><inheritdoc cref="Names.Admin" /></value>
+    public override string Name => Names.Admin;
+}
 
-    public static class Names
-    {
-        /// <summary>The founder of the group (normally also the group's owner)</summary>
-        /// <value>founder</value>
-        public const string Founder = "founder";
 
-        /// <summary>A group's moderator</summary>
-        /// <value>moderator</value>
-        public const string Moderator = "moderator";
+/// <summary>The base URI for roles</summary>
+/// <value>https://dgmjr.io/identity/role/</value>
+public const string BaseUri = "https://dgmjr.io/identity/role/";
 
-        /// <summary>A group member with the power to silence other group members</summary>
-        /// <value>muter</value>
-        public const string Muter = "muter";
+/// <summary>The URI for the <inheritdoc cref="Names.Admin" path="/value" /> role</summary>
+/// <value><inheritdoc cref="BaseUri" path="/value" /><inheritdoc cref="Names.Admin" path="/value" /></value>
+public const string Admin = $"{BaseUri}{Names.Admin}";
+/// <summary>The URI for the <inheritdoc cref="Names.Administrator" path="/value" /> role</summary>
+/// <value><inheritdoc cref="BaseUri" path="/value" /><inheritdoc cref="Names.Administrator" path="/value" /></value>
+public const string Administrator = $"{BaseUri}{Names.Administrator}";
+/// <summary>The URI for the <inheritdoc cref="Names.GroupAdministrator" path="/value" /> role</summary>
+/// <value><inheritdoc cref="BaseUri" path="/value" /><inheritdoc cref="Names.GroupAdministrator" path="/value" /></value>
+public const string GroupAdministrator = $"{BaseUri}{Names.GroupAdministrator}";
+/// <summary>The URI for the <inheritdoc cref="Names.Owner" path="/value" /> role</summary>
+/// <value><inheritdoc cref="BaseUri" path="/value" /><inheritdoc cref="Names.Owner" path="/value" /></value>
+public const string Owner = $"{BaseUri}{Names.Owner}";
+/// <summary>The URI for the <inheritdoc cref="Names.User" path="/value" /> role</summary>
+/// <value><inheritdoc cref="BaseUri" path="/value" /><inheritdoc cref="Names.User" path="/value" /></value>
+public const string User = $"{BaseUri}{Names.User}";
+/// <summary>The URI for the <inheritdoc cref="Names.GroupMember" path="/value" /> role</summary>
+/// <value><inheritdoc cref="BaseUri" path="/value" /><inheritdoc cref="Names.GroupMember" path="/value" /></value>
+public const string GroupMember = $"{BaseUri}{Names.GroupMember}";
+/// <summary>The URI for the <inheritdoc cref="Names.Voter" path="/value" /> role</summary>
+/// <value><inheritdoc cref="BaseUri" path="/value" /><inheritdoc cref="Names.Voter" path="/value" /></value>
+public const string Voter = $"{BaseUri}{Names.Voter}";
+/// <summary>The URI for the <inheritdoc cref="Names.Contestant" path="/value" /> role</summary>
+/// <value><inheritdoc cref="BaseUri" path="/value" /><inheritdoc cref="Names.Contestant" path="/value" /></value>
+public const string Contestant = $"{BaseUri}{Names.Contestant}";
+/// <summary>The URI for the <inheritdoc cref="Names.Anonymous" path="/value" /> role</summary>
+/// <value><inheritdoc cref="BaseUri" path="/value" /><inheritdoc cref="Names.Anonymous" path="/value" /></value>
+public const string Anonymous = $"{BaseUri}{Names.Anonymous}";
 
-        /// <summary>A "free"d user, one on whom the bot's restrictions do not apply</summary>
-        /// <value>free</value>
-        public const string Free = "free";
+public static class Names
+{
+    /// <summary>The founder of the group (normally also the group's owner)</summary>
+    /// <value>founder</value>
+    public const string Founder = "founder";
 
-        /// <summary>The name of the <inheritdoc cref="Admin" path="/value" /> role</summary>
-        /// <value>admin</value>
-        public const string Admin = Administrator;
-        /// <summary>The name of the <inheritdoc cref="Administrator" path="/value" /> role</summary>
-        /// <value>administrator</value>
-        public const string Administrator = "administrator";
-        /// <summary>The name of the <inheritdoc cref="GroupAdministrator" path="/value" /> role</summary>
-        /// <value>group_administrator</value>
-        public const string GroupAdministrator = "group_administrator";
-        /// <summary>The name of the <inheritdoc cref="Owner" path="/value" /> role</summary>
-        /// <value>owner</value>
-        public const string Owner = "owner";
-        /// <summary>The name of the <inheritdoc cref="User" path="/value" /> role</summary>
-        /// <value>user</value>
-        public const string User = "user";
-        /// <summary>The name of the <inheritdoc cref="GroupMember" path="/value" /> role</summary>
-        /// <value>group_member</value>
-        public const string GroupMember = "group_member";
-        /// <summary>The name of the <inheritdoc cref="Voter" path="/value" /> role</summary>
-        /// <value>voter</value>
-        public const string Voter = "voter";
-        /// <summary>The name of the <inheritdoc cref="Contestant" path="/value" /> role</summary>
-        /// <value>contestant</value>
-        public const string Contestant = "contestant";
+    /// <summary>A group's moderator</summary>
+    /// <value>moderator</value>
+    public const string Moderator = "moderator";
 
-        /// <summary>The name of the <inheritdoc cref="Anonymous" path="/value" /> role.  Members of this role may log in "anonymously" and access basic API features.</summary>
-        /// <value><c>anonymous_user</c></value>
-        public const string Anonymous = "anonymous";
+    /// <summary>A group member with the power to silence other group members</summary>
+    /// <value>muter</value>
+    public const string Muter = "muter";
 
-        public static class Uris
-        {
-            /// <inheritdoc cref="DgmjrR.Admin" />
-            public static readonly uri Admin = uri.From(DgmjrR.Admin.Uri);
+    /// <summary>A "free"d user, one on whom the bot's restrictions do not apply</summary>
+    /// <value>free</value>
+    public const string Free = "free";
 
-            /// <inheritdoc cref="DgmjrR.Administrator" />
-            public static readonly uri Administrator = uri.From(DgmjrR.Administrator.Uri);
+    /// <summary>The name of the <inheritdoc cref="Admin" path="/value" /> role</summary>
+    /// <value>admin</value>
+    public const string Admin = Administrator;
+    /// <summary>The name of the <inheritdoc cref="Administrator" path="/value" /> role</summary>
+    /// <value>administrator</value>
+    public const string Administrator = "administrator";
+    /// <summary>The name of the <inheritdoc cref="GroupAdministrator" path="/value" /> role</summary>
+    /// <value>group_administrator</value>
+    public const string GroupAdministrator = "group_administrator";
+    /// <summary>The name of the <inheritdoc cref="Owner" path="/value" /> role</summary>
+    /// <value>owner</value>
+    public const string Owner = "owner";
+    /// <summary>The name of the <inheritdoc cref="User" path="/value" /> role</summary>
+    /// <value>user</value>
+    public const string User = "user";
+    /// <summary>The name of the <inheritdoc cref="GroupMember" path="/value" /> role</summary>
+    /// <value>group_member</value>
+    public const string GroupMember = "group_member";
+    /// <summary>The name of the <inheritdoc cref="Voter" path="/value" /> role</summary>
+    /// <value>voter</value>
+    public const string Voter = "voter";
+    /// <summary>The name of the <inheritdoc cref="Contestant" path="/value" /> role</summary>
+    /// <value>contestant</value>
+    public const string Contestant = "contestant";
 
-            /// <inheritdoc cref="DgmjrR.GroupAdministrator" />
-            public static readonly uri GroupAdministrator = uri.From(DgmjrR.GroupAdministrator.Uri);
-
-            /// <inheritdoc cref="DgmjrR.Owner" />
-            public static readonly uri Owner = uri.From(DgmjrR.Owner.Uri);
-
-            /// <inheritdoc cref="DgmjrR.User" />
-            public static readonly uri User = uri.From(DgmjrR.User.Uri);
-
-            /// <inheritdoc cref="DgmjrR.GroupMember" />
-            public static readonly uri GroupMember = uri.From(DgmjrR.GroupMember.Uri);
-
-            /// <inheritdoc cref="DgmjrR.Voter" />
-            public static readonly uri Voter = uri.From(DgmjrR.Voter.Uri);
-
-            /// <inheritdoc cref="DgmjrR.Contestant" />
-            public static readonly uri Contestant = uri.From(DgmjrR.Contestant.Uri);
-        }
-    }
+    /// <summary>The name of the <inheritdoc cref="Anonymous" path="/value" /> role.  Members of this role may log in "anonymously" and access basic API features.</summary>
+    /// <value>anonymous</value>
+    public const string Anonymous = "anonymous";
 }

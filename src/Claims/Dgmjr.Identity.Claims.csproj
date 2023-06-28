@@ -1,15 +1,23 @@
+<!--
+ * Dgmjr.Identity.Claims.csproj
+ * 
+ *   Created: 2023-06-27-10:46:10
+ *   Modified: 2023-06-27-10:46:10
+ * 
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *   
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
 <Project Sdk="Microsoft.NET.Sdk">
-   <PropertyGroup>
-      <TargetFrameworks>netstandard2.0</TargetFrameworks>
-   </PropertyGroup>
-   <ItemGroup>
-      <SourceGenerator  Include="Dgmjr.Enumerations.CodeGenerator" />
-      <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
-      <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" />
-      <PackageReference Include="Dgmjr.ComponentModel" ExcludeAssets="ContentFiles" />
-      <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
-      <PackageReference Include="Dgmjr.Tuples" ExcludeAssets="ContentFiles" />
-      <PackageReference Include="System.Runtime.Serialization.Primitives" Condition="$(TargetFramework.Contains('netstandard1'))" />
-      <!-- <PackageReference Include="Microsoft.AspNetCore.Identity.Core"  /> -->
-   </ItemGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="./Abstractions/Dgmjr.Identity.Claims.Abstractions.csproj" />
+        <ProjectReference Include="./ClaimTypes/Dgmjr.Identity.Claims.ClaimTypes.csproj" />
+        <ProjectReference Include="./ClaimTypes/Dgmjr.Identity.Claims.ClaimValueTypes.csproj" />
+        <ProjectReference Include="./Jwt/Dgmjr.Identity.Claims.Jwt.csproj" />
+    </ItemGroup>
 </Project>

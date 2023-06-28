@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+   <PropertyGroup>
+      <TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
+   </PropertyGroup>
+   <ItemGroup>
+      <SourceGenerator  Include="Dgmjr.Enumerations.CodeGenerator" />
+      <!-- <PackageReference  Include="System.Security.Claims" /> -->
+      <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
+      <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" />
+      <PackageReference Include="Dgmjr.ComponentModel" ExcludeAssets="ContentFiles" />
+      <!-- <PackageReference Include="System.ComponentModel.Annotations" ExcludeAssets="ContentFiles" /> -->
+      <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
+      <PackageReference Include="Dgmjr.Tuples" ExcludeAssets="ContentFiles" />
+      <PackageReference Include="System.Runtime.Serialization.Primitives" Condition="$(TargetFramework.Contains('netstandard1'))" />
+      <PackageReference Include="FluentValidation"  />
+      <PackageReference Include="Dgmjr.Claims.Abstractions"  />
+      <!-- <PackageReference Include="Microsoft.AspNetCore.Identity.Core"  /> -->
+   </ItemGroup>
+</Project>
