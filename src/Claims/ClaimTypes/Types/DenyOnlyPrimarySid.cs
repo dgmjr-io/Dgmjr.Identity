@@ -21,7 +21,7 @@ public sealed class DenyOnlyPrimarySid : MicrosoftSoap2008ClaimBaseType, IClaimT
     /// <returns>an instance of the <see cref="DenyOnlyPrimarySid" /> class</returns>
     public static readonly IClaimType Instance = new DenyOnlyPrimarySid();
     private DenyOnlyPrimarySid() { }
-    public const string Name = "denyonlyprimarysid";
+    public const string _Name = "denyonlyprimarysid";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

@@ -1,22 +1,71 @@
-namespace Dgmjr.Identity.ClaimValueTypes;
-using Dgmjr.Identity.ClaimValueTypes.Abstractions;
+namespace Dgmjr.Identity.Claims.ClaimValueTypes;
+using Dgmjr.Identity.Claims.Abstractions;
 
-public abstract class ClaimValueType : ClaimValueOrTypeBase, IClaimValueType
+/// <summary>
+/// Represents the base class for claim value types.
+/// </summary>
+/// <typeparam name="TValue">The underlying value type.</typeparam>
+public abstract partial class ClaimValueType<TSelf, TValue> : ClaimValueOrTypeBase
+    where TSelf : ClaimValueType<TSelf, TValue>
+    where TValue : notnull
 {
-    public new const string ShortUriSeparator = ":";
-    public new const string LongUriSeparator = "/";
-    public new const string ShortUriPrefix = $"{Constants.identity}{ShortUriSeparator}{Constants.claim}{ShortUriSeparator}{Constants.value}";
-    public new const string LongUriPrefix = $"{Constants.Dgmjr_IO}{LongUriSeparator}{Constants.identity}{LongUriSeparator}{Constants.claim}{LongUriSeparator}{Constants.value}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string Name = "";
+    /// <summary>
+    /// The short URI separator.
+    /// </summary>
+    public new const string _ShortUriSeparator = ":";
 
-    type IClaimValueType.UnderlyingType => typeof(void);
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.ShortUriPrefix => ShortUriPrefix;
-    string IClaimTypeOrValue.LongUriPrefix => LongUriPrefix;
-    string IClaimTypeOrValue.ShortUriSeparator => ShortUriSeparator;
-    string IClaimTypeOrValue.LongUriSeparator => LongUriSeparator;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
+    /// <summary>
+    /// The long URI separator.
+    /// </summary>
+    public new const string _LongUriSeparator = "/";
+
+    /// <summary>
+    /// The short URI prefix.
+    /// </summary>
+    public new const string _ShortUriPrefix = $"{Constants.identity}{_ShortUriSeparator}{Constants.identity}{_ShortUriSeparator}{Constants.claim}{_ShortUriSeparator}{Constants.value}";
+
+    /// <summary>
+    /// The long URI prefix.
+    /// </summary>
+    public new const string _LongUriPrefix = $"{Constants.Dgmjr_IO}{_LongUriSeparator}{Constants.claim}{_LongUriSeparator}{Constants.value}";
+
+    /// <summary>
+    /// The short URI string.
+    /// </summary>
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
+
+    /// <summary>
+    /// The long URI string.
+    /// </summary>
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+
+    /// <summary>
+    /// The name.
+    /// </summary>
+    public new const string _Name = "";
+
+    public virtual string StringValue { get => Value.ToString(); set => Convert.ChangeType(value, typeof(TValue)); }
+    public virtual TValue Value { get; set; }
+
+    public override string Name => _Name;
+    public override string ShortUriPrefix => _ShortUriPrefix;
+    public override string LongUriPrefix => _LongUriPrefix;
+    public override string ShortUriSeparator => _ShortUriSeparator;
+    public override string LongUriSeparator => _LongUriSeparator;
+    public override string ShortUriString => _ShortUriString;
+    public override string LongUriString => _LongUriString;
+
+    public static TSelf Create(string s)
+    {
+        var @new = Activator.CreateInstance<TSelf>();
+        @new.StringValue = s;
+        return @new;
+    }
+
+    public static TSelf Create(TValue value)
+    {
+        var @new = Activator.CreateInstance<TSelf>();
+        @new.Value = value;
+        return @new;
+    }
 }

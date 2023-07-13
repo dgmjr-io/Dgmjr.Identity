@@ -1,3 +1,5 @@
+using System.Security.AccessControl;
+using System.Security.Cryptography.X509Certificates;
 /*
  * ClaimTypeUris.cs
  *
@@ -14,14 +16,14 @@ namespace Dgmjr.Identity.Claims;
 using Dgmjr.Identity.Claims.Abstractions;
 /// <summary>The URI for an X.500 distinguished name claim</summary>
 /// <value>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/x500distinguishedname</value>
-public sealed class X500DistinguishedName : Soap2005ClaimBaseType, IClaimType
+public sealed class X500DistinguishedName : Soap2005ClaimBaseType<X500DistinguishedName, global::System.Security.Cryptography.X509Certificates.X509Certificate>, IClaimType
 {
     public static readonly IClaimType Instance = new X500DistinguishedName();
 
     /// <summary>The singleton instance of the <see cref="X500DistinguishedName" /> class.</summary>
     /// <returns>an instance of the <see cref="X500DistinguishedName" /> class</returns>    public static readonly IClaimType Instance = new X500DistinguishedName();
     private X500DistinguishedName() { }
-    public const string Name = "x500distinguishedname";
+    public const string _Name = "x500distinguishedname";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

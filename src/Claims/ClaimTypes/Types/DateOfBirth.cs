@@ -21,7 +21,7 @@ public sealed class DateOfBirth : Soap2005ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="DateOfBirth" /> class</returns>
     public static readonly IClaimType Instance = new DateOfBirth();
     private DateOfBirth() { }
-    public const string Name = "dateofbirth";
+    public const string _Name = "dateofbirth";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

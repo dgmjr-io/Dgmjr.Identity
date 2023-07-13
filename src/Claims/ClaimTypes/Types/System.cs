@@ -21,7 +21,7 @@ public sealed class System : Soap2005ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="System" /> class</returns>
     public static readonly IClaimType Instance = new System();
     private System() { }
-    public const string Name = "system";
+    public const string _Name = "system";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

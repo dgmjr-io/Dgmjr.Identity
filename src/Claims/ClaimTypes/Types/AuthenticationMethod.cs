@@ -21,7 +21,11 @@ public sealed class AuthenticationMethod : MicrosoftSoap2008ClaimBaseType, IClai
     /// <returns>an instance of the <see cref="AuthenticationMethod" /> class</returns>
     public static readonly IClaimType Instance = new AuthenticationMethod();
     private AuthenticationMethod() { }
-    public const string Name = "authenticationmethod";
+    /// <value>authenticatiomethod</value>
+    public const string _Name = "authenticationmethod";
 
-    string IClaimTypeOrValue.Name => Name;
+    /// <value><inheritdoc cref="MicrosoftSoap2008ClaimBaseType.LongUriPrefix" path="/value" /><inheritdoc cref="MicrosoftSoap2008ClaimBaseType.LongUriSeparator" path="/value" /><inheritdoc cref="Name" path="/value" /></value>
+    public new const string _LongUriString = $"{MicrosoftSoap2008ClaimBaseType.LongUriPrefix}{MicrosoftSoap2008ClaimBaseType.LongUriSeparator}{AuthenticationMethod.Name}";
+    /// <value><inheritdoc cref="MicrosoftSoap2008ClaimBaseType.ShortUriPrefix" path="/value" /><inheritdoc cref="MicrosoftSoap2008ClaimBaseType.ShortUriSeparator" path="/value" /><inheritdoc cref="Name" path="/value" /></value>
+    public new const string _ShortUriString = $"{MicrosoftSoap2008ClaimBaseType.ShortUriPrefix}{MicrosoftSoap2008ClaimBaseType.ShortUriSeparator}{AuthenticationMethod.Name}";
 }

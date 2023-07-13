@@ -21,7 +21,7 @@ public sealed class CookiePath : MicrosoftSoap2008ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="CookiePath" /> class</returns>
     public static readonly IClaimType Instance = new CookiePath();
     private CookiePath() { }
-    public const string Name = "cookiepath";
+    public const string _Name = "cookiepath";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

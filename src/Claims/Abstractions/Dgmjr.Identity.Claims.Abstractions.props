@@ -1,8 +1,18 @@
 <Project>
     <ItemGroup>
         <Using Include="Dgmjr.Identity.Claims.Abstractions" />
-        <Using Include="Dgmjr.Identity.ClaimValueTypes.Abstractionss" />
+        <!-- <Using Include="Dgmjr.Identity.Claims.ClaimValueTypes.Abstractions" /> -->
         <Using Include="Dgmjr.Identity.Constants" Static="true" />
         <Using Include="Dgmjr.Identity" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="System.Security.Claims" />
+        <PackageReference Include="Dgmjr.Primitives" />
+        <PackageReference Include="Dgmjr.Abstractions" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageTag Include="identity" />
+        <PackageTag Include="claims" />
+        <PackageTag Include="security" />
     </ItemGroup>
 </Project>

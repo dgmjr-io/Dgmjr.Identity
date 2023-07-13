@@ -30,12 +30,12 @@
         <PackageReference Include="System.ComponentModel.Annotations" />
         <!-- <PackageReference Include="System.Text.Json.Usings" />
         <PackageReference Include="System.Text.Json" /> -->
-        <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
+        <PackageReference Include="Dgmjr.System.Extensions" />
     </ItemGroup>
     <ItemGroup>
         <Using Include="Dgmjr.Identity" Alias="DgmjrId" />
-        <Using Include="Dgmjr.Identity.ClaimTypeUris" Alias="DgmjrCt" />
-        <Using Include="Dgmjr.Identity.ClaimValueTypeUris" Alias="DgmjrCvt" />
+        <Using Include="Dgmjr.Identity.Claims.ClaimTypes" Alias="DgmjrCt" />
+        <Using Include="Dgmjr.Identity.Claims.ClaimValueTypes" Alias="DgmjrCvt" />
         <!-- <Using Include="Dgmjr.Identity.Roles" Alias="DgmjrR" /> -->
         <!-- <Using Include="Dgmjr.Identity.Uris" Alias="JwcIdUris" />
         <Using Include="System.Uri" Alias="@uri" />

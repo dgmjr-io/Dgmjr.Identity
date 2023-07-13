@@ -21,7 +21,7 @@ public sealed class WindowsUserClaim : MicrosoftSoap2008ClaimBaseType, IClaimTyp
     /// <returns>an instance of the <see cref="WindowsUserClaim" /> class</returns>
     public static readonly IClaimType Instance = new WindowsUserClaim();
     private WindowsUserClaim() { }
-    public const string Name = "windowsuserclaim";
+    public const string _Name = "windowsuserclaim";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

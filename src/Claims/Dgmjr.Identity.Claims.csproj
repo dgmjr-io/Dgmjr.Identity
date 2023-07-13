@@ -11,13 +11,17 @@
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
+    <Sdk Name="MetapackageSdk" />
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="./Abstractions/Dgmjr.Identity.Claims.Abstractions.csproj" />
         <ProjectReference Include="./ClaimTypes/Dgmjr.Identity.Claims.ClaimTypes.csproj" />
         <ProjectReference Include="./ClaimTypes/Dgmjr.Identity.Claims.ClaimValueTypes.csproj" />
         <ProjectReference Include="./Jwt/Dgmjr.Identity.Claims.Jwt.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="**/*.cs" />
     </ItemGroup>
 </Project>

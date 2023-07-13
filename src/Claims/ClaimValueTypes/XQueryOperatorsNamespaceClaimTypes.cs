@@ -2,7 +2,7 @@
 // using System.ComponentModel.DataAnnotations;
 // using Dgmjr.Identity;
 
-// namespace Dgmjr.Identity.ClaimValueTypes;
+// namespace Dgmjr.Identity.Claims.ClaimValueTypes;
 // using Abstractions;
 
 // /// <summary>A URI pattern for representing a claim type in the  http://www.w3.org/TR/2002/WD-xquery-operators-20020816 namespace</summary>
@@ -22,15 +22,15 @@
 
 //     public override string ShortUriPrefix => ShortUriPrefix;
 
-//     string IClaimTypeOrValue.Name => Name;
+//     public override string Name => _Name;
 
 //     public override string LongUriSeparator => LongUriSeparator;
 
 //     public override string ShortUriSeparator => ShortUriSeparator;
 
-//     public override string LongUriString => $"{LongUriPrefix}{LongUriSeparator}{Name}";
+//     public override string LongUriString => $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
 
-//     public override string ShortUriString => $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+//     public override string ShortUriString => $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 // }
 
 
@@ -40,9 +40,9 @@
 
 //     public DayTimeDuration() { }
 
-//     public new const string Name = "dayTimeDuration";
+//     public new const string _Name = "dayTimeDuration";
 
-//     string IClaimTypeOrValue.Name => Name;
+//     public override string Name => _Name;
 //     type IClaimValueType.UnderlyingType => typeof(System.TimeSpan);
 // }
 
@@ -52,9 +52,9 @@
 
 //     public Duration() { }
 
-//     public new const string Name = "dayTimeDuration";
+//     public new const string _Name = "dayTimeDuration";
 
-//     string IClaimTypeOrValue.Name => Name;
+//     public override string Name => _Name;
 //     override public System.Type UnderlyingType => typeof(System.TimeSpan);
 // }
 
@@ -65,9 +65,9 @@
 
 //     public YearMonthDuration() { }
 
-//     public new const string Name = "yearMonthDuration";
+//     public new const string _Name = "yearMonthDuration";
 
-//     string IClaimTypeOrValue.Name => Name;
+//     public override string Name => _Name;
 //     override public System.Type UnderlyingType => typeof(System.TimeSpan);
 // }
 
@@ -78,9 +78,9 @@
 
 //     public Date() { }
 
-//     public new const string Name = "yearMonthDuration";
+//     public new const string _Name = "yearMonthDuration";
 
-//     string IClaimTypeOrValue.Name => Name;
+//     public override string Name => _Name;
 
 // #if NET5_0_OR_GREATER
 //     override public System.Type UnderlyingType => typeof(System.DateOnly);
@@ -97,9 +97,9 @@
 
 //     public Time() { }
 
-//     public new const string Name = "yearMonthDuration";
+//     public new const string _Name = "yearMonthDuration";
 
-//     string IClaimTypeOrValue.Name => Name;
+//     public override string Name => _Name;
 // #if NET5_0_OR_GREATER
 //         override public System.Type UnderlyingType => typeof(System.TimeOnly);
 // #else

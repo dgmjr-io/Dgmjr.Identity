@@ -23,7 +23,7 @@ using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 using static Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant;
 
 // using DgmjrCt = Dgmjr.Identity.ClaimTypes;
-// using DgmjrCvt = Dgmjr.Identity.ClaimValueTypes;
+// using DgmjrCvt = Dgmjr.Identity.Claims.ClaimValueTypes;
 
 
 [Table(TableNames.UserClaim, Schema = IdSchema), DebuggerDisplay("User Claim ({Id} - User ID: {UserId}, {Type}: {Value})")]

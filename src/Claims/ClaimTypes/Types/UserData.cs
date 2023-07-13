@@ -21,7 +21,7 @@ public sealed class UserData : MicrosoftSoap2008ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="UserData" /> class</returns>
     public static readonly IClaimType Instance = new UserData();
     private UserData() { }
-    public const string Name = "userdata";
+    public const string _Name = "userdata";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

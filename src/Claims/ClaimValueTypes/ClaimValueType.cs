@@ -1,28 +1,25 @@
-using Microsoft.VisualBasic;
-using System.Security.Cryptography;
 /* 
- * ClaimType.cs
+ * ClaimValueType.cs
  * 
- *   Created: 2023-03-30-12:44:53
- *   Modified: 2023-03-30-12:44:53
+ *   Created: 2023-06-07-06:56:39
+ *   Modified: 2023-07-10-05:31:03
  * 
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ * 
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace Dgmjr.Identity.ClaimValueTypes;
+namespace Dgmjr.Identity.ClaimsValueTypes;
 using Dgmjr.Identity.Claims.Abstractions;
 using System;
 using Abstractions;
 
-public abstract class ClaimValueType<TValue> : IClaimValueType
+public abstract partial class ClaimValueType<TSelf, TUnderlyingValue> : ClaimValueOrTypeBase
 {
-    public virtual uri Uri => LongUri;
-    public virtual uri ShortUri => ((IClaimTypeOrValue)this).ShortUriString;
-    public virtual uri LongUri => ((IClaimTypeOrValue)this).LongUriString;
-    public virtual string Description => $"A claimtype for the {((IClaimTypeOrValue)this).Name} defined in the {((IClaimTypeOrValue)this).LongUriString} ({((IClaimTypeOrValue)this).ShortUriString}) namespace.";
+    public override uri Uri => LongUri;
+    public override uri ShortUri => this.ShortUriString;
+    public override uri LongUri => this.LongUriString;
 
     public virtual bool Equals(IClaimValueType? other)
     {
@@ -35,36 +32,18 @@ public abstract class ClaimValueType<TValue> : IClaimValueType
 
     public override int GetHashCode() => Uri.GetHashCode();
     public override bool Equals(object? obj) => Equals(obj as IClaimValueType);
-    public static bool operator ==(ClaimValueType? left, ClaimValueType? right) => left is null ? right is null : left.Equals(right);
-    public static bool operator !=(ClaimValueType? left, ClaimValueType? right) => !(left == right);
-    public override string ToString() => Uri.ToString();
-    public static implicit operator uri(ClaimValueType? claimValueType) => claimValueType?.Uri ?? uri.Empty;
+    // public static bool operator ==(ClaimValueType<TSelf, TUnderlyingValue>? left, IClaimValueType? right) => left is null ? right is null : left.Uri.Equals(right.Uri);
+    // public static bool operator !=(ClaimValueType<TSelf, TUnderlyingValue>? left, IClaimValueType? right) => left is null && right is not null || left is not null && right is null || !left.Uri.Equals(right.Uri);
 
-    public const string LongUriPrefx = Constants.DefaultLongUriPrefix;
-    public const string ShortUriPrefix = Constants.DefaultShortUriPrefix;
-    public const string LongUriSeparator = Constants.DefaultLongUriSeparator;
-    public const string ShortUriSeparator = Constants.DefaultShortUriSeparator;
-    public const string Name = Constants.value;
-    public const string LongUriString = $"{LongUriPrefx}{LongUriSeparator}{Name}";
-    public const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
-
-
-    string IClaimTypeOrValue.LongUriSeparator => LongUriSeparator;
-    string IClaimTypeOrValue.ShortUriSeparator => ShortUriSeparator;
-    string IClaimTypeOrValue.LongUriPrefix => LongUriPrefx;
-    string IClaimTypeOrValue.ShortUriPrefix => ShortUriPrefix;
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    type IClaimTypeOrValue.UnderlyingType => typeof(void);
-
-    public virtual object? Value { get; set; }
-    public virtual TValue? Value { get; set; }
+#if NET7_0_OR_GREATER
+    static type IClaimValueType.UnderlyingType => typeof(TValue);
+#else
+#endif
 }
 
 // public class ClaimType : UriDescriptionTuple
 // {
-//     public virtual ClaimValueType ValueType { get; }
+//     public virtual ClaimValueType ValueType _{_ get; }
 
 //     public ClaimType(@uri? uri, string? description = null, uri? claimValueType = null) : base(uri, description)
 //         => ValueType = claimValueType != null ? new ClaimValueType(claimValueType, null as string/*, null as IValidator<C>*/) : new ClaimValueType(DgmjrCvt.String);

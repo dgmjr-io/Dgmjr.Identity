@@ -21,7 +21,7 @@ public sealed class OtherPhone : Soap2005ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="OtherPhone" /> class</returns>
     public static readonly IClaimType Instance = new OtherPhone();
     private OtherPhone() { }
-    public const string Name = "otherphone";
+    public const string _Name = "otherphone";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

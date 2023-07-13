@@ -21,7 +21,7 @@ public sealed class Version : MicrosoftSoap2008ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="Version" /> class</returns>
     public static readonly IClaimType Instance = new Version();
     private Version() { }
-    public const string Name = "version";
+    public const string _Name = "version";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

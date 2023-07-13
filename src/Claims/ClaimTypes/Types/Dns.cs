@@ -21,7 +21,7 @@ public sealed class Dns : Soap2005ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="Dns" /> class</returns>
     public static readonly IClaimType Instance = new Dns();
     private Dns() { }
-    public const string Name = "dns";
+    public const string _Name = "dns";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

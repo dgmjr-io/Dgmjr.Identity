@@ -11,19 +11,19 @@
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-      <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    </PropertyGroup>
+      <PropertyGroup>
+         <TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0;</TargetFrameworks>
+      </PropertyGroup>
    <ItemGroup>
       <SourceGenerator Include="Dgmjr.Enumerations.CodeGenerator" />
       <PackageReference Include="System.Text.Json" />
-      <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
-      <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" />
-      <PackageReference Include="Dgmjr.ComponentModel" ExcludeAssets="ContentFiles" />
-      <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
-      <PackageReference Include="Dgmjr.Tuples" ExcludeAssets="ContentFiles" />
+      <PackageReference Include="Dgmjr.Abstractions" />
+      <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
+      <PackageReference Include="Dgmjr.ComponentModel" />
+      <PackageReference Include="Dgmjr.Primitives"  />
+      <PackageReference Include="Dgmjr.Tuples" />
       <PackageReference Include="System.Compat" IncludeAssets="ContentFiles" />
-      <PackageReference Include="Dgmjr.Claims.Abstractions" ExcludeAssets="ContentFiles" />
+      <ProjectReference Include="../Claims/Abstractions/Dgmjr.Identity.Claims.Abstractions.csproj" />
       <PackageReference Include="System.Runtime.Serialization.Primitives" Condition="$(TargetFramework.Contains('netstandard1'))" />
       <!-- <PackageReference Include="Microsoft.AspNetCore.Identity.Core"  /> -->
    </ItemGroup>

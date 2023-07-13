@@ -21,7 +21,7 @@ public sealed class WindowsSubAuthority : MicrosoftSoap2008ClaimBaseType, IClaim
     /// <returns>an instance of the <see cref="WindowsSubAuthority" /> class</returns>
     public static readonly IClaimType Instance = new WindowsSubAuthority();
     private WindowsSubAuthority() { }
-    public const string Name = "windowssubauthority";
+    public const string _Name = "windowssubauthority";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

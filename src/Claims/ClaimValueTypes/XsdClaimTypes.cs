@@ -1,223 +1,192 @@
 #pragma warning disable
-namespace Dgmjr.Identity.ClaimValueTypes;
-using Dgmjr.Identity.ClaimValueTypes.Abstractions;
+namespace Dgmjr.Identity.Claims.ClaimValueTypes;
+using System.Security.AccessControl;
+using System.Diagnostics.Contracts;
 using System.ComponentModel.DataAnnotations;
 using Dgmjr.Identity;
 
+
 /// <summary>A URI pattern for representing a claim type in the  <inheritdoc cref="LongUriPrefix" path="/value" /> (<inheritdoc cref="ShortUriPrefix" path="/value" />) namespace</summary>
-public abstract class XsdClaimValueType : ClaimValueType, IClaimValueType, IClaimTypeOrValue
+public abstract class XsdClaimValueType<TSelf, TValue> : ClaimValueType<TSelf, TValue>
+    where TSelf : XsdClaimValueType<TSelf, TValue>
+    where TValue : notnull
 {
     /// <summary>The name of the claim value type <inheritdoc cref="Name" path="/value" /></summary>
     /// <value>xs</value>
-    public new const string ShortUriPrefix = "xs";
+    public new const string _ShortUriPrefix = "xs";
     /// <summary>The long URI prefix of the claim value type <inheritdoc cref="Name" path="/value" /></summary>
     /// <value>http://www.w3.org/2001/XMLSchema</value>
-    public new const string LongUriPrefix = $"http://www.w3.org/2001/XMLSchema";
+    public new const string _LongUriPrefix = $"http://www.w3.org/2001/XMLSchema";
 
     /// <summary>
     /// The name of the claim value type <inheritdoc cref="Name" path="/value" />
     /// </summary>
     /// <value>claim</value>
-    public new const string Name = Constants.DefaultClaimName;
-    public new const string LongUriSeparator = "#";
-    public new const string ShortUriSeparator = ":";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
-    public new const string Description = $"A claim value type that represents a(n) {Name} in the {LongUriPrefix} ({ShortUriPrefix}) namespace";
+    public new const string _Name = Constants.DefaultClaimName;
+    public new const string _LongUriSeparator = "#";
+    public new const string _ShortUriSeparator = ":";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
+    public new const string _Description = $"A claim value type that represents a(n) _{_Name} in the _{_LongUriPrefix} (_{_ShortUriPrefix}) namespace";
 
-    string IClaimTypeOrValue.LongUriPrefix => LongUriPrefix;
-    string IClaimTypeOrValue.ShortUriPrefix => ShortUriPrefix;
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriSeparator => LongUriSeparator;
-    string IClaimTypeOrValue.ShortUriSeparator => ShortUriSeparator;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    string IClaimTypeOrValue.Description => Description;
+    public override string LongUriPrefix => _LongUriPrefix;
+    public override string ShortUriPrefix => _ShortUriPrefix;
+    public override string Name => _Name;
+    public override string LongUriSeparator => _LongUriSeparator;
+    public override string ShortUriSeparator => _ShortUriSeparator;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
+    public override string Description => _Description;
+    public override string StringValue { get => Convert.ToString(Value); set => Value.ToString(); }
 }
 
 
 /// <summary>
 /// A URI pattern for representing a(n) <inheritdoc cref="Name" path="/value" /> claim type in the http://www.w3.org/2001/XMLSchema (xs) namespace
 /// </summary>
-public class String : XsdClaimValueType, IClaimValueType, IClaimValueType<String, string>, IClaimTypeOrValue
+public class String : XsdClaimValueType<String, string>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new String();
+    public static String Instance => new String();
 
     public String() { }
 
     /// <value>string</value>
-    public new const string Name = "string";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "string";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(System.String);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 }
 /// <summary>
 /// A URI pattern for representing a(n) <inheritdoc cref="Name" path="/value" /> claim type in the http://www.w3.org/2001/XMLSchema (xs) namespace
 /// </summary>
-public class Uri : ClaimValueType, IClaimValueType<Uri, uri>, IClaimTypeOrValue
-{
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new Uri();
-
-    public Uri() { }
-
-    /// <value>anyUri</value>
-    public new const string Name = "anyUri";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
-
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(uri);
-}
-
+public class Uri : AnyUri { }
 /// <summary>
 /// A URI pattern for representing a(n) <inheritdoc cref="Name" path="/value" /> claim type in the http://www.w3.org/2001/XMLSchema (xs) namespace
 /// </summary>
-public class Double : XsdClaimValueType, IClaimValueType<Double, double>, IClaimTypeOrValue
+public class Double : XsdClaimValueType<Double, double>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new Double();
+    public static Double Instance => new Double();
 
     public Double() { }
 
     /// <value>double</value>
-    public new const string Name = "double";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "double";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(double);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 }
 
 
 /// <summary>
 /// A URI pattern for representing a(n) <inheritdoc cref="Name" path="/value" /> claim type in the http://www.w3.org/2001/XMLSchema (xs) namespace
 /// </summary>
-public class Decimal : XsdClaimValueType, IClaimValueType<Decimal, decimal>, IClaimTypeOrValue
+public class Decimal : XsdClaimValueType<Decimal, decimal>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new Decimal();
-
+    public static Decimal Instance => new Decimal();
     public Decimal() { }
 
     /// <value>decimal</value>
-    public new const string Name = "decimal";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "decimal";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(decimal);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 }
 
-public class Boolean : XsdClaimValueType, IClaimValueType<Boolean, bool>, IClaimTypeOrValue
+public class Boolean : XsdClaimValueType<Boolean, bool>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new Boolean();
+    public static Boolean Instance => new Boolean();
 
     public Boolean() { }
 
-    public new const string Name = "boolean";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "boolean";
+    public new const string _LongUriString = $"{XsdClaimValueType<Boolean, bool>._LongUriPrefix}{XsdClaimValueType<Boolean, bool>._LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{XsdClaimValueType<Boolean, bool>._ShortUriPrefix}{XsdClaimValueType<Boolean, bool>._ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(bool);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 }
 
-public class DateTime : XsdClaimValueType, IClaimValueType<DateTime, System.DateTime>, IClaimTypeOrValue
+public class DateTime : XsdClaimValueType<DateTime, System.DateTime>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new DateTime();
+    public static DateTime Instance => new DateTime();
 
     public DateTime() { }
 
-    public new const string Name = "dateTime";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "dateTime";
+    public new const string _LongUriString = $"{XsdClaimValueType<DateTime, System.DateTime>._LongUriPrefix}{XsdClaimValueType<DateTime, System.DateTime>._LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{XsdClaimValueType<DateTime, System.DateTime>._ShortUriPrefix}{XsdClaimValueType<DateTime, System.DateTime>._ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(System.DateTime);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 }
-public class Date : XsdClaimValueType,
-#if NET7_0_OR_GREATER
-IClaimValueType<Date, DateOnly>,
-#else
-IClaimType<Date, DateTime>,
-#endif
-IClaimTypeOrValue
+public class Date : XsdClaimValueType<Date, System.DateOnly>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new Date();
+    public static Date Instance => new Date();
 
     public Date() { }
-#if NET7_0_OR_GREATER
-    public Date(DateOnly date) => Value = date;
-    public Date(System.DateTime date) : this(new DateOnly(date)) { }
-#else
+    public Date(System.DateOnly date) => Value = date;
+    public Date(System.DateTime date) : this(System.DateOnly.Parse(date.ToShortDateString())) { }
     public Date(string date) : this(System.DateTime.TryParse(date, out var dt) ? dt : throw new InvalidCastException($"The string \"{date}\" was not recognized as a valid date.")) { }
-    public Date(System.DateTime date) => Value = new System.DateTime(date.ToShortDateString());
-#endif
 
-    public new const string Name = "date";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "date";
+    public new const string _LongUriString = $"{XsdClaimValueType<Date, System.DateOnly>._LongUriPrefix}{XsdClaimValueType<Date, System.DateOnly>._LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{XsdClaimValueType<Date, System.DateOnly>._ShortUriPrefix}{XsdClaimValueType<Date, System.DateOnly>._ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-#if NET7_0_OR_GREATER
-    type IClaimValueType.UnderlyingType => typeof(System.DateOnly);
-#else
-    type IClaimValueType.UnderlyingType => typeof(System.DateTime);
-#endif
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 
     public static implicit operator Date(System.DateTime date) => new Date(date);
-    public static implicit operator Date(string date) => new Date(date);
-#if NET7_0_OR_GREATER
+    public static implicit operator Date(string date) => new Date(System.DateTime.Parse(System.DateTime.Parse(date).ToShortDateString()));
     public static implicit operator Date(DateOnly date) => new Date(date);
-#endif
+    public static implicit operator string(Date date) => date.Value.ToShortDateString();
 }
 
-public class DateTimeOffset : XsdClaimValueType, IClaimValueType<DateTimeOffset>, IClaimTypeOrValue
+public class Time : XsdClaimValueType<Time, System.TimeOnly>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new DateTimeOffset();
+    public static Time Instance => new Time();
 
-    public DateTimeOffset() { }
+    public Time() { }
+    public Time(double milisecons) : this(global::System.DateTime.FromFileTimeUtc((long)milisecons)) { }
+    public Time(TimeOnly date) => Value = date;
+    public Time(System.DateTime date) : this(TimeOnly.Parse(date.ToShortTimeString())) { }
+    public Time(string date) : this(System.DateTime.TryParse(date, out var dt) ? dt : throw new InvalidCastException($"The string \"{date}\" was not recognized as a valid date.")) { }
 
-    public new const string Name = "dateTimeOffset";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "time";
+    public new const string _LongUriString = $"{XsdClaimValueType<Time, System.TimeOnly>._LongUriPrefix}{XsdClaimValueType<Time, System.TimeOnly>._LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{XsdClaimValueType<Time, System.TimeOnly>._ShortUriPrefix}{XsdClaimValueType<Time, System.TimeOnly>._ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(System.DateTimeOffset);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 }
 
-public class Duration : XsdClaimValueType, IClaimValueType<Duration, System.TimeSpan>, IClaimTypeOrValue
+public class Duration : XsdClaimValueType<Duration, System.TimeSpan>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new Duration();
+    public static Duration Instance => new Duration();
 
     public Duration() { }
     public Duration(System.TimeSpan timeSpan) => Value = timeSpan;
-    public Duration(double timeSpan) : this(System.TimeSpan.FromMilliseconds(timeSpan));
+    public Duration(double timeSpan) : this(System.TimeSpan.FromMilliseconds(timeSpan)) { }
 
-    public new const string Name = "timeSpan";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "timeSpan";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(System.TimeSpan);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 
     public static implicit operator Duration(System.TimeSpan timeSpan) => new Duration(timeSpan);
     public static implicit operator Duration(string timeSpan) => new Duration(System.TimeSpan.TryParse(timeSpan, out var ts) ? ts : throw new InvalidCastException($"The string \"{timeSpan}\" was not recognized as a valid timeSpan."));
@@ -247,21 +216,20 @@ public class Duration : XsdClaimValueType, IClaimValueType<Duration, System.Time
     public static implicit operator sbyte(Duration duration) => (sbyte)duration.Value.TotalMilliseconds;
 }
 
-public class AnyUri : XsdClaimValueType, IClaimValueType<AnyUri>, IClaimTypeOrValue
+public class AnyUri : XsdClaimValueType<AnyUri, uri>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new AnyUri();
+    public static AnyUri Instance => new AnyUri();
 
     public AnyUri() { }
     public AnyUri(uri uri) => Value = uri;
 
-    public new const string Name = "anyUri";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "anyURI";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(uri);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 
     public static implicit operator AnyUri(uri uri) => new AnyUri(uri);
     public static implicit operator AnyUri(string uri) => new AnyUri(uri);
@@ -271,219 +239,199 @@ public class AnyUri : XsdClaimValueType, IClaimValueType<AnyUri>, IClaimTypeOrVa
 
 
 
-public class Base64Binary : XsdClaimValueType, IClaimValueType<Base64Binary, byte[]>, IClaimTypeOrValue
+public class Base64Binary : XsdClaimValueType<Base64Binary, string>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new Base64Binary();
+    public static Base64Binary Instance => new Base64Binary();
 
     public Base64Binary() { }
-    public Base64Binary(string base64Binary) : this(FromBase64String(base64Binary));
-    public Base64Binary(byte[] byes) => Value = bytes;
+    public Base64Binary(string base64Binary) => Value = base64Binary;
+    public Base64Binary(byte[] bytes) : this(Convert.ToBase64String(bytes)) { }
 
-    public new const string Name = "base64Binary";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "base64Binary";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(byte[]);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 
     public static implicit operator Base64Binary(string base64Binary) => new Base64Binary(base64Binary);
     public static implicit operator Base64Binary(byte[] bytes) => new Base64Binary(bytes);
-    public static implicit operator string(Base64Binary base64Binary) => ToBase64String(base64Binary.Value);
-    public static implicit operator byte[](Base64Binary base64Binary) => base64Binary.Value;
+    public static implicit operator string(Base64Binary base64Binary) => base64Binary.Value;
+    public static implicit operator byte[](Base64Binary base64Binary) => Convert.FromBase64String(base64Binary.Value);
 }
 
 
-public class Base64Octet : XsdClaimValueType, IClaimValueType<Base64Octet>, IClaimTypeOrValue
+public class Base64Octet : Base64Binary
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new Base64Octet();
+    public static Base64Octet Instance => new Base64Octet();
 
-    public Base64Octet() { }
-    public Base64Binary(string base64Binary) : this(FromBase64String(base64Binary));
-    public Base64Binary(byte[] byes) => Value = bytes;
+    public Base64Octet() : base() { }
+    public Base64Octet(string base64Binary) : base(base64Binary) { }
+    public Base64Octet(byte[] bytes) : base(bytes) { }
 
-    public new const string Name = "base64Octet";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "base64Octet";
+    public new const string _LongUriString = $"{Base64Binary._LongUriPrefix}{Base64Binary._LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{Base64Binary._ShortUriPrefix}{Base64Binary._ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(string);
-    type IClaimValueType.UnderlyingType => typeof(byte[]);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 
-    public static implicit operator Base64Octet(string base64Binary) => new Base64Binary(base64Binary);
-    public static implicit operator Base64Octet(byte[] bytes) => new Base64Binary(bytes);
-    public static implicit operator string(Base64Octet base64Binary) => ToBase64String(base64Binary.Value);
-    public static implicit operator byte[](Base64Octet base64Binary) => base64Binary.Value;
+    public static implicit operator Base64Octet(string base64Binary) => new Base64Octet(base64Binary);
+    public static implicit operator Base64Octet(byte[] bytes) => new Base64Octet(bytes);
+    public static implicit operator string(Base64Octet base64Binary) => base64Binary.Value;
+    public static implicit operator byte[](Base64Octet base64Binary) => global::System.Convert.FromBase64String(base64Binary.Value);
 }
 
 
-public class HexBinary : XsdClaimValueType, IClaimValueType<HexBinary>, IClaimTypeOrValue
+public class HexBinary : XsdClaimValueType<HexBinary, string>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new HexBinary();
+    public static HexBinary Instance => new HexBinary();
 
     public HexBinary() { }
+    public HexBinary(string hexBinary) => Value = new RegexGuardedString(hexBinary, HexChars);
+    private const string HexChars = "^[0123456789ABCDEFabcdef]*$";
 
-    public new const string Name = "hexBinary";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "hexBinary";
+    public new const string _LongUriString = $"{XsdClaimValueType<HexBinary, string>._LongUriPrefix}{XsdClaimValueType<HexBinary, string>._LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{XsdClaimValueType<HexBinary, string>._ShortUriPrefix}{XsdClaimValueType<HexBinary, string>._ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(string);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
+
+    public static implicit operator HexBinary(string hexBinary) => new HexBinary(hexBinary);
+    public static implicit operator string(HexBinary hexBinary) => hexBinary.Value;
 }
 
-public class Sid : XsdClaimValueType, IClaimValueType<Sid, System.Security.Principal.SecurityIdentifier>, IClaimTypeOrValue
+public class Sid : XsdClaimValueType<Sid, SSPSId>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new Sid();
+    public static Sid Instance => new Sid();
 
     public Sid() { }
-    public Sid(System.Security.Principal.SecurityIdentifier sid) => Value = sid;
+    public Sid(SSPSId sid) => Value = sid;
 
-    public new const string Name = "sid";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "sid";
+    public new const string _LongUriString = $"{XsdClaimValueType<Sid, SSPSId>._LongUriPrefix}{XsdClaimValueType<Sid, SSPSId>._LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{XsdClaimValueType<Sid, SSPSId>._ShortUriPrefix}{XsdClaimValueType<Sid, SSPSId>._ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(string);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 }
 
 
-public class Integer : XsdClaimValueType, IClaimValueType<Integer, int>, IClaimTypeOrValue
+public class Integer : XsdClaimValueType<Integer, int>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new Integer();
+    public static Integer Instance => new Integer();
 
     public Integer() { }
 
-    public new const string Name = "integer";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "integer";
+    public new const string _LongUriString = $"{XsdClaimValueType<Integer, int>._LongUriPrefix}{XsdClaimValueType<Integer, int>._LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{XsdClaimValueType<Integer, int>._ShortUriPrefix}{XsdClaimValueType<Integer, int>._ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(int);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 }
-public class Long : XsdClaimValueType, IClaimValueType<Long>, IClaimTypeOrValue
+public class Long : XsdClaimValueType<Long, long>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new Integer();
+    public static Long Instance => new Long();
 
     public Long() { }
     public Long(long value) => Value = value;
 
-    public new const string Name = "long";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "long";
+    public new const string _LongUriString = $"{XsdClaimValueType<Long, long>._LongUriPrefix}{XsdClaimValueType<Long, long>._LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{XsdClaimValueType<Long, long>._ShortUriPrefix}{XsdClaimValueType<Long, long>._ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(int);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 
     public static implicit operator Long(long value) => new Long(value);
     public static implicit operator long(Long value) => value.Value;
 }
 
-public class ByteArray : XsdClaimValueType, IClaimValueType<ByteArray, byte[]>, IClaimTypeOrValue
+
+public class Integer32 : XsdClaimValueType<Integer32, int>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new ByteArray();
-
-    public ByteArray() { }
-    public ByteArray(byte[] bytes) => Value = bytes;
-
-    public new const string Name = "base64Binary";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
-
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(byte[]);
-
-    public static implicit operator ByteArray(byte[] bytes) => new ByteArray(bytes);
-    public static implicit operator byte[](ByteArray bytes) => bytes.Value;
-}
-
-public class Integer32 : XsdClaimValueType, IClaimValueType<Integer32, int>, IClaimTypeOrValue
-{
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new Integer32();
+    public static Integer32 Instance => new Integer32();
 
     public Integer32() { }
     public Integer32(int value) => Value = value;
 
-    public new const string Name = "integer32";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "integer32";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(int);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 
     public static implicit operator Integer32(int value) => new Integer32(value);
+    public static implicit operator Integer32(string value) => new Integer32(int.Parse(value));
     public static implicit operator int(Integer32 value) => value.Value;
 }
 
-public class UInteger32 : XsdClaimValueType, IClaimValueType<UInteger64, uint>, IClaimTypeOrValue, IClaimValueType
+public class UInteger32 : XsdClaimValueType<UInteger32, uint>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new UInteger32();
+    public static UInteger32 Instance => new UInteger32();
 
     public UInteger32() { }
     public UInteger32(uint value) => Value = value;
 
-    public new const string Name = "uinteger32";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "uinteger32";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(uint);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 
     public static implicit operator UInteger32(uint value) => new UInteger32(value);
+    public static implicit operator UInteger32(string value) => new UInteger32(uint.Parse(value));
     public static implicit operator uint(UInteger32 value) => value.Value;
 }
 
-public class Integer64 : XsdClaimValueType, IClaimValueType<Integer64>, IClaimTypeOrValue, IClaimValueType
+public class Integer64 : XsdClaimValueType<Integer64, long>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new Integer64();
+    public static Integer64 Instance => new Integer64();
 
     public Integer64() { }
     public Integer64(long value) => Value = value;
 
-    public new const string Name = "integer64";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "integer64";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(long);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 
     public static implicit operator Integer64(long value) => new Integer64(value);
+    public static implicit operator Integer64(string value) => new Integer64(long.Parse(value));
     public static implicit operator long(Integer64 value) => value.Value;
 }
-public class UInteger64 : XsdClaimValueType, IClaimValueType<UInteger64, ulong>, IClaimTypeOrValue, IClaimValueType
+public class UInteger64 : XsdClaimValueType<UInteger64, ulong>
 {
-    public static Dgmjr.Identity.ClaimValueTypes.Abstractions.IClaimValueType Instance => new UInteger64();
+    public static UInteger64 Instance => new UInteger64();
 
     public UInteger64() { }
     public UInteger64(ulong value) => Value = value;
 
-    public new const string Name = "uinteger64";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "uinteger64";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(ulong);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 
     public static implicit operator UInteger64(ulong value) => new UInteger64(value);
+    public static implicit operator UInteger64(string value) => new UInteger64(ulong.Parse(value));
     public static implicit operator ulong(UInteger64 value) => value.Value;
+    public static implicit operator string(UInteger64 value) => value.StringValue;
 }

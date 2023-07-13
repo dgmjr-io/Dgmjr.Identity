@@ -21,7 +21,7 @@ public sealed class Name : Soap2005ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="Name" /> class</returns>
     public static readonly IClaimType Instance = new Name();
     private Name() { }
-    public const string _Name = "name";
+    public const string __Name = "name";
 
-    string IClaimTypeOrValue.Name => _Name;
+    public override string Name => _Name;
 }

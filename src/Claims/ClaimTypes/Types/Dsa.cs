@@ -21,7 +21,7 @@ public sealed class Dsa : MicrosoftSoap2008ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="Dsa" /> class</returns>
     public static readonly IClaimType Instance = new Dsa();
     private Dsa() { }
-    public const string Name = "dsa";
+    public const string _Name = "dsa";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

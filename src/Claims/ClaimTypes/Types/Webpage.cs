@@ -17,11 +17,15 @@ using Dgmjr.Identity.Claims.Abstractions;
 /// <value>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/webpage</value>
 public sealed class Webpage : Soap2005ClaimBaseType, IClaimType
 {
+    static readonly string[] _synonyms = new[] { $"{Constants.ldap}{Constants.DefaultShortUriSeparator}wWWHomePage" };
+
     /// <summary>The singleton instance of the <see cref="Webpage" /> class.</summary>
     /// <returns>an instance of the <see cref="Webpage" /> class</returns>
     public static readonly IClaimType Instance = new Webpage();
     private Webpage() { }
-    private const string Name = "webpage";
+    /// <value>webpage</value>
+    public new const string _Name = "webpage";
 
-    string IClaimTypeOrValue.Name => Name;
+    /// <inheritdoc cref="_Name" />
+    public override string Name => _Name;
 }

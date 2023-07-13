@@ -13,7 +13,7 @@ public static class ClaimTypes
 
     /// <summary>The URI for a claim that specifies details about whether an identity is authenticated</summary>
     /// <value>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/authenticated</value>
-    public static readonly IClaimType Authentication = DgmjrClaims.Authentication.Instance;
+    public static readonly IClaimType Authentication = DgmjrClaims.Authenticated.Instance;
 
     /// <summary>The URI for a claim that specifies the instant at which an entity was authenticated</summary>
     /// <value>http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationinstant</value>

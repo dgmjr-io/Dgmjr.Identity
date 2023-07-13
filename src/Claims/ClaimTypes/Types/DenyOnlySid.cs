@@ -21,7 +21,7 @@ public sealed class DenyOnlySid : Soap2005ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="DenyOnlySid" /> class</returns>
     public static readonly IClaimType Instance = new DenyOnlySid();
     private DenyOnlySid() { }
-    public const string Name = "denyonlysid";
+    public const string _Name = "denyonlysid";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

@@ -21,7 +21,7 @@ public sealed class Thumbprint : Soap2005ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="Thumbprint" /> class</returns>
     public static readonly IClaimType Instance = new Thumbprint();
     private Thumbprint() { }
-    public const string Name = "thumbprint";
+    public const string _Name = "thumbprint";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

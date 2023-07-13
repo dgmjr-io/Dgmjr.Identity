@@ -1,0 +1,25 @@
+<!--
+ * Dgmjr.Identity.Claims.ClaimValueTypes.props
+ * 
+ *   Created: 2023-07-10-12:29:21
+ *   Modified: 2023-07-10-12:31:39
+ * 
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *   
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project>
+    <ItemGroup>
+        <Using Include="System.Net.Mail.EmailAddress" Alias="SNMEml" />
+        <Using Include="System.Security.Cryptography.X509Certificates.X500DistinguishedName" Alias="X500DN" />
+        <Using Include="System.Security.Cryptography.X509Certificates.X509Certificate" Alias="SSCX509" />
+        <Using Include="System.Security.Cryptography.Xml.DSAKeyValue" Alias="SSCXDsa" />
+        <Using Include="System.Security.Cryptography.Xml.KeyInfo" Alias="SSCXKI" />
+        <Using Include="System.Xml.Linq.XElement" Alias="SSCRsa" />
+        <Using Include="System.Xml.Linq.XElement" Alias="SSCXRsa" />
+        <Using Include="System.Xml.Linq.XElement" Alias="XE" />
+        <Using Include="System.Security.Principal.SecurityIdentifier" Alias="SSPSId" />
+    </ItemGroup>
+</Project>

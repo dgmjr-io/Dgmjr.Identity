@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Linq.Expressions;
 using Microsoft.VisualBasic;
 /* 
@@ -12,32 +13,67 @@ using Microsoft.VisualBasic;
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace Dgmjr.Identity.ClaimValueTypes;
-using Abstractions;
+namespace Dgmjr.Identity.Claims.ClaimValueTypes;
 
-public abstract class IsoClaimValueType : ClaimValueType, IClaimTypeOrValue, IClaimValueType
+using Dgmjr.Identity.Claims.Abstractions;
+
+public class IsoClaimValueType<TSelf, TValue> : ClaimValueType<TSelf, TValue>
+    where TSelf : IsoClaimValueType<TSelf, TValue>, new()
+    where TValue : notnull
 {
-    public new const string LongUriPrefix = "urn:iso:std:iso";
-    public new const string ShortUriPrefix = LongUriPrefix;
-    public new const string LongUriSeparator = ":";
-    public new const string ShortUriSeparator = LongUriSeparator;
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string Name = "value";
+    public new const string _LongUriPrefix = "urn:iso:std:iso";
+    public new const string _ShortUriPrefix = _LongUriPrefix;
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{{0}}";
+    public new const string _ShortUriString = _LongUriString;
+
+    /// <value><inheritdoc cref="ClaimValueType{TSelf, TValue}._LongUriPrefix" path="/value" /><inheritdoc cref="ClaimValueType{TSelf, TValue}._LongUriSeparator" path="/value" />{0}</value>
+    public override string LongUriString => Format(_LongUriString, StringValue);
+    public override string ShortUriString => LongUriString;
+
+    public override string ToString() => LongUriString;
 }
-
-public class Language : IsoClaimValueType, IClaimTypeOrValue, IClaimValueType<Language>
+public class Language : IsoClaimValueType<Language, CultureInfo>
 {
-    public static IClaimValueType Instance => new Language();
+    public static Language Instance => new Language();
 
     public Language() { }
 
-    public new const string Name = "language";
-    public new const string LongUriString = $"{IsoClaimValueType.LongUriPrefix}{IsoClaimValueType.LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{IsoClaimValueType.ShortUriPrefix}{IsoClaimValueType.ShortUriSeparator}{Name}";
+    public new const string _Name = "639-1";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_ShortUriSeparator}{_Name}{{0}}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(System.Globalization.CultureInfo);
+    public override string StringValue => Value.TwoLetterISOLanguageName;
+    public override string LongUriString => global::System.String.Format(_LongUriString, Value.TwoLetterISOLanguageName);
+    public override string ShortUriString => LongUriString;
+
+    public override string ToString() => LongUriString;
+
+    public static implicit operator Language(System.Globalization.CultureInfo cultureInfo) => new Language { Value = cultureInfo };
+    public static implicit operator System.Globalization.CultureInfo?(Language language) => language.Value;
+    public static implicit operator string(Language language) => language.Value.TwoLetterISOLanguageName;
+    public static implicit operator Language(string language) => new Language { Value = new System.Globalization.CultureInfo(language?.Replace($"{_LongUriString}{_LongUriSeparator}", "")) };
+    public static implicit operator Language(uri language) => new Language { Value = new System.Globalization.CultureInfo(language?.ToString()?.Replace($"{_LongUriString}{_LongUriSeparator}", "")) };
+    public static implicit operator uri(Language language) => language.Uri;
+}
+
+public class Country : IsoClaimValueType<Country, string>
+{
+    public static Country Instance => new Country();
+
+    public Country() { }
+
+    public new const string _Name = "3166";
+    public new const string _LongUriString = $"{IsoClaimValueType<Country, string>._LongUriPrefix}{IsoClaimValueType<Country, string>._LongUriSeparator}{_Name}{{0}}";
+    public new const string _ShortUriString = $"{IsoClaimValueType<Country, string>._ShortUriPrefix}{IsoClaimValueType<Country, string>._ShortUriSeparator}{_Name}{{0}}";
+
+    public override string LongUriString => Format(_LongUriString, Value);
+    public override string ShortUriString => LongUriString;
+
+    public override string ToString() => Value;
+
+    public static implicit operator Country(string country) => new Country { Value = country };
+    public static implicit operator string?(Country country) => country.ToString();
+    public static implicit operator Country(uri country) => new Country { StringValue = country.ToString().Replace(_ShortUriPrefix + _ShortUriSeparator, "") };
+    public static implicit operator uri?(Country country) => country.Uri;
+
+    public override string? StringValue { get => (string)this; set => this.Value = value; }
 }

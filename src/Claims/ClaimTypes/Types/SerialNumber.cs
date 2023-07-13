@@ -21,7 +21,7 @@ public sealed class SerialNumber : MicrosoftSoap2008ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="SerialNumber" /> class</returns>
     public static readonly IClaimType Instance = new SerialNumber();
     private SerialNumber() { }
-    public const string Name = "serialnumber";
+    public const string _Name = "serialnumber";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

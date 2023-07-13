@@ -21,7 +21,7 @@ public sealed class Expiration : MicrosoftSoap2008ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="Expiration" /> class</returns>
     public static readonly IClaimType Instance = new Expiration();
     private Expiration() { }
-    public const string Name = "expiration";
+    public const string _Name = "expiration";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

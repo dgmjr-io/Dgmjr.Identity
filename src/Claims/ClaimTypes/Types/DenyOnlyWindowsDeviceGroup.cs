@@ -21,7 +21,7 @@ public sealed class DenyOnlyWindowsDeviceGroup : MicrosoftSoap2008ClaimBaseType,
     /// <returns>an instance of the <see cref="DenyOnlyWindowsDeviceGroup" /> class</returns>
     public static readonly IClaimType Instance = new DenyOnlyWindowsDeviceGroup();
     private DenyOnlyWindowsDeviceGroup() { }
-    public const string Name = "denyonlywindowsdevicegroup";
+    public const string _Name = "denyonlywindowsdevicegroup";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

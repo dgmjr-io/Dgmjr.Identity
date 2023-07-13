@@ -1,3 +1,4 @@
+using System.Security.Claims;
 /*
  * ClaimTypeUris.cs
  *
@@ -15,13 +16,23 @@ using Dgmjr.Identity.Claims.Abstractions;
 
 /// <summary>The URI for a claim that specifies the actor</summary>
 /// <value>http://schemas.xmlsoap.org/ws/2009/09/identity/claims/actor</value>
-public sealed class Actor : Soap2009BaseClaimType, IClaimType<Actor>
+public sealed class Actor : Soap2009BaseClaimType<Actor, ClaimValueTypes.String>, IClaimType<Actor>
 {
     /// <summary>The singleton instance of the <see cref="Actor" /> class.</summary>
     /// <returns>an instance of the <see cref="Actor" /> class</returns>
-    public static IClaimType Instance => new Actor();
-    public Actor() { }
-    public const string Name = "actor";
+    public static Actor Instance = new Actor();
+    private Actor() { }
+    /// <value>actor</value>
+    public const string _Name = "actor";
+    /// <value><inheritdoc cref="Soap2009BaseClaimType._LongUriPrefix" path="/value" /><inheritdoc cref="Soap2009BaseClaimType._LongUriSeparator" path="/value" /><inheritdoc cref="_Name" path="/value" /></value>
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    /// <value><inheritdoc cref="Soap2009BaseClaimType._ShortUriPrefix" path="/value" /><inheritdoc cref="Soap2009BaseClaimType._ShortUriSeparator" path="/value" /><inheritdoc cref="_Name" path="/value" /></value>
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
+    /// <inheritdoc cref="_Name" />
+    public override string Name => _Name;
+    /// <inheritdoc cref="_LongUriString" />
+    public override string LongUriString => _LongUriString;
+    /// <inheritdoc cref="_ShortUriString" />
+    public override string ShortUriString => _ShortUriString;
 }

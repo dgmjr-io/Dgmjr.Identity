@@ -21,7 +21,7 @@ public sealed class PrimaryGroupSid : MicrosoftSoap2008ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="PrimaryGroupSid" /> class</returns>
     public static readonly IClaimType Instance = new PrimaryGroupSid();
     private PrimaryGroupSid() { }
-    public const string Name = "primarygroupsid";
+    public const string _Name = "primarygroupsid";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

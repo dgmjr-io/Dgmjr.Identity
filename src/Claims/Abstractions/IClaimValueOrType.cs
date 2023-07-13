@@ -1,6 +1,7 @@
 namespace Dgmjr.Identity.Claims.Abstractions;
+using Dgmjr.Abstractions;
 
-public interface IClaimTypeOrValue
+public interface IClaimTypeOrValue : IHaveSynonyms
 {
     /// <summary>
     /// The separator used to separate the prefix from the name of the claim type or value.

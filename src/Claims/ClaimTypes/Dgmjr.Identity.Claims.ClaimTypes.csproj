@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
    <PropertyGroup>
-      <TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
+      <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
    </PropertyGroup>
    <ItemGroup>
       <SourceGenerator  Include="Dgmjr.Enumerations.CodeGenerator" />
@@ -9,11 +9,14 @@
       <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" />
       <PackageReference Include="Dgmjr.ComponentModel" ExcludeAssets="ContentFiles" />
       <!-- <PackageReference Include="System.ComponentModel.Annotations" ExcludeAssets="ContentFiles" /> -->
-      <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
       <PackageReference Include="Dgmjr.Tuples" ExcludeAssets="ContentFiles" />
       <PackageReference Include="System.Runtime.Serialization.Primitives" Condition="$(TargetFramework.Contains('netstandard1'))" />
       <PackageReference Include="FluentValidation"  />
-      <PackageReference Include="Dgmjr.Claims.Abstractions"  />
+      <PackageReference Include="Dgmjr.Identity.Claims.Abstractions"  />
+      <PackageReference Include="Dgmjr.Primitives" Aliases="primitives,global"  />
       <!-- <PackageReference Include="Microsoft.AspNetCore.Identity.Core"  /> -->
+      <PackageReference Include="System.Security.Cryptography.X509Certificates" />
+      <ProjectReference Include="../ClaimValueTypes/Dgmjr.Identity.Claims.ClaimValueTypes.csproj" />
+      <Reference Include="Dgmjr.Primitives" Aliases="primitives,global" />
    </ItemGroup>
 </Project>

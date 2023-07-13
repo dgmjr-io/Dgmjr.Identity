@@ -1,53 +1,93 @@
+namespace Dgmjr.Identity.Claims.Abstractions;
 using System;
-namespace Dgmjr.Identity;
 using Claims.Abstractions;
+using static Constants;
 
 public abstract class ClaimValueOrTypeBase : IClaimTypeOrValue, IEquatable<IClaimTypeOrValue>
 {
-    public const string LongUriPrefix = Constants.DefaultLongUriPrefix;
-    public const string ShortUriPrefix = Constants.DefaultShortUriPrefix;
-    public const string Name = Constants.DefaultClaimName;
+    /// <inheritdoc cref="DefaultLongUriPrefix"  />
+    public const string _LongUriPrefix = DefaultLongUriPrefix;
+    /// <inheritdoc cref="DefaultShortUriPrefix" />
+    public const string _ShortUriPrefix = DefaultShortUriPrefix;
+    /// <inheritdoc cref="DefaultClaimName" />
+    public const string _Name = DefaultClaimName;
+    /// <value><inheritdoc cref="_LongUriPrefix" path="/value" /><inheritdoc cref="_LongUriSeparator" path="/value" /><inheritdoc cref="_Name" path="/value" /></value>
+    public const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    /// <inheritdoc cref="_ShortUriPrefix" path="/value" /><inheritdoc cref="_ShortUriSeparator" path="/value" /><inheritdoc cref="_Name" path="/value" />
+    public const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
+    /// <inheritdoc cref="DefaultLongUriSeparator" />
+    public const string _LongUriSeparator = DefaultLongUriSeparator;
+    /// <inheritdoc cref="DefaultShortUriSeparator" />
+    public const string _ShortUriSeparator = DefaultShortUriSeparator;
+
+    /// <value>A URI for representing a claim value or type in the <inheritdoc cref="_LongUriPrefix" path="/value" /> namespace</value>
+    public const string _Description = $"A URI for representing a claim value or type in the {_LongUriPrefix} namespace";
 
     // Abstract properties
-    string IClaimTypeOrValue.LongUriPrefix => LongUriPrefix;
-    string IClaimTypeOrValue.ShortUriPrefix => ShortUriPrefix;
-    string IClaimTypeOrValue.Name { get; }
-    string IClaimTypeOrValue.LongUriSeparator => LongUriSeparator;
-    string IClaimTypeOrValue.ShortUriSeparator => ShortUriSeparator;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    string IClaimTypeOrValue.Description => Description;
+    /// <inheritdoc cref="_LongUriPrefix" />
+    public virtual string LongUriPrefix => _LongUriPrefix;
+    /// <inheritdoc cref="_ShortUriPrefix" />
+    public virtual string ShortUriPrefix => _ShortUriPrefix;
+    /// <inheritdoc cref="_Name"  />
+    public virtual string Name => _Name;
+    /// <inheritdoc cref="_LongUriSeparator"  />
+    public virtual string LongUriSeparator => _LongUriSeparator;
+    /// <inheritdoc cref="_ShortUriSeparator" />
+    public virtual string ShortUriSeparator => _ShortUriSeparator;
+    /// <inheritdoc cref="_LongUriString" />
+    public virtual string LongUriString => _LongUriString;
+    /// <inheritdoc cref="_ShortUriString" />
+    public virtual string ShortUriString => _ShortUriString;
+    /// <inheritdoc cref="_Description" />
+    public virtual string Description => _Description;
 
-    // Defined properties
-    public virtual uri Uri => LongUriString;
-    public virtual uri LongUri => LongUriString;
-    public virtual uri ShortUri => ShortUriString;
-    public const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
-    public const string LongUriSeparator = Constants.DefaultLongUriSeparator;
-    public const string ShortUriSeparator = Constants.DefaultShortUriSeparator;
-    public const string Description = $"A URI for representing a claim value or type in the {LongUriPrefix} namespace";
+    public override string ToString() => LongUriString;
 
-
-    // Methods
-    public virtual bool Equals(IClaimTypeOrValue? other)
+    private string[] _synonyms;
+    /// <summary>
+    /// A list of synonyms for the <see cref="LongUriString" /> and <see cref="ShortUriString" /> properties
+    /// </summary>
+    public virtual string[] Synonyms
     {
-        if (other is null)
-            return false;
-
-        if (ReferenceEquals(this, other))
-            return true;
-
-        return Uri == other.Uri;
+        get => _synonyms ??= new[] { LongUriString, ShortUriString }.Distinct().ToArray();
+        init => _synonyms = value;
     }
 
-    public override bool Equals(object? obj) => Equals(obj as IClaimTypeOrValue);
+    /// Defined properties
+    /// <inheritdoc cref="_LongUriString" />
+    public virtual uri Uri => LongUri;
+    /// <inheritdoc cref="_LongUriString" />
+    public virtual uri LongUri => _LongUriString;
+    /// <inheritdoc cref="_ShortUriString" />
+    public virtual uri ShortUri => _ShortUriString;
 
+    // override object.Equals
+    public override bool Equals(object? obj)
+    {
+        //
+        // See the full list of guidelines at
+        //   http://go.microsoft.com/fwlink/?LinkID=85237
+        // and also the guidance for operator== at
+        //   http://go.microsoft.com/fwlink/?LinkId=85238
+        //
+
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        if (obj is IClaimTypeOrValue ictov)
+        {
+            return this.Equals(ictov);
+        }
+        return base.Equals(obj);
+    }
+
+    public virtual bool Equals(IClaimTypeOrValue? other)
+    {
+        return Uri.Equals(other.Uri);
+    }
+
+    // override object.GetHashCode
     public override int GetHashCode() => Uri.GetHashCode();
-
-    // Operators
-    public static bool operator ==(ClaimValueOrTypeBase? left, IClaimTypeOrValue? right) => Equals(left, right);
-    public static bool operator !=(ClaimValueOrTypeBase? left, IClaimTypeOrValue? right) => !Equals(left, right);
-    public static bool operator ==(IClaimTypeOrValue? left, ClaimValueOrTypeBase? right) => Equals(left, right);
-    public static bool operator !=(IClaimTypeOrValue? left, ClaimValueOrTypeBase? right) => !Equals(left, right);
 }

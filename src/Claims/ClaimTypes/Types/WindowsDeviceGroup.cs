@@ -15,13 +15,14 @@ using Dgmjr.Identity.Claims.Abstractions;
 
 /// <summary>The URI for a claim that specifies the Windows group SID of the device</summary>
 /// <value>http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsdevicegroup</value>
-public sealed class WindowsDeviceGroup : MicrosoftSoap2008ClaimBaseType, IClaimType
+public sealed class WindowsDeviceGroup : MicrosoftSoap2008ClaimBaseType<WindowsDeviceGroup, string>
 {
     /// <summary>The singleton instance of the <see cref="WindowsDeviceGroup" /> class.</summary>
     /// <returns>an instance of the <see cref="WindowsDeviceGroup" /> class</returns>
     public static readonly IClaimType Instance = new WindowsDeviceGroup();
-    private WindowsDeviceGroup() { }
-    public const string Name = "windowsdevicegroup";
 
-    string IClaimTypeOrValue.Name => Name;
+    /// <value>windowsdevicegroup</value>
+    public const string _Name = "windowsdevicegroup";
+
+    public override string Name => _Name;
 }

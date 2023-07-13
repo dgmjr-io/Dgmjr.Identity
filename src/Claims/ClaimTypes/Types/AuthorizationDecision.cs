@@ -21,7 +21,18 @@ public sealed class AuthorizationDecision : Soap2005ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="AuthorizationDecision" /> class</returns>
     public static readonly IClaimType Instance = new AuthorizationDecision();
     private AuthorizationDecision() { }
-    public const string Name = "authorizationdecision";
+    /// <value>authorizationdecision</value>
+    public const string _Name = "authorizationdecision";
 
-    string IClaimTypeOrValue.Name => Name;
+    /// <value><inheritdoc cref="MicrosoftSoap2008ClaimBaseType._LongUriPrefix" path="/value" /><inheritdoc cref="MicrosoftSoap2008ClaimBaseType._LongUriSeparator" path="/value" /><inheritdoc cref="_Name" path="/value" /></value>
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    /// <value><inheritdoc cref="MicrosoftSoap2008ClaimBaseType._ShortUriPrefix" path="/value" /><inheritdoc cref="MicrosoftSoap2008ClaimBaseType._ShortUriSeparator" path="/value" /><inheritdoc cref="_Name" path="/value" /></value>
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
+
+    /// <inheritdoc cref="_Name" />
+    public override string Name => _Name;
+    /// <inheritdoc cref="_LongUriString" />
+    public override string LongUriString => _LongUriString;
+    /// <inheritdoc cref="_ShortUriString" />
+    public override string ShortUriString => _ShortUriString;
 }

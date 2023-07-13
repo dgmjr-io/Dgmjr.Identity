@@ -21,7 +21,7 @@ public sealed class PrimarySid : MicrosoftSoap2008ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="PrimarySid" /> class</returns>
     public static readonly IClaimType Instance = new PrimarySid();
     private PrimarySid() { }
-    public const string Name = "primarysid";
+    public const string _Name = "primarysid";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

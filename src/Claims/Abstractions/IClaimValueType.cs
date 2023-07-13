@@ -1,46 +1,31 @@
-using System;
-namespace Dgmjr.Identity.ClaimValueTypes.Abstractions;
-using Dgmjr.Identity.Claims.Abstractions;
+using System.ComponentModel.Design.Serialization;
+using System.ComponentModel;
+namespace Dgmjr.Identity.Claims.Abstractions;
 
-public interface IClaimValueType : IClaimTypeOrValue
+
+public interface IClaimValueType<TSelf, TValue> : IClaimValueType<TSelf>, IHaveAWritableValue<TValue>
+    where TSelf : class, IClaimValueType<TSelf, TValue>
+    where TValue : notnull
 {
-    object? Value { get; set; }
-
 #if NET7_0_OR_GREATER
-    /// <summary>
-    /// The underlying data type of the claim value.
-    /// </summary>
-    public abstract static type UnderlyingType { get; }
-#else
-    /// <summary>
-    /// The underlying data type of the claim value.
-    /// </summary>
-    type UnderlyingType { get; }
+    public static virtual TSelf Create(TValue value) { var instance = TSelf.Instance; instance.Value = value; return instance; }
 #endif
 }
 
-/// <summary>
-/// Represents a claim value type.
-/// </summary>
-/// <typeparam name="TSelf">The type of the claim value type</typeparam>
-/// <typeparam name="TUnderlyingType">The underlying data type of the claim value</typeparam>
-public interface IClaimValueType<TSelf, TUnderlyingType> : IClaimValueType
-    where TSelf : class, IClaimValueType<TSelf, TUnderlyingType>, new()
+public interface IClaimValueType<TSelf> : IClaimValueType
+    where TSelf : class, IClaimValueType<TSelf>
 {
 #if NET7_0_OR_GREATER
-    /// <summary>
-    /// Retrieves an instance of the claim value type.
-    /// </summary>
-    public static virtual IClaimValueType<TSelf, TUnderlyingType> Instance => new TSelf();
-
-    /// <summary>Retieves the underlying data type of the claim value.</summary>
-    public static virtual type UnderlyingType => typeof(TUnderlyingType);
-
-    object? IClaimValueType.Value { get => Value; set { var newValue = System.Convert.ChangeType(value,  typeof(TUnderlyingType?)); Value  = newValue == null ? default : (TUnderlyingType)newValue; } }
-
-    public TUnderlyingType? Value { get; set; }
-#else
-    object? IClaimValueType.Value { get; set; }
-    TUnderlyingType? Value { get; set; }
+    public static virtual TSelf Instance => Activator.CreateInstance<TSelf>() as TSelf ?? throw new InvalidOperationException($"Unable to create instance of {typeof(TSelf).FullName}");
+    public static virtual TSelf Create(string stringValue) { var instance = TSelf.Instance; instance.StringValue = stringValue; return instance; }
 #endif
+}
+
+public interface IClaimValueType : IClaimTypeOrValue
+{
+    string? StringValue { get; set; }
+    // #if NET7_0_OR_GREATER
+    //     public static abstract IClaimType Instance { get; }
+    //     public static abstract IClaimType Create(string stringValue);
+    // #endif
 }

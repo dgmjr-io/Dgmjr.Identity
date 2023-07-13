@@ -21,7 +21,7 @@ public sealed class WindowsDeviceClaim : MicrosoftSoap2008ClaimBaseType, IClaimT
     /// <returns>an instance of the <see cref="WindowsDeviceClaim" /> class</returns>
     public static readonly IClaimType Instance = new WindowsDeviceClaim();
     private WindowsDeviceClaim() { }
-    public const string Name = "windowsdeviceclaim";
+    public const string _Name = "windowsdeviceclaim";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

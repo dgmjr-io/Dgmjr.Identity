@@ -21,7 +21,7 @@ public sealed class WindowsAccountName : MicrosoftSoap2008ClaimBaseType, IClaimT
     /// <returns>an instance of the <see cref="WindowsAccountName" /> class</returns>
     public static readonly IClaimType Instance = new WindowsAccountName();
     private WindowsAccountName() { }
-    public const string Name = "windowsaccountname";
+    public const string _Name = "windowsaccountname";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

@@ -15,13 +15,16 @@ using Dgmjr.Identity.Claims.Abstractions;
 
 /// <summary>The URI for a claim that specifies the gender of an entity</summary>
 /// <value>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/gender</value>
-public sealed class Gender : Soap2005ClaimBaseType, IClaimType
+public sealed class Gender : Soap2005ClaimBaseType, IClaimType, IClaimTypeWithValue<int>
 {
     /// <summary>The singleton instance of the <see cref="Gender" /> class.</summary>
     /// <returns>an instance of the <see cref="Gender" /> class</returns>
     public static readonly IClaimType Instance = new Gender();
+    public static IClaimTypeWithValue<int> Create(int value) => new Gender { Value = value };
     private Gender() { }
-    public const string Name = "gender";
+    public const string _Name = "gender";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
+
+    public int Value { get; set; }
 }

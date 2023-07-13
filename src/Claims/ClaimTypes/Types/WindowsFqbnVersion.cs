@@ -21,7 +21,7 @@ public sealed class WindowsFqbnVersion : MicrosoftSoap2008ClaimBaseType, IClaimT
     /// <returns>an instance of the <see cref="WindowsFqbnVersion" /> class</returns>
     public static readonly IClaimType Instance = new WindowsFqbnVersion();
     private WindowsFqbnVersion() { }
-    public const string Name = "windowsfqbnversion";
+    public const string _Name = "windowsfqbnversion";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

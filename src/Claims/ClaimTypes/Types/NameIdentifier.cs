@@ -21,7 +21,7 @@ public sealed class NameIdentifier : Soap2005ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="Anonymous" /> class</returns>
     public static readonly IClaimType Instance = new NameIdentifier();
     private NameIdentifier() { }
-    public const string Name = "nameidentifier";
+    public const string _Name = "nameidentifier";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

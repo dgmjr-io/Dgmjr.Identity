@@ -1,96 +1,112 @@
 #pragma warning disable
+using System.Linq.Expressions;
+using Microsoft.VisualBasic;
 using System.Net;
 using System;
 using System.ComponentModel.DataAnnotations;
 using Dgmjr.Identity;
+using Dgmjr.Identity.Claims.Abstractions;
+using Dgmjr.Identity.Claims.ClaimValueTypes;
 
-namespace Dgmjr.Identity.ClaimValueTypes;
+namespace Dgmjr.Identity.Claims.ClaimValueTypes;
+
+using System.Numerics;
 using Abstractions;
 
 /// <summary>A URI pattern for representing a claim type in the <inheritdoc cref="LongUriPrefix" path="/value" /> (<inheritdoc cref="ShortUriPrefix" path="/value" />) namespace</summary>
-public abstract class XacmlNamespaceType<TValue> : ClaimValueType<TValue>, IClaimValueType
+public abstract class XacmlNamespaceType<TSelf, TValue> : ClaimValueType<TSelf, TValue>
+    where TSelf : XacmlNamespaceType<TSelf, TValue>
 {
     /// <summary>The name of the claim value type <inheritdoc cref="Name" path="/value" /></summary>
     /// <value>xacml</value>
-    public new const string ShortUriPrefix = "xacml";
+    public new const string _ShortUriPrefix = "xacml";
     /// <value>urn:oasis:names:tc:xacml</value>
-    public new const string LongUriPrefix = $"urn:oasis:names:tc:xacml";
-    public new const string Name = "";
-    public new const string LongUriSeparator = ":";
-    public new const string ShortUriSeparator = ":";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _LongUriPrefix = $"urn:oasis:names:tc:xacml";
+    public new const string _Name = "";
+    public new const string _LongUriSeparator = ":";
+    public new const string _ShortUriSeparator = ":";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
-    type IClaimValueType.UnderlyingType => typeof(void);
-    string IClaimTypeOrValue.LongUriPrefix => LongUriPrefix;
-    string IClaimTypeOrValue.ShortUriPrefix => ShortUriPrefix;
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriSeparator => LongUriSeparator;
-    string IClaimTypeOrValue.ShortUriSeparator => ShortUriSeparator;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
+    public override string LongUriPrefix => _LongUriPrefix;
+    public override string ShortUriPrefix => _ShortUriPrefix;
+    public override string Name => _Name;
+    public override string LongUriSeparator => _LongUriSeparator;
+    public override string ShortUriSeparator => _ShortUriSeparator;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 }
 
 
 /// <summary>A URI pattern for representing the <inheritdoc cref="Name" path="/value" /> claim type in the <inheritdoc cref="LongUriPrefix" path="/value" /> (<inheritdoc cref="XacmlNamespaceType.ShortUriPrefix" path="/value" />) namespace</summary>
-public class Rfc822Name : XacmlNamespaceType<EmailAddress>, IClaimValueType<Rfc822Name, EmailAddress>
+public class Rfc822Name : XacmlNamespaceType<Rfc822Name, SNMEml>, IClaimValueType<Rfc822Name, SNMEml>
 {
     /// <inheritdoc />
-    public static IClaimValueType Instance => new Rfc822Name();
+    public static Rfc822Name Instance => new Rfc822Name();
 
     public Rfc822Name() { }
 
-    /// <value><inheritdoc cref="XacmlNamespaceType.LongUriPrefix" path="/value" />:1.0:data-type</value>
-    public new const string LongUriPrefix = $"{XacmlNamespaceType.LongUriPrefix}:1.0:data-type";
+    /// <value><inheritdoc cref="XacmlNamespaceType{Rfc822Name, SNMEml}._LongUriPrefix" path="/value" />:1.0:data-type</value>
+    public new const string _LongUriPrefix = $"{XacmlNamespaceType<Rfc822Name, SNMEml>._LongUriString}:1.0:data-type";
     /// <value>rfc822Name</value>
-    public new const string Name = "rfc822Name";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "rfc822Name";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}{_ShortUriSeparator}{{0}}";
+    public new const string _ShortUriString = $"X509:<RFC822>{{0}}";
 
-    type IClaimValueType.UnderlyingType => typeof(EmailAddresss);
-    string IClaimTypeOrValue.LongUriPrefix => LongUriPrefix;
-    string IClaimTypeOrValue.ShortUriPrefix => ShortUriPrefix;
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriSeparator => LongUriSeparator;
-    string IClaimTypeOrValue.ShortUriSeparator => ShortUriSeparator;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
+    public override string LongUriPrefix => _LongUriPrefix;
+    public override string ShortUriPrefix => _ShortUriPrefix;
+    public override string Name => _Name;
+    public override string LongUriSeparator => _LongUriSeparator;
+    public override string ShortUriSeparator => _ShortUriSeparator;
+    public override string LongUriString => Format(_LongUriString, StringValue);
+    public override string ShortUriString => Format(_ShortUriString, StringValue);
 }
 /// <summary>A URI pattern for representing the <inheritdoc cref="Name" path="/value" /> claim type in the <inheritdoc cref="LongUriPrefix" path="/value" /> (<inheritdoc cref="XacmlNamespaceType.ShortUriPrefix" path="/value" />) namespace</summary>
-public class X500Name : XacmlNamespaceType, IClaimValueType
+public class X500Name : SoapClaimType<X500Name, X500DN>
 {
-    public static IClaimValueType Instance => new X500Name();
+    public static X500Name Instance => new X500Name();
 
     public X500Name() { }
 
-    /// <value><inheritdoc cref="XacmlNamespaceType.LongUriPrefix" path="/value" />:1.0:data-type</value>
-    public new const string LongUriPrefix = $"{XacmlNamespaceType.LongUriPrefix}:1.0:data-type";
+    public new const string _LongUriPrefix = $"{SoapClaimType<X500Name, X500DN>._LongUriPrefix}{SoapClaimType<X500Name, X500DN>._LongUriSeparator}claims";
+    /// <summary>
+    /// 
+    /// </summary>
     /// <value>x500Name</value>
-    public new const string Name = "x500Name";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _Name = "x500Name";
+
+    /// <summary>The URI for the claim value type <inheritdoc cref="SoapClaimType{X500Name, X500DN]._LongUriString" path="/value" /></summary>
+    /// <value><inheritdoc cref="SoapClaimType{X500Name, X500DN}._LongUriPrefix" path="/value//node()" /><inheritdoc cref="SoapClaimType{X500Name, X500DN>._LongUriSeparator" path="//value" /><inheritdoc cref="_Name" path="//value" /></value>
+    public new const string _LongUriString = $"{SoapClaimType<X500Name, X500DN>._LongUriPrefix}{SoapClaimType<X500Name, X500DN>._LongUriSeparator}{_Name}={{0}}";
+    /// <summary>The URI for the claim value type <inheritdoc cref="SoapClaimType{X500Name, X500DN}.ShortUriString" path="/value" /></summary>
+    /// <value><inheritdoc cref="SoapClaimType{X500Name, X500DN}._LongUriPrefix" path="//value" /><inheritdoc cref="SoapClaimType{X500Name, X500DN}_LongUriSeparator" path="//value" /><inheritdoc cref="_Name" path="//value" /></value>
+    public new const string _ShortUriString = $"{SoapClaimType<X500Name, X500DN>._ShortUriPrefix}{SoapClaimType<X500Name, X500DN>._ShortUriSeparator}{_Name}={{0}}";
+    public new const string _ShortUriPrefix = SoapClaimType<X500Name, X500DN>._ShortUriPrefix;
+    public new const string _ShortUriSeparator = Constants.DefaultShortUriSeparator;
+    public new const string _LongUriSeparator = _ShortUriSeparator;
 
 
-    string IClaimTypeOrValue.Name => Name;
-    type IClaimValueType.UnderlyingType => typeof(System.Security.Cryptography.X509Certificates.X500DistinguishedName);
-    string IClaimTypeOrValue.LongUriString => $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    string IClaimTypeOrValue.ShortUriString => $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public override string Name => _Name;
+    public override string LongUriString => Format(_LongUriString, StringValue);
+    public override string ShortUriString => Format(_ShortUriString, StringValue);
 }
 
 
-public class IpAddress : XacmlNamespaceType, IClaimValueType<IpAddress, System.Net.IPAddress>
+public class IpAddress : XacmlNamespaceType<IpAddress, System.Net.IPAddress>, IClaimValueType<IpAddress, System.Net.IPAddress>
 {
-    public static IClaimValueType Instance => new IpAddress();
+    public static IpAddress Instance => new IpAddress();
 
     public IpAddress() { }
 
-    public new const string Name = "2.0:data-type:ipAddress";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{ShortUriPrefix}{ShortUriSeparator}{Name}";
+    public new const string _LongUriPrefix = $"{XacmlNamespaceType<IpAddress, System.Net.IPAddress>._LongUriPrefix}{_LongUriSeparator}2.0:data-type";
+    public new const string _ShortUriPrefix = $"{XacmlNamespaceType<IpAddress, System.Net.IPAddress>._ShortUriPrefix}";
+    public new const string _Name = "ipAddress";
+    public new const string _LongUriString = $"{XacmlNamespaceType<IpAddress, System.Net.IPAddress>._LongUriPrefix}{XacmlNamespaceType<IpAddress, System.Net.IPAddress>._LongUriSeparator}{_Name}{XacmlNamespaceType<IpAddress, System.Net.IPAddress>._LongUriSeparator}{{0}}";
+    public new const string _ShortUriString = $"{XacmlNamespaceType<IpAddress, System.Net.IPAddress>._ShortUriPrefix}{XacmlNamespaceType<IpAddress, System.Net.IPAddress>._ShortUriSeparator}{_Name}{XacmlNamespaceType<IpAddress, System.Net.IPAddress>._ShortUriSeparator}{{0}}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-
-    type IClaimValueType.UnderlyingType => typeof(System.Net.IPAddress);
+    public override string Name => _Name;
+    public override string ShortUriString => Format(_ShortUriString, StringValue);
+    public override string LongUriString => Format(_LongUriString, StringValue);
+    public override string StringValue { get => Value.ToString(); set => Value = IPAddress.Parse(value); }
+    public override IPAddress Value { get; set; }
 }

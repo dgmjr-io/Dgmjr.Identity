@@ -21,7 +21,7 @@ public sealed class Uri : Soap2005ClaimBaseType, IClaimType
     /// <returns>an instance of the <see cref="Uri" /> class</returns>
     public static readonly IClaimType Instance = new Uri();
     private Uri() { }
-    public const string Name = "uri";
+    public const string _Name = "uri";
 
-    string IClaimTypeOrValue.Name => Name;
+    public override string Name => _Name;
 }

@@ -1,49 +1,55 @@
 using Microsoft.VisualBasic;
-namespace Dgmjr.Identity.ClaimValueTypes;
-using Dgmjr.Identity.ClaimValueTypes.Abstractions;
+namespace Dgmjr.Identity.Claims.ClaimValueTypes;
+using XE = System.Xml.Linq.XElement;
+using Dgmjr.Identity.Claims.Abstractions;
 
-public abstract class RdfsClaimValueType : ClaimValueOrTypeBase, IClaimValueType
+public abstract class RdfsClaimValueType<TSelf, TValue> : ClaimValueType<TSelf, TValue>, IClaimValueType
+    where TSelf : RdfsClaimValueType<TSelf, TValue>
 {
-    public new const string LongUriPrefix = "https://www.w3.org/1999/02/22-rdf-syntax-ns";
-    public new const string ShortUriPrefix = "rdf";
-    public new const string LongUriSeparator = "#";
-    public new const string ShortUriSeparator = ":";
-    public new const string LongUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{LongUriPrefix}{LongUriSeparator}{Name}";
-    public new const string Name = Dgmjr.Identity.Constants.value;
-
-    type IClaimValueType.UnderlyingType => typeof(void);
+    public new const string _LongUriPrefix = "https://www.w3.org/1999/02/22-rdf-syntax-ns";
+    public new const string _ShortUriPrefix = "rdf";
+    public new const string _LongUriSeparator = "#";
+    public new const string _ShortUriSeparator = ":";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _Name = Dgmjr.Identity.Constants.value;
 }
 
 
-public class Json : RdfsClaimValueType, IClaimValueType<Json>
+public class Json : RdfsClaimValueType<Json, JElem>
 {
-    public static IClaimValueType Instance => new Json();
+    public static Json Instance => new();
 
     public Json() { }
 
-    public new const string Name = "JSON";
-    public new const string LongUriString = $"{RdfsClaimValueType.LongUriPrefix}{RdfsClaimValueType.LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{RdfsClaimValueType.ShortUriPrefix}{RdfsClaimValueType.ShortUriSeparator}{Name}";
+    public new const string _Name = "JSON";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
+    public new const string _ShortUriPrefix = RdfsClaimValueType<Json, JElem>._ShortUriPrefix;
+    public new const string _LongUriPrefix = RdfsClaimValueType<Json, JElem>._LongUriPrefix;
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(System.Text.Json.JsonElement);
+    public new const string _ShortUriSeparator = RdfsClaimValueType<Json, JElem>._ShortUriPrefix;
+
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
 }
 
-public class Xml : RdfsClaimValueType, IClaimValueType<Json>
+public class Xml : RdfsClaimValueType<Xml, XE>
 {
-    public static IClaimValueType Instance => new Json();
+    public static Xml Instance => new();
 
     public Xml() { }
 
-    public new const string Name = "XMLLiteral";
-    public new const string LongUriString = $"{RdfsClaimValueType.LongUriPrefix}{RdfsClaimValueType.LongUriSeparator}{Name}";
-    public new const string ShortUriString = $"{RdfsClaimValueType.ShortUriPrefix}{RdfsClaimValueType.ShortUriSeparator}{Name}";
+    public new const string _Name = "XMLLiteral";
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
-    string IClaimTypeOrValue.Name => Name;
-    string IClaimTypeOrValue.LongUriString => LongUriString;
-    string IClaimTypeOrValue.ShortUriString => ShortUriString;
-    type IClaimValueType.UnderlyingType => typeof(System.Xml.XDocument);
+    public override string Name => _Name;
+    public override string LongUriString => _LongUriString;
+    public override string ShortUriString => _ShortUriString;
+
+
+    public override string StringValue { get; set; }
+    public override XE Value { get => XE.Parse(StringValue); set => StringValue = value.ToString(); }
 }
