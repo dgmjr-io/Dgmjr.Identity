@@ -1,5 +1,5 @@
 ---
-title: DGMJR Identity Claims (Abstractions)
+title: DGMJR-IO Identity Claims (Abstractions)
 description: Contains abstractions (interfaces) and abstract base classes for claims and claim types.
 date: 2023-07-10T03:52:14.676Z
 keywords:
@@ -8,8 +8,8 @@ keywords:
   - security
   - abstractions
 type: readme
-lastmod: 2023-07-13T05:32:22.644Z
-slug: dgmjr-identity-claims-abstractions
+lastmod: 2023-07-13T09:04:31.651Z
+slug: dgmjr-io-identity-claims-abstractions
 project: Dgmjr.Identity
 version: 0.0.1
 authors:
@@ -21,3 +21,7 @@ license: MIT
 
 description: Contains abstractions (interfaces) and abstract base classes for claims and claim types.
 
+* [ClaimValueOrTypeBase](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Claims/Abstractions/ClaimValueOrTypeBase.cs) - A base type for a claim or a value
+* [IClaimType](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Claims/Abstractions/IClaimType.cs) - A collection of interfaces for claim types
+* [IClaimValueType](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Claims/Abstractions/IClaimValueType.cs) - A collection of interfaces for claim value types
+* [Constants](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Claims/Abstractions/Constants.cs) - A collection of constants used throughout the claims project
