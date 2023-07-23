@@ -21,5 +21,8 @@
         <Using Include="System.Xml.Linq.XElement" Alias="SSCXRsa" />
         <Using Include="System.Xml.Linq.XElement" Alias="XE" />
         <Using Include="System.Security.Principal.SecurityIdentifier" Alias="SSPSId" />
+        <Using Include="Dgmjr.Identity" Alias="DgmjrId" />
+        <Using Include="Dgmjr.Identity.Claims.ClaimValueTypes" Alias="DgmjrCvt" />
+        <Using Include="Dgmjr.Identity.Claims.ClaimValueTypes.UInteger64" Alias="NonNegativeInteger" />
     </ItemGroup>
 </Project>

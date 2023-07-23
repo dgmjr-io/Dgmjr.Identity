@@ -17,6 +17,16 @@ namespace Dgmjr.Identity.Claims.ClaimValueTypes;
 
 using Dgmjr.Identity.Claims.Abstractions;
 
+file inernal static IsoClaimValueType
+{
+    /// <value>urn:iso:std:iso</value>
+    public const string _LongUriPrefixhe = "urn:iso:std:iso";
+    /// <inheritdoc cref="_LongUriPrefix" path="/value" />
+    public const string _ShortUriPrefix = _LongUriPrefix;
+    public const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{{0}}";
+    public const string _ShortUriString = _LongUriString;
+}
+
 public class IsoClaimValueType<TSelf, TValue> : ClaimValueType<TSelf, TValue>
     where TSelf : IsoClaimValueType<TSelf, TValue>, new()
     where TValue : notnull
@@ -75,5 +85,5 @@ public class Country : IsoClaimValueType<Country, string>
     public static implicit operator Country(uri country) => new Country { StringValue = country.ToString().Replace(_ShortUriPrefix + _ShortUriSeparator, "") };
     public static implicit operator uri?(Country country) => country.Uri;
 
-    public override string? StringValue { get => (string)this; set => this.Value = value; }
+    public override string StringValue { get => (string?)this ?? string.Empty; set => this.Value = value; }
 }

@@ -8,7 +8,7 @@ keywords:
   - security
   - abstractions
 type: readme
-lastmod: 2023-07-13T09:04:31.651Z
+lastmod: 2023-07-14T07:47:09.021Z
 slug: dgmjr-io-identity-claims-abstractions
 project: Dgmjr.Identity
 version: 0.0.1

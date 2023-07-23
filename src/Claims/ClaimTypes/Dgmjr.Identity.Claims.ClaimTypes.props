@@ -3,5 +3,7 @@
         <Using Include="Dgmjr.Identity" Alias="DgmjrId" />
         <Using Include="Dgmjr.Identity.Claims" Alias="DgmjrClaims" />
         <Using Include="Dgmjr.Identity.Claims.Abstractions" />
+        <Using Include="Dgmjr.Identity.Claims.ClaimTypes" Alias="DgmjrCt" />
+        <Using Include="Dgmjr.Identity.Claims.Constants" Static="true" />
     </ItemGroup>
 </Project>

@@ -4,40 +4,44 @@ using System.Security.AccessControl;
 using System.Diagnostics.Contracts;
 using System.ComponentModel.DataAnnotations;
 using Dgmjr.Identity;
+using System.Collections.ObjectModel;
+using static XsdClaimValueType;
+using static Constants;
+using System.Globalization;
 
+file static class XsdClaimValueType
+{
+    /// <summary>The short prefix for types in the "<inheritdoc cref="_ShortUriPrefix" path="/value" />" namespace</summary>
+    /// <value>xs</value>
+    public new const string _ShortUriPrefix = "xs";
+    /// <summary>The long URI prefix for types in the "<inheritdoc cref="_Name" path="/value" />" namespace</summary>
+    /// <value>http://www.w3.org/2001/XMLSchema</value>
+    public new const string _LongUriPrefix = $"http://www.w3.org/2001/XMLSchema";
+
+    /// <summary>The name of the claim value type "<inheritdoc cref="Constants.@default" path="/value" />"</summary>
+    /// <value>default</value>
+    public new const string _Name = Constants.@default;
+
+    /// <value>#</value>
+    public new const string _LongUriSeparator = "#";
+    /// <inheritdoc cref="DefaultShortUriSeparator" />
+    public new const string _ShortUriSeparator = DefaultShortUriSeparator;
+
+    /// <value><inheritdoc cref="_LongUriPrefix" path="/value" /><inheritdoc cref="_LongUriSeparator" path="/value" /><inheritdoc cref="_Name" path="/value" /></value>
+    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    /// <value><inheritdoc cref="_ShortUriPrefix" path="/value" /><inheritdoc cref="_ShortUriSeparator" path="/value" /><inheritdoc cref="_Name" path="/value" /></value>
+    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
+
+    /// <value>A claim value type that represents a(n) <inheritdoc cref="_Name" path="/value" /> in the <inheritdoc cref="_LongUriPrefix" path="/value" /> (<inheritdoc cref="_ShortUriPrefix" path="/value" />) namespace</value>
+    public new const string _Description = $"A claim value type that represents a(n) \"{_Name}\" in the _{_LongUriPrefix} (_{_ShortUriPrefix}) namespace";
+}
 
 /// <summary>A URI pattern for representing a claim type in the  <inheritdoc cref="LongUriPrefix" path="/value" /> (<inheritdoc cref="ShortUriPrefix" path="/value" />) namespace</summary>
 public abstract class XsdClaimValueType<TSelf, TValue> : ClaimValueType<TSelf, TValue>
     where TSelf : XsdClaimValueType<TSelf, TValue>
     where TValue : notnull
 {
-    /// <summary>The name of the claim value type <inheritdoc cref="Name" path="/value" /></summary>
-    /// <value>xs</value>
-    public new const string _ShortUriPrefix = "xs";
-    /// <summary>The long URI prefix of the claim value type <inheritdoc cref="Name" path="/value" /></summary>
-    /// <value>http://www.w3.org/2001/XMLSchema</value>
-    public new const string _LongUriPrefix = $"http://www.w3.org/2001/XMLSchema";
-
-    /// <summary>
-    /// The name of the claim value type <inheritdoc cref="Name" path="/value" />
-    /// </summary>
-    /// <value>claim</value>
-    public new const string _Name = Constants.DefaultClaimName;
-    public new const string _LongUriSeparator = "#";
-    public new const string _ShortUriSeparator = ":";
-    public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
-    public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
-    public new const string _Description = $"A claim value type that represents a(n) _{_Name} in the _{_LongUriPrefix} (_{_ShortUriPrefix}) namespace";
-
-    public override string LongUriPrefix => _LongUriPrefix;
-    public override string ShortUriPrefix => _ShortUriPrefix;
-    public override string Name => _Name;
-    public override string LongUriSeparator => _LongUriSeparator;
-    public override string ShortUriSeparator => _ShortUriSeparator;
-    public override string LongUriString => _LongUriString;
-    public override string ShortUriString => _ShortUriString;
-    public override string Description => _Description;
-    public override string StringValue { get => Convert.ToString(Value); set => Value.ToString(); }
+    public override string StringValue { get => Convert.ToString(Value, CultureInfo.CurrentCulture.GetFormat(typeof(TValue))); set => Value.ToString(); }
 }
 
 
@@ -46,6 +50,9 @@ public abstract class XsdClaimValueType<TSelf, TValue> : ClaimValueType<TSelf, T
 /// </summary>
 public class String : XsdClaimValueType<String, string>
 {
+    const string plainliteral = nameof(plainliteral);
+    static readonly string[] _synonyms = new[] { $"{RdfsClaimValueType._LongUriPrefix}{RdfsClaimValueType._LongUriSeparator}{plainliteral}", $"{RdfsClaimValueType._ShortUriPrefix}{RdfsClaimValueType._ShortUriSeparator}{plainliteral}" };
+
     public static String Instance => new String();
 
     public String() { }
@@ -58,6 +65,8 @@ public class String : XsdClaimValueType<String, string>
     public override string Name => _Name;
     public override string LongUriString => _LongUriString;
     public override string ShortUriString => _ShortUriString;
+
+    public override string[] Synonyms { get => base.Synonyms.Concat(_synonyms).Distinct().ToArray(); init => base.Synonyms = value; }
 }
 /// <summary>
 /// A URI pattern for representing a(n) <inheritdoc cref="Name" path="/value" /> claim type in the http://www.w3.org/2001/XMLSchema (xs) namespace
@@ -417,18 +426,28 @@ public class Integer64 : XsdClaimValueType<Integer64, long>
 }
 public class UInteger64 : XsdClaimValueType<UInteger64, ulong>
 {
+    const string nonnegativeinteger = nameof(nonnegativeinteger);
+    static readonly string[] _synonyms = new[] { $"{_LongUriPrefix}{_LongUriSeparator}{nonnegativeinteger}", $"{_ShortUriPrefix}{_ShortUriSeparator}{nonnegativeinteger}" }
+
     public static UInteger64 Instance => new UInteger64();
 
     public UInteger64() { }
     public UInteger64(ulong value) => Value = value;
 
     public new const string _Name = "uinteger64";
+    /// <value><inheritdoc cref="_LongUriPrefix" path="/value" /><inheritdoc cref="_LongUriSeparator" path="/value" /><inheritdoc cref="_Name" path="/value" /></value>
     public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";
+    /// <value><inheritdoc cref="_ShortUriPrefix" path="/value" /><inheritdoc cref="_ShortUriSeparator" path="/value" /><inheritdoc cref="_Name" path="/value" /></value>
     public new const string _ShortUriString = $"{_ShortUriPrefix}{_ShortUriSeparator}{_Name}";
 
+    /// <inheritdoc cref="_Name" path="/value" />
     public override string Name => _Name;
+    /// <inheritdoc cref="_LongUriString" path="/value" />
     public override string LongUriString => _LongUriString;
+    /// <inheritdoc cref="_ShortUriString" path="/value" />
     public override string ShortUriString => _ShortUriString;
+
+
 
     public static implicit operator UInteger64(ulong value) => new UInteger64(value);
     public static implicit operator UInteger64(string value) => new UInteger64(ulong.Parse(value));

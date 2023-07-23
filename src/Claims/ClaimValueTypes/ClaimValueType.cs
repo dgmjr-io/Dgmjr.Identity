@@ -10,10 +10,10 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace Dgmjr.Identity.ClaimsValueTypes;
+namespace Dgmjr.Identity.Claims.ClamValueTypes;
 using Dgmjr.Identity.Claims.Abstractions;
+using Dgmjr.Identity.Claims.ClaimValueTypes;
 using System;
-using Abstractions;
 
 public abstract partial class ClaimValueType<TSelf, TUnderlyingValue> : ClaimValueOrTypeBase
 {
@@ -39,6 +39,19 @@ public abstract partial class ClaimValueType<TSelf, TUnderlyingValue> : ClaimVal
     static type IClaimValueType.UnderlyingType => typeof(TValue);
 #else
 #endif
+}
+
+public class ClaimValueType : ClaimValueType<ClaimValueType, string>
+{
+    public new virtual uri Uri { get => LongUri; set => LongUri = value; }
+    public new virtual uri LongUri { get => LongUriString; set => LongUriString = value; }
+    public new virtual uri ShortUri { get => ShortUriString; set => ShortUriString = value; }
+    public new virtual string Description { get; set; }
+    public new virtual string LongUriString { get; set; }
+    public new virtual string ShortUriString { get; set; }
+    public override string ShortUriSeparator => ShortUriString.Contains(":") ? ":" : LongUriSeparator;
+    public override string LongUriSeparator => LongUriString.Contains("#") ? "#" : "/";
+    public override string Name => ShortUriString.Split(ShortUriSeparator.First()).Last();
 }
 
 // public class ClaimType : UriDescriptionTuple
