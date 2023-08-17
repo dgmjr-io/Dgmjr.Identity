@@ -21,7 +21,7 @@ license: MIT
 
 description: Contains abstractions (interfaces) and abstract base classes for claims and claim types.
 
-* [ClaimValueOrTypeBase](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Claims/Abstractions/ClaimValueOrTypeBase.cs) - A base type for a claim or a value
-* [IClaimType](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Claims/Abstractions/IClaimType.cs) - A collection of interfaces for claim types
-* [IClaimValueType](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Claims/Abstractions/IClaimValueType.cs) - A collection of interfaces for claim value types
-* [Constants](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Claims/Abstractions/Constants.cs) - A collection of constants used throughout the claims project
+* [`ClaimValueOrTypeBase`](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Claims/Abstractions/ClaimValueOrTypeBase.cs) - A base type for a claim or a value
+* [`IClaimType`](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Claims/Abstractions/IClaimType.cs) - A collection of interfaces for claim types
+* [`IClaimValueType`](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Claims/Abstractions/IClaimValueType.cs) - A collection of interfaces for claim value types
+* [`Constants`](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Claims/Abstractions/Constants.cs) - A collection of constants used throughout the claims project

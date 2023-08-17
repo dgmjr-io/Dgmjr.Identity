@@ -29,15 +29,11 @@ This project contains an enumeration of roles that can be assigned to users.
 
 ### `urn:identity:role:group_member`
 
-### `urn:identity:role:administrator`
-
 ### `urn:identity:role:guest`
 
 ### `urn:identity:role:anonymous`
 
 ### `urn:identity:role:owner`
-
-### `urn:identity:role:group_member`
 
 ### `urn:identity:role:contestant`
 
