@@ -1,13 +1,15 @@
 #pragma warning disable
 namespace Dgmjr.Identity.Claims.ClaimValueTypes;
-using System.Security.AccessControl;
-using System.Diagnostics.Contracts;
-using System.ComponentModel.DataAnnotations;
-using Dgmjr.Identity;
 using System.Collections.ObjectModel;
-using static XsdClaimValueType;
-using static Constants;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Contracts;
 using System.Globalization;
+using System.Security.AccessControl;
+
+using Dgmjr.Identity;
+
+using static Constants;
+using static XsdClaimValueType;
 
 file static class XsdClaimValueType
 {
@@ -434,6 +436,7 @@ public class UInteger64 : XsdClaimValueType<UInteger64, ulong>
     public UInteger64() { }
     public UInteger64(ulong value) => Value = value;
 
+    /// <value>uinteger64</value>
     public new const string _Name = "uinteger64";
     /// <value><inheritdoc cref="_LongUriPrefix" path="/value" /><inheritdoc cref="_LongUriSeparator" path="/value" /><inheritdoc cref="_Name" path="/value" /></value>
     public new const string _LongUriString = $"{_LongUriPrefix}{_LongUriSeparator}{_Name}";

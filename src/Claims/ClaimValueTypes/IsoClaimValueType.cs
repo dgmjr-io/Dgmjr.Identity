@@ -1,14 +1,15 @@
 using System.Globalization;
 using System.Linq.Expressions;
+
 using Microsoft.VisualBasic;
-/* 
+/*
  * IsoClaimValueType.cs
- * 
+ *
  *   Created: 2023-06-28-03:34:34
  *   Modified: 2023-06-28-03:34:34
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
@@ -17,7 +18,7 @@ namespace Dgmjr.Identity.Claims.ClaimValueTypes;
 
 using Dgmjr.Identity.Claims.Abstractions;
 
-file inernal static IsoClaimValueType
+public static class IsoClaimValueType
 {
     /// <value>urn:iso:std:iso</value>
     public const string _LongUriPrefixhe = "urn:iso:std:iso";
