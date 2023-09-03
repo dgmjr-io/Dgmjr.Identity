@@ -1,0 +1,22 @@
+<!--
+ * Dgmjr.Identity.Claims.csproj
+ *
+ *   Created: 2023-08-29-07:44:05
+ *   Modified: 2023-08-29-07:44:05
+ *
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+    <ItemGroup>
+       <PackageReference Include="System.Security.Claims" />
+       <PackageReference Include="Dgmjr.Identity.Core" />
+       <PackageReference Include="Dgmjr.Primitives" />
+    </ItemGroup>
+</Project>

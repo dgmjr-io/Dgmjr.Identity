@@ -1,0 +1,18 @@
+<!--
+ * Dgmjr.Identity.Claims.csproj
+ *
+ *   Created: 2023-08-29-07:44:05
+ *   Modified: 2023-08-29-07:44:05
+ *
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project>
+    <ItemGroup>
+        <Using Include="System.Security.Claims.ClaimTypes" Alias="SysSecCt" />
+        <Using Include="System.Security.Claims.ClaimValueTypes" Alias="SysSecCvt" />
+    </ItemGroup>
+</Project>
