@@ -14,9 +14,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-    <ItemGroup>
-       <PackageReference Include="System.Security.Claims" />
-       <PackageReference Include="Dgmjr.Identity.Core" />
-       <PackageReference Include="Dgmjr.Primitives" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Security.Claims" />
+    <PackageReference Include="Dgmjr.Identity.Core" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Primitives" />
+  </ItemGroup>
 </Project>

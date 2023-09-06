@@ -20,6 +20,7 @@
       <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
       <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" />
       <PackageReference Include="Dgmjr.ComponentModel" ExcludeAssets="ContentFiles" />
+      <PackageReference Include="Dgmjr.Identity.Core" ExcludeAssets="ContentFiles" />
       <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
       <PackageReference Include="Dgmjr.Tuples" ExcludeAssets="ContentFiles" />
       <PackageReference Include="System.Runtime.Serialization.Primitives" Condition="$(TargetFramework.Contains('netstandard1'))" />

@@ -19,9 +19,9 @@ public partial record class ClaimValueType<TValue> : ClaimValueType
     public new virtual TValue Value { get => (TValue)base.Value; set => base.Value = value; }
 }
 
-public partial record class ClaimValueType : ClaimTypeOrValueType, IClaimValueType
+public partial record class ClaimValueType : IdentityComponent, IClaimValueType
 {
-    // public virtual bool Equals(IClaimTypeOrValueType? other)
+    // public virtual bool Equals(IIdentityComponent? other)
     //     => Equals(other as IClaimValueType);
 
     public virtual bool Equals(IClaimValueType? other)
@@ -31,10 +31,10 @@ public partial record class ClaimValueType : ClaimTypeOrValueType, IClaimValueTy
 
     public object Value { get; set; }
 
-    string IClaimTypeOrValueType.Name => string.Empty;
-    string IClaimTypeOrValueType.UriString => "about:blank";
-    public virtual uri Uri => ((IClaimTypeOrValueType)this).UriString;
-    public virtual uri ShortUri => ((IClaimTypeOrValueType)this).ShortUriString;
+    string IIdentityComponent.Name => string.Empty;
+    string IIdentityComponent.UriString => "about:blank";
+    public virtual uri Uri => ((IIdentityComponent)this).UriString;
+    public virtual uri ShortUri => ((IIdentityComponent)this).ShortUriString;
 
     // public override bool Equals(object? other) => Equals(other as IClaimValueType);
 

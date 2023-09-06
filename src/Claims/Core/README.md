@@ -3,9 +3,13 @@ title: DGMJR Identity Common
 project: Dgmjr.Identity
 description: This library contains the base interface and class for claim types and claim value types.
 lastmod: 2023-08-29T17:25:51.228Z
+date: 2023-08-29T17:25:51.228Z
+authors:
+  - dgmjr
+project: identity
 ---
 
-# Dgmjr.Identity.Common
+# Dgmjr.Identity.Core
 
 This library contains the base interface and class for claim types and claim value types.
 
@@ -27,7 +31,7 @@ using System.Security.Claims.ClaimTypes;
 using System.Security.Claims.ClaimValueTypes;
 ```
 
-Then, you can use the `IClaimTypeOrValueType` interface to represent claim types and claim value types. The `ClaimTypeOrValueType` abstract class provides a base implementation of the `IClaimTypeOrValueType` interface.
+Then, you can use the `IIdentityComponent` interface to represent claim types and claim value types. The `IdentityComponent` abstract class provides a base implementation of the `IIdentityComponent` interface.
 
 The following code snippet shows how to create a claim type:
 
@@ -47,5 +51,5 @@ Contributions are welcome! Please see the [CONTRIBUTING.md](https://github.com/d
 
 ## License
 
-The Dgmjr.Identity.Common library is licensed under the MIT license. See the [LICENSE](../../LICENSE.md) file for more information.
+The Dgmjr.Identity.Core library is licensed under the MIT license. See the [LICENSE](../../LICENSE.md) file for more information.
 

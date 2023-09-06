@@ -10,13 +10,13 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 #pragma warning disable
-namespace Dgmjr.Identity;
+namespace Dgmjr.Identity.ClaimTypes;
 
 /// <summary>The URI for a claim that specifies the actor</summary>
 /// <value><inheritdoc cref="Actor.UriString" path="/value" /></value>
-public class Actor : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Actor : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Actor();
+    public static IClaimType Instance => new Actor();
 
     private Actor() { }
 
@@ -28,117 +28,117 @@ public class Actor : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Actor";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 
 /// <summary>The URI for a claim that specifies the anonymous user.</summary>
 /// <value><inheritdoc cref="Anonymous.UriString" path="/value" /></value>
-public class Anonymous : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Anonymous : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Anonymous();
+    public static IClaimType Instance => new Anonymous();
 
     private Anonymous() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/authenticated</value>
-    public const string UriString = ClaimType2005Namespace + "/authenticated";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/anonymous</value>
+    public const string UriString = ClaimType2005Namespace + "/anonymous";
     /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:authenticated</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "authenticated";
+    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "anonymous";
     /// <value>Anonymous</value>
     public const string Name = "Anonymous";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 
 /// <summary>The URI for a claim that specifies details about whether an identity is authenticated</summary>
-/// <value><inheritdoc cref="Authentication.UriString" path="/value" /></value>
-public class Authentication : ClaimType, IClaimType, IClaimTypeOrValueType
+/// <value><inheritdoc cref="Authenticated.UriString" path="/value" /></value>
+public record class Authenticated : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Authentication();
+    public static IClaimType Instance => new Authenticated();
 
-    private Authentication() { }
+    private Authenticated() { }
 
     /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/authenticated</value>
     public const string UriString = ClaimType2005Namespace + "/authenticated";
     /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:authenticated</value>
     public const string ShortUriString = ShortClaimType2005Namespace + ":" + "authenticated";
-    /// <value>Authentication</value>
-    public const string Name = "Authentication";
+    /// <value>Authenticated</value>
+    public const string Name = "Authenticated";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the instant at which an entity was authenticated; </summary>
 /// <value><inheritdoc cref="AuthenticationInstant.UriString" path="/value" /></value>
-public class AuthenticationInstant : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class AuthenticationInstant : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new AuthenticationInstant();
+    public static IClaimType Instance => new AuthenticationInstant();
 
     private AuthenticationInstant() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/authenticationinstant</value>
-    public const string UriString = ClaimTypeNamespace + "/authenticationinstant";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:authenticationinstant</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "authenticationinstant";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/authenticationinstant</value>
+    public const string UriString = ClaimType2008Namespace + "/authenticationinstant";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:authenticationinstant</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "authenticationinstant";
     /// <value>AuthenticationInstant</value>
     public const string Name = "AuthenticationInstant";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the method with which an entity was authenticated; </summary>
 /// <value><inheritdoc cref="AuthenticationMethod.UriString" path="/value" /></value>
-public class AuthenticationMethod : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class AuthenticationMethod : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new AuthenticationMethod();
+    public static IClaimType Instance => new AuthenticationMethod();
 
     private AuthenticationMethod() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/authenticationmethod</value>
-    public const string UriString = ClaimTypeNamespace + "/authenticationmethod";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:authenticationmethod</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "authenticationmethod";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/authenticationmethod</value>
+    public const string UriString = ClaimType2008Namespace + "/authenticationmethod";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:authenticationmethod</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "authenticationmethod";
     /// <value>AuthenticationMethod	</value>
-    public const string Name = "AuthenticationMethod	";
+    public const string Name = "AuthenticationMethod";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies an authorization decision on an entity; </summary>
 /// <value><inheritdoc cref="AuthorizationDecision.UriString" path="/value" /></value>
-public class AuthorizationDecision : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class AuthorizationDecision : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new AuthorizationDecision();
+    public static IClaimType Instance => new AuthorizationDecision();
 
     private AuthorizationDecision() { }
 
@@ -150,43 +150,43 @@ public class AuthorizationDecision : ClaimType, IClaimType, IClaimTypeOrValueTyp
     public const string Name = "AuthorizationDecision";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the cookie path; </summary>
 /// <value><inheritdoc cref="CookiePath.UriString" path="/value" /></value>
-public class CookiePath : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class CookiePath : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new CookiePath();
+    public static IClaimType Instance => new CookiePath();
 
     private CookiePath() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/cookiepath</value>
-    public const string UriString = ClaimTypeNamespace + "/cookiepath";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:cookiepath</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "cookiepath";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/cookiepath</value>
+    public const string UriString = ClaimType2008Namespace + "/cookiepath";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:cookiepath</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "cookiepath";
     /// <value>CookiePath</value>
     public const string Name = "CookiePath";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the country/region in which an entity resides, </summary>
 /// <value><inheritdoc cref="Country.UriString" path="/value" /></value>
-public class Country : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Country : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Country();
+    public static IClaimType Instance => new Country();
 
     private Country() { }
 
@@ -198,19 +198,19 @@ public class Country : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Country";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the date of birth of an entity, </summary>
 /// <value><inheritdoc cref="DateOfBirth.UriString" path="/value" /></value>
-public class DateOfBirth : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class DateOfBirth : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new DateOfBirth();
+    public static IClaimType Instance => new DateOfBirth();
 
     private DateOfBirth() { }
 
@@ -222,67 +222,67 @@ public class DateOfBirth : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "DateOfBirth";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the deny-only primary group SID on an entity; </summary>
 /// <value><inheritdoc cref="DenyOnlyPrimaryGroupSid.UriString" path="/value" /></value>
-public class DenyOnlyPrimaryGroupSid : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class DenyOnlyPrimaryGroupSid : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new DenyOnlyPrimaryGroupSid();
+    public static IClaimType Instance => new DenyOnlyPrimaryGroupSid();
 
     private DenyOnlyPrimaryGroupSid() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/denyonlyprimarygroupsid</value>
-    public const string UriString = ClaimTypeNamespace + "/denyonlyprimarygroupsid";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:denyonlyprimarygroupsid</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "denyonlyprimarygroupsid";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/denyonlyprimarygroupsid</value>
+    public const string UriString = ClaimType2008Namespace + "/denyonlyprimarygroupsid";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:denyonlyprimarygroupsid</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "denyonlyprimarygroupsid";
     /// <value>DenyOnlyPrimaryGroupSid</value>
     public const string Name = "DenyOnlyPrimaryGroupSid";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the deny-only primary SID on an entity; A deny-only SID denies the specified entity to a securable object </summary>
 /// <value><inheritdoc cref="DenyOnlyPrimarySid.UriString" path="/value" /></value>
-public class DenyOnlyPrimarySid : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class DenyOnlyPrimarySid : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new DenyOnlyPrimarySid();
+    public static IClaimType Instance => new DenyOnlyPrimarySid();
 
     private DenyOnlyPrimarySid() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/denyonlyprimarysid</value>
-    public const string UriString = ClaimTypeNamespace + "/denyonlyprimarysid";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:denyonlyprimarysid</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "denyonlyprimarysid";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/denyonlyprimarysid</value>
+    public const string UriString = ClaimType2008Namespace + "/denyonlyprimarysid";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:denyonlyprimarysid</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "denyonlyprimarysid";
     /// <value>DenyOnlyPrimarySid</value>
     public const string Name = "DenyOnlyPrimarySid";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies a deny-only security identifier (SID) for an entity, </summary>
 /// <value><inheritdoc cref="DenyOnlySid.UriString" path="/value" /></value>
-public class DenyOnlySid : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class DenyOnlySid : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new DenyOnlySid();
+    public static IClaimType Instance => new DenyOnlySid();
 
     private DenyOnlySid() { }
 
@@ -294,43 +294,43 @@ public class DenyOnlySid : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "DenyOnlySid";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the Windows deny-only group SID of the device, </summary>
 /// <value><inheritdoc cref="DenyOnlyWindowsDeviceGroup.UriString" path="/value" /></value>
-public class DenyOnlyWindowsDeviceGroup : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class DenyOnlyWindowsDeviceGroup : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new DenyOnlyWindowsDeviceGroup();
+    public static IClaimType Instance => new DenyOnlyWindowsDeviceGroup();
 
     private DenyOnlyWindowsDeviceGroup() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/denyonlywindowsdevicegroup</value>
-    public const string UriString = ClaimTypeNamespace + "/denyonlywindowsdevicegroup";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:denyonlywindowsdevicegroup</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "denyonlywindowsdevicegroup";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/denyonlywindowsdevicegroup</value>
+    public const string UriString = ClaimType2008Namespace + "/denyonlywindowsdevicegroup";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:denyonlywindowsdevicegroup</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "denyonlywindowsdevicegroup";
     /// <value>DenyOnlyWindowsDeviceGroup</value>
     public const string Name = "DenyOnlyWindowsDeviceGroup";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the DNS name associated with the computer name or with the alternative name of either the subject or issuer of an X.509 certificate, </summary>
 /// <value><inheritdoc cref="Dns.UriString" path="/value" /></value>
-public class Dns : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Dns : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Dns();
+    public static IClaimType Instance => new Dns();
 
     private Dns() { }
 
@@ -342,43 +342,43 @@ public class Dns : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Dns";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary></summary>
 /// <value><inheritdoc cref="Dsa.UriString" path="/value" /></value>
-public class Dsa : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Dsa : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Dsa();
+    public static IClaimType Instance => new Dsa();
 
     private Dsa() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/dsa</value>
-    public const string UriString = ClaimTypeNamespace + "/dsa";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:dsa</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "dsa";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/dsa</value>
+    public const string UriString = ClaimType2008Namespace + "/dsa";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:dsa</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "dsa";
     /// <value>Dsa</value>
     public const string Name = "Dsa";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the email address of an entity, </summary>
 /// <value><inheritdoc cref="Email.UriString" path="/value" /></value>
-public class Email : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Email : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Email();
+    public static IClaimType Instance => new Email();
 
     private Email() { }
 
@@ -390,67 +390,67 @@ public class Email : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Email";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>http://schemas.microsoft.com/ws/2008/06/identity/claims/expiration</summary>
 /// <value><inheritdoc cref="Expiration.UriString" path="/value" /></value>
-public class Expiration : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Expiration : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Expiration();
+    public static IClaimType Instance => new Expiration();
 
     private Expiration() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/expiration</value>
-    public const string UriString = ClaimTypeNamespace + "/expiration";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:expiration</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "expiration";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/expiration</value>
+    public const string UriString = ClaimType2008Namespace + "/expiration";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:expiration</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "expiration";
     /// <value>Expiration</value>
     public const string Name = "Expiration";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary></summary>
 /// <value><inheritdoc cref="Expired.UriString" path="/value" /></value>
-public class Expired : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Expired : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Expired();
+    public static IClaimType Instance => new Expired();
 
     private Expired() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/expired</value>
-    public const string UriString = ClaimTypeNamespace + "/expired";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:expired</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "expired";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/expired</value>
+    public const string UriString = ClaimType2008Namespace + "/expired";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:expired</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "expired";
     /// <value>Expired</value>
     public const string Name = "Expired";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the gender of an entity, </summary>
 /// <value><inheritdoc cref="Gender.UriString" path="/value" /></value>
-public class Gender : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Gender : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Gender();
+    public static IClaimType Instance => new Gender();
 
     private Gender() { }
 
@@ -462,19 +462,19 @@ public class Gender : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Gender";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the given name of an entity, </summary>
 /// <value><inheritdoc cref="GivenName.UriString" path="/value" /></value>
-public class GivenName : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class GivenName : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new GivenName();
+    public static IClaimType Instance => new GivenName();
 
     private GivenName() { }
 
@@ -486,43 +486,43 @@ public class GivenName : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "GivenName";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the SID for the group of an entity, </summary>
 /// <value><inheritdoc cref="GroupSid.UriString" path="/value" /></value>
-public class GroupSid : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class GroupSid : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new GroupSid();
+    public static IClaimType Instance => new GroupSid();
 
     private GroupSid() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/groupsid</value>
-    public const string UriString = ClaimTypeNamespace + "/groupsid";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:groupsid</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "groupsid";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/groupsid</value>
+    public const string UriString = ClaimType2008Namespace + "/groupsid";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:groupsid</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "groupsid";
     /// <value>GroupSid</value>
     public const string Name = "GroupSid";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies a hash value, </summary>
 /// <value><inheritdoc cref="Hash.UriString" path="/value" /></value>
-public class Hash : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Hash : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Hash();
+    public static IClaimType Instance => new Hash();
 
     private Hash() { }
 
@@ -534,19 +534,19 @@ public class Hash : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Hash";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the home phone number of an entity, </summary>
 /// <value><inheritdoc cref="HomePhone.UriString" path="/value" /></value>
-public class HomePhone : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class HomePhone : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new HomePhone();
+    public static IClaimType Instance => new HomePhone();
 
     private HomePhone() { }
 
@@ -558,43 +558,43 @@ public class HomePhone : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "HomePhone";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary></summary>
 /// <value><inheritdoc cref="IsPersistent.UriString" path="/value" /></value>
-public class IsPersistent : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class IsPersistent : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new IsPersistent();
+    public static IClaimType Instance => new IsPersistent();
 
     private IsPersistent() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/ispersistent</value>
-    public const string UriString = ClaimTypeNamespace + "/ispersistent";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:ispersistent</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "ispersistent";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/ispersistent</value>
+    public const string UriString = ClaimType2008Namespace + "/ispersistent";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:ispersistent</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "ispersistent";
     /// <value>IsPersistent</value>
     public const string Name = "IsPersistent";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the locale in which an entity resides, </summary>
 /// <value><inheritdoc cref="Locality.UriString" path="/value" /></value>
-public class Locality : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Locality : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Locality();
+    public static IClaimType Instance => new Locality();
 
     private Locality() { }
 
@@ -606,19 +606,19 @@ public class Locality : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Locality";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the mobile phone number of an entity, </summary>
 /// <value><inheritdoc cref="MobilePhone.UriString" path="/value" /></value>
-public class MobilePhone : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class MobilePhone : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new MobilePhone();
+    public static IClaimType Instance => new MobilePhone();
 
     private MobilePhone() { }
 
@@ -630,19 +630,19 @@ public class MobilePhone : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "MobilePhone	";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the name of an entity, </summary>
 /// <value><inheritdoc cref="Name.UriString" path="/value" /></value>
-public class Name : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Name : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Name();
+    public static IClaimType Instance => new Name();
 
     private Name() { }
 
@@ -653,19 +653,19 @@ public class Name : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string _Name = "Name";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => _Name;
+    string IIdentityComponent.Name => _Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the name of an entity, </summary>
 /// <value><inheritdoc cref="NameIdentifier.UriString" path="/value" /></value>
-public class NameIdentifier : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class NameIdentifier : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new NameIdentifier();
+    public static IClaimType Instance => new NameIdentifier();
 
     private NameIdentifier() { }
 
@@ -677,19 +677,19 @@ public class NameIdentifier : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "NameIdentifier";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the alternative phone number of an entity, </summary>
 /// <value><inheritdoc cref="OtherPhone.UriString" path="/value" /></value>
-public class OtherPhone : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class OtherPhone : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new OtherPhone();
+    public static IClaimType Instance => new OtherPhone();
 
     private OtherPhone() { }
 
@@ -701,19 +701,19 @@ public class OtherPhone : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "OtherPhone";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the postal code of an entity, </summary>
 /// <value><inheritdoc cref="PostalCode.UriString" path="/value" /></value>
-public class PostalCode : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class PostalCode : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new PostalCode();
+    public static IClaimType Instance => new PostalCode();
 
     private PostalCode() { }
 
@@ -725,91 +725,91 @@ public class PostalCode : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "PostalCode";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the primary group SID of an entity, </summary>
 /// <value><inheritdoc cref="PrimaryGroupSid.UriString" path="/value" /></value>
-public class PrimaryGroupSid : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class PrimaryGroupSid : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new PrimaryGroupSid();
+    public static IClaimType Instance => new PrimaryGroupSid();
 
     private PrimaryGroupSid() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/primarygroupsid</value>
-    public const string UriString = ClaimTypeNamespace + "/primarygroupsid";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:primarygroupsid</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "primarygroupsid";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/primarygroupsid</value>
+    public const string UriString = ClaimType2008Namespace + "/primarygroupsid";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:primarygroupsid</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "primarygroupsid";
     /// <value>PrimaryGroupSid</value>
     public const string Name = "PrimaryGroupSid";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the primary SID of an entity, </summary>
 /// <value><inheritdoc cref="PrimarySid.UriString" path="/value" /></value>
-public class PrimarySid : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class PrimarySid : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new PrimarySid();
+    public static IClaimType Instance => new PrimarySid();
 
     private PrimarySid() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/primarysid</value>
-    public const string UriString = ClaimTypeNamespace + "/primarysid";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:primarysid</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "primarysid";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/primarysid</value>
+    public const string UriString = ClaimType2008Namespace + "/primarysid";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:primarysid</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "primarysid";
     /// <value>PrimarySid</value>
     public const string Name = "PrimarySid";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the role of an entity, </summary>
 /// <value><inheritdoc cref="Role.UriString" path="/value" /></value>
-public class Role : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Role : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Role();
+    public static IClaimType Instance => new Role();
 
     private Role() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/role</value>
-    public const string UriString = ClaimTypeNamespace + "/role";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:role</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "role";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/role</value>
+    public const string UriString = ClaimType2008Namespace + "/role";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:role</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "role";
     /// <value>Role</value>
     public const string Name = "Role";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies an RSA key, </summary>
 /// <value><inheritdoc cref="Rsa.UriString" path="/value" /></value>
-public class Rsa : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Rsa : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Rsa();
+    public static IClaimType Instance => new Rsa();
 
     private Rsa() { }
 
@@ -821,43 +821,43 @@ public class Rsa : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Rsa";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies a serial number, </summary>
 /// <value><inheritdoc cref="SerialNumber.UriString" path="/value" /></value>
-public class SerialNumber : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class SerialNumber : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new SerialNumber();
+    public static IClaimType Instance => new SerialNumber();
 
     private SerialNumber() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/serialnumber</value>
-    public const string UriString = ClaimTypeNamespace + "/serialnumber";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:serialnumber</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "serialnumber";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/serialnumber</value>
+    public const string UriString = ClaimType2008Namespace + "/serialnumber";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:serialnumber</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "serialnumber";
     /// <value>SerialNumber</value>
     public const string Name = "SerialNumber";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies a security identifier (SID), </summary>
 /// <value><inheritdoc cref="Sid.UriString" path="/value" /></value>
-public class Sid : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Sid : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Sid();
+    public static IClaimType Instance => new Sid();
 
     private Sid() { }
 
@@ -869,19 +869,19 @@ public class Sid : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Sid";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies a service principal name (SPN) claim, </summary>
 /// <value><inheritdoc cref="Spn.UriString" path="/value" /></value>
-public class Spn : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Spn : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Spn();
+    public static IClaimType Instance => new Spn();
 
     private Spn() { }
 
@@ -893,19 +893,19 @@ public class Spn : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Spn";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the state or province in which an entity resides, </summary>
 /// <value><inheritdoc cref="StateOrProvince.UriString" path="/value" /></value>
-public class StateOrProvince : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class StateOrProvince : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new StateOrProvince();
+    public static IClaimType Instance => new StateOrProvince();
 
     private StateOrProvince() { }
 
@@ -917,19 +917,19 @@ public class StateOrProvince : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "StateOrProvince";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the street address of an entity, </summary>
 /// <value><inheritdoc cref="StreetAddress.UriString" path="/value" /></value>
-public class StreetAddress : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class StreetAddress : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new StreetAddress();
+    public static IClaimType Instance => new StreetAddress();
 
     private StreetAddress() { }
 
@@ -941,19 +941,19 @@ public class StreetAddress : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "StreetAddress";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the surname of an entity, </summary>
 /// <value><inheritdoc cref="Surname.UriString" path="/value" /></value>
-public class Surname : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Surname : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Surname();
+    public static IClaimType Instance => new Surname();
 
     private Surname() { }
 
@@ -965,19 +965,19 @@ public class Surname : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Surname";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that identifies the system entity, </summary>
 /// <value><inheritdoc cref="System.UriString" path="/value" /></value>
-public class System : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class System : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new System();
+    public static IClaimType Instance => new System();
 
     private System() { }
 
@@ -989,19 +989,19 @@ public class System : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "System";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies a thumbprint, </summary>
 /// <value><inheritdoc cref="Thumbprint.UriString" path="/value" /></value>
-public class Thumbprint : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Thumbprint : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Thumbprint();
+    public static IClaimType Instance => new Thumbprint();
 
     private Thumbprint() { }
 
@@ -1013,19 +1013,19 @@ public class Thumbprint : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Thumbprint";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies a user principal name (UPN), </summary>
 /// <value><inheritdoc cref="Upn.UriString" path="/value" /></value>
-public class Upn : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Upn : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Upn();
+    public static IClaimType Instance => new Upn();
 
     private Upn() { }
 
@@ -1037,19 +1037,19 @@ public class Upn : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Upn";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies a URI, </summary>
 /// <value><inheritdoc cref="Uri.UriString" path="/value" /></value>
-public class _Uri : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class _Uri : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new _Uri();
+    public static IClaimType Instance => new _Uri();
 
     private _Uri() { }
 
@@ -1061,67 +1061,67 @@ public class _Uri : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Uri";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the user data, </summary>
 /// <value><inheritdoc cref="UserData.UriString" path="/value" /></value>
-public class UserData : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class UserData : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new UserData();
+    public static IClaimType Instance => new UserData();
 
     private UserData() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/userdata</value>
-    public const string UriString = ClaimTypeNamespace + "/userdata";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:userdata</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "userdata";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/userdata</value>
+    public const string UriString = ClaimType2008Namespace + "/userdata";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:userdata</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "userdata";
     /// <value>UserData</value>
     public const string Name = "UserData";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the version, </summary>
 /// <value><inheritdoc cref="Version.UriString" path="/value" /></value>
-public class Version : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Version : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Version();
+    public static IClaimType Instance => new Version();
 
     private Version() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/version</value>
-    public const string UriString = ClaimTypeNamespace + "/version";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:version</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "version";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/version</value>
+    public const string UriString = ClaimType2008Namespace + "/version";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:version</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "version";
     /// <value>Version</value>
     public const string Name = "Version";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the webpage of an entity, </summary>
 /// <value><inheritdoc cref="Webpage.UriString" path="/value" /></value>
-public class Webpage : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class Webpage : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new Webpage();
+    public static IClaimType Instance => new Webpage();
 
     private Webpage() { }
 
@@ -1133,163 +1133,163 @@ public class Webpage : ClaimType, IClaimType, IClaimTypeOrValueType
     public const string Name = "Webpage";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the Windows domain account name of an entity, </summary>
 /// <value><inheritdoc cref="WindowsAccountName.UriString" path="/value" /></value>
-public class WindowsAccountName : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class WindowsAccountName : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new WindowsAccountName();
+    public static IClaimType Instance => new WindowsAccountName();
 
     private WindowsAccountName() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/windowsaccountname</value>
-    public const string UriString = ClaimTypeNamespace + "/windowsaccountname";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:windowsaccountname</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "windowsaccountname";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/windowsaccountname</value>
+    public const string UriString = ClaimType2008Namespace + "/windowsaccountname";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:windowsaccountname</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "windowsaccountname";
     /// <value>WindowsAccountName</value>
     public const string Name = "WindowsAccountName";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsdeviceclaim.</summary>
 /// <value><inheritdoc cref="WindowsDeviceClaim.UriString" path="/value" /></value>
-public class WindowsDeviceClaim : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class WindowsDeviceClaim : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new WindowsDeviceClaim();
+    public static IClaimType Instance => new WindowsDeviceClaim();
 
     private WindowsDeviceClaim() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/windowsdeviceclaim</value>
-    public const string UriString = ClaimTypeNamespace + "/windowsdeviceclaim";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:windowsdeviceclaim</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "windowsdeviceclaim";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/windowsdeviceclaim</value>
+    public const string UriString = ClaimType2008Namespace + "/windowsdeviceclaim";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:windowsdeviceclaim</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "windowsdeviceclaim";
     /// <value>WindowsDeviceClaim</value>
     public const string Name = "WindowsDeviceClaim";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for a claim that specifies the Windows group SID of the device, </summary>
 /// <value><inheritdoc cref="WindowsDeviceGroup.UriString" path="/value" /></value>
-public class WindowsDeviceGroup : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class WindowsDeviceGroup : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new WindowsDeviceGroup();
+    public static IClaimType Instance => new WindowsDeviceGroup();
 
     private WindowsDeviceGroup() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/windowsdevicegroup</value>
-    public const string UriString = ClaimTypeNamespace + "/windowsdevicegroup";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:windowsdevicegroup</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "windowsdevicegroup";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/windowsdevicegroup</value>
+    public const string UriString = ClaimType2008Namespace + "/windowsdevicegroup";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:windowsdevicegroup</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "windowsdevicegroup";
     /// <value>WindowsDeviceGroup</value>
     public const string Name = "WindowsDeviceGroup";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>windowsfqbnversion.</summary>
 /// <value><inheritdoc cref="WindowsFqbnVersion.UriString" path="/value" /></value>
-public class WindowsFqbnVersion : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class WindowsFqbnVersion : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new WindowsFqbnVersion();
+    public static IClaimType Instance => new WindowsFqbnVersion();
 
     private WindowsFqbnVersion() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/windowsfqbnversion</value>
-    public const string UriString = ClaimTypeNamespace + "/windowsfqbnversion";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:windowsfqbnversion</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "windowsfqbnversion";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/windowsfqbnversion</value>
+    public const string UriString = ClaimType2008Namespace + "/windowsfqbnversion";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:windowsfqbnversion</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "windowsfqbnversion";
     /// <value>WindowsFqbnVersion</value>
     public const string Name = "WindowsFqbnVersion";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary></summary>
 /// <value><inheritdoc cref="WindowsSubAuthority.UriString" path="/value" /></value>
-public class WindowsSubAuthority : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class WindowsSubAuthority : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new WindowsSubAuthority();
+    public static IClaimType Instance => new WindowsSubAuthority();
 
     private WindowsSubAuthority() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/windowssubauthority</value>
-    public const string UriString = ClaimTypeNamespace + "/windowssubauthority";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:windowssubauthority</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "windowssubauthority";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/windowssubauthority</value>
+    public const string UriString = ClaimType2008Namespace + "/windowssubauthority";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:windowssubauthority</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "windowssubauthority";
     /// <value>WindowsSubAuthority</value>
     public const string Name = "WindowsSubAuthority";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary></summary>
 /// <value><inheritdoc cref="WindowsUserClaim.UriString" path="/value" /></value>
-public class WindowsUserClaim : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class WindowsUserClaim : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new WindowsUserClaim();
+    public static IClaimType Instance => new WindowsUserClaim();
 
     private WindowsUserClaim() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimTypeNamespace" path="/value" />/windowsuserclaim</value>
-    public const string UriString = ClaimTypeNamespace + "/windowsuserclaim";
-    /// <value><inheritdoc cref="ClaimType.ShortClaimTypeNamespace" path="/value" />:windowsuserclaim</value>
-    public const string ShortUriString = ShortClaimTypeNamespace + ":" + "windowsuserclaim";
+    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/windowsuserclaim</value>
+    public const string UriString = ClaimType2008Namespace + "/windowsuserclaim";
+    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:windowsuserclaim</value>
+    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "windowsuserclaim";
     /// <value>WindowsUserClaim</value>
     public const string Name = "WindowsUserClaim";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
 /// <summary>The URI for an X.500 distinguished name claim, such as the subject of an X.509 Public Key Certificate or an entry identifier in a directory services Directory Information Tree; </summary>
 /// <value><inheritdoc cref="X500DistinguishedName.UriString" path="/value" /></value>
-public class X500DistinguishedName : ClaimType, IClaimType, IClaimTypeOrValueType
+public record class X500DistinguishedName : ClaimType, IClaimType, IIdentityComponent
 {
-    public IClaimType Instance => new X500DistinguishedName();
+    public static IClaimType Instance => new X500DistinguishedName();
 
     private X500DistinguishedName() { }
 
@@ -1301,11 +1301,11 @@ public class X500DistinguishedName : ClaimType, IClaimType, IClaimTypeOrValueTyp
     public const string Name = "X500DistinguishedName";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IClaimTypeOrValueType.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }

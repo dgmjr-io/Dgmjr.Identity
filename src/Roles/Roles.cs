@@ -10,48 +10,213 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 namespace Dgmjr.Identity;
-
-public partial class Role
-{
-    public virtual bool Equals(Role? other) => other?.Uri == Uri;
-}
+using System;
 
 public static class Roles
 {
-    /// <summary>The base URI for roles</summary>
-    /// <value>urn:identity:role</value>
-    public const string BaseUri = "role";
+    /// <summary><inheritdoc cref="Names.Scheme" path="/summary" /></summary>
+    /// <value><inheritdoc cref="DgmjrR.UriString" path="/value" /></value>
+    public sealed record class BaseUri : DgmjrR, IClaimTypeOrValueType
+    {
+        public override IRole Instance => new BaseUri();
+    }
 
     /// <summary>The URI for the <inheritdoc cref="Names.Admin" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.Admin" path="/value" /></value>
-    public const string Admin = $"{BaseUri}:{Names.Admin}";
+    /// <value><inheritdoc cref="BaseUri" path="/value" />/<inheritdoc cref="Names.Admin" path="/value" /></value>
+
+    public sealed record class Admin : DgmjrR, IClaimTypeOrValueType
+    {
+        /// <value><inheritdoc cref="Names.Admin" path="/value" /></value>
+        public new const string Name = Names.Admin;
+
+        /// <value><inheritdoc cref="Names.Scheme" path="/value" /><inheritdoc cref="DgmjrR.Namespace" path="/value" />/<inheritdoc cref="Names.Admin" path="/value" /></value>
+        public new const string UriString = $"{Names.Scheme}{DgmjrR.Namespace}/{Names.Admin}";
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        string IClaimTypeOrValueType.UriString => UriString;
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        uri IClaimTypeOrValueType.Uri => uri.From(UriString);
+
+        private Admin() { }
+
+        public override IRole Instance => new Admin();
+    }
     /// <summary>The URI for the <inheritdoc cref="Names.Administrator" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.Administrator" path="/value" /></value>
-    public const string Administrator = $"{BaseUri}:{Names.Administrator}";
+    /// <value><inheritdoc cref="BaseUri" path="/value" />/<inheritdoc cref="Names.Administrator" path="/value" /></value>
+
+    public sealed record class Administrator : DgmjrR, IClaimTypeOrValueType
+    {
+        /// <value><inheritdoc cref="Names.Administrator" path="/value" /></value>
+        public new const string Name = Names.Administrator;
+
+        /// <value><inheritdoc cref="Names.Scheme" path="/value" /><inheritdoc cref="DgmjrR.Namespace" path="/value" />/<inheritdoc cref="Names.Administrator" path="/value" /></value>
+        public new const string UriString = $"{Names.Scheme}{DgmjrR.Namespace}/{Names.Administrator}";
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        string IClaimTypeOrValueType.UriString => UriString;
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        uri IClaimTypeOrValueType.Uri => uri.From(UriString);
+
+        private Administrator() { }
+
+        public override IRole Instance => new Administrator();
+    }
     /// <summary>The URI for the <inheritdoc cref="Names.GroupAdministrator" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.GroupAdministrator" path="/value" /></value>
-    public const string GroupAdministrator = $"{BaseUri}:{Names.GroupAdministrator}";
+    /// <value><inheritdoc cref="BaseUri" path="/value" />/<inheritdoc cref="Names.GroupAdministrator" path="/value" /></value>
+
+    public sealed record class GroupAdministrator : DgmjrR, IClaimTypeOrValueType
+    {
+        /// <value><inheritdoc cref="Names.GroupAdministrator" path="/value" /></value>
+        public new const string Name = Names.GroupAdministrator;
+
+        /// <value><inheritdoc cref="Names.Scheme" path="/value" /><inheritdoc cref="DgmjrR.Namespace" path="/value" />/<inheritdoc cref="Names.GroupAdministrator" path="/value" /></value>
+        public new const string UriString = $"{Names.Scheme}{DgmjrR.Namespace}/{Names.GroupAdministrator}";
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        string IClaimTypeOrValueType.UriString => UriString;
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        uri IClaimTypeOrValueType.Uri => uri.From(UriString);
+
+        private GroupAdministrator() { }
+
+        public override IRole Instance => new GroupAdministrator();
+    }
     /// <summary>The URI for the <inheritdoc cref="Names.Owner" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.Owner" path="/value" /></value>
-    public const string Owner = $"{BaseUri}:{Names.Owner}";
+    /// <value><inheritdoc cref="BaseUri" path="/value" />/<inheritdoc cref="Names.Owner" path="/value" /></value>
+
+    public sealed record class Owner : DgmjrR, IClaimTypeOrValueType
+    {
+        /// <value><inheritdoc cref="Names.Owner" path="/value" /></value>
+        public new const string Name = Names.Owner;
+
+        /// <value><inheritdoc cref="Names.Scheme" path="/value" /><inheritdoc cref="DgmjrR.Namespace" path="/value" />/<inheritdoc cref="Names.Owner" path="/value" /></value>
+        public new const string UriString = $"{Names.Scheme}{DgmjrR.Namespace}/{Names.Owner}";
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        string IClaimTypeOrValueType.UriString => UriString;
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        uri IClaimTypeOrValueType.Uri => uri.From(UriString);
+
+        private Owner() { }
+
+        public override IRole Instance => new Owner();
+    }
     /// <summary>The URI for the <inheritdoc cref="Names.User" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.User" path="/value" /></value>
-    public const string User = $"{BaseUri}:{Names.User}";
+    /// <value><inheritdoc cref="BaseUri" path="/value" />/<inheritdoc cref="Names.User" path="/value" /></value>
+
+    public sealed record class User : DgmjrR, IClaimTypeOrValueType
+    {
+        /// <value><inheritdoc cref="Names.User" path="/value" /></value>
+        public new const string Name = Names.User;
+
+        /// <value><inheritdoc cref="Names.Scheme" path="/value" /><inheritdoc cref="DgmjrR.Namespace" path="/value" />/<inheritdoc cref="Names.User" path="/value" /></value>
+        public new const string UriString = $"{Names.Scheme}{DgmjrR.Namespace}/{Names.User}";
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        string IClaimTypeOrValueType.UriString => UriString;
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        uri IClaimTypeOrValueType.Uri => uri.From(UriString);
+
+        private User() { }
+
+        public override IRole Instance => new User();
+    }
     /// <summary>The URI for the <inheritdoc cref="Names.GroupMember" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.GroupMember" path="/value" /></value>
-    public const string GroupMember = $"{BaseUri}:{Names.GroupMember}";
+    /// <value><inheritdoc cref="BaseUri" path="/value" />/<inheritdoc cref="Names.GroupMember" path="/value" /></value>
+
+    public sealed record class GroupMember : DgmjrR, IClaimTypeOrValueType
+    {
+        /// <value><inheritdoc cref="Names.GroupMember" path="/value" /></value>
+        public new const string Name = Names.GroupMember;
+
+        /// <value><inheritdoc cref="Names.Scheme" path="/value" /><inheritdoc cref="DgmjrR.Namespace" path="/value" />/<inheritdoc cref="Names.GroupMember" path="/value" /></value>
+        public new const string UriString = $"{Names.Scheme}{DgmjrR.Namespace}/{Names.GroupMember}";
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        string IClaimTypeOrValueType.UriString => UriString;
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        uri IClaimTypeOrValueType.Uri => uri.From(UriString);
+
+        private GroupMember() { }
+
+        public override IRole Instance => new GroupMember();
+    }
     /// <summary>The URI for the <inheritdoc cref="Names.Voter" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.Voter" path="/value" /></value>
-    public const string Voter = $"{BaseUri}:{Names.Voter}";
+    /// <value><inheritdoc cref="BaseUri" path="/value" />/<inheritdoc cref="Names.Voter" path="/value" /></value>
+
+    public sealed record class Voter : DgmjrR, IClaimTypeOrValueType
+    {
+        /// <value><inheritdoc cref="Names.Voter" path="/value" /></value>
+        public new const string Name = Names.Voter;
+
+        /// <value><inheritdoc cref="Names.Scheme" path="/value" /><inheritdoc cref="DgmjrR.Namespace" path="/value" />/<inheritdoc cref="Names.Voter" path="/value" /></value>
+        public new const string UriString = $"{Names.Scheme}{DgmjrR.Namespace}/{Names.Voter}";
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        string IClaimTypeOrValueType.UriString => UriString;
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        uri IClaimTypeOrValueType.Uri => uri.From(UriString);
+
+        private Voter() { }
+
+        public override IRole Instance => new Voter();
+    }
     /// <summary>The URI for the <inheritdoc cref="Names.Contestant" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.Contestant" path="/value" /></value>
-    public const string Contestant = $"{BaseUri}:{Names.Contestant}";
+    /// <value><inheritdoc cref="BaseUri" path="/value" />/<inheritdoc cref="Names.Contestant" path="/value" /></value>
+
+    public sealed record class Contestant : DgmjrR, IClaimTypeOrValueType
+    {
+        /// <value><inheritdoc cref="Names.Contestant" path="/value" /></value>
+        public new const string Name = Names.Contestant;
+
+        /// <value><inheritdoc cref="Names.Scheme" path="/value" /><inheritdoc cref="DgmjrR.Namespace" path="/value" />/<inheritdoc cref="Names.Contestant" path="/value" /></value>
+        public new const string UriString = $"{Names.Scheme}{DgmjrR.Namespace}/{Names.Contestant}";
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        string IClaimTypeOrValueType.UriString => UriString;
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        uri IClaimTypeOrValueType.Uri => uri.From(UriString);
+
+        private Contestant() { }
+
+        public override IRole Instance => new Contestant();
+    }
     /// <summary>The URI for the <inheritdoc cref="Names.Anonymous" path="/value" /> role</summary>
-    /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="Names.Anonymous" path="/value" /></value>
-    public const string Anonymous = $"{BaseUri}:{Names.Anonymous}";
+    /// <value><inheritdoc cref="BaseUri" path="/value" />/<inheritdoc cref="Names.Anonymous" path="/value" /></value>
+
+    public sealed record class Anonymous : DgmjrR, IClaimTypeOrValueType
+    {
+        /// <value><inheritdoc cref="Names.Anonymous" path="/value" /></value>
+        public new const string Name = Names.Anonymous;
+
+        /// <value><inheritdoc cref="Names.Scheme" path="/value" /><inheritdoc cref="DgmjrR.Namespace" path="/value" />/<inheritdoc cref="Names.Anonymous" path="/value" /></value>
+        public new const string UriString = $"{Names.Scheme}{DgmjrR.Namespace}/{Names.Anonymous}";
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        string IClaimTypeOrValueType.UriString => UriString;
+
+        /// <value><inheritdoc cref="UriString" path="/value" /></value>
+        uri IClaimTypeOrValueType.Uri => uri.From(UriString);
+
+        private Anonymous() { }
+
+        public override IRole Instance => new Anonymous();
+    }
 
     public static class Names
     {
+        /// <summary>The URI scheme for roles</summary>
+        /// <value>https://</value>
+        public const string Scheme = "https://";
+
         /// <summary>The founder of the group (normally also the group's owner)</summary>
         /// <value>founder</value>
         public const string Founder = "founder";
@@ -69,7 +234,7 @@ public static class Roles
         public const string Free = "free";
 
         /// <summary>The name of the <inheritdoc cref="Admin" path="/value" /> role</summary>
-        /// <value>admin</value>
+        /// <value>administrator</value>
         public const string Admin = Administrator;
         /// <summary>The name of the <inheritdoc cref="Administrator" path="/value" /> role</summary>
         /// <value>administrator</value>
@@ -99,29 +264,29 @@ public static class Roles
 
         public static class Uris
         {
-            /// <inheritdoc cref="DgmjrR.Admin" />
-            public static readonly uri Admin = uri.From(DgmjrR.Admin.Uri);
+            /// <inheritdoc cref="Roles.Admin" />
+            public static readonly uri Admin = uri.From(Roles.Admin.UriString);
 
-            /// <inheritdoc cref="DgmjrR.Administrator" />
-            public static readonly uri Administrator = uri.From(DgmjrR.Administrator.Uri);
+            /// <inheritdoc cref="Roles.Administrator" />
+            public static readonly uri Administrator = uri.From(Roles.Administrator.UriString);
 
-            /// <inheritdoc cref="DgmjrR.GroupAdministrator" />
-            public static readonly uri GroupAdministrator = uri.From(DgmjrR.GroupAdministrator.Uri);
+            /// <inheritdoc cref="Roles.GroupAdministrator" />
+            public static readonly uri GroupAdministrator = uri.From(Roles.GroupAdministrator.UriString);
 
-            /// <inheritdoc cref="DgmjrR.Owner" />
-            public static readonly uri Owner = uri.From(DgmjrR.Owner.Uri);
+            /// <inheritdoc cref="Roles.Owner" />
+            public static readonly uri Owner = uri.From(Roles.Owner.UriString);
 
-            /// <inheritdoc cref="DgmjrR.User" />
-            public static readonly uri User = uri.From(DgmjrR.User.Uri);
+            /// <inheritdoc cref="Roles.User" />
+            public static readonly uri User = uri.From(Roles.User.UriString);
 
-            /// <inheritdoc cref="DgmjrR.GroupMember" />
-            public static readonly uri GroupMember = uri.From(DgmjrR.GroupMember.Uri);
+            /// <inheritdoc cref="Roles.GroupMember" />
+            public static readonly uri GroupMember = uri.From(Roles.GroupMember.UriString);
 
-            /// <inheritdoc cref="DgmjrR.Voter" />
-            public static readonly uri Voter = uri.From(DgmjrR.Voter.Uri);
+            /// <inheritdoc cref="Roles.Voter" />
+            public static readonly uri Voter = uri.From(Roles.Voter.UriString);
 
-            /// <inheritdoc cref="DgmjrR.Contestant" />
-            public static readonly uri Contestant = uri.From(DgmjrR.Contestant.Uri);
+            /// <inheritdoc cref="Roles.Contestant" />
+            public static readonly uri Contestant = uri.From(Roles.Contestant.UriString);
         }
     }
 }

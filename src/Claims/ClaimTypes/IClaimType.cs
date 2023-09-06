@@ -12,6 +12,6 @@
 
 namespace Dgmjr.Identity;
 
-public interface IClaimType : IClaimTypeOrValueType, IEquatable<IClaimType>
+public interface IClaimType : IIdentityComponent, IEquatable<IClaimType>
 {
 }

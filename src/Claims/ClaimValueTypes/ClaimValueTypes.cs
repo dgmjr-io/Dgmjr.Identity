@@ -1,4 +1,4 @@
-namespace Dgmjr.Identity;
+namespace Dgmjr.Identity.ClaimValueTypes;
 
 using System.Globalization;
 using System.Net.Mail;
@@ -27,9 +27,9 @@ public record class Base64Binary : ClaimValueType<byte[]>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:base64Binary</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":base64Binary";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -50,9 +50,9 @@ public record class Base64Octet : ClaimValueType<byte[]>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value" />:base64Octet</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":#base64Octet";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -74,9 +74,9 @@ public record class Boolean : ClaimValueType<bool>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:boolean</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":boolean";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -98,9 +98,9 @@ public record class Date : ClaimValueType<DateOnly>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:date</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":date";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -122,9 +122,9 @@ public record class DateTime : ClaimValueType<System.DateTime>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:dateTime</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":dateTime";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -148,9 +148,9 @@ public record class Double : ClaimValueType<double>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:double</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":double";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -169,9 +169,9 @@ public record class Fqbn : ClaimValueType<string>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value" />:fqbn</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":fqbn";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -191,9 +191,9 @@ public record class HexBinary : ClaimValueType<byte[]>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:hexBinary</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":hexBinary";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -215,9 +215,9 @@ public record class Integer : ClaimValueType<int>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:integer</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":integer";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -238,9 +238,9 @@ public record class Integer32 : ClaimValueType<int>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:integer32</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":integer32";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -261,9 +261,9 @@ public record class Integer64 : ClaimValueType<long>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:integer64</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":integer64";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -284,9 +284,9 @@ public record class Sid : ClaimValueType<System.Security.Principal.SecurityIdent
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:sid</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":sid";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -312,9 +312,9 @@ public record class String : ClaimValueType<string>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:string</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":string";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -334,9 +334,9 @@ public record class Time : ClaimValueType<TimeOnly>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:time</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":time";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -360,9 +360,9 @@ public record class UInteger32 : ClaimValueType<uint>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:uinteger32</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":uinteger32";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -386,9 +386,9 @@ public record class UInteger64 : ClaimValueType<ulong>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:uinteger64</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":uinteger64";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -414,9 +414,9 @@ public record class DnsName : ClaimValueType<string>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortSoapSchemaNamespace" path="/value"/>:dns</value>
     public const string ShortUriString = ShortSoapSchemaNamespace + ":dns";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -437,9 +437,9 @@ public record class Email : ClaimValueType<EmailAddress>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortSoapSchemaNamespace" path="/value"/>:emailaddress</value>
     public const string ShortUriString = ShortSoapSchemaNamespace + ":emailaddress";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -459,9 +459,9 @@ public record class Rsa : ClaimValueType<RSA>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortSoapSchemaNamespace" path="/value" />:rsa</value>
     public const string ShortUriString = ShortSoapSchemaNamespace + ":rsa";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -487,9 +487,9 @@ public record class UpnName : ClaimValueType<EmailAddress>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortSoapSchemaNamespace" path="/value"/>:UPN"</value>
     public const string ShortUriString = ShortSoapSchemaNamespace + ":UPN";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -513,9 +513,9 @@ public record class DsaKeyValue : ClaimValueType<XE>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSignatureConstantsNamespace" path="/value" />:DSAKeyValue</value>
     public const string ShortUriString = ShortXmlSignatureConstantsNamespace + ":DSAKeyValue";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -554,9 +554,9 @@ public record class KeyInfo : ClaimValueType, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSignatureConstantsNamespace" path="/value" />:KeyInfo</value>
     public const string ShortUriString = ShortXmlSignatureConstantsNamespace + ":KeyInfo";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -596,9 +596,9 @@ public record class RsaKeyValue : ClaimValueType<XE>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSignatureConstantsNamespace" path="/value" />:RSAKeyValue</value>
     public const string ShortUriString = ShortXmlSignatureConstantsNamespace + ":RSAKeyValue";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -640,9 +640,9 @@ public record class DaytimeDuration : ClaimValueType<DayTimeDuration>, IClaimVal
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:dayTimeDuration</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":dayTimeDuration";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -665,9 +665,9 @@ public record class YearMonthDuration : ClaimValueType<Primitives.YearMonthDurat
     /// <value><inheritdoc cref="ClaimValueType.ShortXmlSchemaNamespace" path="/value"/>:yearMonthDuration</value>
     public const string ShortUriString = ShortXmlSchemaNamespace + ":yearMonthDuration";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -691,9 +691,9 @@ public record class Rfc822Name : ClaimValueType<EmailAddress>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXacml10Namespace" path="/value"/>:rfc822Name</value>
     public const string ShortUriString = ShortXacml10Namespace + ":rfc822Name";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -714,9 +714,9 @@ public record class X500Name : ClaimValueType<X500DistinguishedName>, IClaimValu
     /// <value><inheritdoc cref="ClaimValueType.ShortXacml10Namespace" path="/value"/>:x500Name</value>
     public const string ShortUriString = ShortXacml10Namespace + ":x500Name";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -737,9 +737,9 @@ public record class XacmlDnsName : ClaimValueType<string>, IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXacml20Namespace" path="/value"/>:dnsName</value>
     public const string ShortUriString = ShortXacml20Namespace + ":dnsName";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
@@ -763,9 +763,9 @@ public partial record class IpAddress : IClaimValueType
     /// <value><inheritdoc cref="ClaimValueType.ShortXacml30Namespace" path="/value"/>:ipAddress</value>
     public const string ShortUriString = ShortXacml30Namespace + ":ipAddress";
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IClaimTypeOrValueType.UriString => UriString;
+    string IIdentityComponent.UriString => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IClaimTypeOrValueType.ShortUriString => ShortUriString;
+    string IIdentityComponent.ShortUriString => ShortUriString;
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>

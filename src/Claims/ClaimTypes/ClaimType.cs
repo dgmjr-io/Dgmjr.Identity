@@ -2,9 +2,9 @@ namespace Dgmjr.Identity;
 using global::System;
 using global::System.Security;
 
-public partial class ClaimType : ClaimTypeOrValueType, IClaimType
+public partial record class ClaimType : IdentityComponent, IClaimType
 {
-    public override bool Equals(IClaimTypeOrValueType? other)
+    public override bool Equals(IIdentityComponent? other)
         => Equals(other as IClaimType);
 
     public virtual bool Equals(ClaimType? other)
@@ -15,32 +15,29 @@ public partial class ClaimType : ClaimTypeOrValueType, IClaimType
         return other is not null && (ReferenceEquals(this, other) || ((IClaimType)this).Uri == other.Uri);
     }
 
-    string IClaimTypeOrValueType.Namespace => "about";
-    string IClaimTypeOrValueType.Name => "blank";
-    string IClaimTypeOrValueType.UriString => $"{((IClaimTypeOrValueType)this).Namespace}";
-    string IClaimTypeOrValueType.ShortNamespace => "about";
-    string IClaimTypeOrValueType.ShortUriString => "about:blank";
-    public virtual uri Uri => ((IClaimTypeOrValueType)this).UriString;
-    public virtual uri ShortUri => ((IClaimTypeOrValueType)this).ShortUriString;
-
-    public override bool Equals(object? other) => Equals(other as ClaimType);
+    string IIdentityComponent.Namespace => "about";
+    string IIdentityComponent.Name => "blank";
+    string IIdentityComponent.UriString => $"{((IIdentityComponent)this).Namespace}";
+    string IIdentityComponent.ShortNamespace => "about";
+    string IIdentityComponent.ShortUriString => "about:blank";
+    public virtual uri Uri => ((IIdentityComponent)this).UriString;
+    public virtual uri ShortUri => ((IIdentityComponent)this).ShortUriString;
 
     public override int GetHashCode() => ((IClaimType)this).GetHashCode();
 
-    /// <summary>ClaimTypeNamespace</summary>
+    /// <summary>Claim Type 2008 Namespace</summary>
     /// <value>http://schemas.microsoft.com/ws/2008/06/identity/claims</value>
-    public const string ClaimTypeNamespace = "http://schemas.microsoft.com/ws/2008/06/identity/claims";
+    public const string ClaimType2008Namespace = "http://schemas.microsoft.com/ws/2008/06/identity/claims";
 
-    /// <summary>ShortClaimTypeNamespace</summary>
-    /// <value>ws</value>
-    public const string ShortClaimTypeNamespace = "ws";
+    /// <summary>Short Claim Type 2008 Namespace</summary>
+    /// <value>ws:2008</value>
+    public const string ShortClaimType2008Namespace = "ws:2009";
 
     /// <summary>Claim Type 2005 Namespace</summary>
     /// <value>http://schemas.xmlsoap.org/ws/2005/05/identity/claims</value>
     public const string ClaimType2005Namespace = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims";
 
-
-    /// <summary>ShortClaimTypeNamespace</summary>
+    /// <summary>Short Claim Type 2009 Namespace</summary>
     /// <value>ws:2005</value>
     public const string ShortClaimType2005Namespace = "ws:2005";
 
@@ -48,7 +45,7 @@ public partial class ClaimType : ClaimTypeOrValueType, IClaimType
     /// <value>http://schemas.xmlsoap.org/ws/2009/09/identity/claims</value>
     public const string ClaimType2009Namespace = "http://schemas.xmlsoap.org/ws/2009/09/identity/claims";
 
-    /// <summary>ShortClaimTypeNamespace</summary>
-    /// <value>w:2009</value>
+    /// <summary>Short Claim Type 2009 Namespace</summary>
+    /// <value>ws:2009</value>
     public const string ShortClaimType2009Namespace = "ws:2009";
 }

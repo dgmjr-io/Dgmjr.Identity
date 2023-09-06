@@ -1,5 +1,5 @@
 /*
- * IClaimTypeOrValueType.cs
+ * IIdentityComponent.cs
  *
  *   Created: 2023-08-29-09:32:39
  *   Modified: 2023-08-29-09:32:39
@@ -12,7 +12,7 @@
 
 namespace Dgmjr.Identity;
 
-public interface IClaimTypeOrValueType : IEquatable<IClaimTypeOrValueType>
+public interface IIdentityComponent : IEquatable<IIdentityComponent>
 {
     bool Equals(object other);
 
