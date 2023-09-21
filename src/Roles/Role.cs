@@ -11,7 +11,7 @@
  */
 namespace Dgmjr.Identity;
 
-public abstract partial record class Role : ClaimTypeOrValueType, IClaimTypeOrValueType, IRole
+public abstract partial record class Role : IdentityComponent, IRole
 {
     protected Role() { }
 
@@ -27,17 +27,17 @@ public abstract partial record class Role : ClaimTypeOrValueType, IClaimTypeOrVa
     public const string UriString = $"{Scheme}{DgmjrR.Namespace}";
 
     /// <inheritdoc cref="Namespace" />
-    string IClaimTypeOrValueType.Namespace => Namespace;
+    string IIdentityComponent.Namespace => Namespace;
     /// <inheritdoc cref="Scheme" />
     string IRole.Scheme => Scheme;
     /// <inheritdoc cref="Name" />
-    string IRole.Name => Name;
+    string IIdentityComponent.Name => Name;
     /// <inheritdoc cref="UriString" />
-    string IClaimTypeOrValueType.UriString => $"{Scheme}:{Namespace}:{Name}";
+    string IIdentityComponent.UriString => $"{Scheme}:{Namespace}:{Name}";
     /// <inheritdoc cref="UriString" />
-    uri IClaimTypeOrValueType.Uri => uri.From(UriString);
+    uri IIdentityComponent.Uri => uri.From(UriString);
 
-    public virtual bool Equals(Role? other) => (other as IClaimTypeOrValueType)?.Uri == (this as IClaimTypeOrValueType).Uri;
+    public virtual bool Equals(Role? other) => (other as IIdentityComponent)?.Uri == (this as IIdentityComponent).Uri;
 
     public override int GetHashCode() => UriString.GetHashCode();
 }

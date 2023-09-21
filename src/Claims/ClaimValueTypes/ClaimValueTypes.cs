@@ -273,6 +273,8 @@ public record class Integer64 : ClaimValueType<long>, IClaimValueType
     public static implicit operator string(Integer64 value) => value.Value.ToString();
     public static implicit operator Integer64(string value) => (Instance as Integer64) with { Value = long.Parse(value) };
 }
+
+#if WINDOWS
 public record class Sid : ClaimValueType<System.Security.Principal.SecurityIdentifier>, IClaimValueType
 {
     public static IClaimValueType Instance => new Sid();
@@ -301,6 +303,7 @@ public record class Sid : ClaimValueType<System.Security.Principal.SecurityIdent
     public static implicit operator string(Sid value) => value.Value.ToString();
     public static implicit operator Sid(string value) => (Instance as Sid) with { Value = new System.Security.Principal.SecurityIdentifier(value) };
 }
+#endif
 public record class String : ClaimValueType<string>, IClaimValueType
 {
     public static IClaimValueType Instance => new String();

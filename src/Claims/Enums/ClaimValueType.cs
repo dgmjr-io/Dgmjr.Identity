@@ -1,11 +1,12 @@
-/* 
+using System.Security.Claims;
+/*
  * ClaimValueType.cs
- * 
+ *
  *   Created: 2023-03-29-01:25:48
  *   Modified: 2023-03-29-01:25:48
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
@@ -193,7 +194,7 @@ public enum ClaimValueType
 
     /// <summary>A URI that represents an unknown claim value type</summary>
     /// <value><inheritdoc cref="BaseUri" path="/value" />:<inheritdoc cref="NS.Unknown" path="/value" /></value>
-    [Display(Name = ClaimValueTypeUris.Unknown, ShortName = nameof(Unknown))]
+    [Display(Name = ClaimValueTypes.Unknown.Name, ShortName = nameof(Unknown))]
     [Uri(ClaimValueTypeUris.Unknown)]
     Unknown,
 }

@@ -61,14 +61,13 @@ public interface IBasicUserInfo
     [EmailAddress]
     EmailAddress? EmailAddress { get; set; }
     /// <summary>Gets or sets the user's username (usually the same as the <see cref="TelegramUsername" />)</summary>
-    /// <example>Dgmjr</example>
+    /// <example>iamtheantitwink</example>
     [JProp("username")]
     [XElem("username")]
     string UserName { get; set; }
     /// <summary>Gets or sets the user's first name</summary>
     /// <example>Justin</example>
-    [JProp("givenName")
-    ]
+    [JProp("givenName")]
     [XElem("givenName")]
     string GivenName { get; set; }
     /// <summary>Gets or sets the user's surname</summary>

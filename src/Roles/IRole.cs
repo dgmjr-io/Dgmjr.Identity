@@ -11,15 +11,15 @@
  */
 namespace Dgmjr.Identity;
 
-public interface IRole
+public interface IRole : IIdentityComponent
 {
     string Scheme { get; }
-    string Name { get; }
+    // string Name { get; }
 
     bool Equals(DgmjrR other);
-    bool Equals(object obj);
-    bool Equals(ClaimTypeOrValueType? other);
-    int GetHashCode();
+    // bool Equals(object obj);
+    bool Equals(IdentityComponent? other);
+    // int GetHashCode();
     string ToString();
     IRole Instance { get; }
 }

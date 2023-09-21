@@ -1,11 +1,11 @@
 <!--
  * Dgmjr.Security.Constants.csproj
- * 
+ *
  *   Created: 2023-01-06-10:34:03
  *   Modified: 2023-01-06-10:34:04
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
@@ -13,13 +13,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <Description>This package contains security-related constants such as [`Dgmjr.Security.Operations`](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Security/Constants/src/Operations.cs).</Description>
   </PropertyGroup>
   <ItemGroup>
     <SourceGenerator  Include="Dgmjr.Enumerations.CodeGenerator" />
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
-    <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
+    <!-- <PackageReference Include="Dgmjr.Enumerations.Enumeration" /> -->
     <PackageReference Include="System.ComponentModel.Annotations" />
+    <PackageReference Include="System.Security.Cryptography.Algorithms" />
+    <PackageReference Include="Dgmjr.System.Extensions" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="System.Runtime.CompilerServices" />

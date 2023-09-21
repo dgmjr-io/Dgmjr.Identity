@@ -12,7 +12,8 @@
 
 namespace Dgmjr.Identity.Abstractions;
 
-public interface IUserClaim : IEntityClaim<IUserClaim>, IUserAssociatedEntity
+[GenerateInterface(typeof(Microsoft.AspNetCore.Identity.IdentityUserClaim<long>))]
+public partial interface IUserClaim : IEntityClaim<IUserClaim>, IUserAssociatedEntity
 {
 #if NET6_0_OR_GREATER
     public int UserId { get => EntityId; set => EntityId = value; }

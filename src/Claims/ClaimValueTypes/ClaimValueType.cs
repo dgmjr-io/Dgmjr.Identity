@@ -73,11 +73,13 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
     /// <value>soap</value>
     public const string ShortSoapSchemaNamespace = "soap";
 
-    public override string ToString() => Value?.ToString();
+    public override string? ToString() => Value?.ToString();
+
+    public class EFCoreConverter<TClaimValueType, TPersistedType> : Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<TClaimValueType?, TPersistedType?>
+    where TClaimValueType : notnull, IClaimValueType
+    where TPersistedType : notnull
+    {
+        public EFCoreConverter() : base(v => v.Value as TPersistedType, v => v as TClaimValueType) { }
+    }
 }
 
-
-public class ClaimValueTypeEntityFrameworkCoreConverter<TClaimValueType, TPersistedType> : Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<TClaimValueType, TPersistedType>
-{
-    public ClaimValueTypeEntityFrameworkCoreConverter() : base(v => (TPersistedType)(object)v, v => (TClaimValueType)(object)v) { }
-}

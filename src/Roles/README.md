@@ -23,22 +23,22 @@ This project contains an enumeration of roles that can be assigned to users.
 
 ## Roles
 
-### `urn:identity:role:administrator`
+### `https://dgmjr.io/roles/administrator`
 
-### `urn:identity:role:user`
+### `https://dgmjr.io/roles/user`
 
-### `urn:identity:role:group_member`
+### `https://dgmjr.io/roles/group_member`
 
-### `urn:identity:role:administrator`
+### `https://dgmjr.io/roles/administrator`
 
-### `urn:identity:role:guest`
+### `https://dgmjr.io/roles/guest`
 
-### `urn:identity:role:anonymous`
+### `https://dgmjr.io/roles/anonymous`
 
-### `urn:identity:role:owner`
+### `https://dgmjr.io/roles/owner`
 
-### `urn:identity:role:group_member`
+### `https://dgmjr.io/roles/group_member`
 
-### `urn:identity:role:contestant`
+### `https://dgmjr.io/roles/contestant`
 
-### `urn:identity:role:voter`
+### `https://dgmjr.io/roles/voter`
