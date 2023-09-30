@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.Build.Traversal">
+  <PropertyGroup>
+    <IncludeInSolutionFile>false</IncludeInSolutionFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="src/Dgmjr.Security.Constants.csproj" />
+    <ProjectReference Include="Tests/Dgmjr.Security.Constants.Tests.csproj" />
+  </ItemGroup>
+</Project>
