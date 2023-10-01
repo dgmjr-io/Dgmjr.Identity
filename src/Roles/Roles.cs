@@ -11,10 +11,12 @@
  */
 namespace Dgmjr.Identity.Roles;
 using System;
+using static Dgmjr.Identity.Role;
+using DgmjrR = Dgmjr.Identity.Role;
 
 /// <summary><inheritdoc cref="Names.Scheme" path="/summary" /></summary>
 /// <value><inheritdoc cref="Names.Scheme" path="/value" /></value>
-public sealed record class BaseUri : DgmjrR, IIdentityComponent
+public sealed record class BaseUri : Role, IIdentityComponent
 {
     public static IRole Instance = new BaseUri();
 }
