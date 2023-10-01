@@ -21,11 +21,11 @@ public abstract partial record class Role : IdentityComponent, IRole
     /// <value>dgmjr.io/roles</value>
     public const string Namespace = "dgmjr.io/roles";
 
-    /// <value></value>
+    /// <value>role</value>
     public const string Name = "";
 
-    /// <value><inheritdoc cref="Scheme" path="/value" /><inheritdoc cref="DgmjrR.Namespace" path="/value" /></value>
-    public const string UriString = $"{Scheme}{Namespace}";
+    /// <value><inheritdoc cref="Scheme" path="/value" /><inheritdoc cref="Namespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    public const string UriString = $"{Scheme}{Namespace}/{Name}";
 
     /// <inheritdoc cref="Namespace" />
     string IIdentityComponent.Namespace => Namespace;
@@ -37,7 +37,7 @@ public abstract partial record class Role : IdentityComponent, IRole
     string IIdentityComponent.Name => Name;
 
     /// <inheritdoc cref="UriString" />
-    string IIdentityComponent.UriString => $"{Scheme}:{Namespace}:{Name}";
+    string IIdentityComponent.UriString => $"{Scheme}{Namespace}/{Name}";
 
     /// <inheritdoc cref="UriString" />
     uri IIdentityComponent.Uri => uri.From(UriString);
