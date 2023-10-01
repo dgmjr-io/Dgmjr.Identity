@@ -14,9 +14,9 @@ using System;
 
 /// <summary><inheritdoc cref="Names.Scheme" path="/summary" /></summary>
 /// <value><inheritdoc cref="Names.Scheme" path="/value" /></value>
-/// public sealed record class BaseUri : DgmjrR, IIdentityComponent
+public sealed record class BaseUri : DgmjrR, IIdentityComponent
 {
-    public override IRole Instance => new BaseUri();
+    public static IRole Instance = new BaseUri();
 }
 
 /// <summary>The URI for the <inheritdoc cref="Names.Admin" path="/value" /> role</summary>
@@ -38,7 +38,7 @@ public sealed record class Admin : DgmjrR, IIdentityComponent
 
     private Admin() { }
 
-    public override IRole Instance => new Admin();
+    public static IRole Instance = new Admin();
 }
 
 /// <summary>The URI for the <inheritdoc cref="Names.Administrator" path="/value" /> role</summary>
@@ -60,7 +60,7 @@ public sealed record class Administrator : DgmjrR, IIdentityComponent
 
     private Administrator() { }
 
-    public override IRole Instance => new Administrator();
+    public static IRole Instance = new Administrator();
 }
 
 /// <summary>The URI for the <inheritdoc cref="Names.GroupAdministrator" path="/value" /> role</summary>
@@ -83,7 +83,7 @@ public sealed record class GroupAdministrator : DgmjrR, IIdentityComponent
 
     private GroupAdministrator() { }
 
-    public override IRole Instance => new GroupAdministrator();
+    public static IRole Instance = new GroupAdministrator();
 }
 
 /// <summary>The URI for the <inheritdoc cref="Names.Owner" path="/value" /> role</summary>
@@ -105,7 +105,7 @@ public sealed record class Owner : DgmjrR, IIdentityComponent
 
     private Owner() { }
 
-    public override IRole Instance => new Owner();
+    public static IRole Instance = new Owner();
 }
 
 /// <summary>The URI for the <inheritdoc cref="Names.User" path="/value" /> role</summary>
@@ -127,7 +127,7 @@ public sealed record class User : DgmjrR, IIdentityComponent
 
     private User() { }
 
-    public override IRole Instance => new User();
+    public static IRole Instance = new User();
 }
 
 /// <summary>The URI for the <inheritdoc cref="Names.GroupMember" path="/value" /> role</summary>
@@ -149,7 +149,7 @@ public sealed record class GroupMember : DgmjrR, IIdentityComponent
 
     private GroupMember() { }
 
-    public override IRole Instance => new GroupMember();
+    public static IRole Instance = new GroupMember();
 }
 
 /// <summary>The URI for the <inheritdoc cref="Names.Voter" path="/value" /> role</summary>
@@ -171,7 +171,7 @@ public sealed record class Voter : DgmjrR, IIdentityComponent
 
     private Voter() { }
 
-    public override IRole Instance => new Voter();
+    public static IRole Instance = new Voter();
 }
 
 /// <summary>The URI for the <inheritdoc cref="Names.Contestant" path="/value" /> role</summary>
@@ -193,7 +193,7 @@ public sealed record class Contestant : DgmjrR, IIdentityComponent
 
     private Contestant() { }
 
-    public override IRole Instance => new Contestant();
+    public static IRole Instance = new Contestant();
 }
 
 /// <summary>The URI for the <inheritdoc cref="Names.Anonymous" path="/value" /> role</summary>
@@ -215,7 +215,7 @@ public sealed record class Anonymous : DgmjrR, IIdentityComponent
 
     private Anonymous() { }
 
-    public override IRole Instance => new Anonymous();
+    public static IRole Instance = new Anonymous();
 }
 
 public static class Names

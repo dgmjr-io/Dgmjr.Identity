@@ -20,9 +20,8 @@ public interface IRole : IIdentityComponent
     bool Equals(DgmjrR other);
 
     // bool Equals(object obj);
-    bool Equals(IIdentityComponent? other);
+    // bool Equals(IIdentityComponent? other);
 
     // int GetHashCode();
     string ToString();
-    IRole Instance { get; }
 }
