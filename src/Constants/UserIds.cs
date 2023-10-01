@@ -19,6 +19,7 @@ namespace Dgmjr.Identity
             public const long DavidsId = 1;
 
             public const long DrewsId = 2;
+
             // public static readonly User Justin = new User
             // {
             //     Id = DavidsId,

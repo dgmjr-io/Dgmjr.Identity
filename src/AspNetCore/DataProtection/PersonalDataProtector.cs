@@ -15,6 +15,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Identity;
+
 // using StringDictionary = System.Collections.Generic.Dictionary<string, string>;
 
 namespace Dgmjr.Identity.DataProtection;
@@ -39,7 +40,8 @@ public class PersonalDataProtector : IPersonalDataProtector
             _defaultAlgorithm,
             out SymmetricAlgorithm encryptingAlgorithm,
             out KeyedHashAlgorithm signingAlgorithm,
-            out int keyDerivationIterationCount);
+            out int keyDerivationIterationCount
+        );
 
         // Use the newest key from the keyring.
         // We know this is a guid, because that's how our keyring works underneath,
@@ -55,17 +57,21 @@ public class PersonalDataProtector : IPersonalDataProtector
         encryptingAlgorithm.Key = DerivedEncryptionKey(
             masterKey,
             encryptingAlgorithm,
-            keyDerivationIterationCount);
+            keyDerivationIterationCount
+        );
 
         // When the underlying encryption class is created it has a random IV by default
         // So we don't need to do anything IV wise.
 
         // And encrypt
         using (var ms = new MemoryStream())
-        using (var cs = new CryptoStream(
-            ms,
-            encryptingAlgorithm.CreateEncryptor(),
-            CryptoStreamMode.Write))
+        using (
+            var cs = new CryptoStream(
+                ms,
+                encryptingAlgorithm.CreateEncryptor(),
+                CryptoStreamMode.Write
+            )
+        )
         {
             cs.Write(plainText);
             cs.FlushFinalBlock();
@@ -80,7 +86,8 @@ public class PersonalDataProtector : IPersonalDataProtector
             masterKey,
             encryptingAlgorithm,
             signingAlgorithm,
-            keyDerivationIterationCount);
+            keyDerivationIterationCount
+        );
 
         // Add the signature to the cipher text.
         var signedData = CombineByteArrays(signature, cipherTextAndIV);
@@ -125,12 +132,15 @@ public class PersonalDataProtector : IPersonalDataProtector
         // Next read the saved algorithm details and create instances of those algorithms.
         byte[] algorithmIdentifierAsBytes = new byte[4];
         Buffer.BlockCopy(payload, offset, algorithmIdentifierAsBytes, 0, 4);
-        var algorithmIdentifier = (ProtectorAlgorithm)(BitConverter.ToInt32(algorithmIdentifierAsBytes, 0));
+        var algorithmIdentifier = (ProtectorAlgorithm)(
+            BitConverter.ToInt32(algorithmIdentifierAsBytes, 0)
+        );
         ProtectorAlgorithmHelper.GetAlgorithms(
             _defaultAlgorithm,
             out SymmetricAlgorithm encryptingAlgorithm,
             out KeyedHashAlgorithm signingAlgorithm,
-            out int keyDerivationIterationCount);
+            out int keyDerivationIterationCount
+        );
         offset += 4;
 
         // Now extract the signature
@@ -150,7 +160,8 @@ public class PersonalDataProtector : IPersonalDataProtector
             masterKey,
             encryptingAlgorithm,
             signingAlgorithm,
-            keyDerivationIterationCount);
+            keyDerivationIterationCount
+        );
         if (!ByteArraysEqual(computedSignature, signature))
         {
             throw new CryptographicException(@"Invalid Signature.");
@@ -165,17 +176,30 @@ public class PersonalDataProtector : IPersonalDataProtector
         // The IV is embedded in the cipher text, so we extract it out.
         Buffer.BlockCopy(cipherTextAndIV, 0, initializationVector, 0, ivLength);
         // Then we get the encrypted data.
-        Buffer.BlockCopy(cipherTextAndIV, ivLength, cipherText, 0, cipherTextAndIV.Length - ivLength);
+        Buffer.BlockCopy(
+            cipherTextAndIV,
+            ivLength,
+            cipherText,
+            0,
+            cipherTextAndIV.Length - ivLength
+        );
 
         encryptingAlgorithm.Key = DerivedEncryptionKey(
             masterKey,
             encryptingAlgorithm,
-            keyDerivationIterationCount);
+            keyDerivationIterationCount
+        );
         encryptingAlgorithm.IV = initializationVector;
 
         // Decrypt
         using (var ms = new MemoryStream())
-        using (var cs = new CryptoStream(ms, encryptingAlgorithm.CreateDecryptor(), CryptoStreamMode.Write))
+        using (
+            var cs = new CryptoStream(
+                ms,
+                encryptingAlgorithm.CreateDecryptor(),
+                CryptoStreamMode.Write
+            )
+        )
         {
             cs.Write(cipherText);
             cs.FlushFinalBlock();
@@ -193,32 +217,52 @@ public class PersonalDataProtector : IPersonalDataProtector
         return FromBase64String(_keyRing[keyId]);
     }
 
-    private static byte[] SignData(byte[] cipherText, byte[] masterKey, SymmetricAlgorithm symmetricAlgorithm, KeyedHashAlgorithm hashAlgorithm, int keyDerivationIterationCount)
+    private static byte[] SignData(
+        byte[] cipherText,
+        byte[] masterKey,
+        SymmetricAlgorithm symmetricAlgorithm,
+        KeyedHashAlgorithm hashAlgorithm,
+        int keyDerivationIterationCount
+    )
     {
-        hashAlgorithm.Key = DerivedSigningKey(masterKey, symmetricAlgorithm, keyDerivationIterationCount);
+        hashAlgorithm.Key = DerivedSigningKey(
+            masterKey,
+            symmetricAlgorithm,
+            keyDerivationIterationCount
+        );
         byte[] signature = hashAlgorithm.ComputeHash(cipherText);
         hashAlgorithm.Clear();
         return signature;
     }
 
-    private static byte[] DerivedSigningKey(byte[] key, SymmetricAlgorithm algorithm, int keyDerivationIterationCount)
+    private static byte[] DerivedSigningKey(
+        byte[] key,
+        SymmetricAlgorithm algorithm,
+        int keyDerivationIterationCount
+    )
     {
         return KeyDerivation.Pbkdf2(
             @"PersonalDataSigning",
             key,
             KeyDerivationPrf.HMACSHA512,
             keyDerivationIterationCount,
-            algorithm.KeySize / 8);
+            algorithm.KeySize / 8
+        );
     }
 
-    private static byte[] DerivedEncryptionKey(byte[] key, SymmetricAlgorithm algorithm, int keyDerivationIterationCount)
+    private static byte[] DerivedEncryptionKey(
+        byte[] key,
+        SymmetricAlgorithm algorithm,
+        int keyDerivationIterationCount
+    )
     {
         return KeyDerivation.Pbkdf2(
             @"PersonalDataEncryption",
             key,
             KeyDerivationPrf.HMACSHA512,
             keyDerivationIterationCount,
-            algorithm.KeySize / 8);
+            algorithm.KeySize / 8
+        );
     }
 
     private static byte[] CombineByteArrays(byte[] left, byte[] right)
@@ -250,5 +294,4 @@ public class PersonalDataProtector : IPersonalDataProtector
         }
         return areSame;
     }
-
 }

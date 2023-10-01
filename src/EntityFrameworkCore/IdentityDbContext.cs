@@ -28,7 +28,19 @@ using RoleModel = Dgmjr.Identity.Models.Role;
 using UserModel = Dgmjr.Identity.Models.User;
 using User = Dgmjr.Identity.Models.User;
 
-public class IdentityDbContext : MSID.IdentityDbContext<User, RoleModel, long, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>, IIdentityDbContext, IDbContext<IIdentityDbContext>
+public class IdentityDbContext
+    : MSID.IdentityDbContext<
+        User,
+        RoleModel,
+        long,
+        UserClaim,
+        UserRole,
+        UserLogin,
+        RoleClaim,
+        UserToken
+    >,
+        IIdentityDbContext,
+        IDbContext<IIdentityDbContext>
 {
     // public virtual DbSet<UserContactId> UserContactIds { get; set; }
     public virtual DbSet<Dgmjr.Identity.Models.User> Users { get; set; }
@@ -41,7 +53,9 @@ public class IdentityDbContext : MSID.IdentityDbContext<User, RoleModel, long, U
 
     static string DefaultConnectionStringConfigurationKey => "IdentityDb";
 
-    public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(options) { }
+    public IdentityDbContext(DbContextOptions<IdentityDbContext> options)
+        : base(options) { }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -77,56 +91,106 @@ public class IdentityDbContext : MSID.IdentityDbContext<User, RoleModel, long, U
             // entity.Property(e => e.NormalizedName).HasMaxLength(256);
             // entity.HasIndex(e => e.NormalizedName).IsUnique().HasName("RoleNameIndex").HasFilter("[NormalizedName] IS NOT NULL");
             entity.Property(e => e.Uri).HasConversion<System.uri.EfCoreValueConverter>();
-            entity.HasMany(e => e.Users).WithMany(u => u.Roles).UsingEntity<UserRole>(
-                ur => ur.HasOne(ur => ur.User).WithMany(u => u.UserRoles).HasForeignKey(ur => ur.UserId).HasPrincipalKey(u => u.Id),
-                ur => ur.HasOne(ur => ur.Role).WithMany(r => r.UserRoles).HasForeignKey(ur => ur.RoleId).HasPrincipalKey(r => r.Id),
-                ur => ur.HasKey(ur => new { ur.UserId, ur.RoleId })
-            );
+            entity
+                .HasMany(e => e.Users)
+                .WithMany(u => u.Roles)
+                .UsingEntity<UserRole>(
+                    ur =>
+                        ur.HasOne(ur => ur.User)
+                            .WithMany(u => u.UserRoles)
+                            .HasForeignKey(ur => ur.UserId)
+                            .HasPrincipalKey(u => u.Id),
+                    ur =>
+                        ur.HasOne(ur => ur.Role)
+                            .WithMany(r => r.UserRoles)
+                            .HasForeignKey(ur => ur.RoleId)
+                            .HasPrincipalKey(r => r.Id),
+                    ur => ur.HasKey(ur => new { ur.UserId, ur.RoleId })
+                );
         });
         builder.Entity<UserRole>(entity =>
         {
             entity.ToTable(TableNames.UserRole, IdSchema);
             entity.HasKey(e => new { e.UserId, e.RoleId });
-            entity.HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId).HasPrincipalKey(e => e.Id);
+            entity
+                .HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .HasPrincipalKey(e => e.Id);
         });
         builder.Entity<UserClaim>(entity =>
         {
-            entity.ToTable(TableNames.UserClaim, IdSchema,
+            entity.ToTable(
+                TableNames.UserClaim,
+                IdSchema,
                 tb =>
                 {
                     // (tb as TableBuilder).HasTrigger("SomeTrigger");
-                });
+                }
+            );
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
-            entity.Property(e => e.Properties).HasConversion<JsonObjectConverter<IStringDictionary>>();
+            entity
+                .Property(e => e.Properties)
+                .HasConversion<JsonObjectConverter<IStringDictionary>>();
             entity.Property(e => e.Type).HasConversion<uri.EfCoreValueConverter>();
             entity.Property(e => e.Issuer).HasConversion<uri.EfCoreValueConverter>();
             entity.Property(e => e.OriginalIssuer).HasConversion<uri.EfCoreValueConverter>();
             entity.Property(e => e.ValueType).HasConversion<uri.EfCoreValueConverter>();
-            entity.HasOne(e => e.User).WithMany(u => u.Claims).HasForeignKey(e => e.UserId).HasPrincipalKey(e => e.Id);
+            entity
+                .HasOne(e => e.User)
+                .WithMany(u => u.Claims)
+                .HasForeignKey(e => e.UserId)
+                .HasPrincipalKey(e => e.Id);
         });
         builder.Entity<UserLogin>(entity =>
         {
             entity.ToTable(TableNames.UserLogin, IdSchema);
-            entity.HasKey(e => new { e.LoginProvider, e.ProviderKey, e.ProviderDisplayName });
-            entity.HasOne(e => e.User).WithMany(u => u.Logins).HasForeignKey(e => e.UserId).HasPrincipalKey(e => e.Id);
-            entity.HasOne(e => e.Provider).WithMany().HasForeignKey(e => e.ProviderId).HasPrincipalKey(e => e.Id);
+            entity.HasKey(
+                e =>
+                    new
+                    {
+                        e.LoginProvider,
+                        e.ProviderKey,
+                        e.ProviderDisplayName
+                    }
+            );
+            entity
+                .HasOne(e => e.User)
+                .WithMany(u => u.Logins)
+                .HasForeignKey(e => e.UserId)
+                .HasPrincipalKey(e => e.Id);
+            entity
+                .HasOne(e => e.Provider)
+                .WithMany()
+                .HasForeignKey(e => e.ProviderId)
+                .HasPrincipalKey(e => e.Id);
         });
         builder.Entity<RoleClaim>(entity =>
         {
             entity.ToTable(TableNames.RoleClaim, IdSchema);
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
-            entity.Property(e => e.Properties).HasConversion<JsonObjectConverter<IStringDictionary>>();
+            entity
+                .Property(e => e.Properties)
+                .HasConversion<JsonObjectConverter<IStringDictionary>>();
             entity.Property(e => e.Type).HasConversion<uri.EfCoreValueConverter>();
             entity.Property(e => e.Issuer).HasConversion<uri.EfCoreValueConverter>();
             entity.Property(e => e.OriginalIssuer).HasConversion<uri.EfCoreValueConverter>();
             entity.Property(e => e.ValueType).HasConversion<uri.EfCoreValueConverter>();
-            entity.HasOne(e => e.Role).WithMany().HasForeignKey(e => e.RoleId).HasPrincipalKey(e => e.Id);
+            entity
+                .HasOne(e => e.Role)
+                .WithMany()
+                .HasForeignKey(e => e.RoleId)
+                .HasPrincipalKey(e => e.Id);
         });
         builder.Entity<UserToken>(entity =>
         {
             entity.ToTable(TableNames.UserToken, IdSchema);
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
-            entity.HasOne(e => e.User).WithMany(u => u.Tokens).HasForeignKey(e => e.UserId).HasPrincipalKey(e => e.Id);
+            entity
+                .HasOne(e => e.User)
+                .WithMany(u => u.Tokens)
+                .HasForeignKey(e => e.UserId)
+                .HasPrincipalKey(e => e.Id);
         });
         // builder.Entity<Bot>(entity =>
         // {
@@ -157,11 +221,18 @@ public class IdentityDbContext : MSID.IdentityDbContext<User, RoleModel, long, U
     {
         return typeof(TEntity) switch
         {
-            var t when t == typeof(UserClaim) => (UserClaims.Include(uc => uc.ClaimType) as DbSet<TEntity> ?? UserClaims as DbSet<TEntity>) as DbSet<TEntity>,
-            var t when t == typeof(User) => Users.Include(u => u.Roles).Include(u => u.Claims) as DbSet<TEntity> ?? Users as DbSet<TEntity>,
+            var t when t == typeof(UserClaim)
+                => (
+                    UserClaims.Include(uc => uc.ClaimType) as DbSet<TEntity>
+                    ?? UserClaims as DbSet<TEntity>
+                ) as DbSet<TEntity>,
+            var t when t == typeof(User)
+                => Users.Include(u => u.Roles).Include(u => u.Claims) as DbSet<TEntity>
+                    ?? Users as DbSet<TEntity>,
             var t when t == typeof(UserRole) => UserRoles as DbSet<TEntity>,
             var t when t == typeof(Role) => Roles.Include(r => r.Users) as DbSet<TEntity>,
-            var t when t == typeof(RoleClaim) => RoleClaims.Include(rc => rc.ClaimType) as DbSet<TEntity>,
+            var t when t == typeof(RoleClaim)
+                => RoleClaims.Include(rc => rc.ClaimType) as DbSet<TEntity>,
             var t when t == typeof(UserLogin) => UserLogins as DbSet<TEntity>,
             var t when t == typeof(UserToken) => UserTokens as DbSet<TEntity>,
             // var t when t == typeof(Bot) => Bots as DbSet<TEntity>,

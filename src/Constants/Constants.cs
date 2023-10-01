@@ -2,9 +2,7 @@ namespace Dgmjr.Identity;
 
 public static partial class Constants
 {
-    static Constants()
-    {
-    }
+    static Constants() { }
 
     public static class Schemas
     {

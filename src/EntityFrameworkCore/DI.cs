@@ -11,6 +11,7 @@
  */
 
 namespace Microsoft.Extensions.DependencyInjection;
+
 using System.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Any;
@@ -19,7 +20,9 @@ using System.Net.Mail;
 
 public static class DescribeDataTypesExtensions
 {
-    public static WebApplicationBuilder DescribeIdentityDataTypes(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder DescribeIdentityDataTypes(
+        this WebApplicationBuilder builder
+    )
     {
         builder.Services.DescribeIdentityDataTypes();
         return builder;
@@ -29,34 +32,40 @@ public static class DescribeDataTypesExtensions
     {
         services.ConfigureSwaggerGen(c =>
         {
-            c.MapType<EmailAddress>(() => new OpenApiSchema
-            {
-                Type = "string",
-                Pattern = EmailAddress.RegexString,
-                Format = nameof(EmailAddress),
-                Description = "An email address",
-                Example = new OpenApiString("david@dgmjr.io"),
-                Default = new OpenApiString(null),
-                ExternalDocs = new OpenApiExternalDocs
-                {
-                    Description = "Email Address",
-                    Url = new Uri("https://en.wikipedia.org/wiki/Email_address")
-                }
-            });
-            c.MapType<PhoneNumber>(() => new OpenApiSchema
-            {
-                Type = "string",
-                Pattern = PhoneNumber.RegexString,
-                Format = nameof(PhoneNumber),
-                Description = "A phone number in E.164 format",
-                Example = new OpenApiString("+19174099321"),
-                Default = new OpenApiString(null),
-                ExternalDocs = new OpenApiExternalDocs
-                {
-                    Description = "E.164",
-                    Url = new Uri("https://en.wikipedia.org/wiki/E.164")
-                }
-            });
+            c.MapType<EmailAddress>(
+                () =>
+                    new OpenApiSchema
+                    {
+                        Type = "string",
+                        Pattern = EmailAddress.RegexString,
+                        Format = nameof(EmailAddress),
+                        Description = "An email address",
+                        Example = new OpenApiString("david@dgmjr.io"),
+                        Default = new OpenApiString(null),
+                        ExternalDocs = new OpenApiExternalDocs
+                        {
+                            Description = "Email Address",
+                            Url = new Uri("https://en.wikipedia.org/wiki/Email_address")
+                        }
+                    }
+            );
+            c.MapType<PhoneNumber>(
+                () =>
+                    new OpenApiSchema
+                    {
+                        Type = "string",
+                        Pattern = PhoneNumber.RegexString,
+                        Format = nameof(PhoneNumber),
+                        Description = "A phone number in E.164 format",
+                        Example = new OpenApiString("+19174099321"),
+                        Default = new OpenApiString(null),
+                        ExternalDocs = new OpenApiExternalDocs
+                        {
+                            Description = "E.164",
+                            Url = new Uri("https://en.wikipedia.org/wiki/E.164")
+                        }
+                    }
+            );
         });
         return services;
     }

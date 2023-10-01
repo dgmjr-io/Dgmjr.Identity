@@ -10,6 +10,7 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 namespace Dgmjr.Identity.Roles;
+
 using System;
 using static Dgmjr.Identity.Role;
 using DgmjrR = Dgmjr.Identity.Role;

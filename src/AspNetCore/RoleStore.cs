@@ -15,9 +15,15 @@ namespace Dgmjr.Identity;
 using Dgmjr.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 
-public class RoleStore : Microsoft.AspNetCore.Identity.EntityFrameworkCore.RoleStore<Models.Role, IdentityDbContext, int, UserRole, RoleClaim>
+public class RoleStore
+    : Microsoft.AspNetCore.Identity.EntityFrameworkCore.RoleStore<
+        Models.Role,
+        IdentityDbContext,
+        int,
+        UserRole,
+        RoleClaim
+    >
 {
-    public RoleStore(IdentityDbContext context, IdentityErrorDescriber? describer = null) : base(context, describer)
-    {
-    }
+    public RoleStore(IdentityDbContext context, IdentityErrorDescriber? describer = null)
+        : base(context, describer) { }
 }

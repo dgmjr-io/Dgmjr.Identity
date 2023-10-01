@@ -11,6 +11,7 @@
  */
 #pragma warning disable
 namespace Dgmjr.Identity.Models;
+
 using Abstractions;
 using Dgmjr.Abstractions;
 using Microsoft.AspNetCore.Identity;
@@ -19,18 +20,29 @@ using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 
 /// <summary>A join entity between <see cref="User" />s and <see cref="Role" />s</summary>
-[Table(TableNames.UserRole, Schema = IdSchema), DebuggerDisplay("User Role ({Id} - User ID: {UserId}, Role: {Role})")]
+[
+    Table(TableNames.UserRole, Schema = IdSchema),
+    DebuggerDisplay("User Role ({Id} - User ID: {UserId}, Role: {Role})")
+]
 [JSerializable(typeof(UserRole))]
-public class UserRole : IdentityUserRole<long>, IIdentifiable<int>//, IUserAssociatedEntity//, IHaveTimestamps
+public class UserRole : IdentityUserRole<long>, IIdentifiable<int> //, IUserAssociatedEntity//, IHaveTimestamps
 {
     [Key, DbGen(DbGen.None), Column(nameof(Id), TypeName = DbTypeInt)]
     public virtual int Id { get; set; } //= NewId;
 
     [Column(nameof(RoleId), Order = 2, TypeName = DbTypeInt)]
-    public override long RoleId { get => base.RoleId; set => base.RoleId = value; }
+    public override long RoleId
+    {
+        get => base.RoleId;
+        set => base.RoleId = value;
+    }
 
     [Column(nameof(UserId), Order = 1, TypeName = DbTypeInt)]
-    public override long UserId { get => base.UserId; set => base.UserId = value; }
+    public override long UserId
+    {
+        get => base.UserId;
+        set => base.UserId = value;
+    }
 
     public User User { get; set; }
     public Role Role { get; set; }

@@ -11,25 +11,37 @@
  */
 #pragma warning disable
 namespace Dgmjr.Identity.Models;
+
 using Dgmjr.Identity.Abstractions;
 using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 
-[Table(TableNames.UserToken, Schema = IdSchema), DebuggerDisplay("User Token ({UserId} - {LoginProvider}, Created: {DateTimeCreated})")]
+[
+    Table(TableNames.UserToken, Schema = IdSchema),
+    DebuggerDisplay("User Token ({UserId} - {LoginProvider}, Created: {DateTimeCreated})")
+]
 [JSerializable(typeof(UserToken))]
-public class UserToken : IdentityUserToken<long>, IIdentifiable<int>, IUserAssociatedEntity//, IUserAssociatedEntity//, IUserLoginThing//, IHaveTimestamps
+public class UserToken : IdentityUserToken<long>, IIdentifiable<int>, IUserAssociatedEntity //, IUserAssociatedEntity//, IUserLoginThing//, IHaveTimestamps
 {
     [Key, DbGen(DbGen.Identity)]
     public virtual int Id { get; set; } //= NewId;
 
     [Column(nameof(UserId))]
-    public override long UserId { get => base.UserId; set => base.UserId = value; }
+    public override long UserId
+    {
+        get => base.UserId;
+        set => base.UserId = value;
+    }
 
     //[ForeignKey(ColUserId)]
     public virtual User User { get; set; }
 
     [Column("ProviderName")]
-    public override string LoginProvider { get => base.LoginProvider; set => base.LoginProvider = value; }
+    public override string LoginProvider
+    {
+        get => base.LoginProvider;
+        set => base.LoginProvider = value;
+    }
 
     //[ForeignKey(nameof(ProviderId)), BackingField("_provider")]
     protected virtual UserLoginProvider Provider
@@ -39,10 +51,18 @@ public class UserToken : IdentityUserToken<long>, IIdentifiable<int>, IUserAssoc
     }
 
     [Column(nameof(Name)), StringLength(64)]
-    public override string Name { get => base.Name; set => base.Name = value; }
+    public override string Name
+    {
+        get => base.Name;
+        set => base.Name = value;
+    }
 
     [Column(nameof(Value)), StringLength(256)]
-    public override string Value { get => base.Value; set => base.Value = value; }
+    public override string Value
+    {
+        get => base.Value;
+        set => base.Value = value;
+    }
 
     [Column(nameof(Created))]
     public virtual DateTime Created { get; set; } = Now;
@@ -50,7 +70,6 @@ public class UserToken : IdentityUserToken<long>, IIdentifiable<int>, IUserAssoc
     //         public Timestamp Created { get; set; }
     //         public Timestamp LastUpdated { get; set; }
     //         public Timestamp? Deleted { get; set; }
-
 }
 
 // public class TelegramUserToken : BackroomUserToken

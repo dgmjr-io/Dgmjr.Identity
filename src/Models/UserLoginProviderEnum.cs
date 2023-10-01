@@ -11,7 +11,9 @@
  */
 
 extern alias DgmjrCm;
+
 namespace Dgmjr.Identity.Models;
+
 using UriAttribute = DgmjrCm.System.ComponentModel.UriAttribute;
 
 [GenerateEnumerationRecordClass("UserLoginProvider", "Dgmjr.Identity.Models")]
@@ -19,10 +21,13 @@ public enum UserLoginProviderEnum
 {
     [Ur(DgmjrCt.UnknownLoginProvider)]
     None = 0,
+
     [Ur(DgmjrCt.UnknownLoginProvider)]
     Any = -1,
+
     [Ur(global::Telegram.Identity.ClaimTypeNames.BaseUri)]
     Telegram = 1,
+
     [Ur(SpId.BaseUri)]
     SendPulse = 2
 

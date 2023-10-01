@@ -11,6 +11,7 @@
  */
 
 namespace Dgmjr.Identity;
+
 using Dgmjr.Abstractions;
 
 public interface IClaimValueType<TValue>

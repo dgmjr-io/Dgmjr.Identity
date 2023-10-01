@@ -18,7 +18,9 @@ namespace Dgmjr.Identity;
 
 public class UserClaimsPrincipalFactory : UserClaimsPrincipalFactory<User>
 {
-    public UserClaimsPrincipalFactory(UserManager<User> userManager, IOptions<IdentityOptions> optionsAccessor) : base(userManager, optionsAccessor)
-    {
-    }
+    public UserClaimsPrincipalFactory(
+        UserManager<User> userManager,
+        IOptions<IdentityOptions> optionsAccessor
+    )
+        : base(userManager, optionsAccessor) { }
 }

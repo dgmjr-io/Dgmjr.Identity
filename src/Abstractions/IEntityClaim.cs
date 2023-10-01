@@ -11,7 +11,9 @@
  */
 
 namespace Dgmjr.Identity.Abstractions;
+
 using static Dgmjr.EntityFrameworkCore.Constants.DbTypeNames;
+
 public interface IEntityClaim<TEntityClaimType>
     where TEntityClaimType : IEntityClaim<TEntityClaimType>
 {

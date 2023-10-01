@@ -1,18 +1,18 @@
 namespace Dgmjr.Identity;
+
 using global::System;
 using global::System.Security;
 
 public partial record class ClaimType : IdentityComponent, IClaimType
 {
-    public override bool Equals(IIdentityComponent? other)
-        => Equals(other as IClaimType);
+    public override bool Equals(IIdentityComponent? other) => Equals(other as IClaimType);
 
-    public virtual bool Equals(ClaimType? other)
-        => Equals(other as IClaimType);
+    public virtual bool Equals(ClaimType? other) => Equals(other as IClaimType);
 
     public virtual bool Equals(IClaimType? other)
     {
-        return other is not null && (ReferenceEquals(this, other) || ((IClaimType)this).Uri == other.Uri);
+        return other is not null
+            && (ReferenceEquals(this, other) || ((IClaimType)this).Uri == other.Uri);
     }
 
     string IIdentityComponent.Namespace => "about";
@@ -27,7 +27,8 @@ public partial record class ClaimType : IdentityComponent, IClaimType
 
     /// <summary>Claim Type 2008 Namespace</summary>
     /// <value>http://schemas.microsoft.com/ws/2008/06/identity/claims</value>
-    public const string ClaimType2008Namespace = "http://schemas.microsoft.com/ws/2008/06/identity/claims";
+    public const string ClaimType2008Namespace =
+        "http://schemas.microsoft.com/ws/2008/06/identity/claims";
 
     /// <summary>Short Claim Type 2008 Namespace</summary>
     /// <value>ws:2008</value>
@@ -35,7 +36,8 @@ public partial record class ClaimType : IdentityComponent, IClaimType
 
     /// <summary>Claim Type 2005 Namespace</summary>
     /// <value>http://schemas.xmlsoap.org/ws/2005/05/identity/claims</value>
-    public const string ClaimType2005Namespace = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims";
+    public const string ClaimType2005Namespace =
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims";
 
     /// <summary>Short Claim Type 2009 Namespace</summary>
     /// <value>ws:2005</value>
@@ -43,7 +45,8 @@ public partial record class ClaimType : IdentityComponent, IClaimType
 
     /// <summary>Claim Type 2009 Namespace</summary>
     /// <value>http://schemas.xmlsoap.org/ws/2009/09/identity/claims</value>
-    public const string ClaimType2009Namespace = "http://schemas.xmlsoap.org/ws/2009/09/identity/claims";
+    public const string ClaimType2009Namespace =
+        "http://schemas.xmlsoap.org/ws/2009/09/identity/claims";
 
     /// <summary>Short Claim Type 2009 Namespace</summary>
     /// <value>ws:2009</value>

@@ -12,11 +12,7 @@
 
 namespace Dgmjr.Identity.ClaimTypes;
 
-public abstract record class OtherClaimType : ClaimType
-{
-
-}
-
+public abstract record class OtherClaimType : ClaimType { }
 
 /// <summary>The URI for an unknown user login provider</summary>
 /// <value>urn:users:login:provider:none</value>
@@ -24,13 +20,16 @@ public record class UnknownLoginProvider : OtherClaimType, IClaimType, IIdentity
 {
     /// <value>urn:users:login:provider:none</value>
     public const string UriString = "urn:users:login:provider:none";
+
     /// <value>UnknownLoginProvider</value>
     public const string Name = "UnknownLoginProvider";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IIdentityComponent.Name => Name;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IIdentityComponent.UriString => UriString;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
@@ -46,12 +45,16 @@ public record class LoginProviderPattern : OtherClaimType, IClaimType, IIdentity
 
     /// <value>urn:users:login:provider:{0}</value>
     public const string UriString = "urn:users:login:provider:{0}";
+
     /// <value>LoginProviderPattern</value>
     public const string Name = "LoginProviderPattern";
+
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IIdentityComponent.Name => Name;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IIdentityComponent.UriString => UriString;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
 }
@@ -66,12 +69,16 @@ public record class SecurityStamp : OtherClaimType, IClaimType, IIdentityCompone
 
     /// <value>urn:identity:securitystamp</value>
     public const string UriString = "urn:identity:securitystamp";
+
     /// <value>SecurityStamp</value>
     public const string Name = "SecurityStamp";
+
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IIdentityComponent.Name => Name;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IIdentityComponent.UriString => UriString;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
 }
@@ -86,12 +93,16 @@ public record class GenericClaimTypePattern : OtherClaimType, IClaimType, IIdent
 
     /// <value>urn:identity:claim:custom:{0}</value>
     public const string UriString = "urn:identity:claim:custom:{0}";
+
     /// <value>GenericClaimTypePattern</value>
     public const string Name = "GenericClaimTypePattern";
+
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IIdentityComponent.Name => Name;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IIdentityComponent.UriString => UriString;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
 }
@@ -106,12 +117,16 @@ public record class GenericClaimsIssuerTypePattern : OtherClaimType, IClaimType
 
     /// <value>urn:identity:claim:issuer:custom:{0}</value>
     public const string UriString = "urn:identity:claim:issuer:custom:{0}";
+
     /// <value>GenericClaimsIssuerTypePattern</value>
     public const string Name = "GenericClaimsIssuerTypePattern";
+
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IIdentityComponent.Name => Name;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IIdentityComponent.UriString => UriString;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
 }
@@ -126,12 +141,16 @@ public record class Custom : OtherClaimType, IClaimType, IIdentityComponent
 
     /// <value>urn:identity:claim:custom</value>
     public const string UriString = "urn:identity:claim:custom";
+
     /// <value>Custom</value>
     public const string Name = "Custom";
+
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IIdentityComponent.Name => Name;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IIdentityComponent.UriString => UriString;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
 }
@@ -146,12 +165,16 @@ public record class Unknown : OtherClaimType, IClaimType, IIdentityComponent
 
     /// <value>urn:identity:claim:unknown</value>
     public const string UriString = "urn:identity:claim:unknown";
+
     /// <value>Unknown</value>
     public const string Name = "Unknown";
+
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IIdentityComponent.Name => Name;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IIdentityComponent.UriString => UriString;
+
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
 }

@@ -17,7 +17,6 @@ namespace Dgmjr.Identity;
 
 public class PasswordValidator : PasswordValidator<User>
 {
-    public PasswordValidator(DavidsErrorDescriber errors) : base(errors)
-    {
-    }
+    public PasswordValidator(DavidsErrorDescriber errors)
+        : base(errors) { }
 }

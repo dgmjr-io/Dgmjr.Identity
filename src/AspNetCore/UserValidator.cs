@@ -17,7 +17,6 @@ namespace Dgmjr.Identity;
 
 public class UserValidator : UserValidator<User>
 {
-    public UserValidator(IdentityErrorDescriber? errors = null) : base(errors)
-    {
-    }
+    public UserValidator(IdentityErrorDescriber? errors = null)
+        : base(errors) { }
 }

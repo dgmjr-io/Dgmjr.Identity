@@ -2,6 +2,4 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Dgmjr.Identity;
 
-public class DavidsErrorDescriber : IdentityErrorDescriber
-{
-}
+public class DavidsErrorDescriber : IdentityErrorDescriber { }

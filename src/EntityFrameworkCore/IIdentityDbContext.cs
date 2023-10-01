@@ -11,6 +11,7 @@
  */
 
 namespace Dgmjr.Identity;
+
 using Microsoft.EntityFrameworkCore.Abstractions;
 
 [GenerateInterface(typeof(IdentityDbContext))]

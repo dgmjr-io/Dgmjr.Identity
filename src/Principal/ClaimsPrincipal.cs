@@ -11,23 +11,22 @@
  */
 // #if NETSTANDARD2_0_OR_GREATER
 namespace Dgmjr.Identity;
+
 using Dgmjr.Identity.Abstractions;
 using SystemClaimsIdentity = System.Security.Claims.ClaimsIdentity;
 using SystemClaimsPrincipal = System.Security.Claims.ClaimsPrincipal;
 
 public class ClaimsPrincipal : SystemClaimsPrincipal
 {
-    public ClaimsPrincipal(IHaveClaims user) : base(new ClaimsIdentity(user))
-    {
-
-    }
+    public ClaimsPrincipal(IHaveClaims user)
+        : base(new ClaimsIdentity(user)) { }
 }
 
 public class ClaimsIdentity : SystemClaimsIdentity
 {
-    public ClaimsIdentity(IHaveClaims user) : base(user.Claims/*.Select(c => c.ToClaim())*/)
-    {
-
-    }
+    public ClaimsIdentity(IHaveClaims user)
+        : base(
+            user.Claims /*.Select(c => c.ToClaim())*/
+        ) { }
 }
 // #endif

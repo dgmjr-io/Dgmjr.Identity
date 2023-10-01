@@ -11,6 +11,7 @@
  */
 
 namespace Dgmjr.Security;
+
 using Dgmjr.Enumerations.Abstractions;
 using Dgmjr.Abstractions;
 

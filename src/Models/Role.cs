@@ -11,6 +11,7 @@
  */
 
 namespace Dgmjr.Identity.Models;
+
 using System;
 using System.Collections.ObjectModel;
 using Dgmjr.Abstractions;
@@ -33,15 +34,33 @@ public partial class Role : IdentityRole<long>, IIdentifiable<long>
     public override string? ConcurrencyStamp { get; set; } = NewGuid().ToString();
 
     [StringLength(Telegram.Constants.Account.UsernameMaxLength)]
-    public override string? Name { get => base.Name ??= Uri?.ToString(); set { base.Name = value; Uri = value.ToUri(); NormalizedName = value.Normalize(); } }
+    public override string? Name
+    {
+        get => base.Name ??= Uri?.ToString();
+        set
+        {
+            base.Name = value;
+            Uri = value.ToUri();
+            NormalizedName = value.Normalize();
+        }
+    }
 
     [StringLength(UriMaxLength)]
-    public override string? NormalizedName { get => base.NormalizedName = base.Name.Normalize(); set => base.NormalizedName = value.Normalize(); }
+    public override string? NormalizedName
+    {
+        get => base.NormalizedName = base.Name.Normalize();
+        set => base.NormalizedName = value.Normalize();
+    }
     public string Description { get; set; } = string.Empty;
 
     private uri? _uri;
+
     [Column(nameof(Uri)), StringLength(UriMaxLength)]
-    public virtual uri? Uri { get => _uri ??= Name.ToUri() ?? uri.From(Format(RoleUriDefaultFormatString, Name)); set => _uri = value; }
+    public virtual uri? Uri
+    {
+        get => _uri ??= Name.ToUri() ?? uri.From(Format(RoleUriDefaultFormatString, Name));
+        set => _uri = value;
+    }
 
     public virtual ICollection<User> Users { get; set; } = new Collection<User>();
     public virtual ICollection<UserRole> UserRoles { get; set; } = new Collection<UserRole>();
@@ -49,7 +68,9 @@ public partial class Role : IdentityRole<long>, IIdentifiable<long>
 
 public struct RoleInsertDto
 {
-    public RoleInsertDto() : this(string.Empty, string.Empty) { }
+    public RoleInsertDto()
+        : this(string.Empty, string.Empty) { }
+
     public RoleInsertDto(string name, string description)
     {
         Name = name;

@@ -12,15 +12,23 @@
 
 #pragma warning disable
 namespace Dgmjr.Identity.Models;
+
 using Abstractions;
 using Dgmjr.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using static Dgmjr.EntityFrameworkCore.Constants.DbTypeNames;
 using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
 
-[Table(TableNames.UserLogin, Schema = IdSchema), DebuggerDisplay("User Login (Id} - {LoginProvider}: {ProviderKey})")]
+[
+    Table(TableNames.UserLogin, Schema = IdSchema),
+    DebuggerDisplay("User Login (Id} - {LoginProvider}: {ProviderKey})")
+]
 [JSerializable(typeof(UserLogin))]
-public class UserLogin : IdentityUserLogin<long>, IIdentifiable<int>, IUserAssociatedEntity, IUserLoginThing//, IHaveTimestamps
+public class UserLogin
+    : IdentityUserLogin<long>,
+        IIdentifiable<int>,
+        IUserAssociatedEntity,
+        IUserLoginThing //, IHaveTimestamps
 {
     [Key, DbGen(DbGen.Identity), Column(nameof(Id), TypeName = DbTypeInt), Required]
     public virtual int Id { get; set; }
@@ -32,13 +40,25 @@ public class UserLogin : IdentityUserLogin<long>, IIdentifiable<int>, IUserAssoc
         set => base.LoginProvider = value;
     }
 
-    public override string ProviderKey { get => base.ProviderKey; set => base.ProviderKey = value; }
+    public override string ProviderKey
+    {
+        get => base.ProviderKey;
+        set => base.ProviderKey = value;
+    }
 
     [NotMapped]
-    public override string ProviderDisplayName { get => Provider.DisplayName; set { } }
+    public override string ProviderDisplayName
+    {
+        get => Provider.DisplayName;
+        set { }
+    }
 
     [JIgnore, Newtonsoft.Json.JsonIgnore]
-    public virtual UserLoginProvider Provider { get => UserLoginProvider.Parse(ProviderName, null); set => ProviderName = value.Name; }
+    public virtual UserLoginProvider Provider
+    {
+        get => UserLoginProvider.Parse(ProviderName, null);
+        set => ProviderName = value.Name;
+    }
 
     public virtual int ProviderId
     {
@@ -54,7 +74,11 @@ public class UserLogin : IdentityUserLogin<long>, IIdentifiable<int>, IUserAssoc
     public virtual User User { get; set; }
 
     [Hashids]
-    public override long UserId { get => base.UserId; set => base.UserId = value; }
+    public override long UserId
+    {
+        get => base.UserId;
+        set => base.UserId = value;
+    }
 
     public virtual DateTime Created { get; set; } = UtcNow;
 }

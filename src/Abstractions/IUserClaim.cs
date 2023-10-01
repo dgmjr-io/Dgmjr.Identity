@@ -16,7 +16,11 @@ namespace Dgmjr.Identity.Abstractions;
 public partial interface IUserClaim : IEntityClaim<IUserClaim>, IUserAssociatedEntity
 {
 #if NET6_0_OR_GREATER
-    public int UserId { get => EntityId; set => EntityId = value; }
+    public int UserId
+    {
+        get => EntityId;
+        set => EntityId = value;
+    }
 #else
 #endif
 }

@@ -19,14 +19,10 @@ using Dgmjr.Identity.Models;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using static Dgmjr.Identity.Models.UserLoginProviderEnum;
 
-
 public class UserLoginProviderConverter : ValueConverter<UserLoginProvider, int>
 {
-    public UserLoginProviderConverter() : base(
-        v => v.Id,
-        v => UserLoginProvider.FromId(v))
-    {
-    }
+    public UserLoginProviderConverter()
+        : base(v => v.Id, v => UserLoginProvider.FromId(v)) { }
 }
 
 public partial record class UserLoginProvider //: Dgmjr.Enumerations.EnumerationClass<UserLoginProvider, int, UserLoginProviderEnum>

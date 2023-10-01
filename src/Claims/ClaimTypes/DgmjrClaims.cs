@@ -18,7 +18,6 @@ public abstract record class DgmjrClaim : ClaimType, IClaimType
     string IIdentityComponent.Name => "DGMJR-IO";
     public override uri Uri => ((IIdentityComponent)this).UriString;
 
-
     /// <summary>The base URI for claims in the <inheritdoc cref="BaseUri" path="/value" /> namespace</summary>
     /// <value>https://dgmjr.io</value>
     public const string BaseUri = "https://dgmjr.io";
