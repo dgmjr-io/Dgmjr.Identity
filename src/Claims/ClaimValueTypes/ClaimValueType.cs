@@ -11,12 +11,21 @@
  */
 
 namespace Dgmjr.Identity;
+
+using System.Reflection;
+
 using global::System;
 using global::System.Security;
 
-public partial record class ClaimValueType<TValue> : ClaimValueType
+public partial record class ClaimValueType<TValue> : ClaimValueType, IClaimValueType<TValue>
 {
-    public new virtual TValue Value { get => (TValue)base.Value; set => base.Value = value; }
+    public new virtual TValue Value
+    {
+        get => (TValue)base.Value;
+        set => base.Value = value;
+    }
+
+    public static implicit operator TValue(ClaimValueType<TValue> cvt) => cvt.Value;
 }
 
 public partial record class ClaimValueType : IdentityComponent, IClaimValueType
@@ -26,7 +35,8 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
 
     public virtual bool Equals(IClaimValueType? other)
     {
-        return other is not null && (ReferenceEquals(this, other) || ((IClaimValueType)this).Uri == other.Uri);
+        return other is not null
+            && (ReferenceEquals(this, other) || ((IClaimValueType)this).Uri == other.Uri);
     }
 
     public object Value { get; set; }
@@ -42,44 +52,61 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
 
     /// <value>http://www.w3.org/2001/XMLSchema</value>
     public const string XmlSchemaNamespace = "http://www.w3.org/2001/XMLSchema";
+
     /// <value>xs</value>
     public const string ShortXmlSchemaNamespace = "xs";
 
     /// <value>http://www.w3.org/TR/2002/WD-xquery-operators-20020816</value>
-    public const string XQueryOperatorsNameSpace = "http://www.w3.org/TR/2002/WD-xquery-operators-20020816";
+    public const string XQueryOperatorsNameSpace =
+        "http://www.w3.org/TR/2002/WD-xquery-operators-20020816";
+
     /// <value>xquery</value>
     public const string ShortXQueryOperatorsNameSpace = "xquery";
 
     /// <value>urn:oasis:names:tc:xacml:1.0</value>
     public const string Xacml10Namespace = "urn:oasis:names:tc:xacml:1.0";
+
     /// <value>xacml</value>
     public const string ShortXacml10Namespace = "xacml";
+
     /// <value>urn:oasis:names:tc:xacml:2.0</value>
     public const string Xacml20Namespace = "urn:oasis:names:tc:xacml:2.0";
+
     /// <value>xacml</value>
     public const string ShortXacml20Namespace = "xacml";
+
     /// <value>urn:oasis:names:tc:xacml:3.0</value>
     public const string Xacml30Namespace = "urn:oasis:names:tc:xacml:3.0";
+
     /// <value>xacml</value>
     public const string ShortXacml30Namespace = "xacml";
 
     /// <value>http://www.w3.org/2000/09/xmldsig#</value>
     public const string XmlSignatureConstantsNamespace = "http://www.w3.org/2000/09/xmldsig#";
+
     /// <value>ds</value>
     public const string ShortXmlSignatureConstantsNamespace = "ds";
 
     /// <value>http://schemas.xmlsoap.org/</value>
     public const string SoapSchemaNamespace = "http://schemas.xmlsoap.org/";
+
     /// <value>soap</value>
     public const string ShortSoapSchemaNamespace = "soap";
 
     public override string? ToString() => Value?.ToString();
 
-    public class EFCoreConverter<TClaimValueType, TPersistedType> : Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<TClaimValueType?, TPersistedType?>
-    where TClaimValueType : notnull, IClaimValueType
-    where TPersistedType : notnull
+    public class EFCoreConverter<TClaimValueType, TPersistedType>
+        : Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<
+            TClaimValueType?,
+            TPersistedType?
+        >
+        where TClaimValueType : notnull, IClaimValueType
+        where TPersistedType : notnull
     {
-        public EFCoreConverter() : base(v => v.Value as TPersistedType, v => v as TClaimValueType) { }
+        public EFCoreConverter()
+            : base(
+                v => (TPersistedType)v.Value,
+                v => (TClaimValueType)Activator.CreateInstance(typeof(TClaimValueType), v)
+            ) { }
     }
 }
-

@@ -11,18 +11,19 @@
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
-        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="Dgmjr.Identity.Core" />
-        <PackageReference Include="Dgmjr.Primitives" />
-        <PackageReference Include="System.Net.Primitives" />
-        <PackageReference Include="Dgmjr.System.Extensions" />
-        <PackageReference Include="System.Security.Principal.Windows" />
-        <PackageReference Include="System.Security.Cryptography.Xml" />
-        <PackageReference Include="Microsoft.CSharp" />
-        <SourceGenerator Include="Dgmjr.RegexDtoGenerator" />
-    </ItemGroup>
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dgmjr.Abstractions" />
+    <PackageReference Include="Dgmjr.Identity.Core" />
+    <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="Dgmjr.System.Extensions" />
+    <PackageReference Include="Microsoft.CSharp" />
+    <PackageReference Include="System.Net.Primitives" />
+    <PackageReference Include="System.Security.Cryptography.Xml" />
+    <PackageReference Include="System.Security.Principal.Windows" />
+    <SourceGenerator Include="Dgmjr.RegexDtoGenerator" />
+  </ItemGroup>
 </Project>

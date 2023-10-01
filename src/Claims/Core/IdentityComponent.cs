@@ -27,10 +27,19 @@ public abstract record class IdentityComponent : IIdentityComponent
 
     public override int GetHashCode() => ((IIdentityComponent)this).GetHashCode();
 
+    /// <value>about</value>
     string IIdentityComponent.Namespace => "about";
+
+    /// <value>about</value>
     string IIdentityComponent.ShortNamespace => "about";
-    string IIdentityComponent.UriString => $"{((IIdentityComponent)this).Namespace}{((IIdentityComponent)this).Name}";
-    string IIdentityComponent.ShortUriString => $"{((IIdentityComponent)this).Namespace}{((IIdentityComponent)this).Name}";
+
+    /// <value>about</value>
+    string IIdentityComponent.UriString =>
+        $"{((IIdentityComponent)this).Namespace}{((IIdentityComponent)this).UriString}";
+    string IIdentityComponent.ShortUriString =>
+        $"{((IIdentityComponent)this).Namespace}{((IIdentityComponent)this).ShortUriString}";
+
+    /// <value>blank</value>
     string IIdentityComponent.Name => "blank";
     uri IIdentityComponent.Uri => ((IIdentityComponent)this).UriString;
     uri IIdentityComponent.ShortUri => ((IIdentityComponent)this).ShortUriString;

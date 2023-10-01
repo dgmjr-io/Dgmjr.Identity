@@ -14,11 +14,14 @@ namespace Dgmjr.Identity;
 public interface IRole : IIdentityComponent
 {
     string Scheme { get; }
+
     // string Name { get; }
 
     bool Equals(DgmjrR other);
+
     // bool Equals(object obj);
-    bool Equals(IdentityComponent? other);
+    bool Equals(IIdentityComponent? other);
+
     // int GetHashCode();
     string ToString();
     IRole Instance { get; }

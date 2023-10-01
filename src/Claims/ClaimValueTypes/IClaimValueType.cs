@@ -10,9 +10,18 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-
 namespace Dgmjr.Identity;
+using Dgmjr.Abstractions;
+
+public interface IClaimValueType<TValue>
+    : IIdentityComponent,
+        IEquatable<IClaimValueType>,
+        IClaimValueType
+{
+    TValue Value { get; }
+}
 
 public interface IClaimValueType : IIdentityComponent, IEquatable<IClaimValueType>
 {
+    object Value { get; }
 }
