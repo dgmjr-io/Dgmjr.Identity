@@ -1,0 +1,17 @@
+<!--
+ * Dgmjr.Identity.Abstractions.props
+ *
+ *   Created: 2023-10-03-09:35:56
+ *   Modified: 2023-10-03-09:35:56
+ *
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project>
+  <ItemGroup>
+    <Using Include="Microsoft.AspNetCore.Identity" />
+  </ItemGroup>
+</Project>

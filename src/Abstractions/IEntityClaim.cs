@@ -17,8 +17,7 @@ using static Dgmjr.EntityFrameworkCore.Constants.DbTypeNames;
 public interface IEntityClaim<TEntityClaimType>
     where TEntityClaimType : IEntityClaim<TEntityClaimType>
 {
-    int Id { get; set; }
-    int EntityId { get; set; }
+    long EntityId { get; set; }
     string? ClaimValue { get; set; }
     string? ClaimType { get; set; }
     uri? Type { get; set; }
@@ -27,6 +26,5 @@ public interface IEntityClaim<TEntityClaimType>
     uri? OriginalIssuer { get; set; }
     IStringDictionary Properties { get; set; }
 
-    void InitializeFromClaim(C claim);
     C ToClaim();
 }
