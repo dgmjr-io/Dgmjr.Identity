@@ -12,11 +12,13 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.Security.Claims" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Identity.Core" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Abstractions" />
+    <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="System.Security.Claims" />
+    <ProjectReference Include="../Core/Dgmjr.Identity.Core.csproj" />
   </ItemGroup>
+  <Import Project="../Core/Dgmjr.Identity.Core.props" />
 </Project>

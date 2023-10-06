@@ -15,65 +15,33 @@ namespace Dgmjr.Identity.Models;
 using System.Collections.ObjectModel;
 using System.Xml.Serialization;
 using Dgmjr.Abstractions;
+
 using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity;
 using static Dgmjr.EntityFrameworkCore.Constants.DbTypeNames;
 using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
 using static Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant;
 
-[
-    Table(TableNames.RoleClaim, Schema = IdSchema),
-    DebuggerDisplay("Role Claim ({Id} Role ID: {RoleId}, {Type}: {Value})")
-]
-[JSerializable(typeof(RoleClaim))]
-public class RoleClaim : Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>, IIdentifiable<int> //, IEntityClaim//, IHaveTimestamps
+[DebuggerDisplay("Role Claim ({Id} Role ID: {RoleId}, {Type}: {Value})")]
+[JSerializable(typeof(ApplicationRoleClaim))]
+public class ApplicationRoleClaim : IIdentityRoleClaim<long>
 {
-    [Key, DbGen(DbGen.None), Column(nameof(Id), Order = 0, TypeName = DbTypeBigInt), Hashids]
-    public override int Id { get; set; } //= NewId;
+    public virtual long Id { get; set; }
 
     [Hashids]
-    public override long RoleId
-    {
-        get => base.RoleId;
-        set => base.RoleId = value;
-    }
+    public virtual long RoleId { get; set; }
 
-    [
-        JProp("value"),
-        Column("value", TypeName = DbTypeNVarChar),
-        Url,
-        StringLength(1024),
-        Required(AllowEmptyStrings = false, ErrorMessage = "A value must be specified.")
-    ]
-    public override string? ClaimValue
-    {
-        get => base.ClaimValue;
-        set => base.ClaimValue = value;
-    }
+    [Required(AllowEmptyStrings = false, ErrorMessage = "A value must be specified.")]
+    public virtual string? ClaimValue { get; set; }
 
-    [
-        JProp("typeName"),
-        Column("typeName"),
-        StringLength(1024),
-        Required(AllowEmptyStrings = false, ErrorMessage = "A claim type name must be specified.")
-    ]
-    public override string? ClaimType
-    {
-        get => base.ClaimType;
-        set => base.ClaimType = value;
-    }
+    [Required(AllowEmptyStrings = false, ErrorMessage = "A claim type name must be specified.")]
+    public virtual string? ClaimType { get; set; }
 
-    [Column(nameof(Type), TypeName = DbTypeNVarChar), Url, StringLength(UriMaxLength), Required]
-    public virtual uri? Type { get; set; } = System.uri.From(DgmjrCt.Unknown);
+    [Url, Required]
+    public virtual uri? Type { get; set; } = DgmjrCt.String.Uri;
 
-    [
-        Column(nameof(ValueType), TypeName = DbTypeNVarChar),
-        Url,
-        StringLength(UriMaxLength),
-        Required
-    ]
-    public virtual uri? ValueType { get; set; } = System.uri.From(DgmjrCvt.Unknown);
+    [Url, Required]
+    public virtual uri? ValueType { get; set; } = System.uri.From(DgmjrCvt.);
 
     [Column(nameof(Issuer), TypeName = DbTypeNVarChar), Url, StringLength(UriMaxLength), Required]
     public virtual uri? Issuer { get; set; } = System.uri.From(DgmjrCt.BaseUri);
@@ -90,18 +58,27 @@ public class RoleClaim : Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>, 
     public virtual IStringDictionary Properties { get; set; } = new StringDictionary();
 
     public virtual Role? Role { get; set; }
+    public long EntityId
+    {
+        get => throw new NotImplementedException();
+        set => throw new NotImplementedException();
+    }
+    public string? Value
+    {
+        get => throw new NotImplementedException();
+        set => throw new NotImplementedException();
+    }
 
     // int IEntityClaim.EntityId { get => UserId; set => UserId = value; }
 
-    public override void InitializeFromClaim(C? claim)
+    public virtual void InitializeFromClaim(C? claim)
     {
-        base.InitializeFromClaim(claim);
         Type = claim.Type.CreateUri(DgmjrCt.GenericClaimTypePattern)!;
         ClaimValue = claim.Value;
         Issuer = claim.Issuer.CreateUri(DgmjrCt.GenericClaimsIssuerTypePattern)!;
         OriginalIssuer = claim.OriginalIssuer.CreateUri(DgmjrCt.GenericClaimsIssuerTypePattern)!;
         Properties = claim.Properties;
-        ValueType = claim.ValueType.CreateUri(DgmjrCvt.GenericClaimTypePattern)!;
+        ValueType = claim.ValueType.CreateUri(DgmjrCvt.Namespaces)!;
         RoleId = claim.Properties.ContainsKey(nameof(RoleId))
             ? int.Parse(claim.Properties[nameof(RoleId)])
             : default;
@@ -110,7 +87,7 @@ public class RoleClaim : Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>, 
             : default;
     }
 
-    public override C ToClaim()
+    public virtual C ToClaim()
     {
         var claim = new C(
             Type.ToString(),
@@ -124,19 +101,19 @@ public class RoleClaim : Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>, 
         return claim;
     }
 
-    public static RoleClaim FromClaim(int roleId, C c)
+    public static ApplicationRoleClaim FromClaim(int roleId, C c)
     {
-        var userClaim = new RoleClaim();
+        var userClaim = new ApplicationRoleClaim();
         userClaim.InitializeFromClaim(c);
         userClaim.RoleId = roleId;
         return userClaim;
     }
 
-    public static implicit operator C(RoleClaim claim) => claim.ToClaim();
+    public static implicit operator C(ApplicationRoleClaim claim) => claim.ToClaim();
 
-    public static implicit operator RoleClaim(C claim)
+    public static implicit operator ApplicationRoleClaim(C claim)
     {
-        var newClaim = new RoleClaim();
+        var newClaim = new ApplicationRoleClaim();
         newClaim.InitializeFromClaim(claim);
         return newClaim;
     }

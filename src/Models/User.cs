@@ -1,18 +1,6 @@
 /*
  * User.cs
  *
- *   Created: 2023-03-19-03:05:09
- *   Modified: 2023-03-28-02:51:52
- *
- *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *
- *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
- *      License: MIT (https://opensource.org/licenses/MIT)
- */
-
-/*
- * User.cs
- *
  *   Created: 2022-12-01-04:59:06
  *   Modified: 2022-12-03-11:30:01
  *
@@ -48,7 +36,7 @@ using static Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant;
 [JSerializable(typeof(User))]
 public class User : IdentityUser<long>, IIdentifiable<long>, IUser, IHaveUserClaims, IHaveClaims //, IHaveTimestamps
 {
-    public const string DefaultPassword = "Just1n is really fuckin sexy!";
+    public const string DefaultPassword = "Dav1d is really fuckin' sexy!";
     public const string DefaultLockoutEndString = "1/1/1970";
     public static readonly DateTimeOffset DefaultLockoutEnd = DateTimeOffset.Parse(
         DefaultLockoutEndString

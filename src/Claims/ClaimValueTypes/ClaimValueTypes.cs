@@ -19,7 +19,7 @@ using SSCXmlKeyInfo = System.Security.Cryptography.Xml.KeyInfo;
 
 public record class Base64Binary : ClaimValueType<byte[]>, IClaimValueType
 {
-    public static IClaimValueType Instance => new Base64Binary();
+    public static readonly IClaimValueType Instance = new Base64Binary();
 
     private Base64Binary() { }
 
@@ -30,7 +30,7 @@ public record class Base64Binary : ClaimValueType<byte[]>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":base64Binary";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -52,7 +52,7 @@ public record class Base64Binary : ClaimValueType<byte[]>, IClaimValueType
 
 public record class Base64Octet : ClaimValueType<byte[]>, IClaimValueType
 {
-    public static IClaimValueType Instance => new Base64Octet();
+    public static readonly IClaimValueType Instance = new Base64Octet();
 
     private Base64Octet() { }
 
@@ -63,7 +63,7 @@ public record class Base64Octet : ClaimValueType<byte[]>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":#base64Octet";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -93,7 +93,7 @@ public record class Base64Octet : ClaimValueType<byte[]>, IClaimValueType
 
 public record class Boolean : ClaimValueType<bool>, IClaimValueType
 {
-    public static IClaimValueType Instance => new Boolean();
+    public static readonly IClaimValueType Instance = new Boolean();
 
     private Boolean() { }
 
@@ -104,7 +104,7 @@ public record class Boolean : ClaimValueType<bool>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":boolean";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -134,7 +134,7 @@ public record class Boolean : ClaimValueType<bool>, IClaimValueType
 
 public record class Date : ClaimValueType<DateOnly>, IClaimValueType
 {
-    public static IClaimValueType Instance => new Date();
+    public static readonly IClaimValueType Instance = new Date();
 
     private Date() { }
 
@@ -145,7 +145,7 @@ public record class Date : ClaimValueType<DateOnly>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":date";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -175,7 +175,7 @@ public record class Date : ClaimValueType<DateOnly>, IClaimValueType
 
 public record class DateTime : ClaimValueType<System.DateTime>, IClaimValueType
 {
-    public static IClaimValueType Instance => new DateTime();
+    public static readonly IClaimValueType Instance = new DateTime();
 
     private DateTime() { }
 
@@ -186,7 +186,7 @@ public record class DateTime : ClaimValueType<System.DateTime>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":dateTime";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -224,7 +224,7 @@ public record class DateTime : ClaimValueType<System.DateTime>, IClaimValueType
 
 public record class Double : ClaimValueType<double>, IClaimValueType
 {
-    public static IClaimValueType Instance => new Double();
+    public static readonly IClaimValueType Instance = new Double();
 
     private Double() { }
 
@@ -235,7 +235,7 @@ public record class Double : ClaimValueType<double>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":double";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -257,7 +257,7 @@ public record class Double : ClaimValueType<double>, IClaimValueType
 
 public record class Fqbn : ClaimValueType<string>, IClaimValueType
 {
-    public static IClaimValueType Instance => new Fqbn();
+    public static readonly IClaimValueType Instance = new Fqbn();
 
     private Fqbn() { }
 
@@ -268,7 +268,7 @@ public record class Fqbn : ClaimValueType<string>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":fqbn";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -286,7 +286,7 @@ public record class Fqbn : ClaimValueType<string>, IClaimValueType
 
 public record class HexBinary : ClaimValueType<byte[]>, IClaimValueType
 {
-    public static IClaimValueType Instance => new HexBinary();
+    public static readonly IClaimValueType Instance = new HexBinary();
 
     private HexBinary() { }
 
@@ -297,7 +297,7 @@ public record class HexBinary : ClaimValueType<byte[]>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":hexBinary";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -327,7 +327,7 @@ public record class HexBinary : ClaimValueType<byte[]>, IClaimValueType
 
 public record class Integer : ClaimValueType<int>, IClaimValueType
 {
-    public static IClaimValueType Instance => new Integer();
+    public static readonly IClaimValueType Instance = new Integer();
 
     private Integer() { }
 
@@ -338,7 +338,7 @@ public record class Integer : ClaimValueType<int>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":integer";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -368,7 +368,7 @@ public record class Integer : ClaimValueType<int>, IClaimValueType
 
 public record class Integer32 : ClaimValueType<int>, IClaimValueType
 {
-    public static IClaimValueType Instance => new Integer32();
+    public static readonly IClaimValueType Instance = new Integer32();
 
     private Integer32() { }
 
@@ -379,7 +379,7 @@ public record class Integer32 : ClaimValueType<int>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":integer32";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -409,7 +409,7 @@ public record class Integer32 : ClaimValueType<int>, IClaimValueType
 
 public record class Integer64 : ClaimValueType<long>, IClaimValueType
 {
-    public static IClaimValueType Instance => new Integer64();
+    public static readonly IClaimValueType Instance = new Integer64();
 
     private Integer64() { }
 
@@ -420,7 +420,7 @@ public record class Integer64 : ClaimValueType<long>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":integer64";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -453,7 +453,7 @@ public record class Sid
     : ClaimValueType<System.Security.Principal.SecurityIdentifier>,
         IClaimValueType
 {
-    public static IClaimValueType Instance => new Sid();
+    public static readonly IClaimValueType Instance = new Sid();
 
     private Sid() { }
 
@@ -464,7 +464,7 @@ public record class Sid
     public const string ShortUriString = ShortXmlSchemaNamespace + ":sid";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -500,7 +500,7 @@ public record class Sid
 
 public record class String : ClaimValueType<string>, IClaimValueType
 {
-    public static IClaimValueType Instance => new String();
+    public static readonly IClaimValueType Instance = new String();
 
     private String() { }
 
@@ -511,7 +511,7 @@ public record class String : ClaimValueType<string>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":string";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -533,7 +533,7 @@ public record class String : ClaimValueType<string>, IClaimValueType
 
 public record class Time : ClaimValueType<TimeOnly>, IClaimValueType
 {
-    public static IClaimValueType Instance => new Time();
+    public static readonly IClaimValueType Instance = new Time();
 
     private Time() { }
 
@@ -544,7 +544,7 @@ public record class Time : ClaimValueType<TimeOnly>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":time";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -582,7 +582,7 @@ public record class Time : ClaimValueType<TimeOnly>, IClaimValueType
 
 public record class UInteger32 : ClaimValueType<uint>, IClaimValueType
 {
-    public static IClaimValueType Instance => new UInteger32();
+    public static readonly IClaimValueType Instance = new UInteger32();
 
     private UInteger32() { }
 
@@ -593,7 +593,7 @@ public record class UInteger32 : ClaimValueType<uint>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":uinteger32";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -623,7 +623,7 @@ public record class UInteger32 : ClaimValueType<uint>, IClaimValueType
 
 public record class UInteger64 : ClaimValueType<ulong>, IClaimValueType
 {
-    public static IClaimValueType Instance => new UInteger64();
+    public static readonly IClaimValueType Instance = new UInteger64();
 
     private UInteger64() { }
 
@@ -634,7 +634,7 @@ public record class UInteger64 : ClaimValueType<ulong>, IClaimValueType
     public const string ShortUriString = ShortXmlSchemaNamespace + ":uinteger64";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -664,7 +664,7 @@ public record class UInteger64 : ClaimValueType<ulong>, IClaimValueType
 
 public record class DnsName : ClaimValueType<string>, IClaimValueType
 {
-    public static IClaimValueType Instance => new DnsName();
+    public static readonly IClaimValueType Instance = new DnsName();
 
     private DnsName() { }
 
@@ -675,7 +675,7 @@ public record class DnsName : ClaimValueType<string>, IClaimValueType
     public const string ShortUriString = ShortSoapSchemaNamespace + ":dns";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -697,7 +697,7 @@ public record class DnsName : ClaimValueType<string>, IClaimValueType
 
 public record class Email : ClaimValueType<EmailAddress>, IClaimValueType
 {
-    public static IClaimValueType Instance => new Email();
+    public static readonly IClaimValueType Instance = new Email();
 
     private Email() { }
 
@@ -708,7 +708,7 @@ public record class Email : ClaimValueType<EmailAddress>, IClaimValueType
     public const string ShortUriString = ShortSoapSchemaNamespace + ":emailaddress";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -730,7 +730,7 @@ public record class Email : ClaimValueType<EmailAddress>, IClaimValueType
 
 public record class Rsa : ClaimValueType<RSA>, IClaimValueType
 {
-    public static IClaimValueType Instance => new Rsa();
+    public static readonly IClaimValueType Instance = new Rsa();
 
     private Rsa() { }
 
@@ -741,7 +741,7 @@ public record class Rsa : ClaimValueType<RSA>, IClaimValueType
     public const string ShortUriString = ShortSoapSchemaNamespace + ":rsa";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -765,7 +765,7 @@ public record class Rsa : ClaimValueType<RSA>, IClaimValueType
 
 public record class UpnName : ClaimValueType<EmailAddress>, IClaimValueType
 {
-    public static IClaimValueType Instance => new UpnName();
+    public static readonly IClaimValueType Instance = new UpnName();
 
     private UpnName() { }
 
@@ -776,7 +776,7 @@ public record class UpnName : ClaimValueType<EmailAddress>, IClaimValueType
     public const string ShortUriString = ShortSoapSchemaNamespace + ":UPN";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -798,7 +798,7 @@ public record class UpnName : ClaimValueType<EmailAddress>, IClaimValueType
 
 public record class DsaKeyValue : ClaimValueType<XE>, IClaimValueType
 {
-    public static IClaimValueType Instance => new DsaKeyValue();
+    public static readonly IClaimValueType Instance = new DsaKeyValue();
 
     private DsaKeyValue() { }
 
@@ -809,7 +809,7 @@ public record class DsaKeyValue : ClaimValueType<XE>, IClaimValueType
     public const string ShortUriString = ShortXmlSignatureConstantsNamespace + ":DSAKeyValue";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -851,7 +851,7 @@ public record class DsaKeyValue : ClaimValueType<XE>, IClaimValueType
 
 public record class KeyInfo : ClaimValueType, IClaimValueType
 {
-    public static IClaimValueType Instance => new KeyInfo();
+    public static readonly IClaimValueType Instance = new KeyInfo();
 
     private KeyInfo() { }
 
@@ -862,7 +862,7 @@ public record class KeyInfo : ClaimValueType, IClaimValueType
     public const string ShortUriString = ShortXmlSignatureConstantsNamespace + ":KeyInfo";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -904,7 +904,7 @@ public record class KeyInfo : ClaimValueType, IClaimValueType
 
 public record class RsaKeyValue : ClaimValueType<XE>, IClaimValueType
 {
-    public static IClaimValueType Instance => new RsaKeyValue();
+    public static readonly IClaimValueType Instance = new RsaKeyValue();
 
     private RsaKeyValue() { }
 
@@ -915,7 +915,7 @@ public record class RsaKeyValue : ClaimValueType<XE>, IClaimValueType
     public const string ShortUriString = ShortXmlSignatureConstantsNamespace + ":RSAKeyValue";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -957,7 +957,7 @@ public record class RsaKeyValue : ClaimValueType<XE>, IClaimValueType
 
 public record class DaytimeDuration : ClaimValueType<DayTimeDuration>, IClaimValueType
 {
-    public static IClaimValueType Instance => new DaytimeDuration();
+    public static readonly IClaimValueType Instance = new DaytimeDuration();
 
     private DaytimeDuration() { }
 
@@ -968,7 +968,7 @@ public record class DaytimeDuration : ClaimValueType<DayTimeDuration>, IClaimVal
     public const string ShortUriString = ShortXmlSchemaNamespace + ":dayTimeDuration";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -992,7 +992,7 @@ public record class YearMonthDuration
     : ClaimValueType<Primitives.YearMonthDuration>,
         IClaimValueType
 {
-    public static IClaimValueType Instance => new YearMonthDuration();
+    public static readonly IClaimValueType Instance = new YearMonthDuration();
 
     private YearMonthDuration() { }
 
@@ -1003,7 +1003,7 @@ public record class YearMonthDuration
     public const string ShortUriString = ShortXmlSchemaNamespace + ":yearMonthDuration";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1025,7 +1025,7 @@ public record class YearMonthDuration
 
 public record class Rfc822Name : ClaimValueType<EmailAddress>, IClaimValueType
 {
-    public static IClaimValueType Instance => new Rfc822Name();
+    public static readonly IClaimValueType Instance = new Rfc822Name();
 
     private Rfc822Name() { }
 
@@ -1036,7 +1036,7 @@ public record class Rfc822Name : ClaimValueType<EmailAddress>, IClaimValueType
     public const string ShortUriString = ShortXacml10Namespace + ":rfc822Name";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1058,7 +1058,7 @@ public record class Rfc822Name : ClaimValueType<EmailAddress>, IClaimValueType
 
 public record class X500Name : ClaimValueType<X500DistinguishedName>, IClaimValueType
 {
-    public static IClaimValueType Instance => new X500Name();
+    public static readonly IClaimValueType Instance = new X500Name();
 
     private X500Name() { }
 
@@ -1069,7 +1069,7 @@ public record class X500Name : ClaimValueType<X500DistinguishedName>, IClaimValu
     public const string ShortUriString = ShortXacml10Namespace + ":x500Name";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1091,7 +1091,7 @@ public record class X500Name : ClaimValueType<X500DistinguishedName>, IClaimValu
 
 public record class XacmlDnsName : ClaimValueType<string>, IClaimValueType
 {
-    public static IClaimValueType Instance => new XacmlDnsName();
+    public static readonly IClaimValueType Instance = new XacmlDnsName();
 
     private XacmlDnsName() { }
 
@@ -1102,7 +1102,7 @@ public record class XacmlDnsName : ClaimValueType<string>, IClaimValueType
     public const string ShortUriString = ShortXacml20Namespace + ":dnsName";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1124,11 +1124,11 @@ public record class XacmlDnsName : ClaimValueType<string>, IClaimValueType
 
 [RegexDto(
     @"(?<Address:string>((^\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\s*$)|(^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$)))",
-    typeof(ClaimValueType<string>)
+    typeof(ClaimValueType<System.Net.IPAddress>)
 )]
 public partial record class IpAddress : IClaimValueType<System.Net.IPAddress>
 {
-    public static IClaimValueType Instance => new IpAddress();
+    public static readonly IClaimValueType Instance = new IpAddress();
 
     // private IpAddress() { }
 
@@ -1149,7 +1149,7 @@ public partial record class IpAddress : IClaimValueType<System.Net.IPAddress>
     public const string ShortUriString = ShortXacml30Namespace + ":" + Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;

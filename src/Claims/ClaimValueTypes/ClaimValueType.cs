@@ -42,7 +42,7 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
     public object Value { get; set; }
 
     string IIdentityComponent.Name => string.Empty;
-    string IIdentityComponent.UriString => "about:blank";
+    string IHaveAUriString.UriString => "about:blank";
     public virtual uri Uri => ((IIdentityComponent)this).UriString;
     public virtual uri ShortUri => ((IIdentityComponent)this).ShortUriString;
 

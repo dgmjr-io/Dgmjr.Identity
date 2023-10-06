@@ -13,5 +13,6 @@
 <Project>
   <ItemGroup>
     <Using Include="Microsoft.AspNetCore.Identity" />
+    <Using Include="Dgmjr.Identity.Abstractions" />
   </ItemGroup>
 </Project>

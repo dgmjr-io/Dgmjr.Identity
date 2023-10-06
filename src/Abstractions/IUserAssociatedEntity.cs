@@ -12,7 +12,8 @@
 
 namespace Dgmjr.Identity.Abstractions;
 
-public interface IUserAssociatedEntity : IIdentifiable<int>
+public interface IUserAssociatedEntity<TKey> : IIdentifiable<TKey>
+    where TKey : IEquatable<TKey>, IComparable
 {
-    long UserId { get; set; }
+    TKey UserId { get; set; }
 }

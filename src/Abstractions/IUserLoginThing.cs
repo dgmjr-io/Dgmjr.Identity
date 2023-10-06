@@ -1,6 +1,9 @@
-﻿namespace Dgmjr.Identity.Abstractions;
+﻿using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
 
-public interface IUserLoginThing : IUserAssociatedEntity
+namespace Dgmjr.Identity.Abstractions;
+
+public interface IUserLoginThing<TKey> : IUserAssociatedEntity<TKey>
+    where TKey : IEquatable<TKey>, IComparable
 {
     int ProviderId { get; set; }
     string ProviderName { get; set; }

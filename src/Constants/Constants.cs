@@ -17,21 +17,22 @@ public static partial class Constants
 
     public static class Tables
     {
-        public const string UserClaim = nameof(UserClaim);
-        public const string Role = nameof(Role);
-        public const string RoleClaim = nameof(RoleClaim);
-        public const string User = nameof(User);
-        public const string UserLogin = nameof(UserLogin);
-        public const string UserRole = nameof(UserRole);
-        public const string UserToken = nameof(UserToken);
+        public const string tbl_ = nameof(tbl_);
+        public const string UserClaim = tbl_ + nameof(UserClaim);
+        public const string Role = tbl_ + nameof(Role);
+        public const string RoleClaim = tbl_ + nameof(RoleClaim);
+        public const string User = tbl_ + nameof(User);
+        public const string UserLogin = tbl_ + nameof(UserLogin);
+        public const string UserRole = tbl_ + nameof(UserRole);
+        public const string UserToken = tbl_ + nameof(UserToken);
 
-        public const string UserClaimHistory = nameof(UserClaimHistory);
-        public const string RoleHistory = nameof(RoleHistory);
-        public const string RoleClaimHistory = nameof(RoleClaimHistory);
-        public const string UserHistory = nameof(UserHistory);
-        public const string UserLoginHistory = nameof(UserLoginHistory);
-        public const string UserRoleHistory = nameof(UserRoleHistory);
-        public const string UserTokenHistory = nameof(UserToken);
+        public const string UserClaimHistory = tbl_ + nameof(UserClaimHistory);
+        public const string RoleHistory = tbl_ + nameof(RoleHistory);
+        public const string RoleClaimHistory = tbl_ + nameof(RoleClaimHistory);
+        public const string UserHistory = tbl_ + nameof(UserHistory);
+        public const string UserLoginHistory = tbl_ + nameof(UserLoginHistory);
+        public const string UserRoleHistory = tbl_ + nameof(UserRoleHistory);
+        public const string UserTokenHistory = tbl_ + nameof(UserToken);
     }
 
     // public static class Views

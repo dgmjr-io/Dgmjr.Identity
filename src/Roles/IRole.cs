@@ -9,19 +9,19 @@
  *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
-namespace Dgmjr.Identity;
+namespace Dgmjr.Identity.Abstractions;
 
-public interface IRole : IIdentityComponent
+public partial interface IRole // : IIdentityComponent
 {
-    string Scheme { get; }
+    // string Scheme { get; }
 
-    // string Name { get; }
+    // // string Name { get; }
 
-    bool Equals(DgmjrR other);
+    // // bool Equals(DgmjrR other);
 
     // bool Equals(object obj);
     // bool Equals(IIdentityComponent? other);
 
-    // int GetHashCode();
-    string ToString();
+    // // int GetHashCode();
+    // string ToString();
 }

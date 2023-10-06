@@ -12,15 +12,9 @@
 
 namespace Dgmjr.Identity.Abstractions;
 
-[GenerateInterface(typeof(IdentityUserClaim<long>))]
-public partial interface IUserClaim : IEntityClaim<IUserClaim>, IUserAssociatedEntity
-{
-#if NET6_0_OR_GREATER
-    public long UserId
-    {
-        get => EntityId;
-        set => EntityId = value;
-    }
-#else
-#endif
-}
+using System;
+
+public partial interface IUserClaim<TKey>
+    : IEntityClaim<IUserClaim<TKey>, TKey>,
+        IUserAssociatedEntity<TKey>
+    where TKey : IEquatable<TKey>, IComparable { }

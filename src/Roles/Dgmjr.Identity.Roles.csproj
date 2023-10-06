@@ -15,7 +15,7 @@
       <TargetFrameworks>netstandard2.0</TargetFrameworks>
     </PropertyGroup>
    <ItemGroup>
-      <SourceGenerator Include="Dgmjr.Enumerations.CodeGenerator" />
+      <SourceGeneratorPackageReference Include="Dgmjr.Enumerations.CodeGenerator" />
       <PackageReference Include="System.Text.Json" />
       <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
       <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" />

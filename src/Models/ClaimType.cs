@@ -12,15 +12,13 @@
 #pragma warning disable
 namespace Dgmjr.Identity.Models;
 
-[Table(TableNames.ClaimType, Schema = IdSchema)]
 public class ClaimType : IIdentifiable<long>
 {
-    [Key, DbGen(DbGen.Identity)]
     public long Id { get; set; }
 
-    [Column(nameof(Uri)), StringLength(UriMaxLength)]
     public System.uri? Uri { get; set; }
 
     public virtual Collection<User> Users { get; set; } = new Collection<User>();
-    public virtual Collection<Role> Roles { get; set; } = new Collection<Role>();
+    public virtual Collection<ApplicationRole> Roles { get; set; } =
+        new Collection<ApplicationRole>();
 }

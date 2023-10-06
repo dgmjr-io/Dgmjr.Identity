@@ -16,16 +16,16 @@ namespace Dgmjr.Identity;
 
 public static class UserClaimExtensions
 {
-    public static UserClaim ToUserClaim(this C c)
+    public static ApplicationUserClaim ToUserClaim(this C c)
     {
-        var uc = new UserClaim();
+        var uc = new ApplicationUserClaim();
         uc.InitializeFromClaim(c);
         return uc;
     }
 
-    public static RoleClaim ToRoleClaim(this C c)
+    public static ApplicationRoleClaim ToRoleClaim(this C c)
     {
-        var rc = new RoleClaim();
+        var rc = new ApplicationRoleClaim();
         rc.InitializeFromClaim(c);
         return rc;
     }

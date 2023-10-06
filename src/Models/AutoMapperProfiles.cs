@@ -25,22 +25,22 @@ public class AutoMapperProfile : global::AutoMapper.Profile
         //     .ForMember(u => u.FirstName, mcex => mcex.MapFrom((msg, u) => u.FirstName ?? msg.Contact.Name))
         //     .ForMember(u => u.TelegramUsername, mcex => mcex.MapFrom((msg, u) => u.TelegramUsername ?? msg.Contact.Username));
 
-        _ = CreateMap<User, UserDto>()
+        CreateMap<User, UserDto>()
             .ForMember(dto => dto.PhoneNumber, mcex => mcex.MapFrom(u => u.Phone))
             .ForMember(dto => dto.EmailAddress, mcex => mcex.MapFrom(u => u.EmailAddress))
             .ReverseMap();
-        _ = CreateMap<UserInsertDto, User>()
+        CreateMap<UserInsertDto, User>()
             .ForMember(u => u.Phone, mcex => mcex.MapFrom(dto => dto.PhoneNumber))
             .ForMember(u => u.EmailAddress, mcex => mcex.MapFrom(dto => dto.EmailAddress))
             .ReverseMap();
-        CreateMap<UserClaim, C>().ConvertUsing(uc => uc.ToClaim());
-        CreateMap<C, UserClaim>().ConvertUsing(c => c.ToUserClaim());
-        _ = CreateMap<RoleInsertDto, Role>().ReverseMap();
-        _ = CreateMap<ClaimCreateDto, UserClaim>()
+        CreateMap<ApplicationUserClaim, C>().ConvertUsing(uc => uc.ToClaim());
+        CreateMap<C, ApplicationUserClaim>().ConvertUsing(c => c.ToUserClaim());
+        CreateMap<RoleInsertDto, ApplicationRole>().ReverseMap();
+        CreateMap<ClaimCreateDto, ApplicationUserClaim>()
             .ForMember(uc => uc.ClaimType, mcex => mcex.MapFrom(dto => dto.Type))
             .ForMember(uc => uc.ClaimValue, mcex => mcex.MapFrom(dto => dto.Value))
             .ReverseMap();
-        _ = CreateMap<ClaimCreateDto, C>()
+        CreateMap<ClaimCreateDto, C>()
             .ForMember(c => c.Type, mcex => mcex.MapFrom(dto => dto.Type))
             .ForMember(c => c.Value, mcex => mcex.MapFrom(dto => dto.Value))
             .ReverseMap();

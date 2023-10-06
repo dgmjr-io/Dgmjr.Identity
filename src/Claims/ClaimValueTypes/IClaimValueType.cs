@@ -14,12 +14,9 @@ namespace Dgmjr.Identity;
 
 using Dgmjr.Abstractions;
 
-public interface IClaimValueType<TValue>
-    : IIdentityComponent,
-        IEquatable<IClaimValueType>,
-        IClaimValueType
+public interface IClaimValueType<TValue> : IClaimValueType, IHaveAValue<TValue>
 {
-    TValue Value { get; }
+    new TValue Value { get; }
 }
 
 public interface IClaimValueType : IIdentityComponent, IEquatable<IClaimValueType>

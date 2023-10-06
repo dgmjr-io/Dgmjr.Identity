@@ -1,105 +1,60 @@
 <!--
  * Dgmjr.Identity.Models.csproj
- * 
+ *
  *   Created: 2023-03-19-03:05:09
  *   Modified: 2023-03-28-02:37:28
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!-- <TargetFramework>net7.0</TargetFramework> -->
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="AspNetCore.Hashids" Condition="!$(TargetFramework.Contains('netstandard'))" />
     <PackageReference Include="AutoMapper" />
+    <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="Humanizer.Core" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" />
-    <PackageReference Include="AspNetCore.Hashids" Condition="!$(TargetFramework.Contains('netstandard'))" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="System.ComponentModel.Annotations" />
-    <PackageReference Include="System.ComponentModel.Usings" />
-    <PackageReference Include="Dgmjr.Primitives" />
-    <PackageReference Include="System.Usings" />
-    <PackageReference Include="Humanizer.Core" />
     <PackageReference Include="Telegram.Constants" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" />
-    <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
     <ProjectReference Include="../Claims/Dgmjr.Identity.Claims.csproj" />
-    <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" />
+    <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.AspNetCore.Hashids" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="SendPulse.Telegram" />
-    <PackageReference Include="SendPulse.Identity" />
-    <PackageReference Include="Telegram.Identity" />
-    <PackageReference Include="Telegram.Bot.Extensions" />
     <PackageReference Include="Dgmjr.Abstractions" />
-    <PackageReference Include="Dgmjr.ComponentModel" Aliases="DgmjrCm" />
     <PackageReference Include="Dgmjr.AspNetCore.Hashids" />
-    <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.AspNetCore.Hashids" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.ComponentModel" Aliases="DgmjrCm" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Enumerations.Enumeration" ExcludeAssets="ContentFiles" />
-    <SourceGenerator  Include="Dgmjr.Enumerations.CodeGenerator" />
+    <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="SendPulse.Identity" />
+    <PackageReference Include="SendPulse.Telegram" />
+    <PackageReference Include="System.Runtime" />
+    <PackageReference Include="Telegram.Bot.Extensions" />
+    <PackageReference Include="Telegram.Identity" />
     <Reference Include="Dgmjr.ComponentModel" Aliases="DgmjrCm" />
     <Reference Remove="Dgmjr.Enumerations.CodeGenerator" />
+    <SourceGeneratorPackageReference  Include="Dgmjr.Enumerations.CodeGenerator" />
   </ItemGroup>
-
-  <!-- <ItemGroup Condition="'$(BuildFromSource)' == 'true'">
-    <ProjectReference Include="../../../AspNetCore/src/Hashids/Dgmjr.AspNetCore.Hashids.csproj" />
-    <ProjectReference Include="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.csproj" ExcludeAssets="ContentFiles" />
-    <ProjectReference Include="../../../Identity/src/Abstractions/Dgmjr.Identity.Abstractions.csproj" />
-    <ProjectReference Include="../../../Identity/src/EfCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
-    <ProjectReference Include="../../../Identity/src/Claims/Dgmjr.Identity.Claims.csproj" />
-    <ProjectReference Include="../../../SendPulse/src/Data/SendPulse.Data.csproj" />
-    <ProjectReference Include="../../../SendPulse/src/Telegram/SendPulse.Telegram.csproj" />
-    <ProjectReference Include="../../../Telegram/src/Identity/Telegram.Identity.csproj" />
-    <ProjectReference Include="../../../Telegram/src/Telegram/Telegram.Bot.Extensions.csproj" />
-    <ProjectReference Include="../../../Types/src/Core/Abstractions/Dgmjr.Abstractions.csproj" />
-    <ProjectReference Include="../../../Types/src/Primitives/Dgmjr.Primitives.csproj" ExcludeAssets="ContentFiles" />
-    <ProjectReference Include="../../../Types/src/Enumerations/Enumeration/Abstractions/Dgmjr.Enumerations.Abstractions.csproj" ExcludeAssets="ContentFiles" />
-    <ProjectReference Include="../../../Types/src/Enumerations/Enumeration/Dgmjr.Enumerations.Enumeration.csproj" ExcludeAssets="ContentFiles" />
-    <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" />
-    <ProjectReference Include="../Claims/Dgmjr.Identity.Claims.csproj" />    
-    <ProjectReference Include="../../../Types/src/Enumerations/CodeGeneration/Dgmjr.Enumerations.CodeGeneration.csproj" IncludeAssets="Analyzers;Build" PrivateAssets="All" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(BuildFromSource)' != 'true'">
-    <PackageReference Include="Dgmjr.Abstractions" />
-    <PackageReference Include="Dgmjr.AspNetCore.Hashids" />
-    <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Enumerations.Enumeration" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Identity.Abstractions" />
-    <PackageReference Include="Dgmjr.Identity.Abstractions" />
-    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore.Constants" />
-    <PackageReference Include="Dgmjr.Identity.Claims" IncludeAssets="Compile;Build" ExcludeAssets="ContentFiles" />    
-    <PackageReference Include="Dgmjr.System.Extensions" IncludeAssets="ContentFiles" ExcludeAssets="Lib;Runtime;Native;Analyzers;Compile" PrivateAssets="All" />
-    <PackageReference Include="Dgmjr.Tuples" />
-    <PackageReference Include="SendPulse.Data" />
-    <PackageReference Include="SendPulse.Telegram" />
-    <PackageReference Include="System.All.Usings" />
-    <PackageReference Include="System.Security.Usings" />
-    <PackageReference Include="Telegram.Bot.Extensions" />
-    <PackageReference Include="Telegram.Identity" />
-    <PackageReference Include="Dgmjr.Enumerations.CodeGeneration" IncludeAssets="Analyzers;Build" PrivateAssets="All" />
-  </ItemGroup> -->
-  <ItemGroup>
-    <!-- <Compile Include="../../../Types/src/Extensions/System/TryCreatrUriExtensions.cs" /> -->
-  </ItemGroup>
-  <!-- <Import Project="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.props" />
-  <Import Project="../Claims/Dgmjr.Identity.Claims.props" /> -->
   <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" />
+  <Import Project="../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.props" />
+  <Import Project="../Claims/ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.props" />
+  <Import Project="../Abstractions/Dgmjr.Identity.Abstractions.props" />
   <!-- <Import Project="../../../Telegram/src/Identity/Telegram.Identity.props" /> -->
 </Project>

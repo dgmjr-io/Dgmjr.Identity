@@ -32,7 +32,7 @@
     <PackageReference Include="Dgmjr.System.Extensions" />
     <PackageReference Include="Dgmjr.Primitives" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
-    <SourceGenerator  Include="Dgmjr.InterfaceGenerator" />
+    <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Build;Analyzers;Compile" PrivateAssets="All" ExcludeAssets="ContentFiles" />
   </ItemGroup>
   <Import Project="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.props" />
 </Project>

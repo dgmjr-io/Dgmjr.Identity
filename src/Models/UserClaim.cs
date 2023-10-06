@@ -1,5 +1,5 @@
 /*
- * UserClaim.cs
+ * ApplicationUserClaim.cs
  *
  *   Created: 2022-12-01-04:59:06
  *   Modified: 2022-12-03-01:07:46
@@ -24,20 +24,16 @@ namespace Dgmjr.Identity.Models;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 using static Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant;
 
-// using DgmjrCt = Dgmjr.Identity.ClaimTypes;
-// using DgmjrCvt = Dgmjr.Identity.ClaimValueTypes;
-
-
 [
-    Table(TableNames.UserClaim, Schema = IdSchema),
+    Table(UserClaim, Schema = IdSchema),
     DebuggerDisplay("User Claim ({Id} - User ID: {UserId}, {Type}: {Value})")
 ]
-[JSerializable(typeof(UserClaim))]
-public class UserClaim : Microsoft.AspNetCore.Identity.IdentityUserClaim<long>, IIdentifiable<int> //, IEntityClaim//, IUserAssociatedEntity//, IHaveTimestamps
+[JSerializable(typeof(ApplicationUserClaim))]
+public class ApplicationUserClaim : IIdentityUserClaim<long>, IIdentifiable<int> //, IEntityClaim//, IUserAssociatedEntity//, IHaveTimestamps
 {
-    public UserClaim() { }
+    public ApplicationUserClaim() { }
 
-    public UserClaim(
+    public ApplicationUserClaim(
         int userId,
         string claimTypeName,
         string claimValue,
@@ -98,7 +94,6 @@ public class UserClaim : Microsoft.AspNetCore.Identity.IdentityUserClaim<long>, 
         set => base.UserId = int.Parse(Properties[nameof(UserId)] = value.ToString());
     }
 
-    // [ForeignKey(nameof(UserId))]
     public virtual User? User { get; set; }
 
     [
@@ -184,19 +179,19 @@ public class UserClaim : Microsoft.AspNetCore.Identity.IdentityUserClaim<long>, 
         return claim;
     }
 
-    public static UserClaim FromClaim(int userId, C c)
+    public static ApplicationUserClaim FromClaim(int userId, C c)
     {
-        var userClaim = new UserClaim();
+        var userClaim = new ApplicationUserClaim();
         userClaim.InitializeFromClaim(c);
         userClaim.UserId = userId;
         return userClaim;
     }
 
-    public static implicit operator C(UserClaim claim) => claim.ToClaim();
+    public static implicit operator C(ApplicationUserClaim claim) => claim.ToClaim();
 
-    public static implicit operator UserClaim(C claim)
+    public static implicit operator ApplicationUserClaim(C claim)
     {
-        var newClaim = new UserClaim();
+        var newClaim = new ApplicationUserClaim();
         newClaim.InitializeFromClaim(claim);
         return newClaim;
     }
@@ -214,25 +209,25 @@ public record struct ClaimCreateDto
 
     /// <summary>The value of the claim</summary>
     /// <example>Justin</example>
-    /// <remarks>See <see href="https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claim.value?view=net-7.0">Claim.Value</see> for more information.</remarks>
+    /// <remarks>See <see href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">Claim.Value</see> for more information.</remarks>
     /// <default />
     public string Value { get; set; } = string.Empty;
 
     /// <summary>The type of the claim</summary>
     /// <example>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name</example>
-    /// <remarks>See <see href="https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claimtypes?view=net-7.0">ClaimTypes</see> for more information.</remarks>
+    /// <remarks>See <see href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">ClaimTypes</see> for more information.</remarks>
     /// <default>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name</default>
     public uri? Type { get; set; } = DgmjrCt.Unknown;
 
     /// <summary>The issuer of the claim</summary>
     /// <example>https://Dgmjr.com</example>
-    /// <remarks>See <see href="https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claim.issuer?view=net-7.0">Claim.Issuer</see> for more information.</remarks>
+    /// <remarks>See <see href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">Claim.Issuer</see> for more information.</remarks>
     /// <default>https://Dgmjr.com</default>
     public uri? Issuer { get; set; } = DgmjrCt.BaseUri;
 
     /// <summary>The type of the claim's value</summary>
     /// <example>http://www.w3.org/2001/XMLSchema#string</example>
-    /// <remarks>See <see href="https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetype?view=net-7.0">ClaimValueType</see> for more information.</remarks>
+    /// <remarks>See <see href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">ClaimValueType</see> for more information.</remarks>
     /// <default>http://www.w3.org/2001/XMLSchema#string</default>
     public uri? ValueType { get; set; } = DgmjrCvt.String;
 }

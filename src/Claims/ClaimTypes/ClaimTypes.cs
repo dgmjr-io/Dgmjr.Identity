@@ -33,7 +33,7 @@ public record class Actor : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -51,7 +51,7 @@ public record class Anonymous : ClaimType, IClaimType, IIdentityComponent
     private Anonymous() { }
 
     /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/anonymous</value>
-    /// public const string UriString = ClaimType2005Namespace + "/anonymous";
+    public const string UriString = ClaimType2005Namespace + "/anonymous";
 
     /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:authenticated</value>
     public const string ShortUriString = ShortClaimType2005Namespace + ":" + "anonymous";
@@ -63,7 +63,7 @@ public record class Anonymous : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -93,7 +93,7 @@ public record class Authenticated : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -124,7 +124,7 @@ public record class AuthenticationInstant : ClaimType, IClaimType, IIdentityComp
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -154,7 +154,7 @@ public record class AuthenticationMethod : ClaimType, IClaimType, IIdentityCompo
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -185,7 +185,7 @@ public record class AuthorizationDecision : ClaimType, IClaimType, IIdentityComp
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -215,7 +215,7 @@ public record class CookiePath : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -245,7 +245,7 @@ public record class Country : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -275,7 +275,7 @@ public record class DateOfBirth : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -306,7 +306,7 @@ public record class DenyOnlyPrimaryGroupSid : ClaimType, IClaimType, IIdentityCo
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -336,7 +336,7 @@ public record class DenyOnlyPrimarySid : ClaimType, IClaimType, IIdentityCompone
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -366,7 +366,7 @@ public record class DenyOnlySid : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -397,7 +397,7 @@ public record class DenyOnlyWindowsDeviceGroup : ClaimType, IClaimType, IIdentit
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -427,7 +427,7 @@ public record class Dns : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -457,7 +457,7 @@ public record class Dsa : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -481,13 +481,13 @@ public record class Email : ClaimType, IClaimType, IIdentityComponent
     public const string ShortUriString = ShortClaimType2005Namespace + ":" + "emailaddress";
 
     /// <value>Email</value>
-    public const string Name = mnameof(Email);
+    public const string Name = nameof(Email);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -511,13 +511,13 @@ public record class Expiration : ClaimType, IClaimType, IIdentityComponent
     public const string ShortUriString = ShortClaimType2008Namespace + ":" + "expiration";
 
     /// <value>Expiration</value>
-    public const string Name = mnameof(Expiration);
+    public const string Name = nameof(Expiration);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -547,7 +547,7 @@ public record class Expired : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -577,7 +577,7 @@ public record class Gender : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -607,7 +607,7 @@ public record class GivenName : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -637,7 +637,7 @@ public record class GroupSid : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -667,7 +667,7 @@ public record class Hash : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -697,7 +697,7 @@ public record class HomePhone : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -727,7 +727,7 @@ public record class IsPersistent : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -757,7 +757,7 @@ public record class Locality : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -787,7 +787,7 @@ public record class MobilePhone : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -815,7 +815,7 @@ public record class Name : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => _Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -845,7 +845,7 @@ public record class NameIdentifier : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -875,7 +875,7 @@ public record class OtherPhone : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -905,7 +905,7 @@ public record class PostalCode : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -935,7 +935,7 @@ public record class PrimaryGroupSid : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -965,7 +965,7 @@ public record class PrimarySid : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -995,7 +995,7 @@ public record class Role : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1025,7 +1025,7 @@ public record class Rsa : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1055,7 +1055,7 @@ public record class SerialNumber : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1085,7 +1085,7 @@ public record class Sid : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1115,7 +1115,7 @@ public record class Spn : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1145,7 +1145,7 @@ public record class StateOrProvince : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1175,7 +1175,7 @@ public record class StreetAddress : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1205,7 +1205,7 @@ public record class Surname : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1235,7 +1235,7 @@ public record class System : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1270,7 +1270,7 @@ public record class Thumbprint : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1300,7 +1300,7 @@ public record class Upn : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1310,7 +1310,7 @@ public record class Upn : ClaimType, IClaimType, IIdentityComponent
 }
 
 /// <summary>The URI for a claim that specifies a URI, </summary>
-/// <value><inheritdoc cref="Uri.UriString" path="/value" /></value>
+/// <value><inheritdoc cref="_Uri.UriString" path="/value" /></value>
 public record class _Uri : ClaimType, IClaimType, IIdentityComponent
 {
     public static readonly IClaimType Instance = new _Uri();
@@ -1330,7 +1330,7 @@ public record class _Uri : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1360,7 +1360,7 @@ public record class UserData : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1390,7 +1390,7 @@ public record class Version : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1420,7 +1420,7 @@ public record class Webpage : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1450,7 +1450,7 @@ public record class WindowsAccountName : ClaimType, IClaimType, IIdentityCompone
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1480,7 +1480,7 @@ public record class WindowsDeviceClaim : ClaimType, IClaimType, IIdentityCompone
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1510,7 +1510,7 @@ public record class WindowsDeviceGroup : ClaimType, IClaimType, IIdentityCompone
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1540,7 +1540,7 @@ public record class WindowsFqbnVersion : ClaimType, IClaimType, IIdentityCompone
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1570,7 +1570,7 @@ public record class WindowsSubAuthority : ClaimType, IClaimType, IIdentityCompon
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1600,7 +1600,7 @@ public record class WindowsUserClaim : ClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1631,7 +1631,7 @@ public record class X500DistinguishedName : ClaimType, IClaimType, IIdentityComp
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;

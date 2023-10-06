@@ -14,12 +14,13 @@ namespace Dgmjr.Identity.Abstractions;
 
 using static Dgmjr.EntityFrameworkCore.Constants.DbTypeNames;
 
-public interface IEntityClaim<TEntityClaimType>
-    where TEntityClaimType : IEntityClaim<TEntityClaimType>
+public interface IEntityClaim<TSelf, TKey> : IIdentifiable<TKey>
+    where TSelf : IEntityClaim<TSelf, TKey>
+    where TKey : IEquatable<TKey>, IComparable
 {
-    long EntityId { get; set; }
-    string? ClaimValue { get; set; }
-    string? ClaimType { get; set; }
+    TKey EntityId { get; set; }
+    string? Value { get; set; }
+
     uri? Type { get; set; }
     uri? ValueType { get; set; }
     uri? Issuer { get; set; }
@@ -27,4 +28,5 @@ public interface IEntityClaim<TEntityClaimType>
     IStringDictionary Properties { get; set; }
 
     C ToClaim();
+    void InitializeFromClaim(C? claim);
 }

@@ -1,50 +1,40 @@
 <!--
  * Dgmjr.Identity.Models.props
- * 
+ *
  *   Created: 2023-03-19-03:05:09
  *   Modified: 2023-03-25-12:49:57
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
-
-<!--
- * Dgmjr.Identity.Models copy.csproj
- * 
- *   Created: 2022-12-01-05:08:42
- *   Modified: 2022-12-01-05:08:42
- * 
- *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
- *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
- *      License: MIT (https://opensource.org/licenses/MIT)
--->
-
 <Project>
   <ItemGroup>
 
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.All.Usings" />
-    <PackageReference Include="System.ComponentModel.Usings" />
+    <UsingsPackageReference Include="System.All.Usings" />
+    <UsingsPackageReference Include="System.ComponentModel.Usings" />
+    <UsingsPackageReference Include="System.ComponentModel.Usings" />
+    <UsingsPackageReference Include="System.Usings" />
   </ItemGroup>
   <ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" />
 		<PackageReference Include="Microsoft.Extensions.Identity.Core" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
   </ItemGroup>
   <ItemGroup>
-    <Using Include="Dgmjr.Identity" Alias="DgmjrId" />
     <Using Include="Dgmjr.Abstractions" />
     <Using Include="Dgmjr.EntityFrameworkCore.Constants.DbTypeNames" Static="true" />
     <Using Include="Dgmjr.Enumerations.Abstractions" />
+    <Using Include="Dgmjr.Identity.Abstractions" />
     <Using Include="Dgmjr.Identity.ClaimTypeUris" Alias="DgmjrCt" />
     <Using Include="Dgmjr.Identity.ClaimValueTypeUris" Alias="DgmjrCvt" />
     <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames" Static="true" />
     <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants" Static="true" />
     <Using Include="Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant" Static="true" />
+    <Using Include="Dgmjr.Identity" Alias="DgmjrId" />
     <Using Include="Microsoft.AspNetCore.Identity" />
     <Using Include="Microsoft.AspNetCore" />
     <Using Include="System.ComponentModel.DataAnnotations.Schema" />

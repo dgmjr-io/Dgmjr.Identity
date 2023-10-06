@@ -17,7 +17,7 @@ public partial record class ClaimType : IdentityComponent, IClaimType
 
     string IIdentityComponent.Namespace => "about";
     string IIdentityComponent.Name => "blank";
-    string IIdentityComponent.UriString => $"{((IIdentityComponent)this).Namespace}";
+    string IHaveAUriString.UriString => $"{((IIdentityComponent)this).Namespace}";
     string IIdentityComponent.ShortNamespace => "about";
     string IIdentityComponent.ShortUriString => "about:blank";
     public virtual uri Uri => ((IIdentityComponent)this).UriString;

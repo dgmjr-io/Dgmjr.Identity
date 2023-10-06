@@ -28,9 +28,8 @@ public record class UnknownLoginProvider : OtherClaimType, IClaimType, IIdentity
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
-    /// <value><inheritdoc cref="UriString" path="/value" /></value>
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
 }
@@ -53,7 +52,7 @@ public record class LoginProviderPattern : OtherClaimType, IClaimType, IIdentity
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
@@ -77,7 +76,7 @@ public record class SecurityStamp : OtherClaimType, IClaimType, IIdentityCompone
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
@@ -101,7 +100,7 @@ public record class GenericClaimTypePattern : OtherClaimType, IClaimType, IIdent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
@@ -125,7 +124,7 @@ public record class GenericClaimsIssuerTypePattern : OtherClaimType, IClaimType
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
@@ -149,13 +148,13 @@ public record class Custom : OtherClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;
 }
 
-/// <summary>The URI for a generic claims value type</summary>
+/// <summary>The URI for an unknown claim value type</summary>
 /// <value>urn:identity:claim:unknown</value>
 public record class Unknown : OtherClaimType, IClaimType, IIdentityComponent
 {
@@ -173,7 +172,7 @@ public record class Unknown : OtherClaimType, IClaimType, IIdentityComponent
     string IIdentityComponent.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IIdentityComponent.UriString => UriString;
+    string IHaveAUriString.UriString => UriString;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     public override uri Uri => UriString;

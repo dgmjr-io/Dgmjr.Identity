@@ -1,11 +1,11 @@
 <!--
  * Dgmjr.Identity.Claims.props
- * 
+ *
  *   Created: 2023-03-19-03:04:51
  *   Modified: 2023-03-25-12:51:28
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
@@ -34,7 +34,7 @@
     </ItemGroup>
     <ItemGroup>
         <Using Include="Dgmjr.Identity" Alias="DgmjrId" />
-        <Using Include="Dgmjr.Identity.ClaimTypeUris" Alias="DgmjrCt" />
+        <!-- <Using Include="Dgmjr.Identity.ClaimTypeUris" Alias="DgmjrCt" /> -->
         <Using Include="Dgmjr.Identity.ClaimValueTypeUris" Alias="DgmjrCvt" />
         <!-- <Using Include="Dgmjr.Identity.Roles" Alias="DgmjrR" /> -->
         <!-- <Using Include="Dgmjr.Identity.Uris" Alias="JwcIdUris" />
