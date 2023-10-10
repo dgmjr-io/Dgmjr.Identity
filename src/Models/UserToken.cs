@@ -12,60 +12,44 @@
 #pragma warning disable
 namespace Dgmjr.Identity.Models;
 
-using Dgmjr.Identity.Abstractions;
-using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
-using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
+using Dgmjr.Identity.Models.Enums;
+using UserLoginProviderEnum = Dgmjr.Identity.Models.Enums.UserLoginProvider;
 
-[
-    Table(TableNames.UserToken, Schema = IdSchema),
-    DebuggerDisplay("User Token ({UserId} - {LoginProvider}, Created: {DateTimeCreated})")
-]
-[JSerializable(typeof(UserToken))]
-public class UserToken : IdentityUserToken<long>, IIdentifiable<int>, IUserAssociatedEntity //, IUserAssociatedEntity//, IUserLoginThing//, IHaveTimestamps
+using Dgmjr.Identity.Abstractions;
+
+using Microsoft.EntityFrameworkCore.Internal;
+
+[Table(TblUserToken, Schema = IdentitySchema.ShortName)]
+[DebuggerDisplay("User Token ({UserId} - {LoginProvider}, Created: {DateTimeCreated})")]
+public class ApplicationUserToken : IIdentityUserToken<long>
 {
     [Key, DbGen(DbGen.Identity)]
-    public virtual int Id { get; set; } //= NewId;
+    public virtual long Id { get; set; } //= NewId;
 
-    [Column(nameof(UserId))]
-    public override long UserId
-    {
-        get => base.UserId;
-        set => base.UserId = value;
-    }
+    [Column]
+    public virtual long UserId { get; set; }
 
     //[ForeignKey(ColUserId)]
-    public virtual User User { get; set; }
+    public virtual ApplicationUser User { get; set; }
 
-    [Column("ProviderName")]
-    public override string LoginProvider
+    [Column]
+    public virtual int LoginProviderId
     {
-        get => base.LoginProvider;
-        set => base.LoginProvider = value;
+        get => ((IIdentifiable<int>)Provider).Id;
+        set => Provider = ApplicationUserLoginProvider.FromId(value);
     }
 
     //[ForeignKey(nameof(ProviderId)), BackingField("_provider")]
-    protected virtual UserLoginProvider Provider
-    {
-        get => UserLoginProvider.Parse(LoginProvider, null);
-        set => base.LoginProvider = value.DisplayName;
-    }
+    public virtual IApplicationUserLoginProvider Provider { get; set; }
 
     [Column(nameof(Name)), StringLength(64)]
-    public override string Name
-    {
-        get => base.Name;
-        set => base.Name = value;
-    }
+    public virtual string Name { get; set; }
 
     [Column(nameof(Value)), StringLength(256)]
-    public override string Value
-    {
-        get => base.Value;
-        set => base.Value = value;
-    }
+    public virtual string Value { get; set; }
 
     [Column(nameof(Created))]
-    public virtual DateTime Created { get; set; } = Now;
+    public virtual DateTimeOffset Created { get; set; } = DateTimeOffset.Now;
 
     //         public Timestamp Created { get; set; }
     //         public Timestamp LastUpdated { get; set; }

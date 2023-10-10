@@ -13,26 +13,30 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <!-- <TargetFramework>net7.0</TargetFramework> -->
   </PropertyGroup>
 
   <ItemGroup Condition="true">
-    <PackageReference Include="libphonenumber-csharp" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-    <PackageReference Include="System.Collections.Generic.Usings" />
-    <PackageReference Include="System.ComponentModel.Usings" />
-    <PackageReference Include="System.Text.Json.Usings" />
-    <PackageReference Include="System.Text.Json" />
-    <PackageReference Include="System.Security.Usings" />
-    <PackageReference Include="Telegram.Bot.Extensions" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
+    <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="System.Text.Json" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Telegram.Bot.Extensions" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Telegram.Constants" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="System.Security.Claims" />
 
-    <PackageReference Include="Dgmjr.Abstractions" />
-    <PackageReference Include="Dgmjr.System.Extensions" />
-    <PackageReference Include="Dgmjr.Primitives" />
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
-    <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Build;Analyzers;Compile" PrivateAssets="All" ExcludeAssets="ContentFiles" />
+    <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
+
+    <SourceGeneratorPackageReference Include="Dgmjr.InterfaceGenerator" />
+
+    <UsingsPackageReference Include="System.Collections.Generic.Usings" />
+    <UsingsPackageReference Include="System.ComponentModel.Usings" />
+    <UsingsPackageReference Include="System.Security.Usings" />
+    <UsingsPackageReference Include="System.Text.Json.Usings" />
   </ItemGroup>
   <Import Project="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.props" />
+  <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" />
 </Project>

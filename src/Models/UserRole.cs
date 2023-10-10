@@ -15,37 +15,23 @@ namespace Dgmjr.Identity.Models;
 using Abstractions;
 using Dgmjr.Abstractions;
 using Microsoft.AspNetCore.Identity;
-using static Dgmjr.EntityFrameworkCore.Constants.DbTypeNames;
-using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
-using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 
 /// <summary>A join entity between <see cref="User" />s and <see cref="Role" />s</summary>
-[
-    Table(TableNames.UserRole, Schema = IdSchema),
-    DebuggerDisplay("User Role ({Id} - User ID: {UserId}, Role: {Role})")
-]
-[JSerializable(typeof(UserRole))]
-public class UserRole : IdentityUserRole<long>, IIdentifiable<int> //, IUserAssociatedEntity//, IHaveTimestamps
+[Table(Constants.TableNames.TblUserRole, Schema = IdentitySchema.ShortName)]
+[DebuggerDisplay("User Role ({Id} - User ID: {UserId}, Role: {Role})")]
+public class ApplicationUserRole : IIdentityUserRole<long>
 {
-    [Key, DbGen(DbGen.None), Column(nameof(Id), TypeName = DbTypeInt)]
-    public virtual int Id { get; set; } //= NewId;
+    [Key, DbGen(DbGen.Identity), Column(TypeName = DbTypeBigInt.ShortName)]
+    public virtual long Id { get; set; }
 
-    [Column(nameof(RoleId), Order = 2, TypeName = DbTypeInt)]
-    public override long RoleId
-    {
-        get => base.RoleId;
-        set => base.RoleId = value;
-    }
+    [Column(nameof(RoleId), Order = 2, TypeName = DbTypeBigInt.ShortName)]
+    public virtual long RoleId { get; set; }
 
-    [Column(nameof(UserId), Order = 1, TypeName = DbTypeInt)]
-    public override long UserId
-    {
-        get => base.UserId;
-        set => base.UserId = value;
-    }
+    [Column(nameof(UserId), Order = 1, TypeName = DbTypeBigInt.ShortName)]
+    public virtual long UserId { get; set; }
 
-    public User User { get; set; }
-    public Role Role { get; set; }
+    public ApplicationUser User { get; set; }
+    public ApplicationRole Role { get; set; }
 
     //[ForeignKey(ColUserId)]
     //public virtual BackroomUser User { get; set; }
@@ -59,7 +45,7 @@ public class UserRole : IdentityUserRole<long>, IIdentifiable<int> //, IUserAsso
     //         public Timestamp? Deleted { get; set; }
 }
 
-public struct UserRoleInsertDto
+public struct ApplicationUserUserRoleInsertDto
 {
     public long UserId { get; set; }
     public long RoleId { get; set; }

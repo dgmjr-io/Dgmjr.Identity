@@ -1,20 +1,20 @@
 ---
-author: 
-  - dgmjr
+author:
+- dgmjr
 title: Commmonly-Assigned Roles
 lastmod: 2023-02-15-02:19:27
 created: 2023-02-15-02:19:27
 license: MIT
-keywords: 
-  - dgmjr
-  - roles
-tags: 
-  - dgmjr
-  - roles
-categories: 
-  - dgmjr
-  - admin
-  - roles
+keywords:
+- dgmjr
+- roles
+tags:
+- dgmjr
+- roles
+categories:
+- dgmjr
+- admin
+- roles
 ---
 
 # Commmonly-Assigned Roles

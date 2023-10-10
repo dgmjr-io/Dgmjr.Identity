@@ -10,15 +10,23 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 #pragma warning disable
+using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
+
+using Newtonsoft.Json.Linq;
+
+using Telegram.Identity.ClaimTypes;
+
 namespace Dgmjr.Identity.Models;
 
-public class ClaimType : IIdentifiable<long>
+public class ApplicationClaimType : IIdentifiable<long>
 {
-    public long Id { get; set; }
+    [Key, DbGen(DbGen.Identity)]
+    public virtual long Id { get; set; }
+    public virtual uri? Uri { get; set; }
+    public virtual string Name { get; set; }
 
-    public System.uri? Uri { get; set; }
-
-    public virtual Collection<User> Users { get; set; } = new Collection<User>();
+    public virtual ICollection<ApplicationUser> Users { get; set; } =
+        new Collection<ApplicationUser>();
     public virtual Collection<ApplicationRole> Roles { get; set; } =
         new Collection<ApplicationRole>();
 }

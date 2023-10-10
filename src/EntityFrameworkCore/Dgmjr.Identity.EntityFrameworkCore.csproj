@@ -12,25 +12,25 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <!-- <TargetFramework>net7.0</TargetFramework> -->
   </PropertyGroup>
-    <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore" />
-      <PackageReference Include="Microsoft.Extensions.Identity.Core" />
-      <PackageReference Include="System.Collections.Generic.Usings" />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" />
+    <PackageReference Include="System.Collections.Generic.Usings" />
   </ItemGroup>
   <ItemGroup Condition="true">
-    <SourceGenerator Include="Dgmjr.InterfaceGenerator" />
+    <SourceGeneratorPackageReference Include="Dgmjr.InterfaceGenerator" />
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.System.Extensions" />
     <PackageReference Include="Dgmjr.AspNetCore.Hashids" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Extensions" />
-    <PackageReference Include="Dgmjr.Primitives" IncludeAssets="Compile" ExcludeAssets="Native;Analyzers;Runtime;Build" CopyLocal="false" />
+    <PackageReference Include="Dgmjr.Primitives" />
     <PackageReference Include="Telegram.Identity" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" />
@@ -39,25 +39,25 @@
     <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" />
     <ProjectReference Include="../Constants/Dgmjr.Identity.Constants.csproj" />
     <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
-    <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />    
+    <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />
   </ItemGroup>
   <ItemGroup Condition="false">
     <!-- <ProjectReference Include="../../../SendPulse/src/Data/SendPulse.Data.csproj" />
     <ProjectReference Include="../../../Types/src/Primitives/Dgmjr.Primitives.csproj" /> -->
     <!-- <ProjectReference Include="../Constants/Dgmjr.Identity.Constants.csproj" /> -->
-    <ProjectReference Include="../../../AspNetCore/src/Hashids/Dgmjr.AspNetCore.Hashids.csproj" />
-    <ProjectReference Include="../../../EntityFrameworkCore/src/Abstractions/Dgmjr.EntityFrameworkCore.Abstractions.csproj" />
-    <ProjectReference Include="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.csproj" />
-    <ProjectReference Include="../../../EntityFrameworkCore/src/Extensions/Dgmjr.EntityFrameworkCore.Extensions.csproj" />
-    <ProjectReference Include="../../../EntityFrameworkCore/src/Extensions/Dgmjr.EntityFrameworkCore.Extensions.csproj" />
-    <ProjectReference Include="../../../SendPulse/src/Data/SendPulse.Data.csproj" />
+    <!-- <ProjectReference Include="../../../AspNetCore/src/Hashids/Dgmjr.AspNetCore.Hashids.csproj" /> -->
+    <!-- <ProjectReference Include="../../../EntityFrameworkCore/src/Abstractions/Dgmjr.EntityFrameworkCore.Abstractions.csproj" />
+    <ProjectReference Include="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.csproj" /> -->
+    <!-- <ProjectReference Include="../../../EntityFrameworkCore/src/Extensions/Dgmjr.EntityFrameworkCore.Extensions.csproj" /> -->
+    <!-- <ProjectReference Include="../../../EntityFrameworkCore/src/Extensions/Dgmjr.EntityFrameworkCore.Extensions.csproj" /> -->
+    <!-- <ProjectReference Include="../../../SendPulse/src/Data/SendPulse.Data.csproj" />
     <ProjectReference Include="../../../Telegram/src/Identity/Telegram.Identity.csproj" />
     <ProjectReference Include="../../../Types/src/Core/Abstractions/Dgmjr.Abstractions.csproj" />
     <ProjectReference Include="../../../Types/src/Primitives/Dgmjr.Primitives.csproj" />
     <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" />
     <ProjectReference Include="../Constants/Dgmjr.Identity.Constants.csproj" />
     <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
-    <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />
+    <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" /> -->
   </ItemGroup>
   <ItemGroup Condition="!true">
 	  <PackageReference Include="System.Collections.Generic.Usings" />

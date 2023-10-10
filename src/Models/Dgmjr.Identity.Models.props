@@ -25,21 +25,48 @@
 		<PackageReference Include="Microsoft.Extensions.Identity.Core" />
   </ItemGroup>
   <ItemGroup>
+    <!-- <Using Include="Dgmjr.Identity.ClaimTypeUris" Alias="DgmjrCt" /> -->
     <Using Include="Dgmjr.Abstractions" />
     <Using Include="Dgmjr.EntityFrameworkCore.Constants.DbTypeNames" Static="true" />
     <Using Include="Dgmjr.Enumerations.Abstractions" />
     <Using Include="Dgmjr.Identity.Abstractions" />
-    <Using Include="Dgmjr.Identity.ClaimTypeUris" Alias="DgmjrCt" />
-    <Using Include="Dgmjr.Identity.ClaimValueTypeUris" Alias="DgmjrCvt" />
+    <Using Include="Dgmjr.Identity.ClaimValueTypes" Alias="DgmjrCvt" />
     <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames" Static="true" />
     <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants" Static="true" />
     <Using Include="Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant" Static="true" />
+    <Using Include="Dgmjr.Identity.Models.Abstractions" />
+    <Using Include="Dgmjr.Identity.Models" />
+    <Using Include="Dgmjr.Identity.Models" Alias="DgmjrIdM" />
     <Using Include="Dgmjr.Identity" Alias="DgmjrId" />
     <Using Include="Microsoft.AspNetCore.Identity" />
     <Using Include="Microsoft.AspNetCore" />
     <Using Include="System.ComponentModel.DataAnnotations.Schema" />
     <Using Include="System.ComponentModel.DataAnnotations" />
+    <Using Include="System.DateTime" />
     <Using Include="System.Diagnostics" />
     <Using Include="System.String" Static="true" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Dgmjr.Identity.Models.ApplicationRole" Alias="AppRole" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUser" Alias="User" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim" Alias="UserClaim" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLogin" Alias="UserLogin" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLoginProvider" Alias="UserLoginProvider" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserRole" Alias="UserRole" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserToken" Alias="UserToken" />
+
+    <Using Include="Dgmjr.Identity.Models.ApplicationUser" Alias="AppUser" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim" Alias="AppUserClaim" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLogin" Alias="AppUserLogin" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLoginProvider" Alias="AppUserLoginProvider" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserRole" Alias="AppUserRole" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserToken" Alias="AppUserToken" />
+
+    <Using Include="Dgmjr.Identity.Models.ApplicationUser" Alias="ApplicationUser" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim" Alias="ApplicationUserClaim" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLogin" Alias="ApplicationUserLogin" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLoginProvider" Alias="ApplicationUserLoginProvider" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserRole" Alias="ApplicationUserRole" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserToken" Alias="ApplicationUserToken" />
   </ItemGroup>
 </Project>

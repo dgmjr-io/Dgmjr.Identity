@@ -15,72 +15,37 @@ namespace Dgmjr.Identity.Models;
 
 using Abstractions;
 using Dgmjr.Abstractions;
+using Dgmjr.Identity.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using static Dgmjr.EntityFrameworkCore.Constants.DbTypeNames;
 using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
 
-[
-    Table(TableNames.UserLogin, Schema = IdSchema),
-    DebuggerDisplay("User Login (Id} - {LoginProvider}: {ProviderKey})")
-]
-[JSerializable(typeof(UserLogin))]
-public class UserLogin
-    : IdentityUserLogin<long>,
-        IIdentifiable<int>,
-        IUserAssociatedEntity,
-        IUserLoginThing //, IHaveTimestamps
+[Table(Constants.TableNames.TblUserLogin, Schema = IdSchema)]
+[DebuggerDisplay("User Login (Id} - {LoginProvider}: {ProviderKey})")]
+[JSerializable(typeof(ApplicationUserLogin))]
+public class ApplicationUserLogin : UserLoginEntity, IIdentityUserLogin<long>
 {
-    [Key, DbGen(DbGen.Identity), Column(nameof(Id), TypeName = DbTypeInt), Required]
-    public virtual int Id { get; set; }
+    [Key, DbGen(DbGen.Identity), Column(nameof(Id), TypeName = DbTypeBigInt), Required]
+    public virtual long Id { get; set; }
 
     [NotMapped]
-    public virtual string ProviderName
-    {
-        get => base.LoginProvider;
-        set => base.LoginProvider = value;
-    }
+    public virtual string ProviderName => Provider.Name;
 
-    public override string ProviderKey
-    {
-        get => base.ProviderKey;
-        set => base.ProviderKey = value;
-    }
+    public virtual string ProviderKey { get; set; }
 
     [NotMapped]
-    public override string ProviderDisplayName
-    {
-        get => Provider.DisplayName;
-        set { }
-    }
+    public virtual string ProviderDisplayName => Provider.DisplayName;
 
     [JIgnore, Newtonsoft.Json.JsonIgnore]
-    public virtual UserLoginProvider Provider
-    {
-        get => UserLoginProvider.Parse(ProviderName, null);
-        set => ProviderName = value.Name;
-    }
+    public virtual IApplicationUserLoginProvider Provider { get; set; }
 
-    public virtual int ProviderId
-    {
-        get => Provider.Id;
-        set
-        {
-            Provider = UserLoginProvider.FromId(value);
-            ProviderName = Provider.Name;
-            ProviderDisplayName = Provider.DisplayName;
-        }
-    }
+    public virtual int ProviderId { get; set; }
 
-    public virtual User User { get; set; }
+    public virtual ApplicationUser User { get; set; }
 
     [Hashids]
-    public override long UserId
-    {
-        get => base.UserId;
-        set => base.UserId = value;
-    }
-
-    public virtual DateTime Created { get; set; } = UtcNow;
+    public virtual long UserId { get; set; }
+    public virtual DateTimeOffset Created { get; set; } = DateTimeOffset.UtcNow;
 }
 
 // public class TelegramUserLogin : BackroomUserLogin

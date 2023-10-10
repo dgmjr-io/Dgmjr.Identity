@@ -17,6 +17,7 @@
   <ItemGroup>
     <PackageReference Include="AspNetCore.Hashids" Condition="!$(TargetFramework.Contains('netstandard'))" />
     <PackageReference Include="AutoMapper" />
+    <PackageReference Include="Dgmjr.ComponentModel" />
     <PackageReference Include="Dgmjr.Primitives" />
     <PackageReference Include="Humanizer.Core" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
@@ -38,7 +39,7 @@
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.AspNetCore.Hashids" />
     <PackageReference Include="Dgmjr.AspNetCore.Hashids" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.ComponentModel" Aliases="DgmjrCm" />
+    <!-- <PackageReference Include="Dgmjr.ComponentModel" Aliases="DgmjrCm" /> -->
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Enumerations.Enumeration" ExcludeAssets="ContentFiles" />
@@ -48,13 +49,14 @@
     <PackageReference Include="System.Runtime" />
     <PackageReference Include="Telegram.Bot.Extensions" />
     <PackageReference Include="Telegram.Identity" />
-    <Reference Include="Dgmjr.ComponentModel" Aliases="DgmjrCm" />
-    <Reference Remove="Dgmjr.Enumerations.CodeGenerator" />
+    <!-- <Reference Include="Dgmjr.ComponentModel" Aliases="DgmjrCm" /> -->
+    <!-- <Reference Remove="Dgmjr.Enumerations.CodeGenerator" /> -->
     <SourceGeneratorPackageReference  Include="Dgmjr.Enumerations.CodeGenerator" />
   </ItemGroup>
   <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" />
+  <Import Project="../Claims/Core/Dgmjr.Identity.Core.props" />
   <Import Project="../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.props" />
-  <Import Project="../Claims/ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.props" />
+  <!-- <Import Project="../Claims/ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.props" /> -->
   <Import Project="../Abstractions/Dgmjr.Identity.Abstractions.props" />
   <!-- <Import Project="../../../Telegram/src/Identity/Telegram.Identity.props" /> -->
 </Project>

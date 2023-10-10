@@ -14,7 +14,7 @@ namespace Dgmjr.Identity.Abstractions;
 
 using Microsoft.AspNetCore.Identity;
 
-public partial interface IIdentityRole<TKey> : IIdentifiable<TKey>
+public partial interface IIdentityRole<TKey> : IIdentityEntity<TKey>
     where TKey : IEquatable<TKey>, IComparable
 {
     /// <summary>

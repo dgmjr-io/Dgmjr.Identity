@@ -19,9 +19,6 @@ using Dgmjr.Identity.Abstractions;
 
 using Microsoft.AspNetCore;
 using static System.Guid;
-using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
-using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
-using static Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant;
 
 [DebuggerDisplay("ApplicationRole ({Id} - {Name} {Uri})")]
 [JSerializable(typeof(ApplicationRole))]
@@ -48,8 +45,10 @@ public partial class ApplicationRole : IIdentityRole<long>
 
     public virtual uri Uri { get; set; }
 
-    public virtual ICollection<User> Users { get; set; } = new Collection<User>();
-    public virtual ICollection<UserRole> UserRoles { get; set; } = new Collection<UserRole>();
+    public virtual ICollection<ApplicationUser> Users { get; set; } =
+        new Collection<ApplicationUser>();
+    public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } =
+        new Collection<ApplicationUserRole>();
 }
 
 public record struct RoleInsertDto(string Name, uri Uri, string Description)

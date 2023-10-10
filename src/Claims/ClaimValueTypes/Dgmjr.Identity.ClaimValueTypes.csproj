@@ -17,12 +17,13 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Dgmjr.Abstractions" />
-    <PackageReference Include="Dgmjr.Identity.Core" />
     <PackageReference Include="Dgmjr.Primitives" />
     <PackageReference Include="Dgmjr.System.Extensions" />
     <PackageReference Include="System.Net.Primitives" />
     <PackageReference Include="System.Security.Cryptography.Xml" />
     <PackageReference Include="System.Security.Principal.Windows" />
+    <ProjectReference Include="../Core/Dgmjr.Identity.Core.csproj" />
     <SourceGeneratorPackageReference Include="Dgmjr.RegexDtoGenerator" />
   </ItemGroup>
+  <Import Project="../Core/Dgmjr.Identity.Core.props" />
 </Project>

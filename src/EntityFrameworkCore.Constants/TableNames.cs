@@ -17,15 +17,15 @@ public static partial class Constants
     public static partial class TableNames
     {
         private const string tbl_ = nameof(tbl_);
-        public const string Bot = tbl_ + nameof(Bot);
-        public const string User = tbl_ + nameof(User);
-        public const string UserLogin = tbl_ + nameof(UserLogin);
-        public const string Role = tbl_ + nameof(Role);
-        public const string UserRole = tbl_ + nameof(UserRole);
-        public const string UserClaim = tbl_ + nameof(UserClaim);
-        public const string RoleClaim = tbl_ + nameof(RoleClaim);
-        public const string UserToken = tbl_ + nameof(UserToken);
-        public const string LoginProvider = tbl_ + nameof(LoginProvider);
-        public const string ClaimType = tbl_ + nameof(ClaimType);
+        public const string TblBot = tbl_ + nameof(TblBot);
+        public const string TblUser = tbl_ + nameof(TblUser);
+        public const string TblUserLogin = tbl_ + nameof(TblUserLogin);
+        public const string TblRole = tbl_ + nameof(TblRole);
+        public const string TblUserRole = tbl_ + nameof(TblUserRole);
+        public const string TblUserClaim = tbl_ + nameof(TblUserClaim);
+        public const string TblRoleClaim = tbl_ + nameof(TblRoleClaim);
+        public const string TblUserToken = tbl_ + nameof(TblUserToken);
+        public const string TblLoginProvider = tbl_ + nameof(TblLoginProvider);
+        public const string TblClaimType = tbl_ + nameof(TblClaimType);
     }
 }

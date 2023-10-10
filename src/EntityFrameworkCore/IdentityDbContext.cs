@@ -19,37 +19,34 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Abstractions;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Telegram.Bot.Types;
-using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
+using static Dgmjr.EntityFrameworkCore.DbSchemas;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
-using IdentityClaimType = Dgmjr.Identity.Models.ClaimType;
 using MSID = Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using RoleModel = Dgmjr.Identity.Models.Role;
-using UserModel = Dgmjr.Identity.Models.User;
-using User = Dgmjr.Identity.Models.User;
 
+[GenerateInterface]
 public class IdentityDbContext
     : MSID.IdentityDbContext<
-        User,
-        RoleModel,
+        ApplicationUser,
+        ApplicationRole,
         long,
-        UserClaim,
-        UserRole,
-        UserLogin,
-        RoleClaim,
-        UserToken
+        ApplicationUserClaim,
+        ApplicationUserRole,
+        ApplicationUserLogin,
+        ApplicationRoleClaim,
+        ApplicationUserToken
     >,
         IIdentityDbContext,
         IDbContext<IIdentityDbContext>
 {
     // public virtual DbSet<UserContactId> UserContactIds { get; set; }
-    public virtual DbSet<Dgmjr.Identity.Models.User> Users { get; set; }
-    public virtual DbSet<RoleModel> Roles { get; set; }
-    public virtual DbSet<Dgmjr.Identity.Models.UserClaim> UserClaims { get; set; }
-    public virtual DbSet<Dgmjr.Identity.Models.UserRole> UserRoles { get; set; }
-    public virtual DbSet<Dgmjr.Identity.Models.UserLogin> UserLogins { get; set; }
-    public virtual DbSet<Dgmjr.Identity.Models.RoleClaim> RoleClaims { get; set; }
-    public virtual DbSet<Dgmjr.Identity.Models.UserToken> UserTokens { get; set; }
+    public virtual DbSet<ApplicationUser> Users { get; set; }
+    public virtual DbSet<ApplicationRole> Roles { get; set; }
+    public virtual DbSet<ApplicationUserClaim> UserClaims { get; set; }
+    public virtual DbSet<ApplicationUserRole> UserRoles { get; set; }
+    public virtual DbSet<ApplicationUserLogin> UserLogins { get; set; }
+    public virtual DbSet<ApplicationRoleClaim> RoleClaims { get; set; }
+    public virtual DbSet<ApplicationUserToken> UserTokens { get; set; }
 
     static string DefaultConnectionStringConfigurationKey => "IdentityDb";
 

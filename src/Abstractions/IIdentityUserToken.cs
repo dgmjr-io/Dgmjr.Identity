@@ -1,13 +1,8 @@
 namespace Dgmjr.Identity.Abstractions;
 
-public interface IIdentityUserToken<TKey> : IUserAssociatedEntity<TKey>
+public interface IIdentityUserToken<TKey> : IUserLoginEntity<TKey>
     where TKey : IEquatable<TKey>, IComparable
 {
-    /// <summary>
-    /// Gets or sets the LoginProvider this token is from.
-    /// </summary>
-    string LoginProvider { get; set; }
-
     /// <summary>
     /// Gets or sets the name of the token.
     /// </summary>

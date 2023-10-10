@@ -1,9 +1,7 @@
 # Dgmjr.Identity.ClaimTypes
 
-```sh
 Defines a set of claim types and claim value types for use with the `Dgmjr.Identity` library.
 
-```
 
 ## Claim Types
 

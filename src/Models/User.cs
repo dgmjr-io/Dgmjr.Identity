@@ -29,12 +29,9 @@ using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 using static Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant;
 
-[
-    Table(TableNames.User, Schema = IdSchema),
-    DebuggerDisplay("User ({UserName} - {Email})") /*, AutoGenerateBuilder*/
-]
-[JSerializable(typeof(User))]
-public class User : IdentityUser<long>, IIdentifiable<long>, IUser, IHaveUserClaims, IHaveClaims //, IHaveTimestamps
+[Table(TblUser, Schema = IdSchema)]
+[DebuggerDisplay("User ({UserName} - {Email})")]
+public class ApplicationUser : IIdentityUser<long>, IHaveClaims<long>, IHaveUserClaims<long>
 {
     public const string DefaultPassword = "Dav1d is really fuckin' sexy!";
     public const string DefaultLockoutEndString = "1/1/1970";
@@ -42,223 +39,129 @@ public class User : IdentityUser<long>, IIdentifiable<long>, IUser, IHaveUserCla
         DefaultLockoutEndString
     );
 
-    public User()
+    public ApplicationUser()
     {
         LockoutEnd = DefaultLockoutEnd;
     }
 
-    /// <summary>Gets or sets the user's Telegram ID 64, a-bit signed integer</summary>
-    /// <example>1234567</example>
-    public override long Id
-    {
-        get => base.Id;
-        set => base.Id = value;
-    }
+    public long Id { get; set; }
 
-    /// <inheritdoc cref="IBasicUserInfo.TelegramUsername" />
     public virtual string? TelegramUsername { get; set; }
 
-    /// <inheritdoc cref="IBasicUserInfo.GivenName" />
+    [StringLength(Account.UsernameMaxLength, MinimumLength = Account.UsernameMinLength)]
+    public virtual string? Username { get; set; }
+
     public virtual string? GivenName { get; set; } = null;
 
-    /// <inheritdoc cref="IBasicUserInfo.Surname" />
     public virtual string? Surname { get; set; } = null;
 
-    /// <inheritdoc cref="IBasicUserInfo.GoByName" />
     public virtual string? GoByName { get; set; } = null;
 
-    /// <summary>The number of times the user tried and failed to authenticate.</summary>
     [DefaultValue(0)]
-    public override int AccessFailedCount { get; set; } = 0;
+    public virtual int AccessFailedCount { get; set; } = 0;
 
-    /// <summary>Gets or sets a flag indicating if the user can be locked out.</summary>
-    /// <value><pre><b>True</b></pre> if the user <b><b>can</b></b> be locked out, <pre><b>false</b></pre> otherwise.</value>
-    [DefaultValue(true), Column("Is" + nameof(LockoutEnabled))]
-    public override bool LockoutEnabled { get; set; } = true;
+    [DefaultValue(true), Column(nameof(IsLockoutEnabled))]
+    public virtual bool IsLockoutEnabled { get; set; } = true;
 
-    /// <summary>Gets or sets a flag indicating if a user has confirmed his telephone number.</summary>
-    /// <value><pre><b>True</b></pre> if the user has confirmed ownership of the <see cref="Email"/> address in his profile, <pre><b>false</b></pre> otherwise.</value>
-    [DefaultValue(false), Column("Is" + nameof(EmailConfirmed))]
-    public override bool EmailConfirmed
-    {
-        get => base.EmailConfirmed;
-        set => base.EmailConfirmed = value;
-    }
+    [DefaultValue(false), Column(nameof(IsEmailConfirmed))]
+    public virtual bool IsEmailConfirmed { get; set; } = false;
 
-    /// <summary>Gets or sets a flag indicating if a user has confirmed his telephone address.</summary>
-    /// <value><pre><b>True</b></pre> if the user has confirmed ownership of the <see cref="PhoneNumber"/> in his profile, <pre><b>false</b></pre> otherwise.</value>
-    [DefaultValue(false), Column("Is" + nameof(PhoneNumberConfirmed))]
-    public override bool PhoneNumberConfirmed
-    {
-        get => base.PhoneNumberConfirmed;
-        set => base.PhoneNumberConfirmed = value;
-    }
+    [DefaultValue(false), Column(nameof(IsPhoneNumberConfirmed))]
+    public virtual bool IsPhoneNumberConfirmed { get; set; } = false;
 
-    /// <summary>Gets or sets a flag indicating if a user has two-factor authentication set up.</summary>
-    /// <value><pre><b>True</b></pre> if the user has two-factor authentication set up,  <pre><b>false</b></pre> otherwise.</value>
-    [DefaultValue(false), Column("Is" + nameof(TwoFactorEnabled))]
-    public override bool TwoFactorEnabled
-    {
-        get => base.TwoFactorEnabled;
-        set => base.TwoFactorEnabled = value;
-    }
+    [DefaultValue(false), Column(nameof(IsTwoFactorEnabled))]
+    public virtual bool IsTwoFactorEnabled { get; set; } = false;
 
-    /// <summary>Gets or sets a flag indicating whether the user has been locked out (either deliberately be an administrator or by exhausting the number of attempts allowed to authenticate.</summary>
-    /// <value><pre>True</pre> if the user <b><i>is locked out</i></b> right now, <pre><b>false</b></pre> otherwise.</value>
-    [DefaultValue(false), Column("Is" + nameof(LockedOut))]
-    public virtual bool LockedOut => LockoutEnabled && LockoutEnd > Now;
+    [DefaultValue(false), Column(nameof(IsLockedOut)), DbGen(DbGen.Computed)]
+    public virtual bool IsLockedOut => IsLockoutEnabled && LockoutEnd > DateTimeOffset.Now;
 
-    /// <inheritdoc cref="IdentityUser{int}.LockoutEnd" />
-    [DefaultValue(typeof(DateTimeOffset), DefaultLockoutEndString)]
-    public override DateTimeOffset? LockoutEnd
-    {
-        get => base.LockoutEnd ??= DateTimeOffset.Parse(DefaultLockoutEndString);
-        set => base.LockoutEnd = value;
-    }
+    [DefaultValue(DefaultLockoutEndString)]
+    public virtual DateTimeOffset? LockoutEnd { get; set; } =
+        DateTimeOffset.Parse(DefaultLockoutEndString);
 
-    /// <summary>Gets or sets the user's email address as a string.</summary>
-    [Column("EmailAddress", TypeName = DbTypeNVarChar), JIgnore, XIgnore]
-    public override string? Email
-    {
-        get => base.Email;
-        set
-        {
-            base.Email = value;
-            base.NormalizedEmail = value?.Normalize();
-        }
-    }
+    public virtual EmailAddress EmailAddress { get; set; }
+
+    public virtual PhoneNumber PhoneNumber { get; set; }
 
     /// <summary>Gets or sets the normalized email address for this user as a string.</summary>
-    [Column(nameof(NormalizedEmailAddress)), JIgnore, XIgnore]
-    public override string? NormalizedEmail
+    public virtual string? NormalizedEmailAddress
     {
-        get => base.NormalizedEmail = Email?.Normalize();
-        set { base.NormalizedEmail = value?.Normalize(); }
-    }
-
-    /// <summary>Gets or sets the user's username (usually the same as the <see cref="TelegramUsername" />)</summary>
-    /// <example>Dgmjr</example>
-    [JProp("username"), XElem("username")]
-    public override string? UserName
-    {
-        get => base.UserName;
+        get => EmailAddress.ToString()?.Normalize(NormalizationForm.FormKD);
         set
-        {
-            base.UserName = value;
-            base.NormalizedUserName = value?.Normalize();
+        { /* no op */
         }
     }
 
-    public override string? NormalizedUserName
+    public virtual string? NormalizedUsername
     {
-        get => base.NormalizedUserName = UserName?.Normalize();
-        set => base.NormalizedUserName = value?.Normalize();
+        get => Username.Normalize(NormalizationForm.FormKD);
+        set
+        { /* no op */
+        }
     }
 
     public override bool Equals(object? obj) =>
-        obj is IBasicUserInfo user && obj is IIdentifiable<int> userId && userId.Id == Id;
+        obj is IIdentityUser<long> user
+        && obj is IIdentifiable<long> userId
+        && userId.Id.Equals(Id);
 
     public override int GetHashCode() => Id.GetHashCode();
 
-    /// <inheritdoc cref="IBasicUserInfo.PhoneNumber" />
-    /// <example>+19185256012</example>
-    [NotMapped]
-    public override string? PhoneNumber { get; set; }
+    public virtual byte[] ConcurrencyStamp { get; set; } = Guid.NewGuid().ToByteArray();
 
-    /// <inheritdoc cref="IUser.ConcurrencyStamp" />
-    [
-        Timestamp,
-        Column(nameof(ConcurrencyStamp), TypeName = DbTypeRowVersion),
-        DbGen(DbGen.Computed),
-        JsonIgnore
-    ]
-    public override string ConcurrencyStamp
-    {
-        get => base.ConcurrencyStamp;
-        set => base.ConcurrencyStamp = value;
-    }
+    public virtual string? PasswordHash { get; set; } = null;
 
-    /// <summary>A hashed and salted representation of the user's password.</summary>
-    [JsonIgnore]
-    public override string? PasswordHash { get; set; } = null;
-
-    /// <summary>A random value that must change whenever a users credentials change (password changed, login removed)</summary>
-
-    [Timestamp, Column(nameof(SecurityStamp), TypeName = DbTypeNVarChar)]
-    public override string? SecurityStamp { get; set; } = NewGuid().ToString();
-
-    /// <summary>Gets or sets the normalized email address for this user as a data structure.</summary>
-    [NotMapped]
-    public virtual EmailAddress? NormalizedEmailAddress
-    {
-        get => NormalizedEmail;
-        set => NormalizedEmail = value;
-    }
-
-    /// <summary>Gets or sets the the user's email address as a data structure.</summary>
-    public virtual EmailAddress? EmailAddress
-    {
-        get => Email;
-        set => Email = value;
-    }
-
-    [NotMapped]
-    public virtual PhoneNumber? Phone
-    {
-        get => PhoneNumber;
-        set => PhoneNumber = value;
-    }
-
-    /// <summary>Gets or sets the user's phone number as a data structure in E.164 format</summary>
-    /// <example>+19185256012</example>
-    PhoneNumber? IBasicUserInfo.PhoneNumber
-    {
-        get => Phone;
-        set => Phone = value;
-    }
+    [Column(TypeName = "uniqueidentifier")]
+    public virtual guid SecurityStamp { get; set; } = NewGuid();
 
     /// <summary>The roles to which the user belongs</summary>
-    public virtual ICollection<Role> Roles { get; set; } = new Collection<Role>();
+    public virtual ICollection<ApplicationRole> Roles { get; set; } =
+        new Collection<ApplicationRole>();
 
     /// <summary>The user's logins for various federated providers</summary>
-    public virtual ICollection<UserLogin> Logins { get; set; } = new Collection<UserLogin>();
+    public virtual ICollection<ApplicationUserLogin> Logins { get; set; } =
+        new Collection<ApplicationUserLogin>();
 
     /// <summary>The user's tokens</summary>
-    public virtual ICollection<UserToken> Tokens { get; set; } = new Collection<UserToken>();
+    public virtual ICollection<ApplicationUserToken> Tokens { get; set; } =
+        new Collection<ApplicationUserToken>();
 
     /// <summary>The user's claims</summary>
-    public virtual ICollection<UserClaim> Claims { get; set; } = new Collection<UserClaim>();
+    public virtual ICollection<ApplicationUserClaim> Claims { get; set; } =
+        new Collection<ApplicationUserClaim>();
 
     // /// <summary>The user's bots by <see cref="UserContactId.UserContactId" /></summary>
     // public virtual ICollection<Bot> Bots { get; set; } = new Collection<Bot>();
     // /// <summary>A join entity between <see cref="User" />s and <see cref="Bot" />s</summary>
     // public virtual ICollection<UserContactId> ContactIds { get; set; } = new Collection<UserContactId>();
-    /// <summary>A join entity between <see cref="User" />s and <see cref="Role" />s</summary>
-    public virtual ICollection<UserRole> UserRoles { get; set; } = new Collection<UserRole>();
-    public virtual ICollection<ClaimType> ClaimTypes { get; set; } = new Collection<ClaimType>();
+    /// <summary>A join entity between <see cref="User" />s and <see cref="TblRole" />s</summary>
+    public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } =
+        new Collection<ApplicationUserRole>();
+    public virtual ICollection<ApplicationClaimType> ClaimTypes { get; set; } =
+        new Collection<ApplicationClaimType>();
 
     //public virtual ICollection<BackroomUserRole> UserRoles { get; set; } = new ObservableCollection<BackroomUserRole>();
 
-    ICollection<C> IHaveClaims.Claims
+    ICollection<C> IHaveClaims<long>.Claims
     {
         get => Claims.Select(c => c.ToClaim()).ToArray();
         set { }
     }
-    ICollection<IUserClaim> IHaveUserClaims.Claims
+    ICollection<IIdentityUserClaim<long>> IHaveUserClaims<long>.Claims
     {
-        get => Claims.OfType<IUserClaim>().ToArray();
+        get => Claims.OfType<IIdentityUserClaim<long>>().ToArray();
         set { }
     }
 }
 
-public record class UserInsertDto : UserDto, IBasicUserInfo
+public record class UserInsertDto : UserDto
 {
     /// <summary>Gets or sets the user's password.</summary>
     /// <example>My$3cre1Pa$$w0rd!</example>
-    public string? Password { get; set; } = User.DefaultPassword;
+    public string? Password { get; set; } = ApplicationUser.DefaultPassword;
 }
 
-public record class UserDto : IBasicUserInfo
+public record class UserDto
 {
     public virtual string? UserName { get; set; }
     public virtual string? GivenName { get; set; }

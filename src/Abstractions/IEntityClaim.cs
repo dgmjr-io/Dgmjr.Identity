@@ -12,9 +12,7 @@
 
 namespace Dgmjr.Identity.Abstractions;
 
-using static Dgmjr.EntityFrameworkCore.Constants.DbTypeNames;
-
-public interface IEntityClaim<TSelf, TKey> : IIdentifiable<TKey>
+public interface IEntityClaim<TSelf, TKey> : IIdentityEntity<TKey>
     where TSelf : IEntityClaim<TSelf, TKey>
     where TKey : IEquatable<TKey>, IComparable
 {

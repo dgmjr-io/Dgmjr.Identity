@@ -1,3 +1,5 @@
+using System.Security.AccessControl;
+
 /*
  * UserLoginProviderEnum.cs
  *
@@ -9,60 +11,71 @@
  *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
+namespace Dgmjr.Identity.Models.Enums;
 
-extern alias DgmjrCm;
-
-namespace Dgmjr.Identity.Models;
-
-using UriAttribute = DgmjrCm.System.ComponentModel.UriAttribute;
-
-[GenerateEnumerationRecordClass("UserLoginProvider", "Dgmjr.Identity.Models")]
-public enum UserLoginProviderEnum
+[GenerateEnumerationRecordClass("ApplicationUserLoginProvider", "Dgmjr.Identity.Models")]
+public enum ApplicationUserLoginProvider
 {
-    [Ur(DgmjrCt.UnknownLoginProvider)]
+    [Uri("https://dgmjr.io/identity/login-provider/none")]
     None = 0,
 
-    [Ur(DgmjrCt.UnknownLoginProvider)]
+    [Uri("https://dgmjr.io/identity/login-provider/any")]
     Any = -1,
 
-    [Ur(global::Telegram.Identity.ClaimTypeNames.BaseUri)]
+    [Uri(TelegramBaseUri)]
     Telegram = 1,
 
-    [Ur(SpId.BaseUri)]
-    SendPulse = 2
+    [Uri(SpId.BaseUri)]
+    SendPulse = 2,
 
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://google.com/")]
-    // Google = 3,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://facebook.com/")]
-    // Facebook = 4,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://twitter.com/")]
-    // Twitter = 5,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://microsoft.com/")]
-    // Microsoft = 6,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://apple.com/")]
-    // Apple = 7,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://github.com/")]
-    // GitHub = 8,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://linkedin.com/")]
-    // LinkedIn = 9,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://instagram.com/")]
-    // Instagram = 10,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://discord.com/")]
-    // Discord = 11,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://twitch.com/")]
-    // Twitch = 12,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://yahoo.com/")]
-    // Yahoo = 13,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://amazon.com/")]
-    // Amazon = 14,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://spotify.com/")]
-    // Spotify = 15,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://reddit.com/")]
-    // Reddit = 16,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://stackoverflow.com/")]
-    // StackOverflow = 17,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://paypal.com/")]
-    // PayPal = 18,
-    // [DgmjrCm.System.ComponentModel.DataAnnotations.UriAttribute("https://stripe.com/")]
-    // Stripe = 19
+    [UriAttribute("https://google.com/")]
+    Google = 3,
+
+    [UriAttribute("https://facebook.com/")]
+    Facebook = 4,
+
+    [UriAttribute("https://twitter.com/")]
+    Twitter = 5,
+
+    [UriAttribute("https://microsoft.com/")]
+    Microsoft = 6,
+
+    [UriAttribute("https://apple.com/")]
+    Apple = 7,
+
+    [UriAttribute("https://github.com/")]
+    GitHub = 8,
+
+    [UriAttribute("https://linkedin.com/")]
+    LinkedIn = 9,
+
+    [UriAttribute("https://instagram.com/")]
+    Instagram = 10,
+
+    [UriAttribute("https://discord.com/")]
+    Discord = 11,
+
+    [UriAttribute("https://twitch.com/")]
+    Twitch = 12,
+
+    [UriAttribute("https://yahoo.com/")]
+    Yahoo = 13,
+
+    [UriAttribute("https://amazon.com/")]
+    Amazon = 14,
+
+    [UriAttribute("https://spotify.com/")]
+    Spotify = 15,
+
+    [UriAttribute("https://reddit.com/")]
+    Reddit = 16,
+
+    [UriAttribute("https://stackoverflow.com/")]
+    StackOverflow = 17,
+
+    [UriAttribute("https://paypal.com/")]
+    PayPal = 18,
+
+    [UriAttribute("https://stripe.com/")]
+    Stripe = 19
 }
