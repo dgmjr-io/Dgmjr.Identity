@@ -173,11 +173,11 @@ public record class Date : ClaimValueType<DateOnly>, IClaimValueType
         };
 }
 
-public record class DateTime : ClaimValueType<System.DateTime>, IClaimValueType
+public record class _DateTime : ClaimValueType<System.DateTime>, IClaimValueType
 {
-    public static readonly IClaimValueType Instance = new DateTime();
+    public static readonly IClaimValueType Instance = new _DateTime();
 
-    private DateTime() { }
+    private _DateTime() { }
 
     /// <value><inheritdoc cref="ClaimValueType.XmlSchemaNamespace" path="/value" />#dateTime</value>
     public const string UriString = XmlSchemaNamespace + "#dateTime";
@@ -197,26 +197,26 @@ public record class DateTime : ClaimValueType<System.DateTime>, IClaimValueType
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     public override uri ShortUri => ShortUriString;
 
-    public static implicit operator System.DateTime(DateTime value) => value.Value;
+    public static implicit operator System.DateTime(_DateTime value) => value.Value;
 
-    public static implicit operator DateTime(System.DateTime value) =>
-        (Instance as DateTime) with
+    public static implicit operator _DateTime(System.DateTime value) =>
+        (Instance as _DateTime) with
         {
             Value = value
         };
 
-    public static implicit operator string(DateTime value) => value.Value.ToLongDateString();
+    public static implicit operator string(_DateTime value) => value.Value.ToLongDateString();
 
-    public static implicit operator DateTime(string value) =>
-        (Instance as DateTime) with
+    public static implicit operator _DateTime(string value) =>
+        (Instance as _DateTime) with
         {
             Value = datetime.Parse(value, CultureInfo.InvariantCulture)
         };
 
-    public static implicit operator long(DateTime value) => value.Value.Ticks;
+    public static implicit operator long(_DateTime value) => value.Value.Ticks;
 
-    public static implicit operator DateTime(long value) =>
-        (Instance as DateTime) with
+    public static implicit operator _DateTime(long value) =>
+        (Instance as _DateTime) with
         {
             Value = new datetime(value)
         };

@@ -1,3 +1,4 @@
+using System.Net.Mime;
 /*
  * ClaimType.cs
  *
@@ -18,15 +19,18 @@ using Telegram.Identity.ClaimTypes;
 
 namespace Dgmjr.Identity.Models;
 
-public class ApplicationClaimType : IIdentifiable<long>
+public class ApplicationClaimType<TKey> : IIdentifiable<TKey>
+    where TKey : IEquatable<TKey>, IComparable
 {
     [Key, DbGen(DbGen.Identity)]
-    public virtual long Id { get; set; }
+    public virtual TKey Id { get; set; }
     public virtual uri? Uri { get; set; }
     public virtual string Name { get; set; }
 
-    public virtual ICollection<ApplicationUser> Users { get; set; } =
-        new Collection<ApplicationUser>();
-    public virtual Collection<ApplicationRole> Roles { get; set; } =
-        new Collection<ApplicationRole>();
+    public virtual ICollection<ApplicationUser<TKey>> Users { get; set; } =
+        new Collection<ApplicationUser<TKey>>();
+    public virtual Collection<ApplicationRole<TKey>> Roles { get; set; } =
+        new Collection<ApplicationRole<TKey>>();
 }
+
+public class ApplicationClaimType : ApplicationClaimType<long> { }

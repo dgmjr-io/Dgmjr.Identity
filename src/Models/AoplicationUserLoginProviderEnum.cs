@@ -28,54 +28,54 @@ public enum ApplicationUserLoginProvider
     [Uri(SpId.BaseUri)]
     SendPulse = 2,
 
-    [UriAttribute("https://google.com/")]
+    [Uri("https://google.com/")]
     Google = 3,
 
-    [UriAttribute("https://facebook.com/")]
+    [Uri("https://facebook.com/")]
     Facebook = 4,
 
-    [UriAttribute("https://twitter.com/")]
+    [Uri("https://twitter.com/")]
     Twitter = 5,
 
-    [UriAttribute("https://microsoft.com/")]
+    [Uri("https://microsoft.com/")]
     Microsoft = 6,
 
-    [UriAttribute("https://apple.com/")]
+    [Uri("https://apple.com/")]
     Apple = 7,
 
-    [UriAttribute("https://github.com/")]
+    [Uri("https://github.com/")]
     GitHub = 8,
 
-    [UriAttribute("https://linkedin.com/")]
+    [Uri("https://linkedin.com/")]
     LinkedIn = 9,
 
-    [UriAttribute("https://instagram.com/")]
+    [Uri("https://instagram.com/")]
     Instagram = 10,
 
-    [UriAttribute("https://discord.com/")]
+    [Uri("https://discord.com/")]
     Discord = 11,
 
-    [UriAttribute("https://twitch.com/")]
+    [Uri("https://twitch.com/")]
     Twitch = 12,
 
-    [UriAttribute("https://yahoo.com/")]
+    [Uri("https://yahoo.com/")]
     Yahoo = 13,
 
-    [UriAttribute("https://amazon.com/")]
+    [Uri("https://amazon.com/")]
     Amazon = 14,
 
-    [UriAttribute("https://spotify.com/")]
+    [Uri("https://spotify.com/")]
     Spotify = 15,
 
-    [UriAttribute("https://reddit.com/")]
+    [Uri("https://reddit.com/")]
     Reddit = 16,
 
-    [UriAttribute("https://stackoverflow.com/")]
+    [Uri("https://stackoverflow.com/")]
     StackOverflow = 17,
 
-    [UriAttribute("https://paypal.com/")]
+    [Uri("https://paypal.com/")]
     PayPal = 18,
 
-    [UriAttribute("https://stripe.com/")]
+    [Uri("https://stripe.com/")]
     Stripe = 19
 }

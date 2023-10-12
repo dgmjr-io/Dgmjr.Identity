@@ -17,16 +17,35 @@ using Abstractions;
 using Dgmjr.Abstractions;
 using Dgmjr.Identity.Abstractions;
 using Microsoft.AspNetCore.Identity;
-using static Dgmjr.EntityFrameworkCore.Constants.DbTypeNames;
-using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
-[Table(Constants.TableNames.TblUserLogin, Schema = IdSchema)]
+[Table(Constants.TableNames.TblUserLogin, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Login (Id} - {LoginProvider}: {ProviderKey})")]
-[JSerializable(typeof(ApplicationUserLogin))]
-public class ApplicationUserLogin : UserLoginEntity, IIdentityUserLogin<long>
+public class ApplicationUserLogin<TKey>
+    : IUserLoginEntity<
+        ApplicationUser<TKey>,
+        ApplicationRole<TKey>,
+        TKey,
+        ApplicationUserClaim<TKey>,
+        ApplicationUserRole<TKey>,
+        ApplicationUserLogin<TKey>,
+        ApplicationRoleClaim<TKey>,
+        ApplicationUserToken<TKey>
+    >,
+        IIdentityUserLogin<
+            ApplicationUser<TKey>,
+            ApplicationRole<TKey>,
+            TKey,
+            ApplicationUserClaim<TKey>,
+            ApplicationUserRole<TKey>,
+            ApplicationUserLogin<TKey>,
+            ApplicationRoleClaim<TKey>,
+            ApplicationUserToken<TKey>
+        >
+    where TKey : IEquatable<TKey>, IComparable
 {
-    [Key, DbGen(DbGen.Identity), Column(nameof(Id), TypeName = DbTypeBigInt), Required]
-    public virtual long Id { get; set; }
+    [Key, DbGen(DbGen.Identity), Column(nameof(Id), TypeName = DbTypeBigInt.ShortName), Required]
+    public virtual TKey Id { get; set; }
 
     [NotMapped]
     public virtual string ProviderName => Provider.Name;
@@ -41,12 +60,14 @@ public class ApplicationUserLogin : UserLoginEntity, IIdentityUserLogin<long>
 
     public virtual int ProviderId { get; set; }
 
-    public virtual ApplicationUser User { get; set; }
+    public virtual ApplicationUser<TKey> User { get; set; }
 
     [Hashids]
-    public virtual long UserId { get; set; }
+    public virtual TKey UserId { get; set; }
     public virtual DateTimeOffset Created { get; set; } = DateTimeOffset.UtcNow;
 }
+
+public class ApplicationUserLogin : ApplicationUserLogin<long> { }
 
 // public class TelegramUserLogin : BackroomUserLogin
 // {

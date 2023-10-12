@@ -17,10 +17,11 @@ using Dgmjr.Abstractions;
 using Dgmjr.Enumerations.Abstractions;
 using Dgmjr.Identity.Models;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using static Dgmjr.Identity.Models.Enums.UserLoginProvider;
+using static Dgmjr.Identity.Models.Enums.ApplicationUserLoginProvider;
+using Dgmjr.Identity.Models.Abstractions;
 
 public class ApplicationUserLoginProviderConverter
-    : ValueConverter<Abstractions.IApplicationUserLoginProvider, int>
+    : ValueConverter<IApplicationUserLoginProvider, int>
 {
     public ApplicationUserLoginProviderConverter()
         : base(v => ((IIdentifiable<int>)v).Id, v => ApplicationUserLoginProvider.FromId(v)) { }
@@ -28,8 +29,10 @@ public class ApplicationUserLoginProviderConverter
 
 public partial record class ApplicationUserLoginProvider
 {
-    public static IApplicationUserLoginProvider FromId(int id) =>
-        ApplicationUserLoginProvider.FromValue((Enums.UserLoginProvider)id);
+    public static Dgmjr.Identity.Models.Abstractions.IApplicationUserLoginProvider FromId(int id) =>
+        ApplicationUserLoginProvider.FromValue(
+            (Dgmjr.Identity.Models.Enums.ApplicationUserLoginProvider)id
+        );
 }
 
 // public partial record class UserLoginProvider //: Dgmjr.Enumerations.EnumerationClass<UserLoginProvider, int, UserLoginProviderEnum>

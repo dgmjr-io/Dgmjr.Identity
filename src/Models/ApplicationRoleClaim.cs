@@ -14,6 +14,7 @@ namespace Dgmjr.Identity.Models;
 
 using System.Collections.ObjectModel;
 using System.Xml.Serialization;
+
 using Dgmjr.Abstractions;
 
 using Microsoft.AspNetCore;
@@ -21,16 +22,30 @@ using Microsoft.AspNetCore.Identity;
 
 [DebuggerDisplay("Role Claim ({Id} Role ID: {RoleId}, {Type}: {Value})")]
 // [JSerializable(typeof(ApplicationRoleClaim<TSelf, TKey>))]
-public class ApplicationRoleClaim : EntityClaim<ApplicationRoleClaim, long>
+public class ApplicationRoleClaim<TKey>
+    : EntityClaim<ApplicationRoleClaim<TKey>, ApplicationRole<TKey>, TKey>,
+        IIdentityRoleClaim<
+            ApplicationUser<TKey>,
+            ApplicationRole<TKey>,
+            TKey,
+            ApplicationUserClaim<TKey>,
+            ApplicationUserRole<TKey>,
+            ApplicationUserLogin<TKey>,
+            ApplicationRoleClaim<TKey>,
+            ApplicationUserToken<TKey>
+        >
+    where TKey : IEquatable<TKey>, IComparable
 {
-    public static implicit operator ApplicationRoleClaim(C claim) => FromClaim(claim);
+    public static implicit operator ApplicationRoleClaim<TKey>(C claim) => FromClaim(claim);
 
-    public virtual long RoleId
+    public virtual TKey RoleId
     {
         get => EntityId;
         set => EntityId = value;
     }
 }
+
+public class ApplicationRoleClaim : ApplicationRoleClaim<long> { }
 
 public record struct ApplicationRoleClaimInsertDto
 {

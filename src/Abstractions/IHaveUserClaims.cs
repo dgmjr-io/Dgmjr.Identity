@@ -1,8 +1,8 @@
 /*
- * IIdentityUserClaim.cs
+ * IHaveUserClaims.cs
  *
- *   Created: 2023-10-06-05:37:28
- *   Modified: 2023-10-10-09:29:07
+ *   Created: 2023-10-10-09:28:28
+ *   Modified: 2023-10-10-09:28:30
  *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
  *
@@ -10,11 +10,9 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
 namespace Dgmjr.Identity.Abstractions;
 
-public interface IIdentityUserClaim<
+public interface IHaveUserClaims<
     TUser,
     TRole,
     TKey,
@@ -23,18 +21,7 @@ public interface IIdentityUserClaim<
     TUserLogin,
     TRoleClaim,
     TUserToken
->
-    : IEntityClaim<TUserClaim, TUser, TKey>,
-        IUserAssociatedEntity<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+> : IIdentifiable<TKey>
     where TUser : IIdentityUser<
             TUser,
             TRole,
@@ -105,4 +92,7 @@ public interface IIdentityUserClaim<
             TUserLogin,
             TRoleClaim,
             TUserToken
-        > { }
+        >
+{
+    ICollection<TUserClaim> Claims { get; set; }
+}

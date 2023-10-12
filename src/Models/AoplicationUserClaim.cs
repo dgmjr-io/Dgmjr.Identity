@@ -16,25 +16,39 @@ using System.Xml.Serialization;
 using AutoMapper;
 using Dgmjr.Abstractions;
 using Dgmjr.Identity.Abstractions;
-using static Dgmjr.EntityFrameworkCore.Constants.DbTypeNames;
-using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
+
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace Dgmjr.Identity.Models;
 
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 using static Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant;
 
-[
-    Table(TblUserClaim, Schema = IdSchema),
-    DebuggerDisplay("User Claim ({Id} - User ID: {UserId}, {Type}: {Value})")
-]
+[Table(TblUserClaim, Schema = IdentitySchema.ShortName)]
+[DebuggerDisplay("User Claim ({Id} - User ID: {UserId}, {Type}: {Value})")]
 [JSerializable(typeof(ApplicationUserClaim))]
-public class ApplicationUserClaim<TSelf, TKey> : EntityClaim<TSelf, TKey>
+public class ApplicationUserClaim<TKey>
+    : EntityClaim<ApplicationUserClaim<TKey>, ApplicationUser<TKey>, TKey>,
+        IIdentityUserClaim<
+            ApplicationUser<TKey>,
+            ApplicationRole<TKey>,
+            TKey,
+            ApplicationUserClaim<TKey>,
+            ApplicationUserRole<TKey>,
+            ApplicationUserLogin<TKey>,
+            ApplicationRoleClaim<TKey>,
+            ApplicationUserToken<TKey>
+        >
     where TKey : IEquatable<TKey>, IComparable
-    where TSelf : ApplicationUserClaim<TSelf, TKey>, new()
 {
-    public static implicit operator ApplicationUserClaim<TSelf, TKey>(C claim) =>
-        FromClaim(claim) as ApplicationUserClaim<TSelf, TKey>;
+    public static implicit operator ApplicationUserClaim<TKey>(C claim) =>
+        FromClaim(claim) as ApplicationUserClaim<TKey>;
+
+    public ApplicationUser<TKey> User
+    {
+        get => Entity;
+        set => Entity = value;
+    }
 
     public virtual TKey UserId
     {
@@ -43,11 +57,11 @@ public class ApplicationUserClaim<TSelf, TKey> : EntityClaim<TSelf, TKey>
     }
 }
 
-public class ApplicationUserClaim : ApplicationUserClaim<ApplicationUserClaim, long> { }
+public class ApplicationUserClaim : ApplicationUserClaim<long> { }
 
-public record struct ClaimCreateDto
+public record struct ApplicationUserClaimCreateDto
 {
-    public ClaimCreateDto()
+    public ApplicationUserClaimCreateDto()
     {
         Type = DgmjrCt.Unknown.UriString;
         Issuer = DgmjrIo;
@@ -64,18 +78,18 @@ public record struct ClaimCreateDto
     /// <summary>The type of the claim</summary>
     /// <example>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name</example>
     /// <remarks>See <see href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">ClaimTypes</see> for more information.</remarks>
-    /// <default>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name</default>
+    /// <default><inheritdoc cref="DgmjrCt.Unknown.UriString" path="/value/text()" /></default>
     public uri? Type { get; set; } = DgmjrCt.Unknown.UriString;
 
     /// <summary>The issuer of the claim</summary>
-    /// <example>https://Dgmjr.com</example>
+    /// <example><inheritdoc cref="DgmjrIo" path="/value" /></example>
     /// <remarks>See <see href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">Claim.Issuer</see> for more information.</remarks>
-    /// <default>https://Dgmjr.com</default>
+    /// <default><inheritdoc cref="DgmjrIo" path="/value/text()" /></default>
     public uri? Issuer { get; set; } = DgmjrIo;
 
     /// <summary>The type of the claim's value</summary>
     /// <example>http://www.w3.org/2001/XMLSchema#string</example>
     /// <remarks>See <see href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">ClaimValueType</see> for more information.</remarks>
-    /// <default>http://www.w3.org/2001/XMLSchema#string</default>
+    /// <default><inheritdoc cref="DgmjrCvt.String.UriString" path="/value/text()" /></default>
     public uri? ValueType { get; set; } = DgmjrCvt.String.UriString;
 }

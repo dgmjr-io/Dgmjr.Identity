@@ -16,16 +16,17 @@
   </PropertyGroup>
 
   <ItemGroup Condition="true">
-    <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="System.Text.Json" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Telegram.Bot.Extensions" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Telegram.Constants" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Abstractions" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
+    <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="Dgmjr.AspNetCore.Hashids" />
+    <PackageReference Include="Dgmjr.System.Extensions" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
+    <PackageReference Include="System.Text.Json" />
+    <PackageReference Include="Telegram.Bot.Extensions" />
+    <PackageReference Include="Telegram.Constants" />
     <PackageReference Include="System.Security.Claims" />
 
     <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />

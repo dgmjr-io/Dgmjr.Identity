@@ -13,7 +13,6 @@
 namespace Dgmjr.Identity.Models;
 
 using Dgmjr.Identity.Models.Enums;
-using UserLoginProviderEnum = Dgmjr.Identity.Models.Enums.UserLoginProvider;
 
 using Dgmjr.Identity.Abstractions;
 
@@ -21,26 +20,46 @@ using Microsoft.EntityFrameworkCore.Internal;
 
 [Table(TblUserToken, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Token ({UserId} - {LoginProvider}, Created: {DateTimeCreated})")]
-public class ApplicationUserToken : IIdentityUserToken<long>
+public class ApplicationUserToken<TKey>
+    : IIdentityUserToken<
+        ApplicationUser<TKey>,
+        ApplicationRole<TKey>,
+        TKey,
+        ApplicationUserClaim<TKey>,
+        ApplicationUserRole<TKey>,
+        ApplicationUserLogin<TKey>,
+        ApplicationRoleClaim<TKey>,
+        ApplicationUserToken<TKey>
+    >
+    where TKey : IEquatable<TKey>, IComparable
 {
     [Key, DbGen(DbGen.Identity)]
-    public virtual long Id { get; set; } //= NewId;
+    public virtual TKey Id { get; set; } //= NewId;
 
     [Column]
-    public virtual long UserId { get; set; }
+    public virtual TKey UserId { get; set; }
 
     //[ForeignKey(ColUserId)]
-    public virtual ApplicationUser User { get; set; }
+    public virtual ApplicationUser<TKey> User { get; set; }
 
     [Column]
-    public virtual int LoginProviderId
+    public virtual int ProviderId
     {
         get => ((IIdentifiable<int>)Provider).Id;
         set => Provider = ApplicationUserLoginProvider.FromId(value);
     }
 
+    public virtual string ProviderName {
+        get => Provider.Name;
+        set { /* no op */ }
+    }
+    public virtual string ProviderDisplayName {
+        get => Provider.DisplayName;
+        set { /* no op */ }
+    }
+
     //[ForeignKey(nameof(ProviderId)), BackingField("_provider")]
-    public virtual IApplicationUserLoginProvider Provider { get; set; }
+    public virtual Dgmjr.Identity.Models.Abstractions.IApplicationUserLoginProvider Provider { get; set; }
 
     [Column(nameof(Name)), StringLength(64)]
     public virtual string Name { get; set; }
@@ -55,6 +74,8 @@ public class ApplicationUserToken : IIdentityUserToken<long>
     //         public Timestamp LastUpdated { get; set; }
     //         public Timestamp? Deleted { get; set; }
 }
+
+public class ApplicationUserToken : ApplicationUserToken<long> { }
 
 // public class TelegramUserToken : BackroomUserToken
 // {

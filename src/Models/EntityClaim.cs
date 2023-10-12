@@ -5,10 +5,19 @@ using System.Security.Claims;
 
 namespace Dgmjr.Identity.Models;
 
-public abstract class EntityClaim<TSelf, TKey> : IEntityClaim<TSelf, TKey>
+public abstract class EntityClaim<TSelf, TEntity, TKey> : IEntityClaim<TSelf, TEntity, TKey>
     where TKey : IEquatable<TKey>, IComparable
-    where TSelf : IEntityClaim<TSelf, TKey>, new()
+    where TSelf : IEntityClaim<TSelf, TEntity, TKey>, new()
 {
+    protected EntityClaim()
+    {
+        Value = string.Empty;
+        Type = DgmjrCt.Unknown.UriString;
+        ValueType = DgmjrCvt.String.UriString;
+        Issuer = DgmjrIo;
+        OriginalIssuer = DgmjrIo;
+    }
+
     [Required, NotMapped]
     public TKey EntityId
     {
@@ -26,31 +35,29 @@ public abstract class EntityClaim<TSelf, TKey> : IEntityClaim<TSelf, TKey>
         set => Properties[nameof(EntityId)] = value.ToString();
     }
 
-    [Required, Url, StringLength(UriMaxLength, MinimumLength = 0), Column()]
+    public TEntity Entity { get; set; }
+
+    [Required, Url, StringLength(UriMaxLength, MinimumLength = 0)]
     public string? Value
     {
         get => Properties[nameof(Value)];
         set => Properties[nameof(Value)] = value;
     }
 
-    [
-        Required,
-        Url,
-        StringLength(UriMaxLength, MinimumLength = 0),
-        DefaultValue(DgmjrCt.Unknown.UriString)
-    ]
+    [Required]
+    [Url]
+    [StringLength(UriMaxLength, MinimumLength = 0)]
+    [DefaultValue(DgmjrCt.Unknown.UriString)]
     public uri? Type
     {
         get => uri.From(Properties[nameof(Type)]);
         set => Properties[nameof(Type)] = value;
     }
 
-    [
-        Required,
-        Url,
-        StringLength(UriMaxLength, MinimumLength = 0),
-        DefaultValue(DgmjrCvt.String.UriString)
-    ]
+    [Required]
+    [Url]
+    [StringLength(UriMaxLength, MinimumLength = 0)]
+    [DefaultValue(DgmjrCvt.String.UriString)]
     public uri? ValueType
     {
         get => uri.From(Properties[nameof(ValueType)]);

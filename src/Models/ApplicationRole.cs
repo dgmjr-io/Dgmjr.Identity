@@ -21,12 +21,22 @@ using Microsoft.AspNetCore;
 using static System.Guid;
 
 [DebuggerDisplay("ApplicationRole ({Id} - {Name} {Uri})")]
-[JSerializable(typeof(ApplicationRole))]
-public partial class ApplicationRole : IIdentityRole<long>
+public partial class ApplicationRole<TKey>
+    : IIdentityRole<
+        ApplicationUser<TKey>,
+        ApplicationRole<TKey>,
+        TKey,
+        ApplicationUserClaim<TKey>,
+        ApplicationUserRole<TKey>,
+        ApplicationUserLogin<TKey>,
+        ApplicationRoleClaim<TKey>,
+        ApplicationUserToken<TKey>
+    >
+    where TKey : IEquatable<TKey>, IComparable
 {
     public const string RoleUriDefaultFormatString = "urn:role:{0}";
 
-    public virtual long Id { get; set; }
+    public virtual TKey Id { get; set; }
 
     public virtual string? ConcurrencyStamp { get; set; } = NewGuid().ToString();
 
@@ -45,11 +55,13 @@ public partial class ApplicationRole : IIdentityRole<long>
 
     public virtual uri Uri { get; set; }
 
-    public virtual ICollection<ApplicationUser> Users { get; set; } =
-        new Collection<ApplicationUser>();
-    public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } =
-        new Collection<ApplicationUserRole>();
+    public virtual ICollection<ApplicationUser<TKey>> Users { get; set; } =
+        new Collection<ApplicationUser<TKey>>();
+    public virtual ICollection<ApplicationUserRole<TKey>> UserRoles { get; set; } =
+        new Collection<ApplicationUserRole<TKey>>();
 }
+
+public class ApplicationRole : ApplicationRole<long> { }
 
 public record struct RoleInsertDto(string Name, uri Uri, string Description)
 {

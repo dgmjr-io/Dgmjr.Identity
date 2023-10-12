@@ -19,19 +19,30 @@ using Microsoft.AspNetCore.Identity;
 /// <summary>A join entity between <see cref="User" />s and <see cref="Role" />s</summary>
 [Table(Constants.TableNames.TblUserRole, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Role ({Id} - User ID: {UserId}, Role: {Role})")]
-public class ApplicationUserRole : IIdentityUserRole<long>
+public class ApplicationUserRole<TKey>
+    : IIdentityUserRole<
+        ApplicationUser<TKey>,
+        ApplicationRole<TKey>,
+        TKey,
+        ApplicationUserClaim<TKey>,
+        ApplicationUserRole<TKey>,
+        ApplicationUserLogin<TKey>,
+        ApplicationRoleClaim<TKey>,
+        ApplicationUserToken<TKey>
+    >
+    where TKey : IEquatable<TKey>, IComparable
 {
     [Key, DbGen(DbGen.Identity), Column(TypeName = DbTypeBigInt.ShortName)]
-    public virtual long Id { get; set; }
+    public virtual TKey Id { get; set; }
 
     [Column(nameof(RoleId), Order = 2, TypeName = DbTypeBigInt.ShortName)]
-    public virtual long RoleId { get; set; }
+    public virtual TKey RoleId { get; set; }
 
     [Column(nameof(UserId), Order = 1, TypeName = DbTypeBigInt.ShortName)]
-    public virtual long UserId { get; set; }
+    public virtual TKey UserId { get; set; }
 
-    public ApplicationUser User { get; set; }
-    public ApplicationRole Role { get; set; }
+    public ApplicationUser<TKey> User { get; set; }
+    public ApplicationRole<TKey> Role { get; set; }
 
     //[ForeignKey(ColUserId)]
     //public virtual BackroomUser User { get; set; }
@@ -45,8 +56,12 @@ public class ApplicationUserRole : IIdentityUserRole<long>
     //         public Timestamp? Deleted { get; set; }
 }
 
-public struct ApplicationUserUserRoleInsertDto
+public class ApplicationUserRole : ApplicationUserRole<long> { }
+
+public record class ApplicationUserUserRoleInsertDto<TKey>
 {
     public long UserId { get; set; }
     public long RoleId { get; set; }
 }
+
+public record class ApplicationUserUserRoleInsertDto : ApplicationUserUserRoleInsertDto<long> { }

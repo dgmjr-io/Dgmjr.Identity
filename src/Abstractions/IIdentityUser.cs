@@ -19,11 +19,90 @@ using System.Net.Mail;
 using Dgmjr.Abstractions;
 using System.Security.Claims;
 
-public partial interface IIdentityUser<TKey> : IHaveAWritableId<TKey>, IHaveATelegramUsername
+public partial interface IIdentityUser<
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+> : IHaveAWritableId<TKey>, IHaveATelegramUsername
+    where TUser : IIdentityUser<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TRole : IIdentityRole<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
     where TKey : IEquatable<TKey>, IComparable
+    where TUserClaim : IIdentityUserClaim<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TUserRole : IIdentityUserRole<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TUserLogin : IIdentityUserLogin<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TRoleClaim : IIdentityRoleClaim<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TUserToken : IIdentityUserToken<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
 {
     /// <summary>Gets or sets the primary key for this user.</summary>
-    [PersonalData, Key, DbGen(DbGen.None), Column(nameof(Id))]
+    [PersonalData, Key, DbGen(DbGen.None), Column(nameof(Id)), Hashids]
     new TKey Id { get; set; }
 
     /// <summary>Gets or sets the user's username (usually the same as the <see cref="IHaveATelegramUsername.TelegramUsername" />)</summary>
@@ -81,7 +160,7 @@ public partial interface IIdentityUser<TKey> : IHaveAWritableId<TKey>, IHaveATel
     [Timestamp]
     [Column(TypeName = DbTypeRowVersion.ShortName)]
     [DbGen(DbGen.Computed)]
-    [JIgnore]
+    [JIgnore, XIgnore]
     byte[] ConcurrencyStamp { get; set; }
 
     /// <summary>Gets or sets a telephone number for the user.</summary>
@@ -110,6 +189,11 @@ public partial interface IIdentityUser<TKey> : IHaveAWritableId<TKey>, IHaveATel
 
     /// <summary>Gets or sets the number of failed login attempts for the current user.</summary>
     int AccessFailedCount { get; set; }
+
+    /// <summary>Gets a value indicating whethere the user is lockec out</summary>
+    /// <value><see langword="true" /> if the user is locked out, <see langword="false" /> otherwise</value>
+    [DbGen(DbGen.Computed)]
+    bool IsLockedOut { get; }
 
     /// <summary>Returns the username for this user.</summary>
     string ToString();

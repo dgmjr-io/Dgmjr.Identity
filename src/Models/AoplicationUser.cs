@@ -23,15 +23,37 @@ using Dgmjr.Abstractions;
 using Dgmjr.Identity.Abstractions;
 using Humanizer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
+
 using static System.Guid;
-using static Dgmjr.EntityFrameworkCore.Constants.DbTypeNames;
-using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 using static Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant;
 
-[Table(TblUser, Schema = IdSchema)]
+[Table(TblUser, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User ({UserName} - {Email})")]
-public class ApplicationUser : IIdentityUser<long>, IHaveClaims<long>, IHaveUserClaims<long>
+public class ApplicationUser<TKey>
+    : IIdentityUser<
+        ApplicationUser<TKey>,
+        ApplicationRole<TKey>,
+        TKey,
+        ApplicationUserClaim<TKey>,
+        ApplicationUserRole<TKey>,
+        ApplicationUserLogin<TKey>,
+        ApplicationRoleClaim<TKey>,
+        ApplicationUserToken<TKey>
+    >,
+        IHaveClaims<TKey>,
+        IHaveUserClaims<
+            ApplicationUser<TKey>,
+            ApplicationRole<TKey>,
+            TKey,
+            ApplicationUserClaim<TKey>,
+            ApplicationUserRole<TKey>,
+            ApplicationUserLogin<TKey>,
+            ApplicationRoleClaim<TKey>,
+            ApplicationUserToken<TKey>
+        >
+    where TKey : IEquatable<TKey>, IComparable
 {
     public const string DefaultPassword = "Dav1d is really fuckin' sexy!";
     public const string DefaultLockoutEndString = "1/1/1970";
@@ -44,7 +66,7 @@ public class ApplicationUser : IIdentityUser<long>, IHaveClaims<long>, IHaveUser
         LockoutEnd = DefaultLockoutEnd;
     }
 
-    public long Id { get; set; }
+    public TKey Id { get; set; }
 
     public virtual string? TelegramUsername { get; set; }
 
@@ -76,20 +98,16 @@ public class ApplicationUser : IIdentityUser<long>, IHaveClaims<long>, IHaveUser
     public virtual bool IsLockedOut => IsLockoutEnabled && LockoutEnd > DateTimeOffset.Now;
 
     [DefaultValue(DefaultLockoutEndString)]
-    public virtual DateTimeOffset? LockoutEnd { get; set; } =
-        DateTimeOffset.Parse(DefaultLockoutEndString);
+    public virtual DateTimeOffset? LockoutEnd { get; set; } = DefaultLockoutEnd;
 
     public virtual EmailAddress EmailAddress { get; set; }
 
     public virtual PhoneNumber PhoneNumber { get; set; }
 
-    /// <summary>Gets or sets the normalized email address for this user as a string.</summary>
     public virtual string? NormalizedEmailAddress
     {
         get => EmailAddress.ToString()?.Normalize(NormalizationForm.FormKD);
-        set
-        { /* no op */
-        }
+        set { /* no op */ }
     }
 
     public virtual string? NormalizedUsername
@@ -101,7 +119,17 @@ public class ApplicationUser : IIdentityUser<long>, IHaveClaims<long>, IHaveUser
     }
 
     public override bool Equals(object? obj) =>
-        obj is IIdentityUser<long> user
+        obj
+            is IIdentityUser<
+                ApplicationUser<TKey>,
+                ApplicationRole<TKey>,
+                TKey,
+                ApplicationUserClaim<TKey>,
+                ApplicationUserRole<TKey>,
+                ApplicationUserLogin<TKey>,
+                ApplicationRoleClaim<TKey>,
+                ApplicationUserToken<TKey>
+            > user
         && obj is IIdentifiable<long> userId
         && userId.Id.Equals(Id);
 
@@ -115,53 +143,52 @@ public class ApplicationUser : IIdentityUser<long>, IHaveClaims<long>, IHaveUser
     public virtual guid SecurityStamp { get; set; } = NewGuid();
 
     /// <summary>The roles to which the user belongs</summary>
-    public virtual ICollection<ApplicationRole> Roles { get; set; } =
-        new Collection<ApplicationRole>();
+    public virtual ICollection<ApplicationRole<TKey>> Roles { get; set; } =
+        new Collection<ApplicationRole<TKey>>();
 
     /// <summary>The user's logins for various federated providers</summary>
-    public virtual ICollection<ApplicationUserLogin> Logins { get; set; } =
-        new Collection<ApplicationUserLogin>();
+    public virtual ICollection<ApplicationUserLogin<TKey>> Logins { get; set; } =
+        new Collection<ApplicationUserLogin<TKey>>();
 
     /// <summary>The user's tokens</summary>
-    public virtual ICollection<ApplicationUserToken> Tokens { get; set; } =
-        new Collection<ApplicationUserToken>();
+    public virtual ICollection<ApplicationUserToken<TKey>> Tokens { get; set; } =
+        new Collection<ApplicationUserToken<TKey>>();
 
     /// <summary>The user's claims</summary>
-    public virtual ICollection<ApplicationUserClaim> Claims { get; set; } =
-        new Collection<ApplicationUserClaim>();
+    public virtual ICollection<ApplicationUserClaim<TKey>> Claims { get; set; } =
+        new Collection<ApplicationUserClaim<TKey>>();
 
     // /// <summary>The user's bots by <see cref="UserContactId.UserContactId" /></summary>
     // public virtual ICollection<Bot> Bots { get; set; } = new Collection<Bot>();
     // /// <summary>A join entity between <see cref="User" />s and <see cref="Bot" />s</summary>
     // public virtual ICollection<UserContactId> ContactIds { get; set; } = new Collection<UserContactId>();
     /// <summary>A join entity between <see cref="User" />s and <see cref="TblRole" />s</summary>
-    public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } =
-        new Collection<ApplicationUserRole>();
-    public virtual ICollection<ApplicationClaimType> ClaimTypes { get; set; } =
-        new Collection<ApplicationClaimType>();
+    public virtual ICollection<ApplicationUserRole<TKey>> UserRoles { get; set; } =
+        new Collection<ApplicationUserRole<TKey>>();
+    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; set; } =
+        new Collection<ApplicationClaimType<TKey>>();
 
     //public virtual ICollection<BackroomUserRole> UserRoles { get; set; } = new ObservableCollection<BackroomUserRole>();
 
-    ICollection<C> IHaveClaims<long>.Claims
+    ICollection<C> IHaveClaims<TKey>.Claims
     {
         get => Claims.Select(c => c.ToClaim()).ToArray();
         set { }
     }
-    ICollection<IIdentityUserClaim<long>> IHaveUserClaims<long>.Claims
-    {
-        get => Claims.OfType<IIdentityUserClaim<long>>().ToArray();
-        set { }
-    }
 }
 
-public record class UserInsertDto : UserDto
+public class ApplicationUser : ApplicationUser<long> { }
+
+public record class ApplicationUserInsertDto<TKey> : ApplicationUserDto<TKey>
 {
     /// <summary>Gets or sets the user's password.</summary>
     /// <example>My$3cre1Pa$$w0rd!</example>
-    public string? Password { get; set; } = ApplicationUser.DefaultPassword;
+    public string? Password { get; set; } = ApplicationUser<long>.DefaultPassword;
 }
 
-public record class UserDto
+public record class ApplicationUserInsertDto : ApplicationUserInsertDto<long> { }
+
+public record class ApplicationUserDto<TKey>
 {
     public virtual string? UserName { get; set; }
     public virtual string? GivenName { get; set; }
@@ -169,9 +196,11 @@ public record class UserDto
     public virtual string? GoByName { get; set; }
     public virtual PhoneNumber? PhoneNumber { get; set; }
     public virtual string? TelegramUsername { get; set; }
-    public virtual long Id { get; set; }
+    public virtual TKey Id { get; set; }
     public EmailAddress? EmailAddress { get; set; }
 }
+
+public record class ApplicationUserDto : ApplicationUserDto<long> { }
 
 // //[AutoGenerateBuilder(typeof(BackroomUser))]
 // //public partial class BackroomUserBuilder { }

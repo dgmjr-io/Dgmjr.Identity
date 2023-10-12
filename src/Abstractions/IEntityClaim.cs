@@ -1,21 +1,22 @@
 /*
- * IUserClaim.cs
+ * IEntityClaim.cs
  *
- *   Created: 2022-12-23-06:21:08
- *   Modified: 2022-12-23-06:21:09
+ *   Created: 2023-03-19-03:04:18
+ *   Modified: 2023-10-10-09:29:37
  *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
  *
- *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
 namespace Dgmjr.Identity.Abstractions;
 
-public interface IEntityClaim<TSelf, TKey> : IIdentityEntity<TKey>
-    where TSelf : IEntityClaim<TSelf, TKey>
+public interface IEntityClaim<TSelf, TEntity, TKey> : IIdentityEntity<TKey>
+    where TSelf : IEntityClaim<TSelf, TEntity, TKey>
     where TKey : IEquatable<TKey>, IComparable
 {
+    [Hashids]
     TKey EntityId { get; set; }
     string? Value { get; set; }
 

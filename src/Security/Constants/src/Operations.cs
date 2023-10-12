@@ -24,9 +24,7 @@ using Dgmjr.Enumerations.Abstractions;
 
 using Microsoft.CodeAnalysis;
 
-using Scriban.Parsing;
-
-public static class Operations
+public record class Operations
 {
     // public static IOperations Parse(string s)
     public static Enums.Operations[] GetValues() =>
@@ -86,7 +84,7 @@ public static class Operations
             _ => throw new InvalidEnumArgumentException(nameof(s), -0, typeof(Enums.Operations))
         };
 
-    public readonly record struct Create : IOperations
+    public record class Create : Operations, IOperations
     {
         public static IOperations Instance => new Create();
         public const byte Id = (byte)Value;
@@ -97,135 +95,123 @@ public static class Operations
         public const string GroupName = nameof(Operations);
         public const string UriString = "https://dgmjr.io/security/constants/operations/create";
         public const int Order = Id;
-        public static readonly string GuidString = MD5.Create()
+        public static string GuidString = MD5.Create()
             .ComputeHash(UriString.ToUTF8Bytes())
             .ToHexString();
         public const TypeCode TypeCode = System.TypeCode.Byte;
         public const Enums.Operations Value = Enums.Operations.Create;
 
-        readonly byte IIdentifiable<byte>.Id => (byte)Value;
-        readonly string IHaveAName.Name => Name;
-        readonly string IHaveAShortName.ShortName => ShortName;
-        readonly string IHaveADisplayName.DisplayName => DisplayName;
-        readonly Enums.Operations IEnumeration<IOperations, byte, Enums.Operations>.Value => Value;
+        byte IIdentifiable<byte>.Id => (byte)Value;
+        string IHaveAName.Name => Name;
+        string IHaveAShortName.ShortName => ShortName;
+        string IHaveADisplayName.DisplayName => DisplayName;
 
-        readonly string IEnumeration.ShortName => ShortName;
+        string IEnumeration.GroupName => GroupName;
 
-        readonly string IEnumeration.DisplayName => DisplayName;
+        int IEnumeration.Order => Order;
 
-        readonly string IEnumeration.GroupName => GroupName;
+        guid IEnumeration.Guid => new(GuidString);
 
-        readonly int IEnumeration.Order => Order;
+        Uri IHaveAUri.Uri => new(UriString);
 
-        readonly guid IEnumeration.Guid => new(GuidString);
+        object IHaveAValue.Value => Value;
 
-        readonly Uri IEnumeration.Uri => new(UriString);
+        string IHaveADescription.Description => Description;
 
-        readonly object IHaveAValue.Value => Value;
+        object IIdentifiable.Id => Id;
 
-        readonly string IHaveADescription.Description => Description;
+        Enums.Operations IHaveAValue<Enums.Operations>.Value => Value;
 
-        readonly object IIdentifiable.Id => Id;
+        public FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
 
-        readonly Enums.Operations IHaveAValue<Enums.Operations>.Value => Value;
+        public bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
 
-        public readonly FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
+        public int CompareTo(IOperations? other) =>
+            Value.CompareTo(((IHaveAValue<Enums.Operations>?)other).Value);
 
-        // public bool Equals(object? other) => other is Operations op ? Equals(op) : false;
-        public readonly bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
+        public override int GetHashCode() => Value.GetHashCode();
 
-        public readonly int CompareTo(IOperations? other) => Value.CompareTo(other.Value);
+        int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(IEnumeration other) =>
+            Value.CompareTo(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        public override readonly int GetHashCode() => Value.GetHashCode();
+        int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(Enums.Operations other) =>
+            Value.CompareTo(other);
 
-        readonly int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(
-            IEnumeration other
-        ) => Value.CompareTo(other?.Value);
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(IEnumeration? other) =>
+            Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        readonly int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(
-            Enums.Operations other
-        ) => Value.CompareTo(other);
-
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
-            IEnumeration? other
-        ) => Value.Equals(other?.Value);
-
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
             IEnumeration<IOperations> other
-        ) => Value.Equals(other?.Value);
+        ) => Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
-            Enums.Operations other
-        ) => Value.Equals(other);
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(Enums.Operations other) =>
+            Value.Equals(other);
 
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
             IEnumeration<IOperations, byte, Enums.Operations> other
-        ) => Value.Equals(other?.Value);
-
-        // TAttribute? IEnumeration<IOperations, byte, Enums.Operations>.GetCustomAttribute<TAttribute>() where TAttribute : default
-        //     => Value.Equals(other?.Value);
+        ) => Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
         TypeCode IConvertible.GetTypeCode() => TypeCode;
 
-        readonly bool IConvertible.ToBoolean(IFormatProvider provider) =>
+        bool IConvertible.ToBoolean(IFormatProvider provider) =>
             (bool)Convert.ChangeType(Value, typeof(bool), provider);
 
-        readonly byte IConvertible.ToByte(IFormatProvider provider) =>
+        byte IConvertible.ToByte(IFormatProvider provider) =>
             (byte)Convert.ChangeType(Value, typeof(byte), provider);
 
-        readonly char IConvertible.ToChar(IFormatProvider provider) =>
+        char IConvertible.ToChar(IFormatProvider provider) =>
             (char)Convert.ChangeType(Value, typeof(char), provider);
 
-        readonly datetime IConvertible.ToDateTime(IFormatProvider provider) =>
+        datetime IConvertible.ToDateTime(IFormatProvider provider) =>
             (datetime)((IConvertible)this).ToType(typeof(datetime), provider);
 
-        readonly decimal IConvertible.ToDecimal(IFormatProvider provider) =>
+        decimal IConvertible.ToDecimal(IFormatProvider provider) =>
             (decimal)((IConvertible)this).ToType(typeof(decimal), provider);
 
-        readonly double IConvertible.ToDouble(IFormatProvider provider) =>
+        double IConvertible.ToDouble(IFormatProvider provider) =>
             (double)((IConvertible)this).ToType(typeof(double), provider);
 
-        readonly short IConvertible.ToInt16(IFormatProvider provider) =>
+        short IConvertible.ToInt16(IFormatProvider provider) =>
             (short)((IConvertible)this).ToType(typeof(short), provider);
 
-        readonly int IConvertible.ToInt32(IFormatProvider provider) =>
+        int IConvertible.ToInt32(IFormatProvider provider) =>
             (int)((IConvertible)this).ToType(typeof(int), provider);
 
-        readonly long IConvertible.ToInt64(IFormatProvider provider) =>
+        long IConvertible.ToInt64(IFormatProvider provider) =>
             (long)((IConvertible)this).ToType(typeof(long), provider);
 
-        readonly sbyte IConvertible.ToSByte(IFormatProvider provider) =>
+        sbyte IConvertible.ToSByte(IFormatProvider provider) =>
             (sbyte)((IConvertible)this).ToType(typeof(sbyte), provider);
 
-        readonly float IConvertible.ToSingle(IFormatProvider provider) =>
+        float IConvertible.ToSingle(IFormatProvider provider) =>
             (float)((IConvertible)this).ToType(typeof(float), provider);
 
-        readonly string IConvertible.ToString(IFormatProvider provider) => DisplayName;
+        string IConvertible.ToString(IFormatProvider provider) => DisplayName;
 
-        readonly object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
+        object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
             Convert.ChangeType(Value, conversionType, provider);
 
-        readonly ushort IConvertible.ToUInt16(IFormatProvider provider) =>
+        ushort IConvertible.ToUInt16(IFormatProvider provider) =>
             (ushort)((IConvertible)this).ToType(typeof(ushort), provider);
 
-        readonly uint IConvertible.ToUInt32(IFormatProvider provider) =>
+        uint IConvertible.ToUInt32(IFormatProvider provider) =>
             (uint)((IConvertible)this).ToType(typeof(uint), provider);
 
-        readonly ulong IConvertible.ToUInt64(IFormatProvider provider) =>
+        ulong IConvertible.ToUInt64(IFormatProvider provider) =>
             (ulong)((IConvertible)this).ToType(typeof(ulong), provider);
 
-        readonly int IComparable.CompareTo(object obj) =>
+        int IComparable.CompareTo(object obj) =>
             obj is Enums.Operations op
                 ? Value.CompareTo(op)
                 : obj is IOperations op2
-                    ? Value.CompareTo(op2.Value)
+                    ? Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
                     : -1;
 
         public TAttribute? GetCustomAttribute<TAttribute>()
             where TAttribute : Attribute => FieldInfo.GetCustomAttribute<TAttribute>();
     }
 
-    public readonly record struct Read : IOperations
+    public record class Read : Operations, IOperations
     {
         public static IOperations Instance => new Read();
         public const byte Id = (byte)Value;
@@ -236,135 +222,122 @@ public static class Operations
         public const string GroupName = nameof(Operations);
         public const string UriString = "https://dgmjr.io/security/constants/operations/read";
         public const int Order = Id;
-        public static readonly string GuidString = MD5.Create()
+        public static string GuidString = MD5.Create()
             .ComputeHash(UriString.ToUTF8Bytes())
             .ToHexString();
         public const TypeCode TypeCode = System.TypeCode.Byte;
         public const Enums.Operations Value = Enums.Operations.Read;
 
-        readonly byte IIdentifiable<byte>.Id => (byte)Value;
-        readonly string IHaveAName.Name => Name;
-        readonly string IHaveAShortName.ShortName => ShortName;
-        readonly string IHaveADisplayName.DisplayName => DisplayName;
-        readonly Enums.Operations IHaveAValue<Enums.Operations>.Value => Value;
+        byte IIdentifiable<byte>.Id => (byte)Value;
+        string IHaveAName.Name => Name;
+        string IHaveAShortName.ShortName => ShortName;
+        string IHaveADisplayName.DisplayName => DisplayName;
+        Enums.Operations IHaveAValue<Enums.Operations>.Value => Value;
 
-        readonly Enums.Operations IEnumeration<IOperations, byte, Enums.Operations>.Value => Value;
+        string IEnumeration.GroupName => GroupName;
 
-        readonly string IEnumeration.ShortName => ShortName;
+        int IEnumeration.Order => Order;
 
-        readonly string IEnumeration.DisplayName => DisplayName;
+        guid IEnumeration.Guid => new(GuidString);
 
-        readonly string IEnumeration.GroupName => GroupName;
+        Uri IHaveAUri.Uri => new(UriString);
 
-        readonly int IEnumeration.Order => Order;
+        object IHaveAValue.Value => Value;
 
-        readonly guid IEnumeration.Guid => new(GuidString);
+        string IHaveADescription.Description => Description;
 
-        readonly Uri IEnumeration.Uri => new(UriString);
+        object IIdentifiable.Id => Id;
 
-        readonly object IHaveAValue.Value => Value;
+        public FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
 
-        readonly string IHaveADescription.Description => Description;
+        public bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
 
-        readonly object IIdentifiable.Id => Id;
+        public int CompareTo(IOperations? other) =>
+            Value.CompareTo(((IHaveAValue<Enums.Operations>?)other).Value);
 
-        public readonly FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
+        public override int GetHashCode() => Value.GetHashCode();
 
-        // public bool Equals(object? other) => other is Operations op ? Equals(op) : false;
-        public readonly bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
+        int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(IEnumeration other) =>
+            Value.CompareTo(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        public readonly int CompareTo(IOperations? other) => Value.CompareTo(other.Value);
+        int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(Enums.Operations other) =>
+            Value.CompareTo(other);
 
-        public override readonly int GetHashCode() => Value.GetHashCode();
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(IEnumeration? other) =>
+            Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        readonly int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(
-            IEnumeration other
-        ) => Value.CompareTo(other?.Value);
-
-        readonly int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(
-            Enums.Operations other
-        ) => Value.CompareTo(other);
-
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
-            IEnumeration? other
-        ) => Value.Equals(other?.Value);
-
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
             IEnumeration<IOperations> other
-        ) => Value.Equals(other?.Value);
+        ) => Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
-            Enums.Operations other
-        ) => Value.Equals(other);
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(Enums.Operations other) =>
+            Value.Equals(other);
 
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
             IEnumeration<IOperations, byte, Enums.Operations> other
-        ) => Value.Equals(other?.Value);
-
-        // TAttribute? IEnumeration<IOperations, byte, Enums.Operations>.GetCustomAttribute<TAttribute>() where TAttribute : default
-        //     => Value.Equals(other?.Value);
+        ) => Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
         TypeCode IConvertible.GetTypeCode() => TypeCode;
 
-        readonly bool IConvertible.ToBoolean(IFormatProvider provider) =>
+        bool IConvertible.ToBoolean(IFormatProvider provider) =>
             (bool)Convert.ChangeType(Value, typeof(bool), provider);
 
-        readonly byte IConvertible.ToByte(IFormatProvider provider) =>
+        byte IConvertible.ToByte(IFormatProvider provider) =>
             (byte)Convert.ChangeType(Value, typeof(byte), provider);
 
-        readonly char IConvertible.ToChar(IFormatProvider provider) =>
+        char IConvertible.ToChar(IFormatProvider provider) =>
             (char)Convert.ChangeType(Value, typeof(char), provider);
 
-        readonly datetime IConvertible.ToDateTime(IFormatProvider provider) =>
+        datetime IConvertible.ToDateTime(IFormatProvider provider) =>
             (datetime)((IConvertible)this).ToType(typeof(datetime), provider);
 
-        readonly decimal IConvertible.ToDecimal(IFormatProvider provider) =>
+        decimal IConvertible.ToDecimal(IFormatProvider provider) =>
             (decimal)((IConvertible)this).ToType(typeof(decimal), provider);
 
-        readonly double IConvertible.ToDouble(IFormatProvider provider) =>
+        double IConvertible.ToDouble(IFormatProvider provider) =>
             (double)((IConvertible)this).ToType(typeof(double), provider);
 
-        readonly short IConvertible.ToInt16(IFormatProvider provider) =>
+        short IConvertible.ToInt16(IFormatProvider provider) =>
             (short)((IConvertible)this).ToType(typeof(short), provider);
 
-        readonly int IConvertible.ToInt32(IFormatProvider provider) =>
+        int IConvertible.ToInt32(IFormatProvider provider) =>
             (int)((IConvertible)this).ToType(typeof(int), provider);
 
-        readonly long IConvertible.ToInt64(IFormatProvider provider) =>
+        long IConvertible.ToInt64(IFormatProvider provider) =>
             (long)((IConvertible)this).ToType(typeof(long), provider);
 
-        readonly sbyte IConvertible.ToSByte(IFormatProvider provider) =>
+        sbyte IConvertible.ToSByte(IFormatProvider provider) =>
             (sbyte)((IConvertible)this).ToType(typeof(sbyte), provider);
 
-        readonly float IConvertible.ToSingle(IFormatProvider provider) =>
+        float IConvertible.ToSingle(IFormatProvider provider) =>
             (float)((IConvertible)this).ToType(typeof(float), provider);
 
-        readonly string IConvertible.ToString(IFormatProvider provider) => DisplayName;
+        string IConvertible.ToString(IFormatProvider provider) => DisplayName;
 
-        readonly object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
+        object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
             Convert.ChangeType(Value, conversionType, provider);
 
-        readonly ushort IConvertible.ToUInt16(IFormatProvider provider) =>
+        ushort IConvertible.ToUInt16(IFormatProvider provider) =>
             (ushort)((IConvertible)this).ToType(typeof(ushort), provider);
 
-        readonly uint IConvertible.ToUInt32(IFormatProvider provider) =>
+        uint IConvertible.ToUInt32(IFormatProvider provider) =>
             (uint)((IConvertible)this).ToType(typeof(uint), provider);
 
-        readonly ulong IConvertible.ToUInt64(IFormatProvider provider) =>
+        ulong IConvertible.ToUInt64(IFormatProvider provider) =>
             (ulong)((IConvertible)this).ToType(typeof(ulong), provider);
 
-        readonly int IComparable.CompareTo(object obj) =>
+        int IComparable.CompareTo(object obj) =>
             obj is Enums.Operations op
                 ? Value.CompareTo(op)
                 : obj is IOperations op2
-                    ? Value.CompareTo(op2.Value)
+                    ? Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
                     : -1;
 
         public TAttribute? GetCustomAttribute<TAttribute>()
             where TAttribute : Attribute => FieldInfo.GetCustomAttribute<TAttribute>();
     }
 
-    public readonly record struct Update : IOperations
+    public record class Update : Operations, IOperations
     {
         public static IOperations Instance => new Update();
         public const byte Id = (byte)Value;
@@ -375,135 +348,122 @@ public static class Operations
         public const string GroupName = nameof(Operations);
         public const string UriString = "https://dgmjr.io/security/constants/operations/update";
         public const int Order = Id;
-        public static readonly string GuidString = MD5.Create()
+        public static string GuidString = MD5.Create()
             .ComputeHash(UriString.ToUTF8Bytes())
             .ToHexString();
         public const TypeCode TypeCode = System.TypeCode.Byte;
         public const Enums.Operations Value = Enums.Operations.Update;
 
-        readonly byte IIdentifiable<byte>.Id => (byte)Value;
-        readonly string IHaveAName.Name => Name;
-        readonly string IHaveAShortName.ShortName => ShortName;
-        readonly string IHaveADisplayName.DisplayName => DisplayName;
-        readonly Enums.Operations IHaveAValue<Enums.Operations>.Value => Value;
+        byte IIdentifiable<byte>.Id => (byte)Value;
+        string IHaveAName.Name => Name;
+        string IHaveAShortName.ShortName => ShortName;
+        string IHaveADisplayName.DisplayName => DisplayName;
+        Enums.Operations IHaveAValue<Enums.Operations>.Value => Value;
 
-        readonly Enums.Operations IEnumeration<IOperations, byte, Enums.Operations>.Value => Value;
+        string IEnumeration.GroupName => GroupName;
 
-        readonly string IEnumeration.ShortName => ShortName;
+        int IEnumeration.Order => Order;
 
-        readonly string IEnumeration.DisplayName => DisplayName;
+        guid IEnumeration.Guid => new(GuidString);
 
-        readonly string IEnumeration.GroupName => GroupName;
+        Uri IHaveAUri.Uri => new(UriString);
 
-        readonly int IEnumeration.Order => Order;
+        object IHaveAValue.Value => Value;
 
-        readonly guid IEnumeration.Guid => new(GuidString);
+        string IHaveADescription.Description => Description;
 
-        readonly Uri IEnumeration.Uri => new(UriString);
+        object IIdentifiable.Id => Id;
 
-        readonly object IHaveAValue.Value => Value;
+        public FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
 
-        readonly string IHaveADescription.Description => Description;
+        public bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
 
-        readonly object IIdentifiable.Id => Id;
+        public int CompareTo(IOperations? other) =>
+            Value.CompareTo(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        public readonly FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
+        public override int GetHashCode() => Value.GetHashCode();
 
-        // public bool Equals(object? other) => other is Operations op ? Equals(op) : false;
-        public readonly bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
+        int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(IEnumeration other) =>
+            Value.CompareTo(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        public readonly int CompareTo(IOperations? other) => Value.CompareTo(other.Value);
+        int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(Enums.Operations other) =>
+            Value.CompareTo(other);
 
-        public override readonly int GetHashCode() => Value.GetHashCode();
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(IEnumeration? other) =>
+            Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        readonly int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(
-            IEnumeration other
-        ) => Value.CompareTo(other?.Value);
-
-        readonly int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(
-            Enums.Operations other
-        ) => Value.CompareTo(other);
-
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
-            IEnumeration? other
-        ) => Value.Equals(other?.Value);
-
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
             IEnumeration<IOperations> other
-        ) => Value.Equals(other?.Value);
+        ) => Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
-            Enums.Operations other
-        ) => Value.Equals(other);
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(Enums.Operations other) =>
+            Value.Equals(other);
 
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
             IEnumeration<IOperations, byte, Enums.Operations> other
-        ) => Value.Equals(other?.Value);
-
-        // TAttribute? IEnumeration<IOperations, byte, Enums.Operations>.GetCustomAttribute<TAttribute>() where TAttribute : default
-        //     => Value.Equals(other?.Value);
+        ) => Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
         TypeCode IConvertible.GetTypeCode() => TypeCode;
 
-        readonly bool IConvertible.ToBoolean(IFormatProvider provider) =>
+        bool IConvertible.ToBoolean(IFormatProvider provider) =>
             (bool)Convert.ChangeType(Value, typeof(bool), provider);
 
-        readonly byte IConvertible.ToByte(IFormatProvider provider) =>
+        byte IConvertible.ToByte(IFormatProvider provider) =>
             (byte)Convert.ChangeType(Value, typeof(byte), provider);
 
-        readonly char IConvertible.ToChar(IFormatProvider provider) =>
+        char IConvertible.ToChar(IFormatProvider provider) =>
             (char)Convert.ChangeType(Value, typeof(char), provider);
 
-        readonly datetime IConvertible.ToDateTime(IFormatProvider provider) =>
+        datetime IConvertible.ToDateTime(IFormatProvider provider) =>
             (datetime)((IConvertible)this).ToType(typeof(datetime), provider);
 
-        readonly decimal IConvertible.ToDecimal(IFormatProvider provider) =>
+        decimal IConvertible.ToDecimal(IFormatProvider provider) =>
             (decimal)((IConvertible)this).ToType(typeof(decimal), provider);
 
-        readonly double IConvertible.ToDouble(IFormatProvider provider) =>
+        double IConvertible.ToDouble(IFormatProvider provider) =>
             (double)((IConvertible)this).ToType(typeof(double), provider);
 
-        readonly short IConvertible.ToInt16(IFormatProvider provider) =>
+        short IConvertible.ToInt16(IFormatProvider provider) =>
             (short)((IConvertible)this).ToType(typeof(short), provider);
 
-        readonly int IConvertible.ToInt32(IFormatProvider provider) =>
+        int IConvertible.ToInt32(IFormatProvider provider) =>
             (int)((IConvertible)this).ToType(typeof(int), provider);
 
-        readonly long IConvertible.ToInt64(IFormatProvider provider) =>
+        long IConvertible.ToInt64(IFormatProvider provider) =>
             (long)((IConvertible)this).ToType(typeof(long), provider);
 
-        readonly sbyte IConvertible.ToSByte(IFormatProvider provider) =>
+        sbyte IConvertible.ToSByte(IFormatProvider provider) =>
             (sbyte)((IConvertible)this).ToType(typeof(sbyte), provider);
 
-        readonly float IConvertible.ToSingle(IFormatProvider provider) =>
+        float IConvertible.ToSingle(IFormatProvider provider) =>
             (float)((IConvertible)this).ToType(typeof(float), provider);
 
-        readonly string IConvertible.ToString(IFormatProvider provider) => DisplayName;
+        string IConvertible.ToString(IFormatProvider provider) => DisplayName;
 
-        readonly object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
+        object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
             Convert.ChangeType(Value, conversionType, provider);
 
-        readonly ushort IConvertible.ToUInt16(IFormatProvider provider) =>
+        ushort IConvertible.ToUInt16(IFormatProvider provider) =>
             (ushort)((IConvertible)this).ToType(typeof(ushort), provider);
 
-        readonly uint IConvertible.ToUInt32(IFormatProvider provider) =>
+        uint IConvertible.ToUInt32(IFormatProvider provider) =>
             (uint)((IConvertible)this).ToType(typeof(uint), provider);
 
-        readonly ulong IConvertible.ToUInt64(IFormatProvider provider) =>
+        ulong IConvertible.ToUInt64(IFormatProvider provider) =>
             (ulong)((IConvertible)this).ToType(typeof(ulong), provider);
 
-        readonly int IComparable.CompareTo(object obj) =>
+        int IComparable.CompareTo(object obj) =>
             obj is Enums.Operations op
                 ? Value.CompareTo(op)
                 : obj is IOperations op2
-                    ? Value.CompareTo(op2.Value)
+                    ? Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
                     : -1;
 
         public TAttribute? GetCustomAttribute<TAttribute>()
             where TAttribute : Attribute => FieldInfo.GetCustomAttribute<TAttribute>();
     }
 
-    public readonly record struct Delete : IOperations
+    public record class Delete : Operations, IOperations
     {
         public static IOperations Instance => new Delete();
         public const byte Id = (byte)Value;
@@ -514,135 +474,122 @@ public static class Operations
         public const string GroupName = nameof(Operations);
         public const string UriString = "https://dgmjr.io/security/constants/operations/delete";
         public const int Order = Id;
-        public static readonly string GuidString = MD5.Create()
+        public static string GuidString = MD5.Create()
             .ComputeHash(UriString.ToUTF8Bytes())
             .ToHexString();
         public const TypeCode TypeCode = System.TypeCode.Byte;
-        public const Enums.Operations Value = Enums.Operations.Create;
+        public const Enums.Operations Value = Enums.Operations.Delete;
 
-        readonly byte IIdentifiable<byte>.Id => (byte)Value;
-        readonly string IHaveAName.Name => Name;
-        readonly string IHaveAShortName.ShortName => ShortName;
-        readonly string IHaveADisplayName.DisplayName => DisplayName;
-        readonly Enums.Operations IHaveAValue<Enums.Operations>.Value => Value;
+        byte IIdentifiable<byte>.Id => (byte)Value;
+        string IHaveAName.Name => Name;
+        string IHaveAShortName.ShortName => ShortName;
+        string IHaveADisplayName.DisplayName => DisplayName;
+        Enums.Operations IHaveAValue<Enums.Operations>.Value => Value;
 
-        readonly Enums.Operations IEnumeration<IOperations, byte, Enums.Operations>.Value => Value;
+        string IEnumeration.GroupName => GroupName;
 
-        readonly string IEnumeration.ShortName => ShortName;
+        int IEnumeration.Order => Order;
 
-        readonly string IEnumeration.DisplayName => DisplayName;
+        guid IEnumeration.Guid => new(GuidString);
 
-        readonly string IEnumeration.GroupName => GroupName;
+        Uri IHaveAUri.Uri => new(UriString);
 
-        readonly int IEnumeration.Order => Order;
+        object IHaveAValue.Value => Value;
 
-        readonly guid IEnumeration.Guid => new(GuidString);
+        string IHaveADescription.Description => Description;
 
-        readonly Uri IEnumeration.Uri => new(UriString);
+        object IIdentifiable.Id => Id;
 
-        readonly object IHaveAValue.Value => Value;
+        public FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
 
-        readonly string IHaveADescription.Description => Description;
+        public bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
 
-        readonly object IIdentifiable.Id => Id;
+        public int CompareTo(IOperations? other) =>
+            Value.CompareTo(((IHaveAValue<Enums.Operations>?)other).Value);
 
-        public readonly FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
+        public override int GetHashCode() => Value.GetHashCode();
 
-        // public bool Equals(object? other) => other is Operations op ? Equals(op) : false;
-        public readonly bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
+        int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(IEnumeration other) =>
+            Value.CompareTo(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        public readonly int CompareTo(IOperations? other) => Value.CompareTo(other.Value);
+        int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(Enums.Operations other) =>
+            Value.CompareTo(other);
 
-        public override readonly int GetHashCode() => Value.GetHashCode();
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(IEnumeration? other) =>
+            Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        readonly int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(
-            IEnumeration other
-        ) => Value.CompareTo(other?.Value);
-
-        readonly int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(
-            Enums.Operations other
-        ) => Value.CompareTo(other);
-
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
-            IEnumeration? other
-        ) => Value.Equals(other?.Value);
-
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
             IEnumeration<IOperations> other
-        ) => Value.Equals(other?.Value);
+        ) => Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
-            Enums.Operations other
-        ) => Value.Equals(other);
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(Enums.Operations other) =>
+            Value.Equals(other);
 
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
             IEnumeration<IOperations, byte, Enums.Operations> other
-        ) => Value.Equals(other?.Value);
-
-        // TAttribute? IEnumeration<IOperations, byte, Enums.Operations>.GetCustomAttribute<TAttribute>() where TAttribute : default
-        //     => Value.Equals(other?.Value);
+        ) => Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
         TypeCode IConvertible.GetTypeCode() => TypeCode;
 
-        readonly bool IConvertible.ToBoolean(IFormatProvider provider) =>
+        bool IConvertible.ToBoolean(IFormatProvider provider) =>
             (bool)Convert.ChangeType(Value, typeof(bool), provider);
 
-        readonly byte IConvertible.ToByte(IFormatProvider provider) =>
+        byte IConvertible.ToByte(IFormatProvider provider) =>
             (byte)Convert.ChangeType(Value, typeof(byte), provider);
 
-        readonly char IConvertible.ToChar(IFormatProvider provider) =>
+        char IConvertible.ToChar(IFormatProvider provider) =>
             (char)Convert.ChangeType(Value, typeof(char), provider);
 
-        readonly datetime IConvertible.ToDateTime(IFormatProvider provider) =>
+        datetime IConvertible.ToDateTime(IFormatProvider provider) =>
             (datetime)((IConvertible)this).ToType(typeof(datetime), provider);
 
-        readonly decimal IConvertible.ToDecimal(IFormatProvider provider) =>
+        decimal IConvertible.ToDecimal(IFormatProvider provider) =>
             (decimal)((IConvertible)this).ToType(typeof(decimal), provider);
 
-        readonly double IConvertible.ToDouble(IFormatProvider provider) =>
+        double IConvertible.ToDouble(IFormatProvider provider) =>
             (double)((IConvertible)this).ToType(typeof(double), provider);
 
-        readonly short IConvertible.ToInt16(IFormatProvider provider) =>
+        short IConvertible.ToInt16(IFormatProvider provider) =>
             (short)((IConvertible)this).ToType(typeof(short), provider);
 
-        readonly int IConvertible.ToInt32(IFormatProvider provider) =>
+        int IConvertible.ToInt32(IFormatProvider provider) =>
             (int)((IConvertible)this).ToType(typeof(int), provider);
 
-        readonly long IConvertible.ToInt64(IFormatProvider provider) =>
+        long IConvertible.ToInt64(IFormatProvider provider) =>
             (long)((IConvertible)this).ToType(typeof(long), provider);
 
-        readonly sbyte IConvertible.ToSByte(IFormatProvider provider) =>
+        sbyte IConvertible.ToSByte(IFormatProvider provider) =>
             (sbyte)((IConvertible)this).ToType(typeof(sbyte), provider);
 
-        readonly float IConvertible.ToSingle(IFormatProvider provider) =>
+        float IConvertible.ToSingle(IFormatProvider provider) =>
             (float)((IConvertible)this).ToType(typeof(float), provider);
 
-        readonly string IConvertible.ToString(IFormatProvider provider) => DisplayName;
+        string IConvertible.ToString(IFormatProvider provider) => DisplayName;
 
-        readonly object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
+        object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
             Convert.ChangeType(Value, conversionType, provider);
 
-        readonly ushort IConvertible.ToUInt16(IFormatProvider provider) =>
+        ushort IConvertible.ToUInt16(IFormatProvider provider) =>
             (ushort)((IConvertible)this).ToType(typeof(ushort), provider);
 
-        readonly uint IConvertible.ToUInt32(IFormatProvider provider) =>
+        uint IConvertible.ToUInt32(IFormatProvider provider) =>
             (uint)((IConvertible)this).ToType(typeof(uint), provider);
 
-        readonly ulong IConvertible.ToUInt64(IFormatProvider provider) =>
+        ulong IConvertible.ToUInt64(IFormatProvider provider) =>
             (ulong)((IConvertible)this).ToType(typeof(ulong), provider);
 
-        readonly int IComparable.CompareTo(object obj) =>
+        int IComparable.CompareTo(object obj) =>
             obj is Enums.Operations op
                 ? Value.CompareTo(op)
                 : obj is IOperations op2
-                    ? Value.CompareTo(op2.Value)
+                    ? Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
                     : -1;
 
         public TAttribute? GetCustomAttribute<TAttribute>()
             where TAttribute : Attribute => FieldInfo.GetCustomAttribute<TAttribute>();
     }
 
-    public readonly record struct All : IOperations
+    public record class All : Operations, IOperations
     {
         public static IOperations Instance => new Delete();
         public const byte Id = (byte)Value;
@@ -653,128 +600,115 @@ public static class Operations
         public const string GroupName = nameof(Operations);
         public const string UriString = "https://dgmjr.io/security/constants/operations/all";
         public const int Order = Id;
-        public static readonly string GuidString = MD5.Create()
+        public static string GuidString = MD5.Create()
             .ComputeHash(UriString.ToUTF8Bytes())
             .ToHexString();
         public const TypeCode TypeCode = System.TypeCode.Byte;
         public const Enums.Operations Value = Enums.Operations.Create;
 
-        readonly byte IIdentifiable<byte>.Id => (byte)Value;
-        readonly string IHaveAName.Name => Name;
-        readonly string IHaveAShortName.ShortName => ShortName;
-        readonly string IHaveADisplayName.DisplayName => DisplayName;
-        readonly Enums.Operations IHaveAValue<Enums.Operations>.Value => Value;
+        byte IIdentifiable<byte>.Id => (byte)Value;
+        string IHaveAName.Name => Name;
+        string IHaveAShortName.ShortName => ShortName;
+        string IHaveADisplayName.DisplayName => DisplayName;
+        Enums.Operations IHaveAValue<Enums.Operations>.Value => Value;
 
-        readonly Enums.Operations IEnumeration<IOperations, byte, Enums.Operations>.Value => Value;
+        string IEnumeration.GroupName => GroupName;
 
-        readonly string IEnumeration.ShortName => ShortName;
+        int IEnumeration.Order => Order;
 
-        readonly string IEnumeration.DisplayName => DisplayName;
+        guid IEnumeration.Guid => new(GuidString);
 
-        readonly string IEnumeration.GroupName => GroupName;
+        Uri IHaveAUri.Uri => new(UriString);
 
-        readonly int IEnumeration.Order => Order;
+        object IHaveAValue.Value => Value;
 
-        readonly guid IEnumeration.Guid => new(GuidString);
+        string IHaveADescription.Description => Description;
 
-        readonly Uri IEnumeration.Uri => new(UriString);
+        object IIdentifiable.Id => Id;
 
-        readonly object IHaveAValue.Value => Value;
+        public FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
 
-        readonly string IHaveADescription.Description => Description;
+        public bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
 
-        readonly object IIdentifiable.Id => Id;
+        public int CompareTo(IOperations? other) =>
+            Value.CompareTo(((IHaveAValue<Enums.Operations>?)other).Value);
 
-        public readonly FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
+        public override int GetHashCode() => Value.GetHashCode();
 
-        // public bool Equals(object? other) => other is Operations op ? Equals(op) : false;
-        public readonly bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
+        int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(IEnumeration other) =>
+            Value.CompareTo(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        public readonly int CompareTo(IOperations? other) => Value.CompareTo(other.Value);
+        int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(Enums.Operations other) =>
+            Value.CompareTo(other);
 
-        public override readonly int GetHashCode() => Value.GetHashCode();
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(IEnumeration? other) =>
+            Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        readonly int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(
-            IEnumeration other
-        ) => Value.CompareTo(other?.Value);
-
-        readonly int IEnumeration<IOperations, byte, Enums.Operations>.CompareTo(
-            Enums.Operations other
-        ) => Value.CompareTo(other);
-
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
-            IEnumeration? other
-        ) => Value.Equals(other?.Value);
-
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
             IEnumeration<IOperations> other
-        ) => Value.Equals(other?.Value);
+        ) => Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
-            Enums.Operations other
-        ) => Value.Equals(other);
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(Enums.Operations other) =>
+            Value.Equals(other);
 
-        readonly bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
+        bool IEnumeration<IOperations, byte, Enums.Operations>.Equals(
             IEnumeration<IOperations, byte, Enums.Operations> other
-        ) => Value.Equals(other?.Value);
-
-        // TAttribute? IEnumeration<IOperations, byte, Enums.Operations>.GetCustomAttribute<TAttribute>() where TAttribute : default
-        //     => Value.Equals(other?.Value);
+        ) => Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
         TypeCode IConvertible.GetTypeCode() => TypeCode;
 
-        readonly bool IConvertible.ToBoolean(IFormatProvider provider) =>
+        bool IConvertible.ToBoolean(IFormatProvider provider) =>
             (bool)Convert.ChangeType(Value, typeof(bool), provider);
 
-        readonly byte IConvertible.ToByte(IFormatProvider provider) =>
+        byte IConvertible.ToByte(IFormatProvider provider) =>
             (byte)Convert.ChangeType(Value, typeof(byte), provider);
 
-        readonly char IConvertible.ToChar(IFormatProvider provider) =>
+        char IConvertible.ToChar(IFormatProvider provider) =>
             (char)Convert.ChangeType(Value, typeof(char), provider);
 
-        readonly datetime IConvertible.ToDateTime(IFormatProvider provider) =>
+        datetime IConvertible.ToDateTime(IFormatProvider provider) =>
             (datetime)((IConvertible)this).ToType(typeof(datetime), provider);
 
-        readonly decimal IConvertible.ToDecimal(IFormatProvider provider) =>
+        decimal IConvertible.ToDecimal(IFormatProvider provider) =>
             (decimal)((IConvertible)this).ToType(typeof(decimal), provider);
 
-        readonly double IConvertible.ToDouble(IFormatProvider provider) =>
+        double IConvertible.ToDouble(IFormatProvider provider) =>
             (double)((IConvertible)this).ToType(typeof(double), provider);
 
-        readonly short IConvertible.ToInt16(IFormatProvider provider) =>
+        short IConvertible.ToInt16(IFormatProvider provider) =>
             (short)((IConvertible)this).ToType(typeof(short), provider);
 
-        readonly int IConvertible.ToInt32(IFormatProvider provider) =>
+        int IConvertible.ToInt32(IFormatProvider provider) =>
             (int)((IConvertible)this).ToType(typeof(int), provider);
 
-        readonly long IConvertible.ToInt64(IFormatProvider provider) =>
+        long IConvertible.ToInt64(IFormatProvider provider) =>
             (long)((IConvertible)this).ToType(typeof(long), provider);
 
-        readonly sbyte IConvertible.ToSByte(IFormatProvider provider) =>
+        sbyte IConvertible.ToSByte(IFormatProvider provider) =>
             (sbyte)((IConvertible)this).ToType(typeof(sbyte), provider);
 
-        readonly float IConvertible.ToSingle(IFormatProvider provider) =>
+        float IConvertible.ToSingle(IFormatProvider provider) =>
             (float)((IConvertible)this).ToType(typeof(float), provider);
 
-        readonly string IConvertible.ToString(IFormatProvider provider) => DisplayName;
+        string IConvertible.ToString(IFormatProvider provider) => DisplayName;
 
-        readonly object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
+        object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
             Convert.ChangeType(Value, conversionType, provider);
 
-        readonly ushort IConvertible.ToUInt16(IFormatProvider provider) =>
+        ushort IConvertible.ToUInt16(IFormatProvider provider) =>
             (ushort)((IConvertible)this).ToType(typeof(ushort), provider);
 
-        readonly uint IConvertible.ToUInt32(IFormatProvider provider) =>
+        uint IConvertible.ToUInt32(IFormatProvider provider) =>
             (uint)((IConvertible)this).ToType(typeof(uint), provider);
 
-        readonly ulong IConvertible.ToUInt64(IFormatProvider provider) =>
+        ulong IConvertible.ToUInt64(IFormatProvider provider) =>
             (ulong)((IConvertible)this).ToType(typeof(ulong), provider);
 
-        readonly int IComparable.CompareTo(object obj) =>
+        int IComparable.CompareTo(object obj) =>
             obj is Enums.Operations op
                 ? Value.CompareTo(op)
                 : obj is IOperations op2
-                    ? Value.CompareTo(op2.Value)
+                    ? Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
                     : -1;
 
         public TAttribute? GetCustomAttribute<TAttribute>()

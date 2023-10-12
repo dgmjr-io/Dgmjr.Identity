@@ -14,7 +14,95 @@ namespace Dgmjr.Identity.Abstractions;
 
 using System;
 
-public partial interface IUserClaim<TKey>
-    : IEntityClaim<IUserClaim<TKey>, TKey>,
-        IUserAssociatedEntity<TKey>
-    where TKey : IEquatable<TKey>, IComparable { }
+public partial interface IUserClaim<
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+>
+    : IEntityClaim<TUserClaim, TUser, TKey>,
+        IUserAssociatedEntity<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TUser : IIdentityUser<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TRole : IIdentityRole<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TKey : IEquatable<TKey>, IComparable
+    where TUserClaim : IIdentityUserClaim<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TUserRole : IIdentityUserRole<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TUserLogin : IIdentityUserLogin<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TRoleClaim : IIdentityRoleClaim<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TUserToken : IIdentityUserToken<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        > { }

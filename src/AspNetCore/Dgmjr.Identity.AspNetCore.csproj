@@ -1,11 +1,11 @@
 <!--
  * Dgmjr.Identity.AspNetCore.csproj
- * 
+ *
  *   Created: 2022-12-13-08:36:07
  *   Modified: 2022-12-13-08:36:08
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
@@ -19,18 +19,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" /> 
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" /> 
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" />
     <PackageReference Include="System.Usings" />
     <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Payloads" />
     <!-- <PackageReference Include="Dgmjr.Http.Extensions" /> -->
   </ItemGroup>
-  
+
   <ItemGroup Condition="true">
     <ProjectReference Include="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" />
     <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />
