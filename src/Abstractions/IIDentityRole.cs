@@ -12,7 +12,48 @@
 
 namespace Dgmjr.Identity.Abstractions;
 
+using System.Security.Principal;
+
 using Microsoft.AspNetCore.Identity;
+
+public partial interface IIdentityRole<TKey, TUser, TRole> : IIdentityEntity<TKey>
+    where TUser : IIdentityUser<TKey, TUser, TRole>
+    where TRole : IIdentityRole<TKey, TUser, TRole>
+    where TKey : IEquatable<TKey>, IComparable
+{
+    /// <summary>
+    /// Gets or sets the name for this role.
+    /// </summary>
+    string? Name { get; set; }
+
+    /// <summary>
+    /// Gets or sets the normalized name for this role.
+    /// </summary>
+    string? NormalizedName { get; set; }
+
+    /// <summary>
+    /// Gets or sets the description for this role.
+    /// </summary>
+    string? Description { get; set; }
+
+    /// <summary>
+    /// A random value that should change whenever a role is persisted to the store
+    /// </summary>
+    string? ConcurrencyStamp { get; set; }
+
+    /// <summary>
+    /// The <see cref="uri" /> of the role
+    /// </summary>
+    uri Uri { get; set; }
+
+    /// <summary>
+    /// Returns the name of the role.
+    /// </summary>
+    /// <returns>The name of the role.</returns>
+    string ToString();
+
+    ICollection<TUser> Users { get; set; }
+}
 
 public partial interface IIdentityRole<
     TUser,
@@ -23,7 +64,7 @@ public partial interface IIdentityRole<
     TUserLogin,
     TRoleClaim,
     TUserToken
-> : IIdentityEntity<TKey>
+> : IIdentityRole<TKey, TUser, TRole>
     where TUser : IIdentityUser<
             TUser,
             TRole,
@@ -96,34 +137,17 @@ public partial interface IIdentityRole<
             TUserToken
         >
 {
-    /// <summary>
-    /// Gets or sets the name for this role.
-    /// </summary>
-    string? Name { get; set; }
-
-    /// <summary>
-    /// Gets or sets the normalized name for this role.
-    /// </summary>
-    string? NormalizedName { get; set; }
-
-    /// <summary>
-    /// Gets or sets the description for this role.
-    /// </summary>
-    string? Description { get; set; }
-
-    /// <summary>
-    /// A random value that should change whenever a role is persisted to the store
-    /// </summary>
-    string? ConcurrencyStamp { get; set; }
-
-    /// <summary>
-    /// The <see cref="uri" /> of the role
-    /// </summary>
-    uri Uri { get; set; }
-
-    /// <summary>
-    /// Returns the name of the role.
-    /// </summary>
-    /// <returns>The name of the role.</returns>
-    string ToString();
+    ICollection<TUserRole> UserRoles { get; set; }
 }
+
+public interface IIdentityRole
+    : IIdentityRole<
+        Dgmjr.Identity.Abstractions.IIdentityUser,
+        Dgmjr.Identity.Abstractions.IIdentityRole,
+        long,
+        Dgmjr.Identity.Abstractions.IIdentityUserClaim,
+        Dgmjr.Identity.Abstractions.IIdentityUserRole,
+        Dgmjr.Identity.Abstractions.IIdentityUserLogin,
+        Dgmjr.Identity.Abstractions.IIdentityRoleClaim,
+        Dgmjr.Identity.Abstractions.IIdentityUserToken
+    > { }

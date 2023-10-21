@@ -12,7 +12,7 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net6.0</TargetFrameworks>
     <!-- <TargetFrameworks>net7.0</TargetFrameworks> -->
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
@@ -31,16 +31,11 @@
     <!-- <PackageReference Include="Dgmjr.Http.Extensions" /> -->
   </ItemGroup>
 
-  <ItemGroup Condition="true">
+  <ItemGroup>
     <ProjectReference Include="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" />
     <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />
     <ProjectReference Include="../Roles/Dgmjr.Identity.Roles.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
-  </ItemGroup>
-  <ItemGroup Condition="false">
-    <ProjectReference Include="Dgmjr.Identity.EntityFrameworkCore" />
-    <ProjectReference Include="Dgmjr.Payloads" />
-    <ProjectReference Include="Dgmjr.Identity.Models" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="DgmjrSdk" />
   <Target Name="Compile" />

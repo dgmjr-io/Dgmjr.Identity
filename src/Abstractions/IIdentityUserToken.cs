@@ -105,3 +105,15 @@ public interface IIdentityUserToken<
     [ProtectedPersonalData]
     string? Value { get; set; }
 }
+
+public interface IIdentityUserToken
+    : IIdentityUserToken<
+        Dgmjr.Identity.Abstractions.IIdentityUser,
+        Dgmjr.Identity.Abstractions.IIdentityRole,
+        long,
+        Dgmjr.Identity.Abstractions.IIdentityUserClaim,
+        Dgmjr.Identity.Abstractions.IIdentityUserRole,
+        Dgmjr.Identity.Abstractions.IIdentityUserLogin,
+        Dgmjr.Identity.Abstractions.IIdentityRoleClaim,
+        Dgmjr.Identity.Abstractions.IIdentityUserToken
+    > { }

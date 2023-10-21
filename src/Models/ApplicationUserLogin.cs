@@ -16,10 +16,11 @@ namespace Dgmjr.Identity.Models;
 using Abstractions;
 using Dgmjr.Abstractions;
 using Dgmjr.Identity.Abstractions;
+using Dgmjr.Identity.Models.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 
-[Table(Constants.TableNames.TblUserLogin, Schema = IdentitySchema.ShortName)]
+[Table(Constants.TableNames.UserLogin, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Login (Id} - {LoginProvider}: {ProviderKey})")]
 public class ApplicationUserLogin<TKey>
     : IUserLoginEntity<
@@ -44,7 +45,7 @@ public class ApplicationUserLogin<TKey>
         >
     where TKey : IEquatable<TKey>, IComparable
 {
-    [Key, DbGen(DbGen.Identity), Column(nameof(Id), TypeName = DbTypeBigInt.ShortName), Required]
+    [Key, DbGen(DbGen.Identity), Column(nameof(Id), TypeName = BigInt.ShortName), Required]
     public virtual TKey Id { get; set; }
 
     [NotMapped]
@@ -55,8 +56,8 @@ public class ApplicationUserLogin<TKey>
     [NotMapped]
     public virtual string ProviderDisplayName => Provider.DisplayName;
 
-    [JIgnore, Newtonsoft.Json.JsonIgnore]
-    public virtual IApplicationUserLoginProvider Provider { get; set; }
+    [JConverter(typeof(ApplicationUserLoginProviderJsonConverter))]
+    public virtual Abstractions.IApplicationUserLoginProvider Provider { get; set; }
 
     public virtual int ProviderId { get; set; }
 

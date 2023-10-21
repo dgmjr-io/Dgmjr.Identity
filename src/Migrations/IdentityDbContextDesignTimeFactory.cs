@@ -14,6 +14,9 @@ using Azure.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using Dgmjr.Identity.EntityFrameworkCore;
+using Dgmjr.Identity.Abstractions;
+using Dgmjr.Identity;
 
 namespace Dgmjr.Identity.EntityFrameworkCore.Migrations;
 
@@ -25,17 +28,31 @@ public class IdentityDbContextDesignTimeFactory : IDesignTimeDbContextFactory<Id
     {
         var config =
             new ConfigurationManager().AddUserSecrets<IdentityDbContextDesignTimeFactory>();
-        var connectionString = ((IConfigurationRoot)config)[DefaultConnectionStringKey];
-        connectionString = config
-            .AddAzureAppConfiguration(
-                options =>
-                    options
-                        .Connect(connectionString)
-                        .ConfigureKeyVault(kv => kv.SetCredential(new DefaultAzureCredential()))
-            )
+        // var connectionString = ((IConfigurationRoot)config)[DefaultConnectionStringKey];
+        var connectionString = config
+            // .AddAzureAppConfiguration(
+            //     options =>
+            //         options
+            //             .Connect(connectionString)
+            //             .ConfigureKeyVault(kv => kv.SetCredential(new DefaultAzureCredential()))
+            // )
             .Build()
             .GetConnectionString("IdentityDb");
-        var builder = new DbContextOptionsBuilder<IdentityDbContext>();
+        var builder =
+            new DbContextOptionsBuilder<
+                IdentityDbContext<
+                    AppUser,
+                    AppRole,
+                    long,
+                    AppUserClaim,
+                    AppUserRole,
+                    AppUserLogin,
+                    AppRoleClaim,
+                    AppUserToken,
+                    AppClaimType,
+                    AppClaimValueType
+                >
+            >();
         builder.UseSqlServer(connectionString);
         return new IdentityDbContext(builder.Options);
     }

@@ -13,12 +13,13 @@
 namespace Dgmjr.Identity.Models;
 
 using Dgmjr.Identity.Models.Enums;
+using Dgmjr.Identity.Models.Abstractions;
 
 using Dgmjr.Identity.Abstractions;
 
 using Microsoft.EntityFrameworkCore.Internal;
 
-[Table(TblUserToken, Schema = IdentitySchema.ShortName)]
+[Table(Constants.TableNames.UserToken, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Token ({UserId} - {LoginProvider}, Created: {DateTimeCreated})")]
 public class ApplicationUserToken<TKey>
     : IIdentityUserToken<
@@ -49,17 +50,23 @@ public class ApplicationUserToken<TKey>
         set => Provider = ApplicationUserLoginProvider.FromId(value);
     }
 
-    public virtual string ProviderName {
+    public virtual string ProviderName
+    {
         get => Provider.Name;
-        set { /* no op */ }
+        set
+        { /* no op */
+        }
     }
-    public virtual string ProviderDisplayName {
+    public virtual string ProviderDisplayName
+    {
         get => Provider.DisplayName;
-        set { /* no op */ }
+        set
+        { /* no op */
+        }
     }
 
     //[ForeignKey(nameof(ProviderId)), BackingField("_provider")]
-    public virtual Dgmjr.Identity.Models.Abstractions.IApplicationUserLoginProvider Provider { get; set; }
+    public virtual IApplicationUserLoginProvider Provider { get; set; }
 
     [Column(nameof(Name)), StringLength(64)]
     public virtual string Name { get; set; }

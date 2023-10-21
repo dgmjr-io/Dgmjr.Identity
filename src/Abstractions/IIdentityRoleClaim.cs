@@ -97,4 +97,18 @@ public interface IIdentityRoleClaim<
         >
 {
     TKey RoleId { get; set; }
+
+    TRole Role { get; set; }
 }
+
+public interface IIdentityRoleClaim
+    : IIdentityRoleClaim<
+        Dgmjr.Identity.Abstractions.IIdentityUser,
+        Dgmjr.Identity.Abstractions.IIdentityRole,
+        long,
+        Dgmjr.Identity.Abstractions.IIdentityUserClaim,
+        Dgmjr.Identity.Abstractions.IIdentityUserRole,
+        Dgmjr.Identity.Abstractions.IIdentityUserLogin,
+        Dgmjr.Identity.Abstractions.IIdentityRoleClaim,
+        Dgmjr.Identity.Abstractions.IIdentityUserToken
+    > { }

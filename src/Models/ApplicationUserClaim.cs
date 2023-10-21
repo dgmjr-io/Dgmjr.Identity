@@ -24,9 +24,8 @@ namespace Dgmjr.Identity.Models;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 using static Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant;
 
-[Table(TblUserClaim, Schema = IdentitySchema.ShortName)]
+[Table(Constants.TableNames.UserClaim, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Claim ({Id} - User ID: {UserId}, {Type}: {Value})")]
-[JSerializable(typeof(ApplicationUserClaim))]
 public class ApplicationUserClaim<TKey>
     : EntityClaim<ApplicationUserClaim<TKey>, ApplicationUser<TKey>, TKey>,
         IIdentityUserClaim<

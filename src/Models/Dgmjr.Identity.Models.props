@@ -47,26 +47,29 @@
     <Using Include="System.String" Static="true" />
   </ItemGroup>
   <ItemGroup>
-    <Using Include="Dgmjr.Identity.Models.ApplicationRole" Alias="AppRole" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUser" Alias="User" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim" Alias="UserClaim" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserLogin" Alias="UserLogin" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserLoginProvider" Alias="UserLoginProvider" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserRole" Alias="UserRole" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserToken" Alias="UserToken" />
-
-    <Using Include="Dgmjr.Identity.Models.ApplicationUser" Alias="AppUser" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim" Alias="AppUserClaim" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserLogin" Alias="AppUserLogin" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationRole&lt;long&gt;" Alias="AppRole" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUser&lt;long&gt;" Alias="AppUser" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim&lt;long&gt;" Alias="AppUserClaim" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLogin&lt;long&gt;" Alias="AppUserLogin" />
     <Using Include="Dgmjr.Identity.Models.ApplicationUserLoginProvider" Alias="AppUserLoginProvider" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserRole" Alias="AppUserRole" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserToken" Alias="AppUserToken" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserRole&lt;long&gt;" Alias="AppUserRole" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationClaimValueType&lt;long&gt;" Alias="AppClaimValueType" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationClaimType&lt;long&gt;" Alias="AppClaimType" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserToken&lt;long&gt;" Alias="AppUserToken" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationRoleClaim&lt;long&gt;" Alias="AppRoleClaim" />
+<!--
+    <Using Include="Dgmjr.Identity.Models.ApplicationUser&lt;long&gt;" Alias="AppUser" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim&lt;long&gt;" Alias="AppUserClaim" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLogin&lt;long&gt;" Alias="AppUserLogin" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLoginProvider" Alias="AppUserLoginProvider" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserRole&lt;long&gt;" Alias="AppUserRole" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserToken&lt;long&gt;" Alias="AppUserToken" />
 
-    <Using Include="Dgmjr.Identity.Models.ApplicationUser" Alias="ApplicationUser" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim" Alias="ApplicationUserClaim" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserLogin" Alias="ApplicationUserLogin" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUser&lt;long&gt;" Alias="ApplicationUser" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim&lt;long&gt;" Alias="ApplicationUserClaim" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLogin&lt;long&gt;" Alias="ApplicationUserLogin" />
     <Using Include="Dgmjr.Identity.Models.ApplicationUserLoginProvider" Alias="ApplicationUserLoginProvider" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserRole" Alias="ApplicationUserRole" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserToken" Alias="ApplicationUserToken" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserRole&lt;long&gt;" Alias="ApplicationUserRole" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserToken&lt;long&gt;" Alias="ApplicationUserToken" /> -->
   </ItemGroup>
 </Project>

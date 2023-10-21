@@ -29,7 +29,7 @@ using static System.Guid;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 using static Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant;
 
-[Table(TblUser, Schema = IdentitySchema.ShortName)]
+[Table(Constants.TableNames.User, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User ({UserName} - {Email})")]
 public class ApplicationUser<TKey>
     : IIdentityUser<
@@ -55,7 +55,7 @@ public class ApplicationUser<TKey>
         >
     where TKey : IEquatable<TKey>, IComparable
 {
-    public const string DefaultPassword = "Dav1d is really fuckin' sexy!";
+    public const string DefaultPassword = "Dav1d is really fuckin' sexy 123!";
     public const string DefaultLockoutEndString = "1/1/1970";
     public static readonly DateTimeOffset DefaultLockoutEnd = DateTimeOffset.Parse(
         DefaultLockoutEndString
@@ -107,7 +107,9 @@ public class ApplicationUser<TKey>
     public virtual string? NormalizedEmailAddress
     {
         get => EmailAddress.ToString()?.Normalize(NormalizationForm.FormKD);
-        set { /* no op */ }
+        set
+        { /* no op */
+        }
     }
 
     public virtual string? NormalizedUsername
@@ -135,12 +137,13 @@ public class ApplicationUser<TKey>
 
     public override int GetHashCode() => Id.GetHashCode();
 
-    public virtual byte[] ConcurrencyStamp { get; set; } = Guid.NewGuid().ToByteArray();
+    public virtual string ConcurrencyStamp { get; set; } =
+        Guid.NewGuid().ToByteArray().ToHexString();
 
     public virtual string? PasswordHash { get; set; } = null;
 
     [Column(TypeName = "uniqueidentifier")]
-    public virtual guid SecurityStamp { get; set; } = NewGuid();
+    public virtual string SecurityStamp { get; set; } = NewGuid().ToString();
 
     /// <summary>The roles to which the user belongs</summary>
     public virtual ICollection<ApplicationRole<TKey>> Roles { get; set; } =
@@ -175,6 +178,9 @@ public class ApplicationUser<TKey>
         get => Claims.Select(c => c.ToClaim()).ToArray();
         set { }
     }
+
+    public virtual bool IsBot =>
+        ClaimTypes.Any(ct => ct.Uri == Telegram.Identity.ClaimTypes.BotApiToken.UriString);
 }
 
 public class ApplicationUser : ApplicationUser<long> { }

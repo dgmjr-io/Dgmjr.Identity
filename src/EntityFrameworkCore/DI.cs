@@ -20,53 +20,55 @@ using System.Net.Mail;
 
 public static class DescribeDataTypesExtensions
 {
-    public static WebApplicationBuilder DescribeIdentityDataTypes(
-        this WebApplicationBuilder builder
-    )
-    {
-        builder.Services.DescribeIdentityDataTypes();
-        return builder;
-    }
+    // public static WebApplicationBuilder DescribeIdentityDataTypes(
+    //     this WebApplicationBuilder builder
+    // )
+    // {
+    //     builder.Services.DescribeIdentityDataTypes();
+    //     return builder;
+    // }
 
     public static IServiceCollection DescribeIdentityDataTypes(this IServiceCollection services)
     {
-        services.ConfigureSwaggerGen(c =>
-        {
-            c.MapType<EmailAddress>(
-                () =>
-                    new OpenApiSchema
-                    {
-                        Type = "string",
-                        Pattern = EmailAddress.RegexString,
-                        Format = nameof(EmailAddress),
-                        Description = "An email address",
-                        Example = new OpenApiString("david@dgmjr.io"),
-                        Default = new OpenApiString(null),
-                        ExternalDocs = new OpenApiExternalDocs
-                        {
-                            Description = "Email Address",
-                            Url = new Uri("https://en.wikipedia.org/wiki/Email_address")
-                        }
-                    }
-            );
-            c.MapType<PhoneNumber>(
-                () =>
-                    new OpenApiSchema
-                    {
-                        Type = "string",
-                        Pattern = PhoneNumber.RegexString,
-                        Format = nameof(PhoneNumber),
-                        Description = "A phone number in E.164 format",
-                        Example = new OpenApiString("+19174099321"),
-                        Default = new OpenApiString(null),
-                        ExternalDocs = new OpenApiExternalDocs
-                        {
-                            Description = "E.164",
-                            Url = new Uri("https://en.wikipedia.org/wiki/E.164")
-                        }
-                    }
-            );
-        });
+        services.Describe<EmailAddress>();
+        services.Describe<PhoneNumber>();
+        // services.ConfigureSwaggerGen(c =>
+        // {
+        //     c.MapType<EmailAddress>(
+        //         () =>
+        //             new OpenApiSchema
+        //             {
+        //                 Type = "string",
+        //                 Pattern = EmailAddress.RegexString,
+        //                 Format = nameof(EmailAddress),
+        //                 Description = EmailAddress.Description,
+        //                 Example = new OpenApiString(EmailAddress.ExampleValueString),
+        //                 Default = new OpenApiString(EmailAddress.EmptyValueString),
+        //                 ExternalDocs = new OpenApiExternalDocs
+        //                 {
+        //                     Description = "Email Address",
+        //                     Url = new("https://en.wikipedia.org/wiki/Email_address")
+        //                 }
+        //             }
+        //     );
+        //     c.MapType<PhoneNumber>(
+        //         () =>
+        //             new OpenApiSchema
+        //             {
+        //                 Type = "string",
+        //                 Pattern = PhoneNumber.RegexString,
+        //                 Format = nameof(PhoneNumber),
+        //                 Description = PhoneNumber.Description,
+        //                 Example = new OpenApiString(PhoneNumber.ExampleString),
+        //                 Default = new OpenApiString(PhoneNumber.EmptyString),
+        //                 ExternalDocs = new OpenApiExternalDocs
+        //                 {
+        //                     Description = "E.164",
+        //                     Url = new("https://en.wikipedia.org/wiki/E.164")
+        //                 }
+        //             }
+        //     );
+        // });
         return services;
     }
 }

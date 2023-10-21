@@ -18,6 +18,7 @@ using Dgmjr.Enumerations.Abstractions;
 using Dgmjr.Identity.Models;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using static Dgmjr.Identity.Models.Enums.ApplicationUserLoginProvider;
+using Dgmjr.Identity.Abstractions;
 using Dgmjr.Identity.Models.Abstractions;
 
 public class ApplicationUserLoginProviderConverter
@@ -26,14 +27,30 @@ public class ApplicationUserLoginProviderConverter
     public ApplicationUserLoginProviderConverter()
         : base(v => ((IIdentifiable<int>)v).Id, v => ApplicationUserLoginProvider.FromId(v)) { }
 }
+public class ApplicationUserLoginProviderJsonConverter
+    : JsonConverter<IApplicationUserLoginProvider>
+{
+    public override IApplicationUserLoginProvider Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        var value = reader.GetInt32();
+        return ApplicationUserLoginProvider.FromId(value);
+    }
 
-public partial record class ApplicationUserLoginProvider
+    public override void Write(Utf8JsonWriter writer, IApplicationUserLoginProvider value, JsonSerializerOptions options)
+    {
+        writer.WriteNumberValue(((IIdentifiable<int>)value).Id);
+    }
+}
+
+public partial record struct ApplicationUserLoginProvider
 {
     public static Dgmjr.Identity.Models.Abstractions.IApplicationUserLoginProvider FromId(int id) =>
         ApplicationUserLoginProvider.FromValue(
             (Dgmjr.Identity.Models.Enums.ApplicationUserLoginProvider)id
         );
 }
+
+public record class UserLoginProvider { }
 
 // public partial record class UserLoginProvider //: Dgmjr.Enumerations.EnumerationClass<UserLoginProvider, int, UserLoginProviderEnum>
 // {

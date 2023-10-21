@@ -109,4 +109,18 @@ public interface IIdentityUserRole<
     /// </summary>
     [Hashids]
     TKey RoleId { get; set; }
+
+    TRole Role { get; set; }
 }
+
+public interface IIdentityUserRole
+    : IIdentityUserRole<
+        IIdentityUser,
+        IIdentityRole,
+        long,
+        IIdentityUserClaim,
+        IIdentityUserRole,
+        IIdentityUserLogin,
+        IIdentityRoleClaim,
+        IIdentityUserToken
+    > { }

@@ -13,7 +13,7 @@ using System.Security.AccessControl;
  */
 namespace Dgmjr.Identity.Models.Enums;
 
-[GenerateEnumerationRecordClass("ApplicationUserLoginProvider", "Dgmjr.Identity.Models")]
+[GenerateEnumerationRecordStruct("ApplicationUserLoginProvider", "Dgmjr.Identity.Models")]
 public enum ApplicationUserLoginProvider
 {
     [Uri("https://dgmjr.io/identity/login-provider/none")]

@@ -43,6 +43,8 @@ public class ApplicationRoleClaim<TKey>
         get => EntityId;
         set => EntityId = value;
     }
+
+    public virtual ApplicationRole<TKey> Role { get; set; } = default!;
 }
 
 public class ApplicationRoleClaim : ApplicationRoleClaim<long> { }

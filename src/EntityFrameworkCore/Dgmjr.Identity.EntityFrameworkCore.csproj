@@ -12,15 +12,20 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <!-- <TargetFramework>net7.0</TargetFramework> -->
   </PropertyGroup>
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <!-- <PackageReference Include="Microsoft.AspNetCore.App.Ref" VersionOverride="[8.0.0-rc,)" /> -->
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" />
     <PackageReference Include="System.Collections.Generic.Usings" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" VersionOverride="[1.1.6,)" />
   </ItemGroup>
   <ItemGroup Condition="true">
     <SourceGeneratorPackageReference Include="Dgmjr.InterfaceGenerator" />
@@ -40,6 +45,7 @@
     <ProjectReference Include="../Constants/Dgmjr.Identity.Constants.csproj" />
     <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
     <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />
+    <Reference Include="System.Runtime" Version="4.3.1.0" />
   </ItemGroup>
   <ItemGroup Condition="false">
     <!-- <ProjectReference Include="../../../SendPulse/src/Data/SendPulse.Data.csproj" />
@@ -71,4 +77,8 @@
     <PackageReference Include="Dgmjr.Identity.Models" />
     <PackageReference Include="SendPulse.Data" />
   </ItemGroup>
+  <Import Project="../Abstractions/Dgmjr.Identity.Abstractions.props" />
+  <Import Project="../Constants/Dgmjr.Identity.Constants.csproj" />
+  <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" />
+  <Import Project="../Models/Dgmjr.Identity.Models.props" />
 </Project>

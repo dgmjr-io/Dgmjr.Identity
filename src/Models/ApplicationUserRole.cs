@@ -17,7 +17,7 @@ using Dgmjr.Abstractions;
 using Microsoft.AspNetCore.Identity;
 
 /// <summary>A join entity between <see cref="User" />s and <see cref="Role" />s</summary>
-[Table(Constants.TableNames.TblUserRole, Schema = IdentitySchema.ShortName)]
+[Table(Constants.TableNames.UserRole, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Role ({Id} - User ID: {UserId}, Role: {Role})")]
 public class ApplicationUserRole<TKey>
     : IIdentityUserRole<
@@ -32,13 +32,13 @@ public class ApplicationUserRole<TKey>
     >
     where TKey : IEquatable<TKey>, IComparable
 {
-    [Key, DbGen(DbGen.Identity), Column(TypeName = DbTypeBigInt.ShortName)]
+    [Key, DbGen(DbGen.Identity), Column(TypeName = BigInt.ShortName)]
     public virtual TKey Id { get; set; }
 
-    [Column(nameof(RoleId), Order = 2, TypeName = DbTypeBigInt.ShortName)]
+    [Column(nameof(RoleId), Order = 2, TypeName = BigInt.ShortName)]
     public virtual TKey RoleId { get; set; }
 
-    [Column(nameof(UserId), Order = 1, TypeName = DbTypeBigInt.ShortName)]
+    [Column(nameof(UserId), Order = 1, TypeName = BigInt.ShortName)]
     public virtual TKey UserId { get; set; }
 
     public ApplicationUser<TKey> User { get; set; }

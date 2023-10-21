@@ -12,22 +12,23 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup Condition="true">
     <PackageReference Include="Dgmjr.Abstractions" />
+    <PackageReference Include="Dgmjr.AspNetCore.Hashids" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
     <PackageReference Include="Dgmjr.Primitives" />
-    <PackageReference Include="Dgmjr.AspNetCore.Hashids" />
     <PackageReference Include="Dgmjr.System.Extensions" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
+    <PackageReference Include="System.Security.Claims" />
     <PackageReference Include="System.Text.Json" />
     <PackageReference Include="Telegram.Bot.Extensions" />
     <PackageReference Include="Telegram.Constants" />
-    <PackageReference Include="System.Security.Claims" />
 
     <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
 

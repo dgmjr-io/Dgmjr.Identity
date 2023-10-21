@@ -99,3 +99,15 @@ public interface IIdentityUserLogin<
     /// </summary>
     string ProviderKey { get; set; }
 }
+
+public interface IIdentityUserLogin
+    : IIdentityUserLogin<
+        Dgmjr.Identity.Abstractions.IIdentityUser,
+        Dgmjr.Identity.Abstractions.IIdentityRole,
+        long,
+        Dgmjr.Identity.Abstractions.IIdentityUserClaim,
+        Dgmjr.Identity.Abstractions.IIdentityUserRole,
+        Dgmjr.Identity.Abstractions.IIdentityUserLogin,
+        Dgmjr.Identity.Abstractions.IIdentityRoleClaim,
+        Dgmjr.Identity.Abstractions.IIdentityUserToken
+    > { }

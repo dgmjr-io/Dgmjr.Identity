@@ -106,3 +106,15 @@ public interface IIdentityUserClaim<
             TRoleClaim,
             TUserToken
         > { }
+
+public interface IIdentityUserClaim
+    : IIdentityUserClaim<
+        IIdentityUser,
+        IIdentityRole,
+        long,
+        IIdentityUserClaim,
+        IIdentityUserRole,
+        IIdentityUserLogin,
+        IIdentityRoleClaim,
+        IIdentityUserToken
+    > { }

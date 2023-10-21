@@ -12,13 +12,14 @@
 
 namespace Dgmjr.Identity.Abstractions;
 
+/// <summary>
+/// Marker interface for a type that has a property called <see cref="TelegramUsername" />.
+/// </summary>
 public interface IHaveATelegramUsername
 {
     /// <summary>Gets or sets the user's unique Telegram username</summary>
     /// <example>@IAmTheAntitwink</example>
-    [
-        RegularExpression(Account.UsernameRegex),
-        Column(nameof(TelegramUsername), TypeName = DbTypeVarChar.ShortName)
-    ]
+    [RegularExpression(Account.UsernameRegex)]
+    [Column(nameof(TelegramUsername), TypeName = VarChar.ShortName)]
     string TelegramUsername { get; set; }
 }

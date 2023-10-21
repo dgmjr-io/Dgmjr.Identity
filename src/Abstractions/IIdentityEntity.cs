@@ -15,6 +15,6 @@ namespace Dgmjr.Identity.Abstractions;
 public interface IIdentityEntity<TKey> : IHaveAWritableId<TKey>
     where TKey : IEquatable<TKey>, IComparable
 {
-    [PersonalData, Key, DbGen(DbGen.None), Column(nameof(Id)), Hashids]
+    [PersonalData, Key, DbGen(DbGen.Identity), Hashids]
     new TKey Id { get; set; }
 }
