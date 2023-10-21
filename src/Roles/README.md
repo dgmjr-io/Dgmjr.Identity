@@ -1,4 +1,5 @@
 ---
+
 author:
 - dgmjr
 title: Commmonly-Assigned Roles
@@ -15,7 +16,7 @@ categories:
 - dgmjr
 - admin
 - roles
----
+-------
 
 # Commmonly-Assigned Roles
 
@@ -42,3 +43,4 @@ This project contains an enumeration of roles that can be assigned to users.
 ### `https://dgmjr.io/roles/contestant`
 
 ### `https://dgmjr.io/roles/voter`
+

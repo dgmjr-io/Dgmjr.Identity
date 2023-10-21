@@ -1,13 +1,14 @@
 ---
+
 title: DGMJR Identity Common
 project: Dgmjr.Identity
 description: This library contains the base interface and class for claim types and claim value types.
 lastmod: 2023-08-29T17:25:51.228Z
 date: 2023-08-29T17:25:51.228Z
 authors:
-  - dgmjr
+- dgmjr
 project: identity
----
+-----------------
 
 # Dgmjr.Identity.Core
 

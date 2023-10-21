@@ -1,11 +1,9 @@
 {
   "$schema": "https://beta.frontmatter.codes/frontmatter.schema.json",
-  "frontMatter.content.pageFolders": [
-    {
-      "title": "Abstractions",
-      "path": "[[workspace]]/src/Abstractions"
-    }
-  ],
-  "frontMatter.framework.id": "other",
-  "frontMatter.content.publicFolder": ""
+  "frontMatter.content.pageFolders": [ {
+    "path": "[[workspace]]/src/Abstractions",
+    "title": "Abstractions"
+  } ],
+  "frontMatter.content.publicFolder": "",
+  "frontMatter.framework.id": "other"
 }

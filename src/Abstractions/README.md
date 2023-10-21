@@ -1,4 +1,5 @@
 ---
+
 authors:
 - dgmjr
 title: Identity Abstractions
@@ -12,7 +13,7 @@ tags:
 - DGMJR-IO
 categories:
 - DGMJR-IO
----
+----------
 
 # Identity Abstractions
 
