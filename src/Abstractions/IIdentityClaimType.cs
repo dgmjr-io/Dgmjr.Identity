@@ -27,4 +27,5 @@ public interface IIdentityClaimType
         IIdentityRole,
         IIdentityClaimType,
         IIdentityClaimValueType
-    > { }
+    >
+{ }

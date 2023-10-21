@@ -38,5 +38,6 @@ public class SignInManager : SignInManager<User>
             logger,
             schemes,
             confirmation
-        ) { }
+        )
+    { }
 }

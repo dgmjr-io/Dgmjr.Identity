@@ -235,4 +235,5 @@ public interface IIdentityUser
         Dgmjr.Identity.Abstractions.IIdentityUserLogin,
         Dgmjr.Identity.Abstractions.IIdentityRoleClaim,
         Dgmjr.Identity.Abstractions.IIdentityUserToken
-    > { }
+    >
+{ }

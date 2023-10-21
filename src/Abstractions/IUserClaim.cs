@@ -105,4 +105,5 @@ public partial interface IUserClaim<
             TUserLogin,
             TRoleClaim,
             TUserToken
-        > { }
+        >
+{ }

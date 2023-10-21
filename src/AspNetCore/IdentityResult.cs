@@ -44,7 +44,8 @@ public class IdentityResult : ResponsePayload<IdentityResultTuple<object>>
                 : result != null
                     ? statusCode!
                     : throw new ArgumentNullException(nameof(result))
-        ) { }
+        )
+    { }
 
     [JProp("result"), JIgnore(Condition = JIgnoreCond.WhenWritingNull), XmlAttribute("value")]
     public virtual MSIDR Result => base.Value.Item1;

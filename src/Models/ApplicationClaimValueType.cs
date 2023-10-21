@@ -42,7 +42,7 @@ public class ApplicationClaimValueType<TKey>
 
     public virtual required uri Uri { get; set; }
 
-    public virtual required string Name { get; set; }
+public virtual required string Name { get; set; }
 
-    public virtual string Description { get; set; }
+public virtual string Description { get; set; }
 }
