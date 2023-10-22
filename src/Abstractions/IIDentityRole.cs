@@ -1,5 +1,5 @@
 /*
- * IIDentityRole.cs
+ * IIdentityRole.cs
  *
  *   Created: 2023-03-25-03:40:20
  *   Modified: 2023-03-25-03:40:20
@@ -39,6 +39,7 @@ public partial interface IIdentityRole<TKey, TUser, TRole> : IIdentityEntity<TKe
     /// <summary>
     /// A random value that should change whenever a role is persisted to the store
     /// </summary>
+    [Timestamp]
     string? ConcurrencyStamp { get; set; }
 
     /// <summary>

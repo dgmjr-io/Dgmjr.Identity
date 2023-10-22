@@ -120,6 +120,8 @@ public class ApplicationUser<TKey>
         }
     }
 
+    public virtual IGender Gender { get; set; }
+
     public override bool Equals(object? obj) =>
         obj
             is IIdentityUser<

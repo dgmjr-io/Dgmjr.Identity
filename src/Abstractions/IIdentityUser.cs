@@ -35,7 +35,11 @@ public partial interface IIdentityUser<TKey, TUser, TRole>
 
     /// <summary>Gets or sets the user's username (usually the same as <see cref="IHaveATelegramUsername.TelegramUsername" />)</summary>
     /// <example>IAmTheAntitwink</example>
-    [ProtectedPersonalData, StringLength(UsernameMaxLength, MinimumLength = UsernameMinLength), Required]
+    [
+        ProtectedPersonalData,
+        StringLength(UsernameMaxLength, MinimumLength = UsernameMinLength),
+        Required
+    ]
     string? Username { get; set; }
 
     /// <summary>The user's given ("first") name</summary>
@@ -54,7 +58,11 @@ public partial interface IIdentityUser<TKey, TUser, TRole>
     string? GoByName { get; set; }
 
     /// <summary>Gets or sets the normalized user name for this user.</summary>
-    [ProtectedPersonalData, StringLength(UsernameMaxLength, MinimumLength = UsernameMinLength), Required]
+    [
+        ProtectedPersonalData,
+        StringLength(UsernameMaxLength, MinimumLength = UsernameMinLength),
+        Required
+    ]
     [JIgnore, XIgnore]
     string? NormalizedUsername { get; set; }
 
@@ -125,6 +133,9 @@ public partial interface IIdentityUser<TKey, TUser, TRole>
     /// <value><see langword="true" /> if the user is locked out, <see langword="false" /> otherwise</value>
     [DbGen(DbGen.Computed), Required, DefaultValue(false)]
     bool IsLockedOut { get; }
+
+    /// <summary>Gets or sets the user's gender</summary>
+    IGender Gender { get; set; }
 
     /// <summary>Gets a value indicating whether the user is a bot</summary>
     /// <value><see langword="true" /> if the user is a bot, <see langword="false" /> otherwise</value>

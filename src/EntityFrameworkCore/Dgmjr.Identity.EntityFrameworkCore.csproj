@@ -13,8 +13,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <!-- <TargetFramework>net7.0</TargetFramework> -->
+    <EfCoreVersionOverride>[7.0.12,)</EfCoreVersionOverride>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
@@ -25,7 +27,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" />
     <PackageReference Include="System.Collections.Generic.Usings" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" VersionOverride="[1.1.6,)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" />
   </ItemGroup>
   <ItemGroup Condition="true">
     <SourceGeneratorPackageReference Include="Dgmjr.InterfaceGenerator" />
@@ -45,6 +47,10 @@
     <ProjectReference Include="../Constants/Dgmjr.Identity.Constants.csproj" />
     <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
     <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />
+    <!-- <PackageReference Include="Dgmjr.Identity.Abstractions" />
+    <PackageReference Include="Dgmjr.Identity.Constants" />
+    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore.Constants" />
+    <PackageReference Include="Dgmjr.Identity.Models" /> -->
     <Reference Include="System.Runtime" Version="4.3.1.0" />
   </ItemGroup>
   <ItemGroup Condition="false">

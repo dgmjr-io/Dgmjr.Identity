@@ -12,20 +12,20 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <EfCoreVersionOverride>[7.0.12,)</EfCoreVersionOverride>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<UserSecretsId>e6b186e0-e9c0-45e1-a0e0-caaf78d8b2d5</UserSecretsId>
   </PropertyGroup>
-  <ItemGroup Condition="false">
+  <ItemGroup Condition="true">
     <ProjectReference Include="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" />
     <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />
   </ItemGroup>
-  <ItemGroup>
+  <!-- <ItemGroup>
     <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" />
     <PackageReference Include="Dgmjr.Identity.Models" />
-  </ItemGroup>
+  </ItemGroup> -->
   <ItemGroup>
     <PackageReference Include="Azure.Core" />
     <PackageReference Include="Azure.Identity" />
@@ -37,7 +37,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" VersionOverride="$(EfCoreVersionOverride)" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" VersionOverride="$(EfCoreVersionOverride)" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" VersionOverride="$(EfCoreVersionOverride)" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" VersionOverride="[1.1.6,)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" />
     <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" ExcludeAssets="ContentFiles" VersionOverride="[5.2.0,)" />
     <PackageReference Include="System.Runtime" VersionOverride="4.3.1" />
   </ItemGroup>

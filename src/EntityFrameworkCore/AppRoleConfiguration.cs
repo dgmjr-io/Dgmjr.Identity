@@ -89,7 +89,7 @@ public class AppRoleConfiguration<
     public virtual void Configure(EntityTypeBuilder<TRole> builder)
     {
         builder.ToTable(
-            Role,
+            Dgmjr.Identity.Constants.Tables.Role,
             IdentitySchema.ShortName /*,
             tb =>
             {

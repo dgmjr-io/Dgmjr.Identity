@@ -100,7 +100,9 @@ public class IdentityDbContext<
             TRoleClaim,
             TUserToken
         >
-    where TClaimType : class, IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValueType>
+    where TClaimType : class,
+        IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValueType>,
+        IHaveAName
     where TClaimValueType : class,
         IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType>
 {
@@ -141,13 +143,20 @@ public class IdentityDbContext<
         builder.Entity<TUser>(builder =>
         {
             builder.ToTable(
-                TableNames.User,
-                IdentitySchema.ShortName //,
-            // tb =>
-            //     tb.HasCheckConstraint(
-            //         "CK_EmailAddress",
-            //         $"{nameof(AppUser.EmailAddress)} IS NULL OR {nameof(AppUser.EmailAddress)} LIKE '{EmailAddress.RegexString}'"
-            //     )
+                Dgmjr.Identity.Constants.Tables.User,
+                IdentitySchema.ShortName,
+                tb =>
+                {
+                    tb.HasCheckConstraint(
+                        "CK_EmailAddress",
+                        $"{nameof(AppUser.EmailAddress)} IS NULL OR {nameof(AppUser.EmailAddress)} LIKE '{EmailAddress.RegexString}'"
+                    );
+                    tb.HasCheckConstraint(
+                        "CK_PhoneNumber",
+                        $"{nameof(AppUser.PhoneNumber)} IS NULL OR {nameof(AppUser.PhoneNumber)} LIKE '{PhoneNumber.RegexString}'"
+                    );
+                    tb.IsTemporal();
+                }
             );
             builder.Property(e => e.Id).ValueGeneratedOnAdd();
             builder.HasKey(e => e.Id);
@@ -178,7 +187,7 @@ public class IdentityDbContext<
                 .HasDefaultValueSql(
                     $"CONVERT(datetimeoffset, '{AppUser.DefaultLockoutEnd.ToString()}')"
                 )
-                .HasColumnType(SqlDateTimeOffset.ShortName);
+                .HasColumnType(DbTypeNames.SqlDateTimeOffset.ShortName);
             builder.Property(e => e.PhoneNumber).IsUnicode(false);
             builder.Ignore(e => e.NormalizedEmailAddress);
             builder
@@ -186,45 +195,47 @@ public class IdentityDbContext<
                 .WithOne()
                 .HasForeignKey(e => e.UserId)
                 .HasPrincipalKey(e => e.Id);
-            builder.HasMany(
-                e => e.Roles
-            )
-            /*.WithMany(r => r.Users)
-            .UsingEntity<TUserRole>(
-                ur =>
-                    ur.HasOne(ur => ur.Role)
-                        .WithMany()
-                        .HasForeignKey(ur => ur.RoleId)
-                        .HasPrincipalKey(r => r.Id),
-                ur =>
-                    ur.HasOne(ur => ur.User)
-                        .WithMany()
-                        .HasForeignKey(ur => ur.UserId)
-                        .HasPrincipalKey(u => u.Id),
-                ur => ur.HasKey(ur => ur.Id)
-            )*/;
+            builder
+                .HasMany(e => e.Roles)
+                .WithMany(r => r.Users)
+                .UsingEntity<TUserRole>(
+                    ur =>
+                        ur.HasOne(ur => ur.Role)
+                            .WithMany()
+                            .HasForeignKey(ur => ur.RoleId)
+                            .HasPrincipalKey(r => r.Id),
+                    ur =>
+                        ur.HasOne(ur => ur.User)
+                            .WithMany()
+                            .HasForeignKey(ur => ur.UserId)
+                            .HasPrincipalKey(u => u.Id),
+                    ur => ur.HasKey(ur => ur.Id)
+                );
         });
         builder.Entity<TRole>(builder =>
         {
             builder.ToTable(
-                TableNames.Role,
-                IdentitySchema.ShortName /*,
+                Dgmjr.Identity.Constants.Tables.Role,
+                IdentitySchema.ShortName,
                 tb =>
                 {
+                    tb.HasComment("The Roles table contains the roles for the application.");
                     tb.IsMemoryOptimized();
                     tb.IsTemporal();
-                    tb.HasComment("The Roles table contains the roles for the application.");
-                }*/
+                }
             );
             builder.Property(e => e.Id).ValueGeneratedOnAdd();
             builder.Property(e => e.ConcurrencyStamp).IsConcurrencyToken();
-            // builder.Property(e => e.Name).HasMaxLength(256);
-            // builder.Property(e => e.NormalizedName).HasMaxLength(256);
-            // builder.HasIndex(e => e.NormalizedName).IsUnique().HasName("RoleNameIndex").HasFilter("[NormalizedName] IS NOT NULL");
+            builder.Property(e => e.Name).HasMaxLength(256);
+            builder.Property(e => e.NormalizedName).HasMaxLength(256);
+            builder
+                .HasIndex(e => e.NormalizedName)
+                .IsUnique()
+                .HasName("RoleNameIndex")
+                .HasFilter("[NormalizedName] IS NOT NULL");
             builder.Property(e => e.Uri).HasConversion<System.uri.EfCoreValueConverter>();
-            builder.HasMany(
-                e => e.Users
-            ) /*
+            builder
+                .HasMany(e => e.Users)
                 .WithMany(u => u.Roles)
                 .UsingEntity<TUserRole>(
                     ur =>
@@ -238,14 +249,14 @@ public class IdentityDbContext<
                             .HasForeignKey(ur => ur.RoleId)
                             .HasPrincipalKey(r => r.Id),
                     ur => ur.HasKey(ur => ur.Id)
-                )*/
-            ;
+                );
         });
         builder.Entity<TUserLogin>(builder =>
         {
             builder.ToTable(
-                TableNames.UserLogin,
-                IdentitySchema.ShortName /*, tb => IsTemporal() */
+                Dgmjr.Identity.Constants.Tables.UserLogin,
+                IdentitySchema.ShortName,
+                tb => tb.IsTemporal()
             );
             builder.HasKey(e => e.Id);
             builder
@@ -262,8 +273,9 @@ public class IdentityDbContext<
         builder.Entity<TRoleClaim>(builder =>
         {
             builder.ToTable(
-                TableNames.RoleClaim,
-                IdentitySchema.ShortName /*, tb => IsTemporal() */
+                Dgmjr.Identity.Constants.Tables.RoleClaim,
+                IdentitySchema.ShortName,
+                tb => tb.IsTemporal()
             );
             builder.Property(e => e.Id).ValueGeneratedOnAdd();
             builder
@@ -282,8 +294,9 @@ public class IdentityDbContext<
         builder.Entity<TUserToken>(builder =>
         {
             builder.ToTable(
-                TableNames.UserToken,
-                IdentitySchema.ShortName /*, tb => IsTemporal()*/
+                Dgmjr.Identity.Constants.Tables.UserToken,
+                IdentitySchema.ShortName,
+                tb => tb.IsTemporal()
             );
             builder.Property(e => e.Id).ValueGeneratedOnAdd();
             builder
@@ -305,31 +318,33 @@ public class IdentityDbContext<
         builder.Entity<TClaimType>(builder =>
         {
             builder.ToTable(
-                TableNames.ClaimType,
-                IdentitySchema.ShortName /*, tb => IsTemporal() */
+                Dgmjr.Identity.Constants.Tables.ClaimType,
+                IdentitySchema.ShortName,
+                tb => tb.IsTemporal()
             );
             builder.Property(e => e.Id).ValueGeneratedOnAdd();
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Name).IsUnicode(false);
             builder.Property(e => e.Uri).IsUnicode(false).HasConversion<uri.EfCoreValueConverter>();
-            // builder.HasMany(e => e.Users).WithMany(u => u.ClaimTypes).UsingEntity<UserClaim>(
+            // builder.HasMany(e => e.Users).WithMany().UsingEntity<TUserClaim>(
             //     uc => uc.HasOne(uc => uc.User).WithMany().HasForeignKey(uc => uc.UserId).HasPrincipalKey(u => u.Id),
-            //     uc => uc.HasOne<IdentityClaimType>("ClaimType").WithMany().HasForeignKey<int>("ClaimTypeId").HasPrincipalKey(ct => ct.Id
+            //     uc => uc.HasOne<TClaimType>().WithMany().HasForeignKey(e => e.Type).HasPrincipalKey(ct => ct.Uri)
             //     uc => uc.HasKey(uc => new { uc.UserId, uc.ClaimTypeId })
             // );
-            // builder.HasMany(e => e.Roles).WithMany().UsingEntity<RoleClaim>();
+            builder.HasMany(e => e.Roles).WithMany().UsingEntity<TRoleClaim>();
         });
         builder.Entity<TClaimValueType>(builder =>
         {
             builder.ToTable(
-                TableNames.ClaimValueType,
-                IdentitySchema.ShortName /*, tb => IsTemporal() */
+                Dgmjr.Identity.Constants.Tables.ClaimValueType,
+                IdentitySchema.ShortName,
+                tb => tb.IsTemporal()
             );
             builder.Property(e => e.Id).ValueGeneratedOnAdd();
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Name).IsUnicode(false);
             builder.Property(e => e.Uri).IsUnicode(false).HasConversion<uri.EfCoreValueConverter>();
-            // builder.HasMany(e => e.Users).WithMany(u => u.ClaimTypes).UsingEntity<UserClaim>(
+            // builder.HasMany(e => e.Users).WithMany(u => u.ClaimTypes).UsingEntity<TUserClaim>(
             //     uc => uc.HasOne(uc => uc.User).WithMany().HasForeignKey(uc => uc.UserId).HasPrincipalKey(u => u.Id),
             //     uc => uc.HasOne<IdentityClaimType>("ClaimType").WithMany().HasForeignKey<int>("ClaimTypeId").HasPrincipalKey(ct => ct.Id
             //     uc => uc.HasKey(uc => new { uc.UserId, uc.ClaimTypeId })

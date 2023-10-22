@@ -33,6 +33,8 @@ public static partial class Constants
         public const string UserLoginHistory = tbl_ + nameof(UserLoginHistory);
         public const string UserRoleHistory = tbl_ + nameof(UserRoleHistory);
         public const string UserTokenHistory = tbl_ + nameof(UserToken);
+        public const string ClaimType = tbl_ + nameof(ClaimType);
+        public const string ClaimValueType = tbl_ + nameof(ClaimValueType);
     }
 
     // public static class Views

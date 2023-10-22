@@ -92,7 +92,7 @@ public class AppUserConfiguration<
     public void Configure(EntityTypeBuilder<TUser> builder)
     {
         builder.ToTable(
-            TableNames.User,
+            Dgmjr.Identity.Constants.Tables.User,
             IdentitySchema.ShortName //,
         // tb =>
         //     tb.HasCheckConstraint(
