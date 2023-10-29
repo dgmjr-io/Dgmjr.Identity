@@ -39,5 +39,6 @@ public class SignInManager<TUser> : MSID.SignInManager<TUser>
             logger,
             schemes,
             confirmation
-        ) { }
+        )
+    { }
 }

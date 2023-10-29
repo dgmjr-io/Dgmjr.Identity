@@ -211,17 +211,17 @@ public class IdentityDbContext<
                             args[0] is SqlConstantExpression sqlConstantExpression
                                 ? new SqlFragmentExpression(
                                     $"""
-                                    SELECT TOP 1 [{IdentityConstants.UserClaim.Columns.Value}]
-                                    FROM [{IdentitySchema.ShortName}].[{UserClaim}]
-                                    WHERE [{IdentityConstants.UserClaim.Columns.UserId}] = {sqlConstantExpression.Value}
-                                    AND [{IdentityConstants.UserClaim.Columns.Type}] = '{Telegram.Identity.BotApiToken.UriString}'
+                                    SELECT TOP 1[{ IdentityConstants.UserClaim.Columns.Value }]
+                                    FROM[{ IdentitySchema.ShortName}].[{ UserClaim}]
+                                    WHERE[{ IdentityConstants.UserClaim.Columns.UserId}] = { sqlConstantExpression.Value}
+        AND[{ IdentityConstants.UserClaim.Columns.Type}] = '{Telegram.Identity.BotApiToken.UriString}'
                                     """
                                 )
                                 : throw new InvalidOperationException(
                                     "The argument must be a constant expression."
                                 )
                     );
-            }
+    }
         );
 
         modelBuilder.HasDbFunction(
@@ -245,14 +245,14 @@ public class IdentityDbContext<
                                 DECLARE @bitEmailVal as Bit
                                 DECLARE @EmailText nvarchar(MAX) = '{{{sqlConstantExpression.Value}}}'
 
-                                SET @EmailText=ltrim(rtrim(isnull(@EMAIL,'')))
+                                SET @EmailText = ltrim(rtrim(isnull(@EMAIL, '')))
 
                                 SET @bitEmailVal = case when @EmailText = '' then 0
                                                         when @EmailText like '% %' then 0
                                                         when @EmailText like ('%["(),:;<>\]%') then 0
-                                                        when substring(@EmailText,charindex('@',@EmailText),len(@EmailText)) like ('%[!#$%&*+/=?^`_{|]%') then 0
-                                                        when (left(@EmailText,1) like ('[-_.+]') or right(@EmailText,1) like ('[-_.+]')) then 0
-                                                        when (@EmailText like '%[%' or @EmailText like '%]%') then 0
+                                                        when substring(@EmailText, charindex('@', @EmailText),len(@EmailText)) like('%[!#$%&*+/=?^`_{|]%') then 0
+                                                        when(left(@EmailText,1) like('[-_.+]') or right(@EmailText,1) like('[-_.+]')) then 0
+                                                        when(@EmailText like '%[%' or @EmailText like '%]%') then 0
                                                         when @EmailText LIKE '%@%@%' then 0
                                                         when @EmailText NOT LIKE '_%@_%._%' then 0
                                                         else 1
@@ -268,16 +268,16 @@ public class IdentityDbContext<
         );
     }
 
-    public static bool IsBot(long userId) => !GetBotToken(userId).IsEmpty;
+public static bool IsBot(long userId) => !GetBotToken(userId).IsEmpty;
 
-    [DbFunction(ufn_ + nameof(GetBotToken), Schema = DataSchema.ShortName)]
-    public static BotApiToken GetBotToken(long userId) => default!;
+[DbFunction(ufn_ + nameof(GetBotToken), Schema = DataSchema.ShortName)]
+public static BotApiToken GetBotToken(long userId) => default!;
 
-    [DbFunction(ufn_ + nameof(IsValidEmailAddress), Schema = IdentitySchema.ShortName)]
-    public static bool IsValidEmailAddress(string email) => default!;
+[DbFunction(ufn_ + nameof(IsValidEmailAddress), Schema = IdentitySchema.ShortName)]
+public static bool IsValidEmailAddress(string email) => default!;
 
-    [DbFunction(ufn_ + nameof(IsValidGender), Schema = IdentitySchema.ShortName)]
-    public static bool IsValidGender(string gender) => default!;
+[DbFunction(ufn_ + nameof(IsValidGender), Schema = IdentitySchema.ShortName)]
+public static bool IsValidGender(string gender) => default!;
 }
 
 public class IdentityDbContext

@@ -249,4 +249,5 @@ public interface IIdentityRole
         IIdentityUserToken,
         IIdentityClaimType,
         IIdentityClaimValueType
-    > { }
+    >
+{ }

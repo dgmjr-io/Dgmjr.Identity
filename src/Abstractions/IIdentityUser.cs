@@ -246,4 +246,5 @@ public interface IIdentityUser
         IIdentityUserLogin,
         IIdentityRoleClaim,
         IIdentityUserToken
-    > { }
+    >
+{ }

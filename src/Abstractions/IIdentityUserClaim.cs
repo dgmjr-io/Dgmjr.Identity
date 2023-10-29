@@ -105,7 +105,8 @@ public interface IIdentityUserClaim<
             TUserLogin,
             TRoleClaim,
             TUserToken
-        > { }
+        >
+{ }
 
 public interface IIdentityUserClaim
     : IIdentityUserClaim<
@@ -117,4 +118,5 @@ public interface IIdentityUserClaim
         IIdentityUserLogin,
         IIdentityRoleClaim,
         IIdentityUserToken
-    > { }
+    >
+{ }

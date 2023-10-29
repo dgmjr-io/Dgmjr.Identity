@@ -4,4 +4,5 @@ public partial interface IApplicationUserLoginProvider
     : IHaveADescription,
         IHaveADisplayName,
         IHaveAName,
-        IHaveAuri { }
+        IHaveAuri
+{ }
