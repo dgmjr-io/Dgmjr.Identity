@@ -18,11 +18,21 @@ public interface IEntityClaim<TSelf, TEntity, TKey> : IIdentityEntity<TKey>
 {
     [Hashids]
     TKey EntityId { get; set; }
+
+    TEntity Entity { get; set; }
+
     string? Value { get; set; }
 
+    [StringLength(UriMaxLength, MinimumLength = 1)]
     uri? Type { get; set; }
+
+    [StringLength(UriMaxLength, MinimumLength = 1)]
     uri? ValueType { get; set; }
+
+    [StringLength(UriMaxLength, MinimumLength = 1)]
     uri? Issuer { get; set; }
+
+    [StringLength(UriMaxLength, MinimumLength = 1)]
     uri? OriginalIssuer { get; set; }
     IStringDictionary Properties { get; set; }
 

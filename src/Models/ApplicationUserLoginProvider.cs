@@ -27,16 +27,25 @@ public class ApplicationUserLoginProviderConverter
     public ApplicationUserLoginProviderConverter()
         : base(v => ((IIdentifiable<int>)v).Id, v => ApplicationUserLoginProvider.FromId(v)) { }
 }
+
 public class ApplicationUserLoginProviderJsonConverter
     : JsonConverter<IApplicationUserLoginProvider>
 {
-    public override IApplicationUserLoginProvider Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override IApplicationUserLoginProvider Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
     {
         var value = reader.GetInt32();
         return ApplicationUserLoginProvider.FromId(value);
     }
 
-    public override void Write(Utf8JsonWriter writer, IApplicationUserLoginProvider value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        IApplicationUserLoginProvider value,
+        JsonSerializerOptions options
+    )
     {
         writer.WriteNumberValue(((IIdentifiable<int>)value).Id);
     }
@@ -45,9 +54,7 @@ public class ApplicationUserLoginProviderJsonConverter
 public partial record struct ApplicationUserLoginProvider
 {
     public static Dgmjr.Identity.Models.Abstractions.IApplicationUserLoginProvider FromId(int id) =>
-        ApplicationUserLoginProvider.FromValue(
-            (Dgmjr.Identity.Models.Enums.ApplicationUserLoginProvider)id
-        );
+        FromValue((Dgmjr.Identity.Models.Enums.ApplicationUserLoginProvider)id);
 }
 
 public record class UserLoginProvider { }

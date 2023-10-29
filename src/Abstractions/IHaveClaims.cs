@@ -17,5 +17,5 @@ public interface IHaveClaims<TKey> : IIdentityEntity<TKey>
 {
     /// <summary>Gets or sets the claims associated with the entity.</summary>
     /// <value>The claims associated with the entity.</value>
-    ICollection<C> Claims { get; set; }
+    ICollection<C> Claims { get; }
 }

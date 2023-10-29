@@ -13,6 +13,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
       <TargetFrameworks>netstandard2.0</TargetFrameworks>
+      <ProjectGuid>9b1fe8b0-8fbf-4681-bc60-a6177c403073</ProjectGuid>
     </PropertyGroup>
    <ItemGroup>
       <SourceGeneratorPackageReference Include="Dgmjr.Enumerations.CodeGenerator" />

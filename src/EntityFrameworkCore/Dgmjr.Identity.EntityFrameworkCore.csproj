@@ -13,78 +13,46 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0</TargetFrameworks>
-    <TargetFramework>net8.0</TargetFramework>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <!-- <TargetFramework>net7.0</TargetFramework> -->
     <EfCoreVersionOverride>[7.0.12,)</EfCoreVersionOverride>
+    <ProjectGuid>5a958146-a437-4a42-b249-ceb5685b07de</ProjectGuid>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <!-- <PackageReference Include="Microsoft.AspNetCore.App.Ref" VersionOverride="[8.0.0-rc,)" /> -->
+    <PackageReference Include="Azure.Core" />
+    <PackageReference Include="Azure.Identity" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" />
-    <PackageReference Include="System.Collections.Generic.Usings" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" />
+    <UsingsPackageReference Include="System.Collections.Generic.Usings" />
   </ItemGroup>
   <ItemGroup Condition="true">
-    <SourceGeneratorPackageReference Include="Dgmjr.InterfaceGenerator" />
     <PackageReference Include="Dgmjr.Abstractions" />
-    <PackageReference Include="Dgmjr.System.Extensions" />
     <PackageReference Include="Dgmjr.AspNetCore.Hashids" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Extensions" />
     <PackageReference Include="Dgmjr.Primitives" />
-    <PackageReference Include="Telegram.Identity" />
+    <PackageReference Include="Dgmjr.System.Extensions" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" />
+    <PackageReference Include="Telegram.Identity" />
+    <SourceGeneratorPackageReference Include="Dgmjr.InterfaceGenerator" />
   </ItemGroup>
   <ItemGroup Condition="true">
     <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" />
     <ProjectReference Include="../Constants/Dgmjr.Identity.Constants.csproj" />
     <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
-    <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />
-    <!-- <PackageReference Include="Dgmjr.Identity.Abstractions" />
-    <PackageReference Include="Dgmjr.Identity.Constants" />
-    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore.Constants" />
-    <PackageReference Include="Dgmjr.Identity.Models" /> -->
+    <!-- <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" /> -->
+    <PackageReference Include="Dgmjr.Identity.Models" />
     <Reference Include="System.Runtime" Version="4.3.1.0" />
   </ItemGroup>
-  <ItemGroup Condition="false">
-    <!-- <ProjectReference Include="../../../SendPulse/src/Data/SendPulse.Data.csproj" />
-    <ProjectReference Include="../../../Types/src/Primitives/Dgmjr.Primitives.csproj" /> -->
-    <!-- <ProjectReference Include="../Constants/Dgmjr.Identity.Constants.csproj" /> -->
-    <!-- <ProjectReference Include="../../../AspNetCore/src/Hashids/Dgmjr.AspNetCore.Hashids.csproj" /> -->
-    <!-- <ProjectReference Include="../../../EntityFrameworkCore/src/Abstractions/Dgmjr.EntityFrameworkCore.Abstractions.csproj" />
-    <ProjectReference Include="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.csproj" /> -->
-    <!-- <ProjectReference Include="../../../EntityFrameworkCore/src/Extensions/Dgmjr.EntityFrameworkCore.Extensions.csproj" /> -->
-    <!-- <ProjectReference Include="../../../EntityFrameworkCore/src/Extensions/Dgmjr.EntityFrameworkCore.Extensions.csproj" /> -->
-    <!-- <ProjectReference Include="../../../SendPulse/src/Data/SendPulse.Data.csproj" />
-    <ProjectReference Include="../../../Telegram/src/Identity/Telegram.Identity.csproj" />
-    <ProjectReference Include="../../../Types/src/Core/Abstractions/Dgmjr.Abstractions.csproj" />
-    <ProjectReference Include="../../../Types/src/Primitives/Dgmjr.Primitives.csproj" />
-    <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" />
-    <ProjectReference Include="../Constants/Dgmjr.Identity.Constants.csproj" />
-    <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
-    <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" /> -->
-  </ItemGroup>
-  <ItemGroup Condition="!true">
-	  <PackageReference Include="System.Collections.Generic.Usings" />
-    <PackageReference Include="Dgmjr.Abstractions" />
-    <PackageReference Include="Dgmjr.Primitives" />
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Extensions" />
-    <PackageReference Include="Dgmjr.Identity.Abstractions" />
-    <PackageReference Include="Dgmjr.Identity.Constants" />
-    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore.Constants" />
-    <PackageReference Include="Dgmjr.Identity.Models" />
-    <PackageReference Include="SendPulse.Data" />
-  </ItemGroup>
   <Import Project="../Abstractions/Dgmjr.Identity.Abstractions.props" />
-  <Import Project="../Constants/Dgmjr.Identity.Constants.csproj" />
+  <Import Project="../Constants/Dgmjr.Identity.Constants.props" />
   <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" />
   <Import Project="../Models/Dgmjr.Identity.Models.props" />
 </Project>

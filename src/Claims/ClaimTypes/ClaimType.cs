@@ -25,30 +25,38 @@ public partial record class ClaimType : IdentityComponent, IClaimType
 
     public override int GetHashCode() => ((IClaimType)this).GetHashCode();
 
+    /// <value>http://schemas.microsoft.com</value>
+    public const string NamespacePrefix = "http://schemas.microsoft.com";
+
     /// <summary>Claim Type 2008 Namespace</summary>
-    /// <value>http://schemas.microsoft.com/ws/2008/06/identity/claims</value>
-    public const string ClaimType2008Namespace =
-        "http://schemas.microsoft.com/ws/2008/06/identity/claims";
+    /// <value><inheritdoc cref="NamespacePrefix" path="/value" />/ws/2008/06/identity/claims</value>
+    public const string Namespace2008 = NamespacePrefix + "/ws/2008/06/identity/claims";
+
+    /// <summary>Claim Type Namespace</summary>
+    /// <value><inheritdoc cref="NamespacePrefix" path="/value" />/claims</value>
+    public const string Namespace = NamespacePrefix + "/claims";
+
+    /// <summary>Short Claim Type Namespace</summary>
+    /// <value>ws</value>
+    public const string ShortNamespace = "ws";
 
     /// <summary>Short Claim Type 2008 Namespace</summary>
     /// <value>ws:2008</value>
-    public const string ShortClaimType2008Namespace = "ws:2009";
+    public const string ShortNamespace2008 = "ws:2009";
 
     /// <summary>Claim Type 2005 Namespace</summary>
-    /// <value>http://schemas.xmlsoap.org/ws/2005/05/identity/claims</value>
-    public const string ClaimType2005Namespace =
-        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims";
+    /// <value><inheritdoc cref="NamespacePrefix" path="/value" />/ws/2005/05/identity/claims</value>
+    public const string Namespace2005 = NamespacePrefix + "/ws/2005/05/identity/claims";
 
     /// <summary>Short Claim Type 2009 Namespace</summary>
     /// <value>ws:2005</value>
-    public const string ShortClaimType2005Namespace = "ws:2005";
+    public const string ShortNamespace2005 = "ws:2005";
 
     /// <summary>Claim Type 2009 Namespace</summary>
-    /// <value>http://schemas.xmlsoap.org/ws/2009/09/identity/claims</value>
-    public const string ClaimType2009Namespace =
-        "http://schemas.xmlsoap.org/ws/2009/09/identity/claims";
+    /// <value><inheritdoc cref="NamespacePrefix" path="/value" />/ws/2009/09/identity/claims</value>
+    public const string Namespace2009 = NamespacePrefix + "/ws/2009/09/identity/claims";
 
     /// <summary>Short Claim Type 2009 Namespace</summary>
     /// <value>ws:2009</value>
-    public const string ShortClaimType2009Namespace = "ws:2009";
+    public const string ShortNamespace2009 = "ws:2009";
 }

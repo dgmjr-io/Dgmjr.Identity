@@ -19,7 +19,7 @@ using Dgmjr.Identity.Abstractions;
 
 using Microsoft.EntityFrameworkCore.Internal;
 
-[Table(Constants.TableNames.UserToken, Schema = IdentitySchema.ShortName)]
+[Table(EntityFrameworkCore.Constants.TableNames.UserToken, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Token ({UserId} - {LoginProvider}, Created: {DateTimeCreated})")]
 public class ApplicationUserToken<TKey>
     : IIdentityUserToken<

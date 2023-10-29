@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Abstractions;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 using static Dgmjr.EntityFrameworkCore.DbSchemas;
-using static Dgmjr.Identity.EntityFrameworkCore.Constants;
+using Dgmjr.Identity.EntityFrameworkCore.Constants;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 
 using Telegram.Bot.Types;
@@ -92,41 +92,94 @@ public class AppUserConfiguration<
     public void Configure(EntityTypeBuilder<TUser> builder)
     {
         builder.ToTable(
-            Dgmjr.Identity.Constants.Tables.User,
-            IdentitySchema.ShortName //,
-        // tb =>
-        //     tb.HasCheckConstraint(
-        //         "CK_EmailAddress",
-        //         $"{nameof(AppUser.EmailAddress)} IS NULL OR {nameof(AppUser.EmailAddress)} LIKE '{EmailAddress.RegexString}'"
-        //     )
+            TableNames.User,
+            IdentitySchema.ShortName,
+            tb =>
+            {
+                // tb.HasCheckConstraint(
+                //     CK_ + nameof(AppUser.EmailAddress),
+                //     $"[data].{ufn_ + nameof(IdentityDbContext.IsValidEmailAddress)}([{nameof(AppUser.TelegramUsername)}]) = 1)"
+                // );
+                // tb.HasCheckConstraint(
+                //     CK_ + nameof(AppUser.PhoneNumber),
+                //     $"[{nameof(AppUser.PhoneNumber)}] IS NULL OR [{nameof(AppUser.PhoneNumber)}] LIKE '+%'"
+                // );
+                // tb.HasCheckConstraint(
+                //     CK_ + nameof(AppUser.TelegramUsername),
+                //     $"""
+                //     [{nameof(AppUser.TelegramUsername)}] IS NULL
+                //     OR (
+                //             len([{nameof(AppUser.TelegramUsername)}]) >= {Account.UsernameMinLength}
+                //             AND len([{nameof(AppUser.TelegramUsername)}]) <= ({Account.UsernameMaxLength} + 1)
+                //             AND [{nameof(AppUser.TelegramUsername)}] LIKE '@%'
+                //         )
+                //     """
+                // );
+                // tb.HasCheckConstraint(
+                //     CK_ + nameof(AppUser.Gender),
+                //     $"{ufn_ + nameof(IdentityDbContext.IsValidGender)}({nameof(AppUser.Gender)}) = 1"
+                // );
+                tb.IsTemporal();
+            }
         );
-        builder.Property(e => e.Id).ValueGeneratedOnAdd();
-        builder.HasKey(e => e.Id);
-        builder.ConfigureEmailAddress(e => e.EmailAddress);
-        builder.ConfigurePhoneNumber(e => e.PhoneNumber);
-        builder.Ignore(e => e.ConcurrencyStamp);
-        builder.Property(e => e.EmailAddress).HasMaxLength(256);
+        builder.Property(e => e.Id).ValueGeneratedNever();
+        builder.HasKey(e => e.Id).HasName(PK_ + TableNames.User);
+        builder.EmailAddressProperty(e => e.EmailAddress);
+        builder.PhoneNumberProperty(e => e.PhoneNumber);
         builder
             .Property(e => e.IsLockedOut)
             .HasComputedColumnSql(
-                $"{nameof(AppUser.LockoutEnd)} IS NOT NULL AND {nameof(AppUser.LockoutEnd)} > GetUtcDate()"
+                $"cast(CASE WHEN {nameof(AppUser.LockoutEnd)} IS NOT NULL AND {nameof(AppUser.LockoutEnd)} > GetUtcDate() THEN 1 ELSE 0 END as bit)"
             );
-        builder.HasIndex(e => e.EmailAddress);
-        builder.HasIndex(e => e.Username);
-        builder.HasIndex(e => e.TelegramUsername);
-        builder.HasIndex(e => e.NormalizedEmailAddress);
-        builder.HasIndex(e => e.NormalizedUsername);
-        builder.Property(e => e.SecurityStamp).HasDefaultValueSql("NewId()");
-        builder.Property(e => e.ConcurrencyStamp).HasDefaultValueSql("NewId()");
+        builder
+            .HasIndex(e => e.EmailAddress)
+            .HasDatabaseName(IX_ + TableNames.User + IdentityConstants.User.Columns.EmailAddress);
+        builder
+            .HasIndex(e => e.Username)
+            .HasDatabaseName(IX_ + TableNames.User + IdentityConstants.User.Columns.Username);
+        builder
+            .HasIndex(e => e.TelegramUsername)
+            .HasDatabaseName(
+                IX_ + TableNames.User + IdentityConstants.User.Columns.TelegramUsername
+            );
+        builder
+            .Property(e => e.TelegramUsername)
+            .HasMaxLength(Account.UsernameMaxLength)
+            .IsUnicode(false);
+        builder
+            .HasIndex(e => e.NormalizedEmailAddress)
+            .HasDatabaseName(IX_ + TableNames.User + nameof(AppUser.NormalizedEmailAddress));
+        builder
+            .HasIndex(e => e.NormalizedUsername)
+            .HasDatabaseName(
+                IX_ + TableNames.User + IdentityConstants.User.Columns.NormalizedUsername
+            );
+        builder
+            .Property<byte[]>(IdentityConstants.User.Columns.ConcurrencyStamp)
+            .HasColumnType(RowVersion.ShortName)
+            .IsRowVersion();
+        builder
+            .HasMany(e => e.Roles)
+            .WithMany(e => e.Users)
+            .UsingEntity<TUserRole>(
+                ur =>
+                    ur.HasOne(ur => ur.Role)
+                        .WithMany(e => e.UserRoles)
+                        .HasForeignKey(ur => ur.RoleId)
+                        .HasPrincipalKey(r => r.Id),
+                ur =>
+                    ur.HasOne(ur => ur.User)
+                        .WithMany(e => e.UserRoles)
+                        .HasForeignKey(ur => ur.UserId)
+                        .HasPrincipalKey(u => u.Id),
+                ur => ur.HasKey(ur => ur.Id)
+            );
         builder.Property(e => e.IsTwoFactorEnabled).HasDefaultValueSql("0");
         builder.Property(e => e.IsLockoutEnabled).HasDefaultValueSql("1");
         builder.Property(e => e.IsEmailConfirmed).HasDefaultValueSql("0");
         builder.Property(e => e.IsPhoneNumberConfirmed).HasDefaultValueSql("0");
-        builder
-            .Property(e => e.LockoutEnd)
-            .HasDefaultValueSql(AppUser.DefaultLockoutEnd.ToString());
-        builder.Ignore(e => e.EmailAddress);
-        builder.Ignore(e => e.NormalizedEmailAddress);
+        builder.GenderProperty(e => e.Gender);
+        builder.Property(e => e.LockoutEnd).HasDefaultValueSql($"'{AppUser.DefaultLockoutEnd}'");
         builder
             .HasMany(e => e.Claims)
             .WithOne()
@@ -164,5 +217,4 @@ public class AppUserConfiguration
         AppUserToken,
         AppClaimType,
         AppClaimValueType
-    >
-{ }
+    > { }

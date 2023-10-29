@@ -11,47 +11,94 @@
  */
 
 using System.Net;
-using System.Xml.Serialization;
-using Dgmjr.Payloads;
-using Microsoft.AspNetCore.Identity;
 using static System.Net.HttpStatusCode;
-using HttpStatus = System.Net.HttpStatusCode;
+using System.Xml.Serialization;
+
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
+using Microsoft.OpenApi.Models;
+
+using Azure;
+
+using Dgmjr.Payloads;
+
 using MSIDR = Microsoft.AspNetCore.Identity.IdentityResult;
+
+using HttpStatus = System.Net.HttpStatusCode;
+
 using SC = System.Net.HttpStatusCode;
 
 namespace Dgmjr.Identity;
 
-public class IdentityResultTuple<TValue> : Tuple<MSIDR, TValue>
-{
-    public IdentityResultTuple(MSIDR msidr, TValue value)
-        : base(msidr, value) { }
-}
-
-public class IdentityResult : ResponsePayload<IdentityResultTuple<object>>
+public class IdentityResult : MSIDR, IResponsePayload<MSIDR>
 {
     public IdentityResult(
         MSIDR result,
-        object? value = default,
         string? message = null,
-        HttpStatus statusCode = SC.InternalServerError
+        HttpStatus statusCode = InternalServerError
     )
-        : base(
-            new IdentityResultTuple<object>(result, value),
-            stringValue: value?.ToString() ?? message,
-            message: message,
-            statusCode: result != null && result.Succeeded
-                ? OK
-                : result != null
-                    ? statusCode!
-                    : throw new ArgumentNullException(nameof(result))
-        )
-    { }
+    {
+        // new ResponsePayload<IdentityResultTuple<object>>(this, new(result, value));
+        Result = result;
+        Message = message ?? string.Empty;
+        StatusCode = statusCode;
+        ContentTypes.Add(new MediaTypeHeaderValue("application/json"));
+        ContentTypes.Add(new MediaTypeHeaderValue("application/xml"));
+        ContentTypes.Add(new MediaTypeHeaderValue("application/x-msgpack"));
+        ContentTypes.Add(new MediaTypeHeaderValue("application/bson"));
+        ContentTypes.Add(new MediaTypeHeaderValue("text/plain"));
+    }
 
-    [JProp("result"), JIgnore(Condition = JIgnoreCond.WhenWritingNull), XmlAttribute("value")]
-    public virtual MSIDR Result => base.Value.Item1;
+    [JProp("isSuccess"), XAttribute("isSuccess")]
+    public virtual bool IsSuccess =>
+        StatusCode.HasValue && StatusCode.Value >= OK && StatusCode.Value <= (HttpStatus)299;
 
-    [JProp("value"), JIgnore(Condition = JIgnoreCond.WhenWritingNull), XmlAttribute("value")]
-    public new virtual object Value => base.Value.Item2;
+    [XAttribute("message"), JProp("message"), JIgnore(Condition = JIgnoreCond.WhenWritingNull)]
+    public virtual string Message { get; set; }
+
+    [XIgnore, JIgnore]
+    public virtual string? StringValue
+    {
+        get => Message;
+        set => Message = value!;
+    }
+
+    [JIgnore, XIgnore]
+    public virtual HttpStatus? StatusCode { get; set; }
+
+    [JIgnore, XIgnore]
+    int? IStatusCodeActionResult.StatusCode => (int?)StatusCode;
+
+    [JProp("result"), JIgnore(Condition = JIgnoreCond.WhenWritingNull), XAttribute("result")]
+    public virtual MSIDR Result { get; set; }
+
+    [JProp("value"), JIgnore(Condition = JIgnoreCond.WhenWritingNull), XAttribute("value")]
+    public virtual MSIDR? Value
+    {
+        get => Result;
+        set => Result = value;
+    }
+
+    [JIgnore, XIgnore]
+    object? IPayload.Value
+    {
+        get => Result;
+        set => Result = value as MSIDR;
+    }
+
+    [JsonIgnore]
+    [XIgnore]
+    public ICollection<IOutputFormatter> OutputFormatters { get; } = new List<IOutputFormatter>();
+
+    [JsonIgnore]
+    [XIgnore]
+    public MediaTypeCollection ContentTypes { get; } = new MediaTypeCollection();
 
     public static IdentityResult Failed(
         HttpStatus statusCode = SC.InternalServerError,
@@ -88,22 +135,35 @@ public class IdentityResult : ResponsePayload<IdentityResultTuple<object>>
     public static IdentityResult Success(string message = "Success", HttpStatus statusCode = OK) =>
         new(MSIDR.Success, message: message, statusCode: statusCode);
 
-    public static implicit operator IdentityResult(MSIDR result) => new(result);
+    public virtual async Task ExecuteResultAsync(ActionContext context)
+    {
+        var executor = context.HttpContext.RequestServices.GetRequiredService<
+            IActionResultExecutor<IdentityResult>
+        >();
+        await executor.ExecuteAsync(context, this);
+    }
 
-    public static implicit operator MSIDR?(IdentityResult result) => result?.Result;
+    public virtual void OnFormatting(OutputFormatterWriteContext context)
+    {
+
+    }
+
+    // public static implicit operator IdentityResult(MSIDR result) => new(result);
+
+    // public static implicit operator MSIDR?(IdentityResult result) => result?.Result;
 }
 
-public class IdentityResult<TValue> : IdentityResult
-{
-    public IdentityResult(
-        MSIDR result,
-        TValue value,
-        string? message = null,
-        HttpStatus statusCode = SC.InternalServerError
-    )
-        : base(result, value, message, statusCode) { }
+// public class IdentityResult<TValue> : IdentityResult
+// {
+//     public IdentityResult(
+//         MSIDR result,
+//         TValue value,
+//         string? message = null,
+//         HttpStatus statusCode = SC.InternalServerError
+//     )
+//         : base(result, value, message, statusCode) { }
 
-    public static implicit operator IdentityResult<TValue>(MSIDR result) => new(result, default);
+//     public static implicit operator IdentityResult<TValue>(MSIDR result) => new(result, default);
 
-    public new TValue Value => (TValue)base.Value;
-}
+//     public new TValue Value => (TValue)base.Value;
+// }

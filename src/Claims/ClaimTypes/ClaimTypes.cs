@@ -20,11 +20,11 @@ public record class Actor : ClaimType, IClaimType, IIdentityComponent
 
     private Actor() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2009Namespace" path="/value" />/actor</value>
-    public const string UriString = ClaimType2009Namespace + "/actor";
+    /// <value><inheritdoc cref="ClaimType.Namespace2009" path="/value" />/actor</value>
+    public const string UriString = Namespace2009 + "/actor";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2009Namespace" path="/value" />:actor</value>
-    public const string ShortUriString = ShortClaimType2009Namespace + ":" + "actor";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2009" path="/value" />:actor</value>
+    public const string ShortUriString = ShortNamespace2009 + ":" + "actor";
 
     /// <value>Actor</value>
     public const string Name = nameof(Actor);
@@ -50,11 +50,11 @@ public record class Anonymous : ClaimType, IClaimType, IIdentityComponent
 
     private Anonymous() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/anonymous</value>
-    public const string UriString = ClaimType2005Namespace + "/anonymous";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/anonymous</value>
+    public const string UriString = Namespace2005 + "/anonymous";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:authenticated</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "anonymous";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:authenticated</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "anonymous";
 
     /// <value>Anonymous</value>
     public const string Name = nameof(Anonymous);
@@ -80,11 +80,11 @@ public record class Authenticated : ClaimType, IClaimType, IIdentityComponent
 
     private Authenticated() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/authenticated</value>
-    public const string UriString = ClaimType2005Namespace + "/authenticated";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/authenticated</value>
+    public const string UriString = Namespace2005 + "/authenticated";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:authenticated</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "authenticated";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:authenticated</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "authenticated";
 
     /// <value>Authenticated</value>
     public const string Name = nameof(Authenticated);
@@ -110,12 +110,11 @@ public record class AuthenticationInstant : ClaimType, IClaimType, IIdentityComp
 
     private AuthenticationInstant() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/authenticationinstant</value>
-    public const string UriString = ClaimType2008Namespace + "/authenticationinstant";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/authenticationinstant</value>
+    public const string UriString = Namespace2008 + "/authenticationinstant";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:authenticationinstant</value>
-    public const string ShortUriString =
-        ShortClaimType2008Namespace + ":" + "authenticationinstant";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:authenticationinstant</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "authenticationinstant";
 
     /// <value>AuthenticationInstant</value>
     public const string Name = nameof(AuthenticationInstant);
@@ -141,11 +140,11 @@ public record class AuthenticationMethod : ClaimType, IClaimType, IIdentityCompo
 
     private AuthenticationMethod() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/authenticationmethod</value>
-    public const string UriString = ClaimType2008Namespace + "/authenticationmethod";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/authenticationmethod</value>
+    public const string UriString = Namespace2008 + "/authenticationmethod";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:authenticationmethod</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "authenticationmethod";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:authenticationmethod</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "authenticationmethod";
 
     /// <value>AuthenticationMethod	</value>
     public const string Name = nameof(AuthenticationMethod);
@@ -171,12 +170,11 @@ public record class AuthorizationDecision : ClaimType, IClaimType, IIdentityComp
 
     private AuthorizationDecision() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/authorizationdecision</value>
-    public const string UriString = ClaimType2005Namespace + "/authorizationdecision";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/authorizationdecision</value>
+    public const string UriString = Namespace2005 + "/authorizationdecision";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:authorizationdecision</value>
-    public const string ShortUriString =
-        ShortClaimType2005Namespace + ":" + "authorizationdecision";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:authorizationdecision</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "authorizationdecision";
 
     /// <value>AuthorizationDecision</value>
     public const string Name = nameof(AuthorizationDecision);
@@ -202,14 +200,44 @@ public record class CookiePath : ClaimType, IClaimType, IIdentityComponent
 
     private CookiePath() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/cookiepath</value>
-    public const string UriString = ClaimType2008Namespace + "/cookiepath";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/cookiepath</value>
+    public const string UriString = Namespace2008 + "/cookiepath";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:cookiepath</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "cookiepath";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:cookiepath</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "cookiepath";
 
     /// <value>CookiePath</value>
     public const string Name = nameof(CookiePath);
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IIdentityComponent.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    public override uri ShortUri => ShortUriString;
+}
+
+/// <summary>The URI for a claim that specifies the common name of the user; </summary>
+/// <value><inheritdoc cref="CommonName.UriString" path="/value" /></value>
+public record class CommonName : ClaimType, IClaimType, IIdentityComponent
+{
+    public static readonly IClaimType Instance = new CommonName();
+
+    private CommonName() { }
+
+    /// <value><inheritdoc cref="ClaimType.Namespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    public const string UriString = Namespace + "/" + Name;
+
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
+    public const string ShortUriString = ShortNamespace + ":" + Name;
+
+    /// <value>CommonName</value>
+    public const string Name = nameof(CommonName);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IIdentityComponent.Name => Name;
@@ -232,11 +260,11 @@ public record class Country : ClaimType, IClaimType, IIdentityComponent
 
     private Country() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/country</value>
-    public const string UriString = ClaimType2005Namespace + "/country";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/country</value>
+    public const string UriString = Namespace2005 + "/country";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:country</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "country";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:country</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "country";
 
     /// <value>Country</value>
     public const string Name = nameof(Country);
@@ -262,11 +290,11 @@ public record class DateOfBirth : ClaimType, IClaimType, IIdentityComponent
 
     private DateOfBirth() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/dateofbirth</value>
-    public const string UriString = ClaimType2005Namespace + "/dateofbirth";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/dateofbirth</value>
+    public const string UriString = Namespace2005 + "/dateofbirth";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:dateofbirth</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "dateofbirth";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:dateofbirth</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "dateofbirth";
 
     /// <value>DateOfBirth</value>
     public const string Name = nameof(DateOfBirth);
@@ -292,12 +320,11 @@ public record class DenyOnlyPrimaryGroupSid : ClaimType, IClaimType, IIdentityCo
 
     private DenyOnlyPrimaryGroupSid() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/denyonlyprimarygroupsid</value>
-    public const string UriString = ClaimType2008Namespace + "/denyonlyprimarygroupsid";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/denyonlyprimarygroupsid</value>
+    public const string UriString = Namespace2008 + "/denyonlyprimarygroupsid";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:denyonlyprimarygroupsid</value>
-    public const string ShortUriString =
-        ShortClaimType2008Namespace + ":" + "denyonlyprimarygroupsid";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:denyonlyprimarygroupsid</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "denyonlyprimarygroupsid";
 
     /// <value>DenyOnlyPrimaryGroupSid</value>
     public const string Name = nameof(DenyOnlyPrimaryGroupSid);
@@ -323,11 +350,11 @@ public record class DenyOnlyPrimarySid : ClaimType, IClaimType, IIdentityCompone
 
     private DenyOnlyPrimarySid() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/denyonlyprimarysid</value>
-    public const string UriString = ClaimType2008Namespace + "/denyonlyprimarysid";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/denyonlyprimarysid</value>
+    public const string UriString = Namespace2008 + "/denyonlyprimarysid";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:denyonlyprimarysid</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "denyonlyprimarysid";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:denyonlyprimarysid</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "denyonlyprimarysid";
 
     /// <value>DenyOnlyPrimarySid</value>
     public const string Name = nameof(DenyOnlyPrimarySid);
@@ -353,11 +380,11 @@ public record class DenyOnlySid : ClaimType, IClaimType, IIdentityComponent
 
     private DenyOnlySid() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/denyonlysid</value>
-    public const string UriString = ClaimType2005Namespace + "/denyonlysid";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/denyonlysid</value>
+    public const string UriString = Namespace2005 + "/denyonlysid";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:denyonlysid</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "denyonlysid";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:denyonlysid</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "denyonlysid";
 
     /// <value>DenyOnlySid</value>
     public const string Name = nameof(DenyOnlySid);
@@ -383,12 +410,11 @@ public record class DenyOnlyWindowsDeviceGroup : ClaimType, IClaimType, IIdentit
 
     private DenyOnlyWindowsDeviceGroup() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/denyonlywindowsdevicegroup</value>
-    public const string UriString = ClaimType2008Namespace + "/denyonlywindowsdevicegroup";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/denyonlywindowsdevicegroup</value>
+    public const string UriString = Namespace2008 + "/denyonlywindowsdevicegroup";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:denyonlywindowsdevicegroup</value>
-    public const string ShortUriString =
-        ShortClaimType2008Namespace + ":" + "denyonlywindowsdevicegroup";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:denyonlywindowsdevicegroup</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "denyonlywindowsdevicegroup";
 
     /// <value>DenyOnlyWindowsDeviceGroup</value>
     public const string Name = nameof(DenyOnlyWindowsDeviceGroup);
@@ -414,11 +440,11 @@ public record class Dns : ClaimType, IClaimType, IIdentityComponent
 
     private Dns() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/dns</value>
-    public const string UriString = ClaimType2005Namespace + "/dns";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/dns</value>
+    public const string UriString = Namespace2005 + "/dns";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:dns</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "dns";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:dns</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "dns";
 
     /// <value>Dns</value>
     public const string Name = nameof(Dns);
@@ -444,14 +470,44 @@ public record class Dsa : ClaimType, IClaimType, IIdentityComponent
 
     private Dsa() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/dsa</value>
-    public const string UriString = ClaimType2008Namespace + "/dsa";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/dsa</value>
+    public const string UriString = Namespace2008 + "/dsa";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:dsa</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "dsa";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:dsa</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "dsa";
 
     /// <value>Dsa</value>
     public const string Name = nameof(Dsa);
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IIdentityComponent.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    public override uri ShortUri => ShortUriString;
+}
+
+/// <summary>The URI for a claim that specifies the email address of an entity, </summary>
+/// <value><inheritdoc cref="Email2005.UriString" path="/value" /></value>
+public record class Email2005 : ClaimType, IClaimType, IIdentityComponent
+{
+    public static readonly IClaimType Instance = new Email2005();
+
+    private Email2005() { }
+
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/emailaddress</value>
+    public const string UriString = Namespace2005 + "/emailaddress";
+
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:emailaddress</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "emailaddress";
+
+    /// <value>Email2005</value>
+    public const string Name = nameof(Email2005);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IIdentityComponent.Name => Name;
@@ -474,11 +530,11 @@ public record class Email : ClaimType, IClaimType, IIdentityComponent
 
     private Email() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/emailaddress</value>
-    public const string UriString = ClaimType2005Namespace + "/emailaddress";
+    /// <value><inheritdoc cref="ClaimType.Namespace" path="/value" />/emailaddress</value>
+    public const string UriString = Namespace + "/emailaddress";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:emailaddress</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "emailaddress";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace" path="/value" />:emailaddress</value>
+    public const string ShortUriString = ShortNamespace + ":" + "emailaddress";
 
     /// <value>Email</value>
     public const string Name = nameof(Email);
@@ -504,11 +560,11 @@ public record class Expiration : ClaimType, IClaimType, IIdentityComponent
 
     private Expiration() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/expiration</value>
-    public const string UriString = ClaimType2008Namespace + "/expiration";
+    /// <value><inheritdoc cref="ClaimType.Namespace" path="/value" />/expiration</value>
+    public const string UriString = Namespace2008 + "/expiration";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:expiration</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "expiration";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:expiration</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "expiration";
 
     /// <value>Expiration</value>
     public const string Name = nameof(Expiration);
@@ -534,11 +590,11 @@ public record class Expired : ClaimType, IClaimType, IIdentityComponent
 
     private Expired() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/expired</value>
-    public const string UriString = ClaimType2008Namespace + "/expired";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/expired</value>
+    public const string UriString = Namespace2008 + "/expired";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:expired</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "expired";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:expired</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "expired";
 
     /// <value>Expired</value>
     public const string Name = nameof(Expired);
@@ -564,11 +620,11 @@ public record class Gender : ClaimType, IClaimType, IIdentityComponent
 
     private Gender() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/gender</value>
-    public const string UriString = ClaimType2005Namespace + "/gender";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/gender</value>
+    public const string UriString = Namespace2005 + "/gender";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:gender</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "gender";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:gender</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "gender";
 
     /// <value>Gender</value>
     public const string Name = nameof(Gender);
@@ -594,11 +650,11 @@ public record class GivenName : ClaimType, IClaimType, IIdentityComponent
 
     private GivenName() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/givenname</value>
-    public const string UriString = ClaimType2005Namespace + "/givenname";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/givenname</value>
+    public const string UriString = Namespace2005 + "/givenname";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:givenname</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "givenname";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:givenname</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "givenname";
 
     /// <value>GivenName</value>
     public const string Name = nameof(GivenName);
@@ -624,11 +680,11 @@ public record class GroupSid : ClaimType, IClaimType, IIdentityComponent
 
     private GroupSid() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/groupsid</value>
-    public const string UriString = ClaimType2008Namespace + "/groupsid";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/groupsid</value>
+    public const string UriString = Namespace2008 + "/groupsid";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:groupsid</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "groupsid";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:groupsid</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "groupsid";
 
     /// <value>GroupSid</value>
     public const string Name = nameof(GroupSid);
@@ -654,11 +710,11 @@ public record class Hash : ClaimType, IClaimType, IIdentityComponent
 
     private Hash() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/hash</value>
-    public const string UriString = ClaimType2005Namespace + "/hash";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/hash</value>
+    public const string UriString = Namespace2005 + "/hash";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:hash</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "hash";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:hash</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "hash";
 
     /// <value>Hash</value>
     public const string Name = nameof(Hash);
@@ -684,11 +740,11 @@ public record class HomePhone : ClaimType, IClaimType, IIdentityComponent
 
     private HomePhone() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/homephone</value>
-    public const string UriString = ClaimType2005Namespace + "/homephone";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/homephone</value>
+    public const string UriString = Namespace2005 + "/homephone";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:homephone</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "homephone";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:homephone</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "homephone";
 
     /// <value>HomePhone</value>
     public const string Name = nameof(HomePhone);
@@ -714,11 +770,11 @@ public record class IsPersistent : ClaimType, IClaimType, IIdentityComponent
 
     private IsPersistent() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/ispersistent</value>
-    public const string UriString = ClaimType2008Namespace + "/ispersistent";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/ispersistent</value>
+    public const string UriString = Namespace2008 + "/ispersistent";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:ispersistent</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "ispersistent";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:ispersistent</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "ispersistent";
 
     /// <value>IsPersistent</value>
     public const string Name = nameof(IsPersistent);
@@ -744,11 +800,11 @@ public record class Locality : ClaimType, IClaimType, IIdentityComponent
 
     private Locality() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/locality</value>
-    public const string UriString = ClaimType2005Namespace + "/locality";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/locality</value>
+    public const string UriString = Namespace2005 + "/locality";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:locality</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "locality";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:locality</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "locality";
 
     /// <value>Locality</value>
     public const string Name = nameof(Locality);
@@ -774,11 +830,11 @@ public record class MobilePhone : ClaimType, IClaimType, IIdentityComponent
 
     private MobilePhone() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/mobilephone</value>
-    public const string UriString = ClaimType2005Namespace + "/mobilephone";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/mobilephone</value>
+    public const string UriString = Namespace2005 + "/mobilephone";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:mobilephone</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "mobilephone";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:mobilephone</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "mobilephone";
 
     /// <value>MobilePhone	</value>
     public const string Name = "MobilePhone	";
@@ -804,11 +860,11 @@ public record class Name : ClaimType, IClaimType, IIdentityComponent
 
     private Name() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/name</value>
-    public const string UriString = ClaimType2005Namespace + "/name";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/name</value>
+    public const string UriString = Namespace2005 + "/name";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:name</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "name";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:name</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "name";
     public const string _Name = "Name";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
@@ -832,11 +888,11 @@ public record class NameIdentifier : ClaimType, IClaimType, IIdentityComponent
 
     private NameIdentifier() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/nameidentifier</value>
-    public const string UriString = ClaimType2005Namespace + "/nameidentifier";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/nameidentifier</value>
+    public const string UriString = Namespace2005 + "/nameidentifier";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:nameidentifier</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "nameidentifier";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:nameidentifier</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "nameidentifier";
 
     /// <value>NameIdentifier</value>
     public const string Name = nameof(NameIdentifier);
@@ -862,11 +918,11 @@ public record class OtherPhone : ClaimType, IClaimType, IIdentityComponent
 
     private OtherPhone() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/otherphone</value>
-    public const string UriString = ClaimType2005Namespace + "/otherphone";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/otherphone</value>
+    public const string UriString = Namespace2005 + "/otherphone";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:otherphone</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "otherphone";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:otherphone</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "otherphone";
 
     /// <value>OtherPhone</value>
     public const string Name = nameof(OtherPhone);
@@ -892,11 +948,11 @@ public record class PostalCode : ClaimType, IClaimType, IIdentityComponent
 
     private PostalCode() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/postalcode</value>
-    public const string UriString = ClaimType2005Namespace + "/postalcode";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/postalcode</value>
+    public const string UriString = Namespace2005 + "/postalcode";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:postalcode</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "postalcode";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:postalcode</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "postalcode";
 
     /// <value>PostalCode</value>
     public const string Name = nameof(PostalCode);
@@ -922,11 +978,11 @@ public record class PrimaryGroupSid : ClaimType, IClaimType, IIdentityComponent
 
     private PrimaryGroupSid() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/primarygroupsid</value>
-    public const string UriString = ClaimType2008Namespace + "/primarygroupsid";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/primarygroupsid</value>
+    public const string UriString = Namespace2008 + "/primarygroupsid";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:primarygroupsid</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "primarygroupsid";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:primarygroupsid</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "primarygroupsid";
 
     /// <value>PrimaryGroupSid</value>
     public const string Name = nameof(PrimaryGroupSid);
@@ -952,11 +1008,11 @@ public record class PrimarySid : ClaimType, IClaimType, IIdentityComponent
 
     private PrimarySid() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/primarysid</value>
-    public const string UriString = ClaimType2008Namespace + "/primarysid";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/primarysid</value>
+    public const string UriString = Namespace2008 + "/primarysid";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:primarysid</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "primarysid";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:primarysid</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "primarysid";
 
     /// <value>PrimarySid</value>
     public const string Name = nameof(PrimarySid);
@@ -982,11 +1038,11 @@ public record class Role : ClaimType, IClaimType, IIdentityComponent
 
     private Role() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/role</value>
-    public const string UriString = ClaimType2008Namespace + "/role";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/role</value>
+    public const string UriString = Namespace2008 + "/role";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:role</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "role";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:role</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "role";
 
     /// <value>Role</value>
     public const string Name = nameof(Role);
@@ -1012,11 +1068,11 @@ public record class Rsa : ClaimType, IClaimType, IIdentityComponent
 
     private Rsa() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/rsa</value>
-    public const string UriString = ClaimType2005Namespace + "/rsa";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/rsa</value>
+    public const string UriString = Namespace2005 + "/rsa";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:rsa</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "rsa";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:rsa</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "rsa";
 
     /// <value>Rsa</value>
     public const string Name = nameof(Rsa);
@@ -1042,11 +1098,11 @@ public record class SerialNumber : ClaimType, IClaimType, IIdentityComponent
 
     private SerialNumber() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/serialnumber</value>
-    public const string UriString = ClaimType2008Namespace + "/serialnumber";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/serialnumber</value>
+    public const string UriString = Namespace2008 + "/serialnumber";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:serialnumber</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "serialnumber";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:serialnumber</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "serialnumber";
 
     /// <value>SerialNumber</value>
     public const string Name = nameof(SerialNumber);
@@ -1072,11 +1128,11 @@ public record class Sid : ClaimType, IClaimType, IIdentityComponent
 
     private Sid() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/sid</value>
-    public const string UriString = ClaimType2005Namespace + "/sid";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/sid</value>
+    public const string UriString = Namespace2005 + "/sid";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:sid</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "sid";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:sid</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "sid";
 
     /// <value>Sid</value>
     public const string Name = nameof(Sid);
@@ -1102,11 +1158,11 @@ public record class Spn : ClaimType, IClaimType, IIdentityComponent
 
     private Spn() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/spn</value>
-    public const string UriString = ClaimType2005Namespace + "/spn";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/spn</value>
+    public const string UriString = Namespace2005 + "/spn";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:spn</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "spn";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:spn</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "spn";
 
     /// <value>Spn</value>
     public const string Name = nameof(Spn);
@@ -1132,11 +1188,11 @@ public record class StateOrProvince : ClaimType, IClaimType, IIdentityComponent
 
     private StateOrProvince() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/stateorprovince</value>
-    public const string UriString = ClaimType2005Namespace + "/stateorprovince";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/stateorprovince</value>
+    public const string UriString = Namespace2005 + "/stateorprovince";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:stateorprovince</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "stateorprovince";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:stateorprovince</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "stateorprovince";
 
     /// <value>StateOrProvince</value>
     public const string Name = nameof(StateOrProvince);
@@ -1162,11 +1218,11 @@ public record class StreetAddress : ClaimType, IClaimType, IIdentityComponent
 
     private StreetAddress() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/streetaddress</value>
-    public const string UriString = ClaimType2005Namespace + "/streetaddress";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/streetaddress</value>
+    public const string UriString = Namespace2005 + "/streetaddress";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:streetaddress</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "streetaddress";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:streetaddress</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "streetaddress";
 
     /// <value>StreetAddress</value>
     public const string Name = nameof(StreetAddress);
@@ -1192,11 +1248,11 @@ public record class Surname : ClaimType, IClaimType, IIdentityComponent
 
     private Surname() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/surname</value>
-    public const string UriString = ClaimType2005Namespace + "/surname";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/surname</value>
+    public const string UriString = Namespace2005 + "/surname";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:surname</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "surname";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:surname</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "surname";
 
     /// <value>Surname</value>
     public const string Name = nameof(Surname);
@@ -1222,11 +1278,11 @@ public record class System : ClaimType, IClaimType, IIdentityComponent
 
     private System() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/system</value>
-    public const string UriString = ClaimType2005Namespace + "/system";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/system</value>
+    public const string UriString = Namespace2005 + "/system";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:system</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "system";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:system</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "system";
 
     /// <value>System</value>
     public const string Name = nameof(System);
@@ -1252,14 +1308,14 @@ public record class Thumbprint : ClaimType, IClaimType, IIdentityComponent
 
     private Thumbprint() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/thumbprint. A thumbprint is a globally unique SHA-1 hash of an X.509 certificate</value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/thumbprint. A thumbprint is a globally unique SHA-1 hash of an X.509 certificate</value>
     public const string UriString =
-        ClaimType2005Namespace
+        Namespace2005
         + "/thumbprint. A thumbprint is a globally unique SHA-1 hash of an X.509 certificate";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:thumbprint. A thumbprint is a globally unique SHA-1 hash of an X.509 certificate</value>
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:thumbprint. A thumbprint is a globally unique SHA-1 hash of an X.509 certificate</value>
     public const string ShortUriString =
-        ShortClaimType2005Namespace
+        ShortNamespace2005
         + ":"
         + "thumbprint. A thumbprint is a globally unique SHA-1 hash of an X.509 certificate";
 
@@ -1287,14 +1343,44 @@ public record class Upn : ClaimType, IClaimType, IIdentityComponent
 
     private Upn() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/upn</value>
-    public const string UriString = ClaimType2005Namespace + "/upn";
+    /// <value><inheritdoc cref="ClaimType.Namespace" path="/value" />/upn</value>
+    public const string UriString = Namespace + "/upn";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:upn</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "upn";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace" path="/value" />:upn</value>
+    public const string ShortUriString = ShortNamespace + ":" + "upn";
 
     /// <value>Upn	</value>
     public const string Name = nameof(Upn);
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IIdentityComponent.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    public override uri ShortUri => ShortUriString;
+}
+
+/// <summary>The URI for a claim that specifies a user principal name (UPN), </summary>
+/// <value><inheritdoc cref="Upn2005.UriString" path="/value" /></value>
+public record class Upn2005 : ClaimType, IClaimType, IIdentityComponent
+{
+    public static readonly IClaimType Instance = new Upn2005();
+
+    private Upn2005() { }
+
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/upn</value>
+    public const string UriString = Namespace2005 + "/upn";
+
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:upn</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "upn";
+
+    /// <value>Upn2005</value>
+    public const string Name = nameof(Upn2005);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IIdentityComponent.Name => Name;
@@ -1317,11 +1403,11 @@ public record class _Uri : ClaimType, IClaimType, IIdentityComponent
 
     private _Uri() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/uri</value>
-    public const string UriString = ClaimType2005Namespace + "/uri";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/uri</value>
+    public const string UriString = Namespace2005 + "/uri";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:uri</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "uri";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:uri</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "uri";
 
     /// <value>Uri</value>
     public const string Name = nameof(Uri);
@@ -1347,11 +1433,11 @@ public record class UserData : ClaimType, IClaimType, IIdentityComponent
 
     private UserData() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/userdata</value>
-    public const string UriString = ClaimType2008Namespace + "/userdata";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/userdata</value>
+    public const string UriString = Namespace2008 + "/userdata";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:userdata</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "userdata";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:userdata</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "userdata";
 
     /// <value>UserData</value>
     public const string Name = nameof(UserData);
@@ -1377,11 +1463,11 @@ public record class Version : ClaimType, IClaimType, IIdentityComponent
 
     private Version() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/version</value>
-    public const string UriString = ClaimType2008Namespace + "/version";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/version</value>
+    public const string UriString = Namespace2008 + "/version";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:version</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "version";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:version</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "version";
 
     /// <value>Version</value>
     public const string Name = nameof(Version);
@@ -1407,11 +1493,11 @@ public record class Webpage : ClaimType, IClaimType, IIdentityComponent
 
     private Webpage() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/webpage</value>
-    public const string UriString = ClaimType2005Namespace + "/webpage";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/webpage</value>
+    public const string UriString = Namespace2005 + "/webpage";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:webpage</value>
-    public const string ShortUriString = ShortClaimType2005Namespace + ":" + "webpage";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:webpage</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "webpage";
 
     /// <value>Webpage</value>
     public const string Name = nameof(Webpage);
@@ -1437,11 +1523,11 @@ public record class WindowsAccountName : ClaimType, IClaimType, IIdentityCompone
 
     private WindowsAccountName() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/windowsaccountname</value>
-    public const string UriString = ClaimType2008Namespace + "/windowsaccountname";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/windowsaccountname</value>
+    public const string UriString = Namespace2008 + "/windowsaccountname";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:windowsaccountname</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "windowsaccountname";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:windowsaccountname</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "windowsaccountname";
 
     /// <value>WindowsAccountName</value>
     public const string Name = nameof(WindowsAccountName);
@@ -1467,11 +1553,11 @@ public record class WindowsDeviceClaim : ClaimType, IClaimType, IIdentityCompone
 
     private WindowsDeviceClaim() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/windowsdeviceclaim</value>
-    public const string UriString = ClaimType2008Namespace + "/windowsdeviceclaim";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/windowsdeviceclaim</value>
+    public const string UriString = Namespace2008 + "/windowsdeviceclaim";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:windowsdeviceclaim</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "windowsdeviceclaim";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:windowsdeviceclaim</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "windowsdeviceclaim";
 
     /// <value>WindowsDeviceClaim</value>
     public const string Name = nameof(WindowsDeviceClaim);
@@ -1497,11 +1583,11 @@ public record class WindowsDeviceGroup : ClaimType, IClaimType, IIdentityCompone
 
     private WindowsDeviceGroup() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/windowsdevicegroup</value>
-    public const string UriString = ClaimType2008Namespace + "/windowsdevicegroup";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/windowsdevicegroup</value>
+    public const string UriString = Namespace2008 + "/windowsdevicegroup";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:windowsdevicegroup</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "windowsdevicegroup";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:windowsdevicegroup</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "windowsdevicegroup";
 
     /// <value>WindowsDeviceGroup</value>
     public const string Name = nameof(WindowsDeviceGroup);
@@ -1527,11 +1613,11 @@ public record class WindowsFqbnVersion : ClaimType, IClaimType, IIdentityCompone
 
     private WindowsFqbnVersion() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/windowsfqbnversion</value>
-    public const string UriString = ClaimType2008Namespace + "/windowsfqbnversion";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/windowsfqbnversion</value>
+    public const string UriString = Namespace2008 + "/windowsfqbnversion";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:windowsfqbnversion</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "windowsfqbnversion";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:windowsfqbnversion</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "windowsfqbnversion";
 
     /// <value>WindowsFqbnVersion</value>
     public const string Name = nameof(WindowsFqbnVersion);
@@ -1557,11 +1643,11 @@ public record class WindowsSubAuthority : ClaimType, IClaimType, IIdentityCompon
 
     private WindowsSubAuthority() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/windowssubauthority</value>
-    public const string UriString = ClaimType2008Namespace + "/windowssubauthority";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/windowssubauthority</value>
+    public const string UriString = Namespace2008 + "/windowssubauthority";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:windowssubauthority</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "windowssubauthority";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:windowssubauthority</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "windowssubauthority";
 
     /// <value>WindowsSubAuthority</value>
     public const string Name = nameof(WindowsSubAuthority);
@@ -1587,11 +1673,11 @@ public record class WindowsUserClaim : ClaimType, IClaimType, IIdentityComponent
 
     private WindowsUserClaim() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2008Namespace" path="/value" />/windowsuserclaim</value>
-    public const string UriString = ClaimType2008Namespace + "/windowsuserclaim";
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/windowsuserclaim</value>
+    public const string UriString = Namespace2008 + "/windowsuserclaim";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2008Namespace" path="/value" />:windowsuserclaim</value>
-    public const string ShortUriString = ShortClaimType2008Namespace + ":" + "windowsuserclaim";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:windowsuserclaim</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "windowsuserclaim";
 
     /// <value>WindowsUserClaim</value>
     public const string Name = nameof(WindowsUserClaim);
@@ -1617,15 +1703,42 @@ public record class X500DistinguishedName : ClaimType, IClaimType, IIdentityComp
 
     private X500DistinguishedName() { }
 
-    /// <value><inheritdoc cref="ClaimType.ClaimType2005Namespace" path="/value" />/x500distinguishedname</value>
-    public const string UriString = ClaimType2005Namespace + "/x500distinguishedname";
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/x500distinguishedname</value>
+    public const string UriString = Namespace2005 + "/x500distinguishedname";
 
-    /// <value><inheritdoc cref="ClaimType.ShortClaimType2005Namespace" path="/value" />:x500distinguishedname</value>
-    public const string ShortUriString =
-        ShortClaimType2005Namespace + ":" + "x500distinguishedname";
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:x500distinguishedname</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "x500distinguishedname";
 
     /// <value>X500DistinguishedName</value>
     public const string Name = nameof(X500DistinguishedName);
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IIdentityComponent.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    public override uri ShortUri => ShortUriString;
+}
+
+public record class ObjectId : ClaimType, IClaimType, IIdentityComponent
+{
+    public static readonly IClaimType Instance = new ObjectId();
+
+    private ObjectId() { }
+
+    /// <value>https://www.mongodb.com/docs/manual/reference/method/ObjectId</value>
+    public const string UriString = "https://www.mongodb.com/docs/manual/reference/method/ObjectId";
+
+    /// <value>mongodb:objectid</value>
+    public const string ShortUriString = "mongodb:objectid";
+
+    /// <value>objectid</value>
+    public const string Name = "objectid";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IIdentityComponent.Name => Name;

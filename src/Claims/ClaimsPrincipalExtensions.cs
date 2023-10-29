@@ -49,11 +49,12 @@ public static class ClaimsPrincipalExtensions
 
     public static string GetDisplayName(this ClaimsPrincipal principal)
     {
-        return principal.FindFirstValue(DgmjrCt.CommonName)
-            ?? principal.FindFirstValue(Ct.GivenName)
-            ?? principal.FindFirstValue(Ct.Name)
-            ?? principal.FindFirstValue(Ct.Email)
-            ?? principal.FindFirstValue(Ct.NameIdentifier)
+        return /*principal.FindFirstValue(DgmjrCt.CommonName)
+            ??*/
+            principal.FindFirstValue(DgmjrCt.GivenName.UriString)
+            ?? principal.FindFirstValue(DgmjrCt.Name.UriString)
+            ?? principal.FindFirstValue(DgmjrCt.Email.UriString)
+            ?? principal.FindFirstValue(DgmjrCt.NameIdentifier.UriString)
             ?? "Unknown";
     }
 

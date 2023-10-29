@@ -37,19 +37,17 @@ public class ApplicationClaimType<TKey>
     public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; } =
         new Collection<ApplicationClaimType<TKey>>();
 
-    public virtual ApplicationClaimValueType<TKey> ValueType { get; set; } = default!;
-
     public virtual required uri Uri { get; set; }
 
-public virtual required string Name { get; set; }
+    public virtual required string Name { get; set; }
 
-public virtual string Description { get; set; }
-public TKey ClaimValueTypeId { get; set; }
-public ApplicationClaimValueType<TKey> ClaimValueType { get; set; }
+    public virtual string Description { get; set; }
+    public TKey ClaimValueTypeId { get; set; }
+    public ApplicationClaimValueType<TKey> ClaimValueType { get; set; } = default!;
 
-public ICollection<ApplicationUser<TKey>> Users { get; } =
-    new Collection<ApplicationUser<TKey>>();
+    public ICollection<ApplicationUser<TKey>> Users { get; } =
+        new Collection<ApplicationUser<TKey>>();
 
-public ICollection<ApplicationRole<TKey>> Roles { get; } =
-    new Collection<ApplicationRole<TKey>>();
+    public ICollection<ApplicationRole<TKey>> Roles { get; } =
+        new Collection<ApplicationRole<TKey>>();
 }

@@ -12,10 +12,11 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <!-- <TargetFrameworks>net7.0</TargetFrameworks> -->
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <ProjectGuid>788e1832-67b3-4f53-ab6b-65100f1fa889</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,21 +24,29 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
+    <PackageReference Include="Dgmjr.Payloads" />
+    <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" />
-    <PackageReference Include="System.Usings" />
-    <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Payloads" />
+    <UsingsPackageReference Include="System.Usings" />
     <!-- <PackageReference Include="Dgmjr.Http.Extensions" /> -->
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" />
     <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />
+    <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" />
     <ProjectReference Include="../Roles/Dgmjr.Identity.Roles.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
   </ItemGroup>
-  <Import Project="Sdk.targets" Sdk="DgmjrSdk" />
+  <ItemGroup>
+    <Using Include="Microsoft.AspNetCore.Identity" Alias="AspNetId" />
+  </ItemGroup>
   <Target Name="Compile" />
   <Target Name="CoreCompile" />
+  <Import Project="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.props" />
+  <Import Project="../Models/Dgmjr.Identity.Models.props" />
+  <Import Project="../Abstractions/Dgmjr.Identity.Abstractions.props" />
+  <Import Project="../Roles/Dgmjr.Identity.Roles.props" />
 </Project>

@@ -15,8 +15,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Dgmjr.Identity;
 
-public class PasswordValidator : PasswordValidator<User>
-{
-    public PasswordValidator(DavidsErrorDescriber errors)
-        : base(errors) { }
-}
+public class PasswordValidator<TUser>(IdentityErrorDescriber errors)
+    : MSID.PasswordValidator<TUser>(errors)
+    where TUser : class, IIdentityUserBase { }

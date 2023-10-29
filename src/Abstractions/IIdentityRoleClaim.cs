@@ -101,15 +101,113 @@ public interface IIdentityRoleClaim<
     TRole Role { get; set; }
 }
 
+public interface IIdentityRoleClaim<
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken,
+    TClaimType,
+    TClaimValueType
+>
+    : IIdentityRoleClaim<
+        TUser,
+        TRole,
+        TKey,
+        TUserClaim,
+        TUserRole,
+        TUserLogin,
+        TRoleClaim,
+        TUserToken
+    >
+    where TUser : IIdentityUser<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TRole : IIdentityRole<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TKey : IEquatable<TKey>, IComparable
+    where TUserClaim : IIdentityUserClaim<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TUserRole : IIdentityUserRole<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TUserLogin : IIdentityUserLogin<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TRoleClaim : IIdentityRoleClaim<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+    where TUserToken : IIdentityUserToken<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
+{
+    ICollection<TClaimType> ClaimTypes { get; }
+}
+
 public interface IIdentityRoleClaim
     : IIdentityRoleClaim<
-        Dgmjr.Identity.Abstractions.IIdentityUser,
-        Dgmjr.Identity.Abstractions.IIdentityRole,
+        IIdentityUser,
+        IIdentityRole,
         long,
-        Dgmjr.Identity.Abstractions.IIdentityUserClaim,
-        Dgmjr.Identity.Abstractions.IIdentityUserRole,
-        Dgmjr.Identity.Abstractions.IIdentityUserLogin,
-        Dgmjr.Identity.Abstractions.IIdentityRoleClaim,
-        Dgmjr.Identity.Abstractions.IIdentityUserToken
-    >
-{ }
+        IIdentityUserClaim,
+        IIdentityUserRole,
+        IIdentityUserLogin,
+        IIdentityRoleClaim,
+        IIdentityUserToken,
+        IIdentityClaimType,
+        IIdentityClaimValueType
+    > { }

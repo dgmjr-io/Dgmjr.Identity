@@ -17,7 +17,7 @@ using Dgmjr.Abstractions;
 using Microsoft.AspNetCore.Identity;
 
 /// <summary>A join entity between <see cref="User" />s and <see cref="Role" />s</summary>
-[Table(Constants.TableNames.UserRole, Schema = IdentitySchema.ShortName)]
+[Table(EntityFrameworkCore.Constants.TableNames.UserRole, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Role ({Id} - User ID: {UserId}, Role: {Role})")]
 public class ApplicationUserRole<TKey>
     : IIdentityUserRole<

@@ -22,24 +22,13 @@ using static Telegram.Constants.Account;
 
 using Dgmjr.Abstractions;
 
-public partial interface IIdentityUser<TKey, TUser, TRole>
-    : IIdentityEntity<TKey>,
-        IHaveATelegramUsername
-    where TKey : IEquatable<TKey>, IComparable
-    where TRole : IIdentityRole<TKey, TUser, TRole>
-    where TUser : IIdentityUser<TKey, TUser, TRole>
+public interface IIdentityUserBase
 {
-    /// <summary>Gets or sets the primary key for this user.</summary>
-    [PersonalData, Key, DbGen(DbGen.None), Hashids]
-    new TKey Id { get; set; }
-
     /// <summary>Gets or sets the user's username (usually the same as <see cref="IHaveATelegramUsername.TelegramUsername" />)</summary>
     /// <example>IAmTheAntitwink</example>
-    [
-        ProtectedPersonalData,
-        StringLength(UsernameMaxLength, MinimumLength = UsernameMinLength),
-        Required
-    ]
+    [ProtectedPersonalData]
+    [StringLength(UsernameMaxLength, MinimumLength = UsernameMinLength)]
+    [Required]
     string? Username { get; set; }
 
     /// <summary>The user's given ("first") name</summary>
@@ -58,25 +47,23 @@ public partial interface IIdentityUser<TKey, TUser, TRole>
     string? GoByName { get; set; }
 
     /// <summary>Gets or sets the normalized user name for this user.</summary>
-    [
-        ProtectedPersonalData,
-        StringLength(UsernameMaxLength, MinimumLength = UsernameMinLength),
-        Required
-    ]
-    [JIgnore, XIgnore]
+    [ProtectedPersonalData]
+    [StringLength(UsernameMaxLength, MinimumLength = UsernameMinLength)]
+    [Required, JIgnore, XIgnore]
     string? NormalizedUsername { get; set; }
 
     /// <summary>Gets or sets the email address for this user.</summary>
     [ProtectedPersonalData]
-    [Column(nameof(EmailAddress), TypeName = NVarChar.ShortName)]
+    [Column(nameof(EmailAddress))]
     [StringLength(UriMaxLength, MinimumLength = 0)]
     [EmailAddress]
     EmailAddress EmailAddress { get; set; }
 
     /// <summary>Gets or sets the normalized email address for this user.</summary>
-    [Column(nameof(EmailAddress), TypeName = NVarChar.ShortName)]
+    [Column(nameof(EmailAddress))]
     [StringLength(UriMaxLength, MinimumLength = 0)]
     [JIgnore, XIgnore]
+    [EmailAddress]
     string? NormalizedEmailAddress { get; set; }
 
     /// <summary>Gets or sets a flag indicating if a user has confirmed their email address.</summary>
@@ -88,17 +75,18 @@ public partial interface IIdentityUser<TKey, TUser, TRole>
     [Column(TypeName = NVarCharMax.ShortName)]
     [StringLength(int.MaxValue, MinimumLength = 0)]
     [JIgnore, XIgnore, Required]
-    string? PasswordHash { get; set; }
+    string? PasswordHash { get; }
 
-    /// <summary>A random value that must change whenever a users credentials change (password changed, login removed)</summary>
-    string SecurityStamp { get; set; }
+    // /// <summary>A random value that must change whenever a users credentials change (password changed, login removed)</summary>
+    // [DbGen(DbGen.Computed)]
+    // byte[] SecurityStamp { get; }
 
-    /// <summary>A random value that must change whenever a user is persisted to the store</summary>
-    [Timestamp]
-    [Column(TypeName = RowVersion.ShortName)]
-    [DbGen(DbGen.Computed)]
-    [JIgnore, XIgnore, Required]
-    string ConcurrencyStamp { get; set; }
+    // /// <summary>A random value that must change whenever a user is persisted to the store</summary>
+    // [Timestamp]
+    // [Column(TypeName = RowVersion.ShortName)]
+    // [DbGen(DbGen.Computed)]
+    // [JIgnore, XIgnore, Required]
+    // byte[] ConcurrencyStamp { get; }
 
     /// <summary>Gets or sets a telephone number for the user.</summary>
     [ProtectedPersonalData]
@@ -144,8 +132,20 @@ public partial interface IIdentityUser<TKey, TUser, TRole>
 
     /// <summary>Returns the username for this user.</summary>
     string ToString();
+}
 
-    ICollection<TRole> Roles { get; set; }
+public partial interface IIdentityUser<TKey, TUser, TRole>
+    : IIdentityUserBase,
+        IIdentityEntity<TKey>,
+        IHaveATelegramUsername
+    where TKey : IEquatable<TKey>, IComparable
+    where TRole : IIdentityRole<TKey, TUser, TRole>
+    where TUser : IIdentityUser<TKey, TUser, TRole>
+{
+    /// <summary>Gets or sets the primary key for this user.</summary>
+    [PersonalData, Key, DbGen(DbGen.None), Hashids]
+    new TKey Id { get; set; }
+    ICollection<TRole> Roles { get; }
 }
 
 public partial interface IIdentityUser<
@@ -230,21 +230,20 @@ public partial interface IIdentityUser<
             TUserToken
         >
 {
-    ICollection<TUserClaim> Claims { get; set; }
-    ICollection<TUserLogin> Logins { get; set; }
-    ICollection<TUserToken> Tokens { get; set; }
-    ICollection<TUserRole> UserRoles { get; set; }
+    ICollection<TUserClaim> Claims { get; }
+    ICollection<TUserLogin> Logins { get; }
+    ICollection<TUserToken> Tokens { get; }
+    ICollection<TUserRole> UserRoles { get; }
 }
 
 public interface IIdentityUser
     : IIdentityUser<
-        Dgmjr.Identity.Abstractions.IIdentityUser,
-        Dgmjr.Identity.Abstractions.IIdentityRole,
+        IIdentityUser,
+        IIdentityRole,
         long,
-        Dgmjr.Identity.Abstractions.IIdentityUserClaim,
-        Dgmjr.Identity.Abstractions.IIdentityUserRole,
-        Dgmjr.Identity.Abstractions.IIdentityUserLogin,
-        Dgmjr.Identity.Abstractions.IIdentityRoleClaim,
-        Dgmjr.Identity.Abstractions.IIdentityUserToken
-    >
-{ }
+        IIdentityUserClaim,
+        IIdentityUserRole,
+        IIdentityUserLogin,
+        IIdentityRoleClaim,
+        IIdentityUserToken
+    > { }

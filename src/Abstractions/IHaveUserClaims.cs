@@ -21,7 +21,7 @@ public interface IHaveUserClaims<
     TUserLogin,
     TRoleClaim,
     TUserToken
-> : IIdentifiable<TKey>
+> : IIdentityEntity<TKey>
     where TUser : IIdentityUser<
             TUser,
             TRole,
@@ -94,5 +94,5 @@ public interface IHaveUserClaims<
             TUserToken
         >
 {
-    ICollection<TUserClaim> Claims { get; set; }
+    ICollection<TUserClaim> Claims { get; }
 }

@@ -109,7 +109,7 @@ public class PersonalDataProtector : IPersonalDataProtector
         Array.Clear(plainText, 0, plainText.Length);
 
         // Return the results as a string.
-        return ToBase64String(output);
+        return output.ToBase64String();
     }
 
     public string Unprotect(string? data)
@@ -117,7 +117,7 @@ public class PersonalDataProtector : IPersonalDataProtector
         byte[] plainText;
 
         // Take our string and convert it back to bytes.
-        var payload = FromBase64String(data);
+        var payload = data.FromBase64String();
 
         var offset = 0;
 
@@ -214,7 +214,7 @@ public class PersonalDataProtector : IPersonalDataProtector
 
     public byte[] Key(string keyId)
     {
-        return FromBase64String(_keyRing[keyId]);
+        return _keyRing[keyId].FromBase64String();
     }
 
     private static byte[] SignData(

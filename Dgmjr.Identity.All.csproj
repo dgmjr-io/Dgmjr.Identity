@@ -12,25 +12,26 @@
 
 
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <IsAtRoot>true</IsAtRoot>
-        <IncludeInSolutionFile>false</IncludeInSolutionFile>
-        <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
-    </PropertyGroup>
-    <ItemGroup>
-        <ProjectReference Include="./src/Abstractions/Dgmjr.Identity.Abstractions.csproj" />
-        <ProjectReference Include="./src/AspNetCore/Dgmjr.Identity.AspNetCore.csproj" />
-        <ProjectReference Include="./src/Authorization/Dgmjr.Identity.Authorization.csproj" />
-        <ProjectReference Include="./src/Claims/Dgmjr.Identity.Claims.csproj" />
-        <ProjectReference Include="./src/EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
-        <ProjectReference Include="./src/EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" />
-        <ProjectReference Include="./src/Models/Dgmjr.Identity.Models.csproj" />
-        <ProjectReference Include="./src/Security/Dgmjr.Security.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-        <Using Include="System.Runtime.CompilerServices" />
-    </ItemGroup>
-    <!-- <Target Name="CleanPreBuild" BeforeTargets="Restore">
+  <Sdk Name="MetapackageSdk" />
+  <PropertyGroup>
+    <IncludeInSolutionFile>false</IncludeInSolutionFile>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="./src/Abstractions/Dgmjr.Identity.Abstractions.csproj" />
+    <ProjectReference Include="./src/AspNetCore/Dgmjr.Identity.AspNetCore.csproj" />
+    <ProjectReference Include="./src/Authorization/Dgmjr.Identity.Authorization.csproj" />
+    <ProjectReference Include="./src/Claims/Dgmjr.Identity.Claims.csproj" />
+    <ProjectReference Include="./src/EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
+    <ProjectReference Include="./src/EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="./src/Models/Dgmjr.Identity.Models.csproj" />
+    <ProjectReference Include="./src/Security/Dgmjr.Security.csproj" />
+    <ProjectReference Include="./src/Roles/Dgmjr.Identity.Roles.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="System.Runtime.CompilerServices" />
+  </ItemGroup>
+  <!-- <Target Name="CleanPreBuild" BeforeTargets="Restore">
         <Exec Command="rm -rf '$(MSBuildProjectDirectory)/**/obj'" />
     </Target> -->
 </Project>

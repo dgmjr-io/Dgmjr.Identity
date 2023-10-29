@@ -99,6 +99,5 @@ public interface IUserAssociatedEntity<
     TKey UserId { get; set; }
 
     /// <summary>Gets or sets the user who's associated with this entity</summary>
-    [Hashids]
     TUser User { get; set; }
 }

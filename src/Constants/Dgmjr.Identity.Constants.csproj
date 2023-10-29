@@ -3,5 +3,6 @@
     <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
     <!-- <TargetFramework>net7.0</TargetFramework> -->
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+    <ProjectGuid>1afa697c-284e-48d6-9dce-0084e5a063c8</ProjectGuid>
   </PropertyGroup>
 </Project>

@@ -38,21 +38,7 @@ public class IdentityDbContextDesignTimeFactory : IDesignTimeDbContextFactory<Id
             // )
             .Build()
             .GetConnectionString("IdentityDb");
-        var builder =
-            new DbContextOptionsBuilder<
-                IdentityDbContext<
-                    AppUser,
-                    AppRole,
-                    long,
-                    AppUserClaim,
-                    AppUserRole,
-                    AppUserLogin,
-                    AppRoleClaim,
-                    AppUserToken,
-                    AppClaimType,
-                    AppClaimValueType
-                >
-            >();
+        var builder = new DbContextOptionsBuilder<IdentityDbContext>();
         builder.UseSqlServer(connectionString);
         return new IdentityDbContext(builder.Options);
     }

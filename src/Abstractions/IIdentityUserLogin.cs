@@ -102,13 +102,12 @@ public interface IIdentityUserLogin<
 
 public interface IIdentityUserLogin
     : IIdentityUserLogin<
-        Dgmjr.Identity.Abstractions.IIdentityUser,
-        Dgmjr.Identity.Abstractions.IIdentityRole,
+        IIdentityUser,
+        IIdentityRole,
         long,
-        Dgmjr.Identity.Abstractions.IIdentityUserClaim,
-        Dgmjr.Identity.Abstractions.IIdentityUserRole,
-        Dgmjr.Identity.Abstractions.IIdentityUserLogin,
-        Dgmjr.Identity.Abstractions.IIdentityRoleClaim,
-        Dgmjr.Identity.Abstractions.IIdentityUserToken
-    >
-{ }
+        IIdentityUserClaim,
+        IIdentityUserRole,
+        IIdentityUserLogin,
+        IIdentityRoleClaim,
+        IIdentityUserToken
+    > { }

@@ -14,6 +14,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <ProjectGuid>c5824e03-649b-4944-8491-e84cd007fb07</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Dgmjr.Abstractions" />
@@ -23,6 +24,7 @@
     <PackageReference Include="System.Security.Cryptography.Xml" />
     <PackageReference Include="System.Security.Principal.Windows" />
     <ProjectReference Include="../Core/Dgmjr.Identity.Core.csproj" />
+    <ProjectReference Include="../ClaimTypes/Dgmjr.Identity.ClaimTypes.csproj" />
     <SourceGeneratorPackageReference Include="Dgmjr.RegexDtoGenerator" />
   </ItemGroup>
   <Import Project="../Core/Dgmjr.Identity.Core.props" />

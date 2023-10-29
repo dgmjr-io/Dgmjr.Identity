@@ -19,16 +19,17 @@ using Microsoft.Extensions.Options;
 
 namespace Dgmjr.Identity;
 
-public class SignInManager : SignInManager<User>
+public class SignInManager<TUser> : MSID.SignInManager<TUser>
+    where TUser : class, IIdentityUser
 {
     public SignInManager(
-        UserManager<User> userManager,
+        UserManager<TUser> userManager,
         IHttpContextAccessor contextAccessor,
-        IUserClaimsPrincipalFactory<User> claimsFactory,
+        IUserClaimsPrincipalFactory<TUser> claimsFactory,
         IOptions<IdentityOptions> optionsAccessor,
-        ILogger<SignInManager<User>> logger,
+        ILogger<SignInManager<TUser>> logger,
         IAuthenticationSchemeProvider schemes,
-        IUserConfirmation<User> confirmation
+        IUserConfirmation<TUser> confirmation
     )
         : base(
             userManager,
@@ -38,6 +39,5 @@ public class SignInManager : SignInManager<User>
             logger,
             schemes,
             confirmation
-        )
-    { }
+        ) { }
 }

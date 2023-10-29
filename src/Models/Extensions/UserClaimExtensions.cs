@@ -23,7 +23,7 @@ public static class UserClaimExtensions
         return uc;
     }
 
-    public static ApplicationRoleClaim ToRoleClaimm(this C c)
+    public static ApplicationRoleClaim ToRoleClaim(this C c)
     {
         var rc = new ApplicationRoleClaim();
         rc.InitializeFromClaim(c);

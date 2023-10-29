@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Dgmjr.EntityFrameworkCore;
 using static Dgmjr.EntityFrameworkCore.DbSchemas;
 using Dgmjr.Identity.Abstractions;
-using static Dgmjr.Identity.EntityFrameworkCore.Constants;
+using Dgmjr.Identity.EntityFrameworkCore.Constants;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 using Dgmjr.Identity.Models;
 
@@ -89,21 +89,21 @@ public class AppRoleConfiguration<
     public virtual void Configure(EntityTypeBuilder<TRole> builder)
     {
         builder.ToTable(
-            Dgmjr.Identity.Constants.Tables.Role,
-            IdentitySchema.ShortName /*,
+            Role,
+            IdentitySchema.ShortName,
             tb =>
             {
-                tb.IsMemoryOptimized();
-                tb.IsTemporal();
                 tb.HasComment("The Roles table contains the roles for the application.");
-            }*/
+                tb.IsTemporal();
+            }
         );
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
+        builder.HasKey(e => e.Id).HasName(PK_ + Role);
         builder.Property(e => e.ConcurrencyStamp).IsConcurrencyToken();
         // builder.Property(e => e.Name).HasMaxLength(256);
         // builder.Property(e => e.NormalizedName).HasMaxLength(256);
         // builder.HasIndex(e => e.NormalizedName).IsUnique().HasName("RoleNameIndex").HasFilter("[NormalizedName] IS NOT NULL");
-        builder.Property(e => e.Uri).HasConversion<System.uri.EfCoreValueConverter>();
+        builder.UriProperty(e => e.Uri).IsUnicode(false);
         builder.HasMany(
             e => e.Users
         ) /*
@@ -137,5 +137,4 @@ public class AppRoleConfiguration
         AppUserToken,
         AppClaimType,
         AppClaimValueType
-    >
-{ }
+    > { }

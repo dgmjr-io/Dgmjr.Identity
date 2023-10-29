@@ -1,0 +1,18 @@
+<!--
+ * Dgmjr.Identity.Constants.props
+ *
+ *   Created: 2023-49-22T09:49:32-04:00
+ *   Modified: 2023-49-22T09:49:32-04:00
+ *
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project>
+  <ItemGroup>
+    <Using Include="Dgmjr.IdentityConstants" />
+    <Using Include="Dgmjr.IdentityConstants.Fragments" Static="true" />
+  </ItemGroup>
+</Project>

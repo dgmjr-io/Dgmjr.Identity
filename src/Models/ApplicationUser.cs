@@ -15,21 +15,26 @@ using System.Threading.Tasks;
 
 namespace Dgmjr.Identity.Models;
 
+using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Domain;
+using static System.Guid;
 using System.Net.Mail;
 using System.Xml.Serialization;
+
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
+using Microsoft.EntityFrameworkCore;
+
 using Dgmjr.Abstractions;
 using Dgmjr.Identity.Abstractions;
-using Humanizer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
-
-using static System.Guid;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
-using static Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant;
+using static Dgmjr.Identity.EntityFrameworkCore.Constants.UriMaxLengthConstant;
 
-[Table(Constants.TableNames.User, Schema = IdentitySchema.ShortName)]
+using Humanizer;
+
+[Table(EntityFrameworkCore.Constants.TableNames.User, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User ({UserName} - {Email})")]
 public class ApplicationUser<TKey>
     : IIdentityUser<
@@ -60,10 +65,16 @@ public class ApplicationUser<TKey>
     public static readonly DateTimeOffset DefaultLockoutEnd = DateTimeOffset.Parse(
         DefaultLockoutEndString
     );
+    private readonly IPasswordHasher<ApplicationUser<TKey>>? _passwordHasher;
 
     public ApplicationUser()
     {
         LockoutEnd = DefaultLockoutEnd;
+    }
+
+    private ApplicationUser(IPasswordHasher<ApplicationUser<TKey>> passwordHasher)
+    {
+        _passwordHasher = passwordHasher;
     }
 
     public TKey Id { get; set; }
@@ -94,8 +105,12 @@ public class ApplicationUser<TKey>
     [DefaultValue(false), Column(nameof(IsTwoFactorEnabled))]
     public virtual bool IsTwoFactorEnabled { get; set; } = false;
 
-    [DefaultValue(false), Column(nameof(IsLockedOut)), DbGen(DbGen.Computed)]
+    [DefaultValue(false)]
+    [Column(nameof(IsLockedOut))]
+    [DbGen(DbGen.Computed)]
+    [BackingField(nameof(_isLockedOut))]
     public virtual bool IsLockedOut => IsLockoutEnabled && LockoutEnd > DateTimeOffset.Now;
+    private bool _isLockedOut = false;
 
     [DefaultValue(DefaultLockoutEndString)]
     public virtual DateTimeOffset? LockoutEnd { get; set; } = DefaultLockoutEnd;
@@ -139,47 +154,49 @@ public class ApplicationUser<TKey>
 
     public override int GetHashCode() => Id.GetHashCode();
 
-    public virtual string ConcurrencyStamp { get; set; } =
-        Guid.NewGuid().ToByteArray().ToHexString();
+    // public virtual string ConcurrencyStamp { get; } = guid.NewGuid().ToByteArray().ToHexString();
 
-    public virtual string? PasswordHash { get; set; } = null;
+    public virtual string? Password
+    {
+        set => PasswordHash = _passwordHasher.HashPassword(this, value);
+    }
 
-    [Column(TypeName = "uniqueidentifier")]
-    public virtual string SecurityStamp { get; set; } = NewGuid().ToString();
+    public virtual string? PasswordHash { get; private set; } = null;
+
+    // [Column(TypeName = "uniqueidentifier")]
+    // public virtual string SecurityStamp { get; } = NewGuid().ToString();
 
     /// <summary>The roles to which the user belongs</summary>
-    public virtual ICollection<ApplicationRole<TKey>> Roles { get; set; } =
+    public virtual ICollection<ApplicationRole<TKey>> Roles { get; } =
         new Collection<ApplicationRole<TKey>>();
 
     /// <summary>The user's logins for various federated providers</summary>
-    public virtual ICollection<ApplicationUserLogin<TKey>> Logins { get; set; } =
+    public virtual ICollection<ApplicationUserLogin<TKey>> Logins { get; } =
         new Collection<ApplicationUserLogin<TKey>>();
 
     /// <summary>The user's tokens</summary>
-    public virtual ICollection<ApplicationUserToken<TKey>> Tokens { get; set; } =
+    public virtual ICollection<ApplicationUserToken<TKey>> Tokens { get; } =
         new Collection<ApplicationUserToken<TKey>>();
 
     /// <summary>The user's claims</summary>
-    public virtual ICollection<ApplicationUserClaim<TKey>> Claims { get; set; } =
+    public virtual ICollection<ApplicationUserClaim<TKey>> Claims { get; } =
         new Collection<ApplicationUserClaim<TKey>>();
 
-    // /// <summary>The user's bots by <see cref="UserContactId.UserContactId" /></summary>
-    // public virtual ICollection<Bot> Bots { get; set; } = new Collection<Bot>();
-    // /// <summary>A join entity between <see cref="User" />s and <see cref="Bot" />s</summary>
-    // public virtual ICollection<UserContactId> ContactIds { get; set; } = new Collection<UserContactId>();
-    /// <summary>A join entity between <see cref="User" />s and <see cref="TblRole" />s</summary>
-    public virtual ICollection<ApplicationUserRole<TKey>> UserRoles { get; set; } =
+    public virtual ICollection<ApplicationUserRole<TKey>> UserRoles { get; } =
         new Collection<ApplicationUserRole<TKey>>();
-    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; set; } =
+    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; } =
         new Collection<ApplicationClaimType<TKey>>();
-
-    //public virtual ICollection<BackroomUserRole> UserRoles { get; set; } = new ObservableCollection<BackroomUserRole>();
 
     ICollection<C> IHaveClaims<TKey>.Claims
     {
         get => Claims.Select(c => c.ToClaim()).ToArray();
-        set { }
     }
+
+    private Lazy<bool> _isBot = default!;
+    private Lazy<bool> LazyIsBot =>
+        _isBot ??= new(
+            () => ClaimTypes.Any(ct => ct.Uri == Telegram.Identity.ClaimTypes.BotApiToken.UriString)
+        );
 
     public virtual bool IsBot =>
         ClaimTypes.Any(ct => ct.Uri == Telegram.Identity.ClaimTypes.BotApiToken.UriString);

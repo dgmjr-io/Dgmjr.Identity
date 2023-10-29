@@ -59,6 +59,8 @@ public partial class ApplicationRole<TKey>
         new Collection<ApplicationUser<TKey>>();
     public virtual ICollection<ApplicationUserRole<TKey>> UserRoles { get; set; } =
         new Collection<ApplicationUserRole<TKey>>();
+    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; set; } =
+        new Collection<ApplicationClaimType<TKey>>();
 }
 
 public class ApplicationRole : ApplicationRole<long> { }

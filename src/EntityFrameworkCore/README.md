@@ -1,20 +1,19 @@
 ---
-
-title:
+title: Dgmjr.Identity.EntityFrameworkCore Readme
 lastmod: 2023-38-20T19:38:38.7812-04:00Z
 date: 2023-38-20T19:38:38.7815-04:00Z
 license: MIT
 slug: Dgmjr.Identity.EntityFrameworkCore-readme
-version:
+version: 0.0.1
 authors:
-- dgmjr;
+- dgmjr
 description: Dgmjr.Identity.EntityFrameworkCore Readme #TODO: write description for Dgmjr.Identity.EntityFrameworkCore Readme
 keywords:
 - Dgmjr.Identity.EntityFrameworkCore
 - dgmjr
 - dgmjr-io
 type: readme
-------------
+---
 
 # Dgmjr.Identity.EntityFrameworkCore Readme
 

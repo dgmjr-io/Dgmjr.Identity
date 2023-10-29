@@ -13,6 +13,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+    <ProjectGuid>828e6f24-cf9b-460c-8b98-a7d36e01d5c2</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup Condition="true">

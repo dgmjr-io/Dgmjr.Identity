@@ -22,9 +22,9 @@ using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 namespace Dgmjr.Identity.Models;
 
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
-using static Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant;
+using static Dgmjr.Identity.EntityFrameworkCore.Constants.UriMaxLengthConstant;
 
-[Table(Constants.TableNames.UserClaim, Schema = IdentitySchema.ShortName)]
+[Table(EntityFrameworkCore.Constants.TableNames.UserClaim, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Claim ({Id} - User ID: {UserId}, {Type}: {Value})")]
 public class ApplicationUserClaim<TKey>
     : EntityClaim<ApplicationUserClaim<TKey>, ApplicationUser<TKey>, TKey>,

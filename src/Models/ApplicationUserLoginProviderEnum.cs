@@ -28,54 +28,54 @@ public enum ApplicationUserLoginProvider
     [Uri(SpId.BaseUri)]
     SendPulse = 2,
 
-    [Uri("https://google.com/")]
+    [Uri("https://google.com")]
     Google = 3,
 
-    [Uri("https://facebook.com/")]
+    [Uri("https://facebook.com")]
     Facebook = 4,
 
-    [Uri("https://twitter.com/")]
+    [Uri("https://twitter.com")]
     Twitter = 5,
 
-    [Uri("https://microsoft.com/")]
+    [Uri("https://microsoft.com")]
     Microsoft = 6,
 
-    [Uri("https://apple.com/")]
+    [Uri("https://apple.com")]
     Apple = 7,
 
-    [Uri("https://github.com/")]
+    [Uri("https://github.com")]
     GitHub = 8,
 
-    [Uri("https://linkedin.com/")]
+    [Uri("https://linkedin.com")]
     LinkedIn = 9,
 
-    [Uri("https://instagram.com/")]
+    [Uri("https://instagram.com")]
     Instagram = 10,
 
-    [Uri("https://discord.com/")]
+    [Uri("https://discord.com")]
     Discord = 11,
 
-    [Uri("https://twitch.com/")]
+    [Uri("https://twitch.com")]
     Twitch = 12,
 
-    [Uri("https://yahoo.com/")]
+    [Uri("https://yahoo.com")]
     Yahoo = 13,
 
-    [Uri("https://amazon.com/")]
+    [Uri("https://amazon.com")]
     Amazon = 14,
 
-    [Uri("https://spotify.com/")]
+    [Uri("https://spotify.com")]
     Spotify = 15,
 
-    [Uri("https://reddit.com/")]
+    [Uri("https://reddit.com")]
     Reddit = 16,
 
-    [Uri("https://stackoverflow.com/")]
+    [Uri("https://stackoverflow.com")]
     StackOverflow = 17,
 
-    [Uri("https://paypal.com/")]
+    [Uri("https://paypal.com")]
     PayPal = 18,
 
-    [Uri("https://stripe.com/")]
+    [Uri("https://stripe.com")]
     Stripe = 19
 }

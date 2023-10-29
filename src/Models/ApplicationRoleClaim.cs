@@ -32,7 +32,9 @@ public class ApplicationRoleClaim<TKey>
             ApplicationUserRole<TKey>,
             ApplicationUserLogin<TKey>,
             ApplicationRoleClaim<TKey>,
-            ApplicationUserToken<TKey>
+            ApplicationUserToken<TKey>,
+            ApplicationClaimType<TKey>,
+            ApplicationClaimValueType<TKey>
         >
     where TKey : IEquatable<TKey>, IComparable
 {
@@ -45,6 +47,9 @@ public class ApplicationRoleClaim<TKey>
     }
 
     public virtual ApplicationRole<TKey> Role { get; set; } = default!;
+
+    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; } =
+        new Collection<ApplicationClaimType<TKey>>();
 }
 
 public class ApplicationRoleClaim : ApplicationRoleClaim<long> { }

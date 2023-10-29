@@ -16,14 +16,16 @@ using Microsoft.Extensions.Logging;
 
 namespace Dgmjr.Identity;
 
-public class RoleManager : Microsoft.AspNetCore.Identity.RoleManager<Role>
+public class RoleManager<TRole> : MSID.RoleManager<TRole>
+    where TRole : class, IIdentityRole
 {
     public RoleManager(
-        IRoleStore<Role> store,
-        IEnumerable<IRoleValidator<Role>> roleValidators,
+        IRoleStore<TRole> store,
+        IEnumerable<IRoleValidator<TRole>> roleValidators,
         ILookupNormalizer keyNormalizer,
         IdentityErrorDescriber errors,
-        ILogger<RoleManager<Role>> logger
+        ILogger<RoleManager<TRole>> logger
     )
-        : base(store, roleValidators, keyNormalizer, errors, logger) { }
+        : base(store, roleValidators, keyNormalizer, errors as MSID.IdentityErrorDescriber, logger)
+    { }
 }

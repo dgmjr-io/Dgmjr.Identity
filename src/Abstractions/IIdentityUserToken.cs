@@ -108,13 +108,12 @@ public interface IIdentityUserToken<
 
 public interface IIdentityUserToken
     : IIdentityUserToken<
-        Dgmjr.Identity.Abstractions.IIdentityUser,
-        Dgmjr.Identity.Abstractions.IIdentityRole,
+        IIdentityUser,
+        IIdentityRole,
         long,
-        Dgmjr.Identity.Abstractions.IIdentityUserClaim,
-        Dgmjr.Identity.Abstractions.IIdentityUserRole,
-        Dgmjr.Identity.Abstractions.IIdentityUserLogin,
-        Dgmjr.Identity.Abstractions.IIdentityRoleClaim,
-        Dgmjr.Identity.Abstractions.IIdentityUserToken
-    >
-{ }
+        IIdentityUserClaim,
+        IIdentityUserRole,
+        IIdentityUserLogin,
+        IIdentityRoleClaim,
+        IIdentityUserToken
+    > { }

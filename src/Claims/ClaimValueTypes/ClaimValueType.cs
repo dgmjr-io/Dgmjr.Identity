@@ -50,8 +50,8 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
 
     public override int GetHashCode() => Uri.GetHashCode();
 
-    /// <value>http://www.w3.org/2001/XMLSchema</value>
-    public const string XmlSchemaNamespace = "http://www.w3.org/2001/XMLSchema";
+    /// <value>http://www.w3.org/2001/XMLSchema#</value>
+    public const string XmlSchemaNamespace = "http://www.w3.org/2001/XMLSchema#";
 
     /// <value>xs</value>
     public const string ShortXmlSchemaNamespace = "xs";
@@ -87,8 +87,17 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
     /// <value>ds</value>
     public const string ShortXmlSignatureConstantsNamespace = "ds";
 
-    /// <value>http://schemas.xmlsoap.org/</value>
-    public const string SoapSchemaNamespace = "http://schemas.xmlsoap.org/";
+    /// <value>http://schemas.xmlsoap.org</value>
+    public const string SoapNamespacePrefix = "http://schemas.xmlsoap.org";
+
+    /// <value><inheritdoc cref="SoapNamespacePrefix" path="/value" />/identity/claims</value>
+    public const string SoapNamespace = SoapNamespacePrefix + "/identity/claims";
+
+    /// <value><inheritdoc cref="SoapNamespacePrefix" path="/value" />/ws/2005/05/identity/claims</value>
+    public const string Soap2005Namespace = SoapNamespacePrefix + "/ws/2005/05/identity/claims";
+
+    /// <value><inheritdoc cref="SoapNamespacePrefix" path="/value" />/ws/2005/05/identity/claims</value>
+    public const string Soap2008Namespace = SoapNamespacePrefix + "/ws/2008/06/identity/claims";
 
     /// <value>soap</value>
     public const string ShortSoapSchemaNamespace = "soap";
@@ -107,7 +116,6 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
             : base(
                 v => (TPersistedType)v.Value,
                 v => (TClaimValueType)Activator.CreateInstance(typeof(TClaimValueType), v)
-            )
-        { }
+            ) { }
     }
 }

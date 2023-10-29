@@ -20,11 +20,6 @@
     <UsingsPackageReference Include="System.Usings" />
   </ItemGroup>
   <ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" />
-		<PackageReference Include="Microsoft.Extensions.Identity.Core" />
-  </ItemGroup>
-  <ItemGroup>
     <!-- <Using Include="Dgmjr.Identity.ClaimTypeUris" Alias="DgmjrCt" /> -->
     <Using Include="Dgmjr.Abstractions" />
     <!-- <Using Include="Dgmjr.EntityFrameworkCore.Constants.DbTypeNames" Static="true" /> -->
@@ -32,8 +27,8 @@
     <Using Include="Dgmjr.Identity.Abstractions" />
     <Using Include="Dgmjr.Identity.ClaimValueTypes" Alias="DgmjrCvt" />
     <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames" Static="true" />
-    <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants" Static="true" />
-    <Using Include="Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant" Static="true" />
+    <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants" />
+    <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants.UriMaxLengthConstant" Static="true" />
     <Using Include="Dgmjr.Identity.Models.Abstractions" />
     <Using Include="Dgmjr.Identity.Models" />
     <Using Include="Dgmjr.Identity.Models" Alias="DgmjrIdM" />

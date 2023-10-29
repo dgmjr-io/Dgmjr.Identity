@@ -20,7 +20,7 @@ using Dgmjr.Identity.Models.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 
-[Table(Constants.TableNames.UserLogin, Schema = IdentitySchema.ShortName)]
+[Table(EntityFrameworkCore.Constants.TableNames.UserLogin, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Login (Id} - {LoginProvider}: {ProviderKey})")]
 public class ApplicationUserLogin<TKey>
     : IUserLoginEntity<
