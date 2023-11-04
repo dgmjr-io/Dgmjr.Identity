@@ -17,19 +17,17 @@ using Telegram.Identity.ClaimTypes;
 namespace Dgmjr.Identity.Models;
 
 public class ApplicationClaimType<TKey>
-    : IIdentityClaimType<
-        TKey,
-        ApplicationUser<TKey>,
-        ApplicationRole<TKey>,
-        ApplicationClaimType<TKey>,
-        ApplicationClaimValueType<TKey>
-    >,
+    : ApplicationIdentityEntity<TKey>,
+        IIdentityClaimType<
+            TKey,
+            ApplicationUser<TKey>,
+            ApplicationRole<TKey>,
+            ApplicationClaimType<TKey>,
+            ApplicationClaimValueType<TKey>
+        >,
         IIdentifiable<TKey>
     where TKey : IEquatable<TKey>, IComparable
 {
-    [Key, DbGen(DbGen.Identity)]
-    public virtual TKey Id { get; set; }
-
     public virtual string? Example { get; set; }
 
     public virtual string? Default => throw new NotImplementedException();

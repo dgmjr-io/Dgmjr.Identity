@@ -24,8 +24,7 @@
     <PackageReference Include="System.Security.Cryptography.Xml" />
     <PackageReference Include="System.Security.Principal.Windows" />
     <ProjectReference Include="../Core/Dgmjr.Identity.Core.csproj" />
-    <ProjectReference Include="../ClaimTypes/Dgmjr.Identity.ClaimTypes.csproj" />
     <SourceGeneratorPackageReference Include="Dgmjr.RegexDtoGenerator" />
   </ItemGroup>
-  <Import Project="../Core/Dgmjr.Identity.Core.props" />
+  <Import Project="../Core/Dgmjr.Identity.Core.props" Condition="Exists('../Core/Dgmjr.Identity.Core.props')" />
 </Project>

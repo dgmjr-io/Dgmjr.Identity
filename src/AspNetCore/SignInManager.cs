@@ -20,7 +20,7 @@ using Microsoft.Extensions.Options;
 namespace Dgmjr.Identity;
 
 public class SignInManager<TUser> : MSID.SignInManager<TUser>
-    where TUser : class, IIdentityUser
+    where TUser : class, IIdentityUserBase
 {
     public SignInManager(
         UserManager<TUser> userManager,

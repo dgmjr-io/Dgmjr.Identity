@@ -1007,6 +1007,39 @@ public record class Rfc822Name : ClaimValueType<EmailAddress>, IClaimValueType
         };
 }
 
+public record class PhoneNumber : ClaimValueType<System.Domain.PhoneNumber>, IClaimValueType
+{
+    public static readonly IClaimValueType Instance = new PhoneNumber();
+
+    private PhoneNumber() { }
+
+    /// <value><inheritdoc cref="PhoneNumberUri" path="/value" /></value>
+    public const string UriString = PhoneNumberUri;
+
+    /// <value><inheritdoc cref="PhoneNumberShortUri" path="/value"/></value>
+    public const string ShortUriString = PhoneNumberShortUri;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    public override uri ShortUri => ShortUriString;
+
+    public static implicit operator string?(PhoneNumber value) => value.Value;
+
+    public static implicit operator PhoneNumber(string value) =>
+        (Instance as PhoneNumber) with
+        {
+            Value = System.Domain.PhoneNumber.From(value)
+        };
+}
+
 public record class X500Name : ClaimValueType<X500DistinguishedName>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new X500Name();
@@ -1073,17 +1106,58 @@ public record class XacmlDnsName : ClaimValueType<string>, IClaimValueType
         };
 }
 
+public record class AnyUri : ClaimValueType<uri>, IClaimValueType
+{
+    public static readonly IClaimValueType Instance = new AnyUri();
+
+    private AnyUri() { }
+
+    /// <value>https://www.w3.org/2001/XMLSchema#anyURI</value>
+    public const string UriString = "https://www.w3.org/2001/XMLSchema#anyURI";
+
+    /// <value>xs:anyURI</value>
+    public const string ShortUriString = "xs:anyURI";
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    public override uri ShortUri => ShortUriString;
+
+    public static implicit operator string(AnyUri value) => value.Value.ToString();
+
+    public static implicit operator AnyUri(string value) =>
+        (Instance as AnyUri) with
+        {
+            Value = System.uri.From(value)
+        };
+
+    public static implicit operator uri(AnyUri value) => value.Value.ToString();
+
+    public static implicit operator AnyUri(uri value) =>
+        (Instance as AnyUri) with
+        {
+            Value = System.uri.From(value.ToString())
+        };
+}
+
 public record class ObjectId : ClaimValueType<System.ObjectId>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new ObjectId();
 
     private ObjectId() { }
 
-    /// <value><inheritdoc cref="Dgmjr.Identity.ClaimTypes.ObjectId.UriString" path="/value" /></value>
-    public const string UriString = Dgmjr.Identity.ClaimTypes.ObjectId.UriString;
+    /// <value><inheritdoc cref="https://www.mongodb.com/docs/manual/reference/method/ObjectId" path="/value" /></value>
+    public const string UriString = "https://www.mongodb.com/docs/manual/reference/method/ObjectId";
 
-    /// <value><inheritdoc cref="Dgmjr.Identity.ClaimTypes.ObjectId.ShortUriString" path="/value"/></value>
-    public const string ShortUriString = Dgmjr.Identity.ClaimTypes.ObjectId.ShortUriString;
+    /// <value><inheritdoc cref="mongodb:objectid" path="/value"/></value>
+    public const string ShortUriString = "mongodb:objectid";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;

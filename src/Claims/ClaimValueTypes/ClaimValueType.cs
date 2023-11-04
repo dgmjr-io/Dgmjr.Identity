@@ -99,6 +99,12 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
     /// <value><inheritdoc cref="SoapNamespacePrefix" path="/value" />/ws/2005/05/identity/claims</value>
     public const string Soap2008Namespace = SoapNamespacePrefix + "/ws/2008/06/identity/claims";
 
+    /// <value><inheritdoc cref="Soap2005Namespace" path="/value" />/phone</value>
+    public const string PhoneNumberUri = Soap2005Namespace + "/phone";
+
+    /// <value><inheritdoc cref="ShortSoapSchemaNamespace" path="/value" />:phone</value>
+    public const string PhoneNumberShortUri = ShortSoapSchemaNamespace + ":phone";
+
     /// <value>soap</value>
     public const string ShortSoapSchemaNamespace = "soap";
 

@@ -20,16 +20,17 @@ using Microsoft.AspNetCore.Identity;
 [Table(EntityFrameworkCore.Constants.TableNames.UserRole, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Role ({Id} - User ID: {UserId}, Role: {Role})")]
 public class ApplicationUserRole<TKey>
-    : IIdentityUserRole<
-        ApplicationUser<TKey>,
-        ApplicationRole<TKey>,
-        TKey,
-        ApplicationUserClaim<TKey>,
-        ApplicationUserRole<TKey>,
-        ApplicationUserLogin<TKey>,
-        ApplicationRoleClaim<TKey>,
-        ApplicationUserToken<TKey>
-    >
+    : ApplicationIdentityEntity<TKey>,
+        IIdentityUserRole<
+            ApplicationUser<TKey>,
+            ApplicationRole<TKey>,
+            TKey,
+            ApplicationUserClaim<TKey>,
+            ApplicationUserRole<TKey>,
+            ApplicationUserLogin<TKey>,
+            ApplicationRoleClaim<TKey>,
+            ApplicationUserToken<TKey>
+        >
     where TKey : IEquatable<TKey>, IComparable
 {
     [Key, DbGen(DbGen.Identity), Column(TypeName = BigInt.ShortName)]

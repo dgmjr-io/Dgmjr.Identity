@@ -25,6 +25,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Azure;
 
 using Dgmjr.EntityFrameworkCore;
 using static Dgmjr.EntityFrameworkCore.DbSchemas;
@@ -36,7 +37,6 @@ using Dgmjr.Identity.Models;
 using MSID = Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 using Telegram.Bot.Types;
-using Microsoft.Extensions.Azure;
 
 public class IdentityDbContext : DbContext
 {

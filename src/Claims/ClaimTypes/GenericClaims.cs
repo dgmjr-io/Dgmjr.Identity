@@ -12,11 +12,11 @@
 
 namespace Dgmjr.Identity.ClaimTypes;
 
-public abstract record class OtherClaimType : ClaimType { }
+public abstract record class OtherClaimType : ClaimType<DgmjrId.ClaimValueTypes.String> { }
 
 /// <summary>The URI for an unknown user login provider</summary>
 /// <value>urn:users:login:provider:none</value>
-public record class UnknownLoginProvider : OtherClaimType, IClaimType, IIdentityComponent
+public record class UnknownLoginProvider : OtherClaimType, IClaimType
 {
     /// <value>urn:users:login:provider:none</value>
     public const string UriString = "urn:users:login:provider:none";

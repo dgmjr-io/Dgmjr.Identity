@@ -12,7 +12,7 @@
 
 namespace Dgmjr.Identity.ClaimTypes;
 
-public abstract record class DgmjrClaims : ClaimType, IClaimType
+public abstract record class DgmjrClaims : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType
 {
     /// <inheritdoc cref="DgmjrIdentity" />
     public const string UriString = DgmjrIdentity;
@@ -36,7 +36,7 @@ public abstract record class DgmjrClaims : ClaimType, IClaimType
     public const string DgmjrIdentity = BaseUri + Identity;
 }
 
-public record class UnknownClaimType : ClaimType, IClaimType
+public record class UnknownClaimType : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType
 {
     /// <value><inheritdoc cref="DgmjrClaims.DgmjrIdentity" />/unknown</value>
     public const string UriString = $"{DgmjrClaims.DgmjrIdentity}/unknown";

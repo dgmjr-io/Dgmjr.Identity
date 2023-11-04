@@ -15,7 +15,9 @@
   <Sdk Name="MetapackageSdk" />
   <PropertyGroup>
     <IncludeInSolutionFile>false</IncludeInSolutionFile>
-    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworkIdentifier>netcoreapp</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>8.0</TargetFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="./src/Abstractions/Dgmjr.Identity.Abstractions.csproj" />

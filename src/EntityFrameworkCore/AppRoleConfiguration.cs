@@ -99,7 +99,10 @@ public class AppRoleConfiguration<
         );
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
         builder.HasKey(e => e.Id).HasName(PK_ + Role);
-        builder.Property(e => e.ConcurrencyStamp).IsConcurrencyToken();
+        builder
+            .Property(e => e.ConcurrencyStamp)
+            .HasColumnType(RowVersion.ShortName)
+            .IsConcurrencyToken();
         // builder.Property(e => e.Name).HasMaxLength(256);
         // builder.Property(e => e.NormalizedName).HasMaxLength(256);
         // builder.HasIndex(e => e.NormalizedName).IsUnique().HasName("RoleNameIndex").HasFilter("[NormalizedName] IS NOT NULL");

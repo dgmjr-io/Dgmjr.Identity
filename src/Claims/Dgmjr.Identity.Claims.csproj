@@ -21,5 +21,5 @@
     <None Remove="./**/README.md" />
     <Compile Include="./ClaimsPrincipalExtensions.cs" />
   </ItemGroup>
-  <Import Project="./ClaimTypes/Dgmjr.Identity.ClaimTypes.props" />
+  <Import Project="./ClaimTypes/Dgmjr.Identity.ClaimTypes.props" Condition="Exists('./ClaimTypes/Dgmjr.Identity.ClaimTypes.props')" />
 </Project>

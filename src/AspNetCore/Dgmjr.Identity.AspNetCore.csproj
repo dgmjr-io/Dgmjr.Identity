@@ -45,8 +45,8 @@
   </ItemGroup>
   <Target Name="Compile" />
   <Target Name="CoreCompile" />
-  <Import Project="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.props" />
-  <Import Project="../Models/Dgmjr.Identity.Models.props" />
-  <Import Project="../Abstractions/Dgmjr.Identity.Abstractions.props" />
-  <Import Project="../Roles/Dgmjr.Identity.Roles.props" />
+  <Import Project="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.props" Condition="Exists('../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.props')" />
+  <Import Project="../Models/Dgmjr.Identity.Models.props" Condition="Exists('../Models/Dgmjr.Identity.Models.props')" />
+  <Import Project="../Abstractions/Dgmjr.Identity.Abstractions.props" Condition="Exists('../Abstractions/Dgmjr.Identity.Abstractions.props')" />
+  <Import Project="../Roles/Dgmjr.Identity.Roles.props" Condition="Exists('../Roles/Dgmjr.Identity.Roles.props')" />
 </Project>

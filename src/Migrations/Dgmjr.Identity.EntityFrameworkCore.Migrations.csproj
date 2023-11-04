@@ -48,9 +48,9 @@
   <ItemGroup>
     <EmbeddedResource Include="./Resources/*.sql" LogicalName="%(Filename)%(Extension)" />
   </ItemGroup>
-  <Import Project="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.props" />
-  <Import Project="../Abstractions/Dgmjr.Identity.Abstractions.props" />
-  <Import Project="../Constants/Dgmjr.Identity.Constants.props" />
-  <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" />
-  <Import Project="../Models/Dgmjr.Identity.Models.props" />
+  <Import Project="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.props" Condition="Exists('../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.props')" />
+  <Import Project="../Abstractions/Dgmjr.Identity.Abstractions.props" Condition="Exists('../Abstractions/Dgmjr.Identity.Abstractions.props')" />
+  <Import Project="../Constants/Dgmjr.Identity.Constants.props" Condition="Exists('../Constants/Dgmjr.Identity.Constants.props')" />
+  <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" Condition="Exists('../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props')" />
+  <Import Project="../Models/Dgmjr.Identity.Models.props" Condition="Exists('../Models/Dgmjr.Identity.Models.props')" />
 </Project>

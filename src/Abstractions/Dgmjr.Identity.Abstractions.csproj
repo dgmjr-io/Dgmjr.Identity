@@ -41,6 +41,6 @@
     <UsingsPackageReference Include="System.Security.Usings" />
     <UsingsPackageReference Include="System.Text.Json.Usings" />
   </ItemGroup>
-  <Import Project="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.props" />
-  <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" />
+  <Import Project="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.props" Condition="Exists('../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.props')" />
+  <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" Condition="Exists('../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props')" />
 </Project>

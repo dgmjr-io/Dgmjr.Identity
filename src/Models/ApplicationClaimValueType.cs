@@ -20,13 +20,14 @@ using Telegram.Identity.ClaimTypes;
 namespace Dgmjr.Identity.Models;
 
 public class ApplicationClaimValueType<TKey>
-    : IIdentityClaimValueType<
-        TKey,
-        ApplicationUser<TKey>,
-        ApplicationRole<TKey>,
-        ApplicationClaimType<TKey>,
-        ApplicationClaimValueType<TKey>
-    >,
+    : ApplicationIdentityEntity<TKey>,
+        IIdentityClaimValueType<
+            TKey,
+            ApplicationUser<TKey>,
+            ApplicationRole<TKey>,
+            ApplicationClaimType<TKey>,
+            ApplicationClaimValueType<TKey>
+        >,
         IIdentifiable<TKey>
     where TKey : IEquatable<TKey>, IComparable
 {
@@ -42,7 +43,7 @@ public class ApplicationClaimValueType<TKey>
 
     public virtual required uri Uri { get; set; }
 
-public virtual required string Name { get; set; }
+    public virtual required string Name { get; set; }
 
-public virtual string Description { get; set; }
+    public virtual string Description { get; set; }
 }

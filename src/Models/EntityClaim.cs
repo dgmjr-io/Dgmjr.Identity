@@ -5,7 +5,9 @@ using System.Security.Claims;
 
 namespace Dgmjr.Identity.Models;
 
-public abstract class EntityClaim<TSelf, TEntity, TKey> : IEntityClaim<TSelf, TEntity, TKey>
+public abstract class EntityClaim<TSelf, TEntity, TKey>
+    : ApplicationIdentityEntity<TKey>,
+        IEntityClaim<TSelf, TEntity, TKey>
     where TKey : IEquatable<TKey>, IComparable
     where TSelf : IEntityClaim<TSelf, TEntity, TKey>, new()
 {
@@ -78,8 +80,6 @@ public abstract class EntityClaim<TSelf, TEntity, TKey> : IEntityClaim<TSelf, TE
         set => Properties[nameof(OriginalIssuer)] = value;
     }
     public IStringDictionary Properties { get; set; } = new StringDictionary();
-
-    public TKey Id { get; set; }
 
     public void InitializeFromClaim(C? claim)
     {

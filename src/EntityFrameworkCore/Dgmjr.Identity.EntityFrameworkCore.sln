@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.Identity.Abstractions
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.Identity.Constants", "..\Constants\Dgmjr.Identity.Constants.csproj", "{1AFA697C-284E-48D6-9DCE-0084E5A063C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.Identity.EntityFrameworkCore.Constants", "..\EntityFrameworkCore.Constants\Dgmjr.Identity.EntityFrameworkCore.Constants.csproj", "{86E56BB4-AE63-4926-88F8-538B384D6450}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.Identity.EntityFrameworkCore.Constants", "..\EntityFrameworkCore.Constants\Dgmjr.Identity.EntityFrameworkCore.Constants.csproj", "{67DE2124-614F-4969-BB31-B046AA4C9210}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.Identity.EntityFrameworkCore", "Dgmjr.Identity.EntityFrameworkCore.csproj", "{5A958146-A437-4A42-B249-CEB5685B07DE}"
 EndProject
@@ -50,18 +50,18 @@ Global
 		{1AFA697C-284E-48D6-9DCE-0084E5A063C8}.Production|Any CPU.Build.0 = Local|Any CPU
 		{1AFA697C-284E-48D6-9DCE-0084E5A063C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AFA697C-284E-48D6-9DCE-0084E5A063C8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{86E56BB4-AE63-4926-88F8-538B384D6450}.Local|Any CPU.ActiveCfg = Local|Any CPU
-		{86E56BB4-AE63-4926-88F8-538B384D6450}.Local|Any CPU.Build.0 = Local|Any CPU
-		{86E56BB4-AE63-4926-88F8-538B384D6450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{86E56BB4-AE63-4926-88F8-538B384D6450}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{86E56BB4-AE63-4926-88F8-538B384D6450}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
-		{86E56BB4-AE63-4926-88F8-538B384D6450}.Testing|Any CPU.Build.0 = Testing|Any CPU
-		{86E56BB4-AE63-4926-88F8-538B384D6450}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
-		{86E56BB4-AE63-4926-88F8-538B384D6450}.Staging|Any CPU.Build.0 = Staging|Any CPU
-		{86E56BB4-AE63-4926-88F8-538B384D6450}.Production|Any CPU.ActiveCfg = Local|Any CPU
-		{86E56BB4-AE63-4926-88F8-538B384D6450}.Production|Any CPU.Build.0 = Local|Any CPU
-		{86E56BB4-AE63-4926-88F8-538B384D6450}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{86E56BB4-AE63-4926-88F8-538B384D6450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67DE2124-614F-4969-BB31-B046AA4C9210}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{67DE2124-614F-4969-BB31-B046AA4C9210}.Local|Any CPU.Build.0 = Local|Any CPU
+		{67DE2124-614F-4969-BB31-B046AA4C9210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67DE2124-614F-4969-BB31-B046AA4C9210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67DE2124-614F-4969-BB31-B046AA4C9210}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{67DE2124-614F-4969-BB31-B046AA4C9210}.Testing|Any CPU.Build.0 = Testing|Any CPU
+		{67DE2124-614F-4969-BB31-B046AA4C9210}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{67DE2124-614F-4969-BB31-B046AA4C9210}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{67DE2124-614F-4969-BB31-B046AA4C9210}.Production|Any CPU.ActiveCfg = Local|Any CPU
+		{67DE2124-614F-4969-BB31-B046AA4C9210}.Production|Any CPU.Build.0 = Local|Any CPU
+		{67DE2124-614F-4969-BB31-B046AA4C9210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67DE2124-614F-4969-BB31-B046AA4C9210}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A958146-A437-4A42-B249-CEB5685B07DE}.Local|Any CPU.ActiveCfg = Local|Any CPU
 		{5A958146-A437-4A42-B249-CEB5685B07DE}.Local|Any CPU.Build.0 = Local|Any CPU
 		{5A958146-A437-4A42-B249-CEB5685B07DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

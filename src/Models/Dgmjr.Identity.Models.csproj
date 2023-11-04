@@ -59,10 +59,10 @@
     <!-- <Reference Remove="Dgmjr.Enumerations.CodeGenerator" /> -->
     <SourceGeneratorPackageReference  Include="Dgmjr.Enumerations.CodeGenerator" />
   </ItemGroup>
-  <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" />
-  <Import Project="../Claims/Core/Dgmjr.Identity.Core.props" />
-  <Import Project="../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.props" />
-  <!-- <Import Project="../Claims/ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.props" /> -->
-  <Import Project="../Abstractions/Dgmjr.Identity.Abstractions.props" />
-  <!-- <Import Project="../../../Telegram/src/Identity/Telegram.Identity.props" /> -->
+  <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" Condition="Exists('../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props')" />
+  <Import Project="../Claims/Core/Dgmjr.Identity.Core.props" Condition="Exists('../Claims/Core/Dgmjr.Identity.Core.props')" />
+  <Import Project="../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.props" Condition="Exists('../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.props')" />
+  <!-- <Import Project="../Claims/ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.props" Condition="Exists('../Claims/ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.props')" /> -->
+  <Import Project="../Abstractions/Dgmjr.Identity.Abstractions.props" Condition="Exists('../Abstractions/Dgmjr.Identity.Abstractions.props')" />
+  <!-- <Import Project="../../../Telegram/src/Identity/Telegram.Identity.props" Condition="Exists('../../../Telegram/src/Identity/Telegram.Identity.props')" /> -->
 </Project>

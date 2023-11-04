@@ -20,10 +20,13 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 public static class IdentityDependencyInjectionExtensions
 {
-    public static WebApplicationBuilder AddIdentity(
+    public static WebApplicationBuilder AddIdentity<TKey, TUser, TRole>(
         this WebApplicationBuilder builder,
         bool addDefaultUI = false
     )
+        where TUser : class, IIdentityUser<TKey, TUser, TRole>
+        where TRole : class, IIdentityRole<TKey, TUser, TRole>
+        where TKey : IEquatable<TKey>, IComparable
     {
         _ = builder.Services.AddSingleton<IPasswordGenerator, PasswordGenerator>();
         _ = builder.Services.Configure<PassphraseGeneratorOptions>(
@@ -33,7 +36,7 @@ public static class IdentityDependencyInjectionExtensions
         // _ = builder.Services.AddRazorPages();
         //_ = builder.Services.AddSingleton<ISystemClock, SystemClock>();
         var idBuilder = builder.Services
-            .AddIdentityCore<User>(options => //.AddIdentity<User, Role>(options =>
+            .AddIdentityCore<TUser>(options => //.AddIdentity<User, Role>(options =>
             // _ = builder.Services.AddIdentity<User, Role>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
@@ -50,15 +53,15 @@ public static class IdentityDependencyInjectionExtensions
             })
             .AddEntityFrameworkStores<IdentityDbContext>()
             .AddDefaultTokenProviders()
-            .AddClaimsPrincipalFactory<UserClaimsPrincipalFactory>()
-            .AddSignInManager<SignInManager>()
-            .AddRoles<Dgmjr.Identity.Models.Role>()
-            .AddRoleStore<RoleStore>()
+            .AddClaimsPrincipalFactory<DgmjrId.UserClaimsPrincipalFactory<TUser>>()
+            .AddSignInManager<DgmjrId.SignInManager<TUser>>()
+            .AddRoles<TRole>()
+            .AddRoleStore<RoleStore<TKey, TUser, TRole>>()
             // .AddRoleManager<RoleManager>()
-            .AddUserManager<UserManager>()
-            .AddErrorDescriber<JustinsErrorDescriber>()
-            .AddUserValidator<UserValidator<User>>()
-            .AddPasswordValidator<PasswordValidator<User>>();
+            .AddUserManager<UserManager<TUser, TRole>>()
+            .AddErrorDescriber<DgmjrId.IdentityErrorDescriber>()
+            .AddUserValidator<DgmjrId.UserValidator<TUser>>()
+            .AddPasswordValidator<DgmjrId.PasswordValidator<TUser>>();
         if (addDefaultUI)
             idBuilder.AddDefaultUI();
         return builder;

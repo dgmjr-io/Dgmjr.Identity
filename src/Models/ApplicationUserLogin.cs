@@ -23,16 +23,17 @@ using Microsoft.EntityFrameworkCore.Query.Internal;
 [Table(EntityFrameworkCore.Constants.TableNames.UserLogin, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Login (Id} - {LoginProvider}: {ProviderKey})")]
 public class ApplicationUserLogin<TKey>
-    : IUserLoginEntity<
-        ApplicationUser<TKey>,
-        ApplicationRole<TKey>,
-        TKey,
-        ApplicationUserClaim<TKey>,
-        ApplicationUserRole<TKey>,
-        ApplicationUserLogin<TKey>,
-        ApplicationRoleClaim<TKey>,
-        ApplicationUserToken<TKey>
-    >,
+    : ApplicationIdentityEntity<TKey>,
+        IUserLoginEntity<
+            ApplicationUser<TKey>,
+            ApplicationRole<TKey>,
+            TKey,
+            ApplicationUserClaim<TKey>,
+            ApplicationUserRole<TKey>,
+            ApplicationUserLogin<TKey>,
+            ApplicationRoleClaim<TKey>,
+            ApplicationUserToken<TKey>
+        >,
         IIdentityUserLogin<
             ApplicationUser<TKey>,
             ApplicationRole<TKey>,
@@ -45,9 +46,6 @@ public class ApplicationUserLogin<TKey>
         >
     where TKey : IEquatable<TKey>, IComparable
 {
-    [Key, DbGen(DbGen.Identity), Column(nameof(Id), TypeName = BigInt.ShortName), Required]
-    public virtual TKey Id { get; set; }
-
     [NotMapped]
     public virtual string ProviderName => Provider.Name;
 

@@ -37,16 +37,17 @@ using Humanizer;
 [Table(EntityFrameworkCore.Constants.TableNames.User, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User ({UserName} - {Email})")]
 public class ApplicationUser<TKey>
-    : IIdentityUser<
-        ApplicationUser<TKey>,
-        ApplicationRole<TKey>,
-        TKey,
-        ApplicationUserClaim<TKey>,
-        ApplicationUserRole<TKey>,
-        ApplicationUserLogin<TKey>,
-        ApplicationRoleClaim<TKey>,
-        ApplicationUserToken<TKey>
-    >,
+    : ApplicationIdentityEntity<TKey>,
+        IIdentityUser<
+            ApplicationUser<TKey>,
+            ApplicationRole<TKey>,
+            TKey,
+            ApplicationUserClaim<TKey>,
+            ApplicationUserRole<TKey>,
+            ApplicationUserLogin<TKey>,
+            ApplicationRoleClaim<TKey>,
+            ApplicationUserToken<TKey>
+        >,
         IHaveClaims<TKey>,
         IHaveUserClaims<
             ApplicationUser<TKey>,

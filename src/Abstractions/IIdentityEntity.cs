@@ -12,7 +12,7 @@
 
 namespace Dgmjr.Identity.Abstractions;
 
-public interface IIdentityEntity<TKey> : IHaveAWritableId<TKey>
+public interface IIdentityEntity<TKey> : IHaveAWritableId<TKey>, IIdentifiable
     where TKey : IEquatable<TKey>, IComparable
 {
     [PersonalData, Key, DbGen(DbGen.Identity), Hashids]

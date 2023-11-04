@@ -22,21 +22,19 @@ using Microsoft.EntityFrameworkCore.Internal;
 [Table(EntityFrameworkCore.Constants.TableNames.UserToken, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Token ({UserId} - {LoginProvider}, Created: {DateTimeCreated})")]
 public class ApplicationUserToken<TKey>
-    : IIdentityUserToken<
-        ApplicationUser<TKey>,
-        ApplicationRole<TKey>,
-        TKey,
-        ApplicationUserClaim<TKey>,
-        ApplicationUserRole<TKey>,
-        ApplicationUserLogin<TKey>,
-        ApplicationRoleClaim<TKey>,
-        ApplicationUserToken<TKey>
-    >
+    : ApplicationIdentityEntity<TKey>,
+        IIdentityUserToken<
+            ApplicationUser<TKey>,
+            ApplicationRole<TKey>,
+            TKey,
+            ApplicationUserClaim<TKey>,
+            ApplicationUserRole<TKey>,
+            ApplicationUserLogin<TKey>,
+            ApplicationRoleClaim<TKey>,
+            ApplicationUserToken<TKey>
+        >
     where TKey : IEquatable<TKey>, IComparable
 {
-    [Key, DbGen(DbGen.Identity)]
-    public virtual TKey Id { get; set; } //= NewId;
-
     [Column]
     public virtual TKey UserId { get; set; }
 

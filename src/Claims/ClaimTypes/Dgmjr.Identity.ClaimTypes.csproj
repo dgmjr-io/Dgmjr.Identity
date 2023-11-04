@@ -20,6 +20,8 @@
     <PackageReference Include="Dgmjr.Primitives" />
     <PackageReference Include="System.Security.Claims" />
     <ProjectReference Include="../Core/Dgmjr.Identity.Core.csproj" />
+    <ProjectReference Include="../ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.csproj" />
   </ItemGroup>
-  <Import Project="../Core/Dgmjr.Identity.Core.props" />
+  <Import Project="../Core/Dgmjr.Identity.Core.props" Condition="Exists('../Core/Dgmjr.Identity.Core.props')" />
+  <Import Project="../ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.props" Condition="Exists('../ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.props')" />
 </Project>

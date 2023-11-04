@@ -3,9 +3,17 @@ namespace Dgmjr.Identity;
 using global::System;
 using global::System.Security;
 
-public partial record class ClaimType : IdentityComponent, IClaimType
+public abstract record class ClaimType : IIdentityComponent, IClaimType
 {
-    public override bool Equals(IIdentityComponent? other) => Equals(other as IClaimType);
+    string IIdentityComponent.Namespace => "about";
+    string IIdentityComponent.Name => "blank";
+    string IHaveAUriString.UriString => $"{((IIdentityComponent)this).Namespace}";
+    string IIdentityComponent.ShortNamespace => "about";
+    string IIdentityComponent.ShortUriString => "about:blank";
+    public virtual uri Uri => ((IIdentityComponent)this).UriString;
+    public virtual uri ShortUri => ((IIdentityComponent)this).ShortUriString;
+
+    public virtual bool Equals(IIdentityComponent? other) => Equals(other as IClaimType);
 
     public virtual bool Equals(ClaimType? other) => Equals(other as IClaimType);
 
@@ -15,16 +23,12 @@ public partial record class ClaimType : IdentityComponent, IClaimType
             && (ReferenceEquals(this, other) || ((IClaimType)this).Uri == other.Uri);
     }
 
-    string IIdentityComponent.Namespace => "about";
-    string IIdentityComponent.Name => "blank";
-    string IHaveAUriString.UriString => $"{((IIdentityComponent)this).Namespace}";
-    string IIdentityComponent.ShortNamespace => "about";
-    string IIdentityComponent.ShortUriString => "about:blank";
-    public virtual uri Uri => ((IIdentityComponent)this).UriString;
-    public virtual uri ShortUri => ((IIdentityComponent)this).ShortUriString;
-
     public override int GetHashCode() => ((IClaimType)this).GetHashCode();
+}
 
+public partial record class ClaimType<TValueType> : ClaimType
+    where TValueType : class, IEquatable<TValueType>, IClaimValueType
+{
     /// <value>http://schemas.microsoft.com</value>
     public const string NamespacePrefix = "http://schemas.microsoft.com";
 

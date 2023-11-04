@@ -14,7 +14,10 @@ namespace Dgmjr.Identity.ClaimTypes;
 
 /// <summary>The URI for a claim that specifies the actor</summary>
 /// <value><inheritdoc cref="Actor.UriString" path="/value" /></value>
-public record class Actor : ClaimType, IClaimType, IIdentityComponent
+public record class Actor
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Actor();
 
@@ -44,7 +47,10 @@ public record class Actor : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the anonymous user.</summary>
 /// <value><inheritdoc cref="Anonymous.UriString" path="/value" /></value>
-public record class Anonymous : ClaimType, IClaimType, IIdentityComponent
+public record class Anonymous
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Anonymous();
 
@@ -74,7 +80,10 @@ public record class Anonymous : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies details about whether an identity is authenticated</summary>
 /// <value><inheritdoc cref="Authenticated.UriString" path="/value" /></value>
-public record class Authenticated : ClaimType, IClaimType, IIdentityComponent
+public record class Authenticated
+    : ClaimType<DgmjrId.ClaimValueTypes.Boolean>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Authenticated();
 
@@ -104,7 +113,10 @@ public record class Authenticated : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the instant at which an entity was authenticated; </summary>
 /// <value><inheritdoc cref="AuthenticationInstant.UriString" path="/value" /></value>
-public record class AuthenticationInstant : ClaimType, IClaimType, IIdentityComponent
+public record class AuthenticationInstant
+    : ClaimType<DgmjrId.ClaimValueTypes._DateTime>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new AuthenticationInstant();
 
@@ -134,7 +146,10 @@ public record class AuthenticationInstant : ClaimType, IClaimType, IIdentityComp
 
 /// <summary>The URI for a claim that specifies the method with which an entity was authenticated; </summary>
 /// <value><inheritdoc cref="AuthenticationMethod.UriString" path="/value" /></value>
-public record class AuthenticationMethod : ClaimType, IClaimType, IIdentityComponent
+public record class AuthenticationMethod
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new AuthenticationMethod();
 
@@ -164,7 +179,10 @@ public record class AuthenticationMethod : ClaimType, IClaimType, IIdentityCompo
 
 /// <summary>The URI for a claim that specifies an authorization decision on an entity; </summary>
 /// <value><inheritdoc cref="AuthorizationDecision.UriString" path="/value" /></value>
-public record class AuthorizationDecision : ClaimType, IClaimType, IIdentityComponent
+public record class AuthorizationDecision
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new AuthorizationDecision();
 
@@ -194,7 +212,10 @@ public record class AuthorizationDecision : ClaimType, IClaimType, IIdentityComp
 
 /// <summary>The URI for a claim that specifies the cookie path; </summary>
 /// <value><inheritdoc cref="CookiePath.UriString" path="/value" /></value>
-public record class CookiePath : ClaimType, IClaimType, IIdentityComponent
+public record class CookiePath
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new CookiePath();
 
@@ -223,8 +244,11 @@ public record class CookiePath : ClaimType, IClaimType, IIdentityComponent
 }
 
 /// <summary>The URI for a claim that specifies the common name of the user; </summary>
-/// <value><inheritdoc cref="CommonName.UriString" path="/value" /></value>
-public record class CommonName : ClaimType, IClaimType, IIdentityComponent
+/// /// <value><inheritdoc cref="CommonName.UriString" path="/value" /></value>
+public record class CommonName
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new CommonName();
 
@@ -254,7 +278,10 @@ public record class CommonName : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the country/region in which an entity resides, </summary>
 /// <value><inheritdoc cref="Country.UriString" path="/value" /></value>
-public record class Country : ClaimType, IClaimType, IIdentityComponent
+public record class Country
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Country();
 
@@ -284,7 +311,10 @@ public record class Country : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the date of birth of an entity, </summary>
 /// <value><inheritdoc cref="DateOfBirth.UriString" path="/value" /></value>
-public record class DateOfBirth : ClaimType, IClaimType, IIdentityComponent
+public record class DateOfBirth
+    : ClaimType<DgmjrId.ClaimValueTypes._DateTime>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new DateOfBirth();
 
@@ -314,7 +344,10 @@ public record class DateOfBirth : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the deny-only primary group SID on an entity; </summary>
 /// <value><inheritdoc cref="DenyOnlyPrimaryGroupSid.UriString" path="/value" /></value>
-public record class DenyOnlyPrimaryGroupSid : ClaimType, IClaimType, IIdentityComponent
+public record class DenyOnlyPrimaryGroupSid
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new DenyOnlyPrimaryGroupSid();
 
@@ -344,7 +377,10 @@ public record class DenyOnlyPrimaryGroupSid : ClaimType, IClaimType, IIdentityCo
 
 /// <summary>The URI for a claim that specifies the deny-only primary SID on an entity; A deny-only SID denies the specified entity to a securable object </summary>
 /// <value><inheritdoc cref="DenyOnlyPrimarySid.UriString" path="/value" /></value>
-public record class DenyOnlyPrimarySid : ClaimType, IClaimType, IIdentityComponent
+public record class DenyOnlyPrimarySid
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new DenyOnlyPrimarySid();
 
@@ -374,7 +410,10 @@ public record class DenyOnlyPrimarySid : ClaimType, IClaimType, IIdentityCompone
 
 /// <summary>The URI for a claim that specifies a deny-only security identifier (SID) for an entity, </summary>
 /// <value><inheritdoc cref="DenyOnlySid.UriString" path="/value" /></value>
-public record class DenyOnlySid : ClaimType, IClaimType, IIdentityComponent
+public record class DenyOnlySid
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new DenyOnlySid();
 
@@ -404,7 +443,10 @@ public record class DenyOnlySid : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the Windows deny-only group SID of the device, </summary>
 /// <value><inheritdoc cref="DenyOnlyWindowsDeviceGroup.UriString" path="/value" /></value>
-public record class DenyOnlyWindowsDeviceGroup : ClaimType, IClaimType, IIdentityComponent
+public record class DenyOnlyWindowsDeviceGroup
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new DenyOnlyWindowsDeviceGroup();
 
@@ -434,7 +476,7 @@ public record class DenyOnlyWindowsDeviceGroup : ClaimType, IClaimType, IIdentit
 
 /// <summary>The URI for a claim that specifies the DNS name associated with the computer name or with the alternative name of either the subject or issuer of an X.509 certificate, </summary>
 /// <value><inheritdoc cref="Dns.UriString" path="/value" /></value>
-public record class Dns : ClaimType, IClaimType, IIdentityComponent
+public record class Dns : ClaimType<DgmjrId.ClaimValueTypes.DnsName>, IClaimType, IIdentityComponent
 {
     public static readonly IClaimType Instance = new Dns();
 
@@ -464,7 +506,10 @@ public record class Dns : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary></summary>
 /// <value><inheritdoc cref="Dsa.UriString" path="/value" /></value>
-public record class Dsa : ClaimType, IClaimType, IIdentityComponent
+public record class Dsa
+    : ClaimType<DgmjrId.ClaimValueTypes.DsaKeyValue>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Dsa();
 
@@ -494,7 +539,10 @@ public record class Dsa : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the email address of an entity, </summary>
 /// <value><inheritdoc cref="Email2005.UriString" path="/value" /></value>
-public record class Email2005 : ClaimType, IClaimType, IIdentityComponent
+public record class Email2005
+    : ClaimType<DgmjrId.ClaimValueTypes.Rfc822Name>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Email2005();
 
@@ -524,7 +572,10 @@ public record class Email2005 : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the email address of an entity, </summary>
 /// <value><inheritdoc cref="Email.UriString" path="/value" /></value>
-public record class Email : ClaimType, IClaimType, IIdentityComponent
+public record class Email
+    : ClaimType<DgmjrId.ClaimValueTypes.Rfc822Name>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Email();
 
@@ -554,7 +605,10 @@ public record class Email : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>http://schemas.microsoft.com/ws/2008/06/identity/claims/expiration</summary>
 /// <value><inheritdoc cref="Expiration.UriString" path="/value" /></value>
-public record class Expiration : ClaimType, IClaimType, IIdentityComponent
+public record class Expiration
+    : ClaimType<DgmjrId.ClaimValueTypes._DateTime>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Expiration();
 
@@ -584,7 +638,10 @@ public record class Expiration : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary></summary>
 /// <value><inheritdoc cref="Expired.UriString" path="/value" /></value>
-public record class Expired : ClaimType, IClaimType, IIdentityComponent
+public record class Expired
+    : ClaimType<DgmjrId.ClaimValueTypes.Boolean>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Expired();
 
@@ -614,7 +671,10 @@ public record class Expired : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the gender of an entity, </summary>
 /// <value><inheritdoc cref="Gender.UriString" path="/value" /></value>
-public record class Gender : ClaimType, IClaimType, IIdentityComponent
+public record class Gender
+    : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Gender();
 
@@ -644,7 +704,10 @@ public record class Gender : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the given name of an entity, </summary>
 /// <value><inheritdoc cref="GivenName.UriString" path="/value" /></value>
-public record class GivenName : ClaimType, IClaimType, IIdentityComponent
+public record class GivenName
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new GivenName();
 
@@ -674,7 +737,7 @@ public record class GivenName : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the SID for the group of an entity, </summary>
 /// <value><inheritdoc cref="GroupSid.UriString" path="/value" /></value>
-public record class GroupSid : ClaimType, IClaimType, IIdentityComponent
+public record class GroupSid : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType, IIdentityComponent
 {
     public static readonly IClaimType Instance = new GroupSid();
 
@@ -704,7 +767,7 @@ public record class GroupSid : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies a hash value, </summary>
 /// <value><inheritdoc cref="Hash.UriString" path="/value" /></value>
-public record class Hash : ClaimType, IClaimType, IIdentityComponent
+public record class Hash : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType, IIdentityComponent
 {
     public static readonly IClaimType Instance = new Hash();
 
@@ -734,7 +797,7 @@ public record class Hash : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the home phone number of an entity, </summary>
 /// <value><inheritdoc cref="HomePhone.UriString" path="/value" /></value>
-public record class HomePhone : ClaimType, IClaimType, IIdentityComponent
+public record class HomePhone : ClaimType<PhoneNumber>, IClaimType, IIdentityComponent
 {
     public static readonly IClaimType Instance = new HomePhone();
 
@@ -764,7 +827,10 @@ public record class HomePhone : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary></summary>
 /// <value><inheritdoc cref="IsPersistent.UriString" path="/value" /></value>
-public record class IsPersistent : ClaimType, IClaimType, IIdentityComponent
+public record class IsPersistent
+    : ClaimType<DgmjrId.ClaimValueTypes.Boolean>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new IsPersistent();
 
@@ -794,7 +860,10 @@ public record class IsPersistent : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the locale in which an entity resides, </summary>
 /// <value><inheritdoc cref="Locality.UriString" path="/value" /></value>
-public record class Locality : ClaimType, IClaimType, IIdentityComponent
+public record class Locality
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Locality();
 
@@ -824,7 +893,10 @@ public record class Locality : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the mobile phone number of an entity, </summary>
 /// <value><inheritdoc cref="MobilePhone.UriString" path="/value" /></value>
-public record class MobilePhone : ClaimType, IClaimType, IIdentityComponent
+public record class MobilePhone
+    : ClaimType<DgmjrId.ClaimValueTypes.PhoneNumber>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new MobilePhone();
 
@@ -854,7 +926,7 @@ public record class MobilePhone : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the name of an entity, </summary>
 /// <value><inheritdoc cref="Name.UriString" path="/value" /></value>
-public record class Name : ClaimType, IClaimType, IIdentityComponent
+public record class Name : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType, IIdentityComponent
 {
     public static readonly IClaimType Instance = new Name();
 
@@ -882,7 +954,10 @@ public record class Name : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the name of an entity, </summary>
 /// <value><inheritdoc cref="NameIdentifier.UriString" path="/value" /></value>
-public record class NameIdentifier : ClaimType, IClaimType, IIdentityComponent
+public record class NameIdentifier
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new NameIdentifier();
 
@@ -912,7 +987,10 @@ public record class NameIdentifier : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the alternative phone number of an entity, </summary>
 /// <value><inheritdoc cref="OtherPhone.UriString" path="/value" /></value>
-public record class OtherPhone : ClaimType, IClaimType, IIdentityComponent
+public record class OtherPhone
+    : ClaimType<DgmjrId.ClaimValueTypes.PhoneNumber>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new OtherPhone();
 
@@ -942,7 +1020,10 @@ public record class OtherPhone : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the postal code of an entity, </summary>
 /// <value><inheritdoc cref="PostalCode.UriString" path="/value" /></value>
-public record class PostalCode : ClaimType, IClaimType, IIdentityComponent
+public record class PostalCode
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new PostalCode();
 
@@ -972,7 +1053,10 @@ public record class PostalCode : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the primary group SID of an entity, </summary>
 /// <value><inheritdoc cref="PrimaryGroupSid.UriString" path="/value" /></value>
-public record class PrimaryGroupSid : ClaimType, IClaimType, IIdentityComponent
+public record class PrimaryGroupSid
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new PrimaryGroupSid();
 
@@ -1002,7 +1086,10 @@ public record class PrimaryGroupSid : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the primary SID of an entity, </summary>
 /// <value><inheritdoc cref="PrimarySid.UriString" path="/value" /></value>
-public record class PrimarySid : ClaimType, IClaimType, IIdentityComponent
+public record class PrimarySid
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new PrimarySid();
 
@@ -1032,7 +1119,7 @@ public record class PrimarySid : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the role of an entity, </summary>
 /// <value><inheritdoc cref="Role.UriString" path="/value" /></value>
-public record class Role : ClaimType, IClaimType, IIdentityComponent
+public record class Role : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>, IClaimType, IIdentityComponent
 {
     public static readonly IClaimType Instance = new Role();
 
@@ -1062,7 +1149,10 @@ public record class Role : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies an RSA key, </summary>
 /// <value><inheritdoc cref="Rsa.UriString" path="/value" /></value>
-public record class Rsa : ClaimType, IClaimType, IIdentityComponent
+public record class Rsa
+    : ClaimType<DgmjrId.ClaimValueTypes.RsaKeyValue>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Rsa();
 
@@ -1092,7 +1182,10 @@ public record class Rsa : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies a serial number, </summary>
 /// <value><inheritdoc cref="SerialNumber.UriString" path="/value" /></value>
-public record class SerialNumber : ClaimType, IClaimType, IIdentityComponent
+public record class SerialNumber
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new SerialNumber();
 
@@ -1122,7 +1215,7 @@ public record class SerialNumber : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies a security identifier (SID), </summary>
 /// <value><inheritdoc cref="Sid.UriString" path="/value" /></value>
-public record class Sid : ClaimType, IClaimType, IIdentityComponent
+public record class Sid : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType, IIdentityComponent
 {
     public static readonly IClaimType Instance = new Sid();
 
@@ -1152,7 +1245,7 @@ public record class Sid : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies a service principal name (SPN) claim, </summary>
 /// <value><inheritdoc cref="Spn.UriString" path="/value" /></value>
-public record class Spn : ClaimType, IClaimType, IIdentityComponent
+public record class Spn : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType, IIdentityComponent
 {
     public static readonly IClaimType Instance = new Spn();
 
@@ -1182,7 +1275,10 @@ public record class Spn : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the state or province in which an entity resides, </summary>
 /// <value><inheritdoc cref="StateOrProvince.UriString" path="/value" /></value>
-public record class StateOrProvince : ClaimType, IClaimType, IIdentityComponent
+public record class StateOrProvince
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new StateOrProvince();
 
@@ -1212,7 +1308,10 @@ public record class StateOrProvince : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the street address of an entity, </summary>
 /// <value><inheritdoc cref="StreetAddress.UriString" path="/value" /></value>
-public record class StreetAddress : ClaimType, IClaimType, IIdentityComponent
+public record class StreetAddress
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new StreetAddress();
 
@@ -1242,7 +1341,10 @@ public record class StreetAddress : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the surname of an entity, </summary>
 /// <value><inheritdoc cref="Surname.UriString" path="/value" /></value>
-public record class Surname : ClaimType, IClaimType, IIdentityComponent
+public record class Surname
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Surname();
 
@@ -1272,7 +1374,10 @@ public record class Surname : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that identifies the system entity, </summary>
 /// <value><inheritdoc cref="System.UriString" path="/value" /></value>
-public record class System : ClaimType, IClaimType, IIdentityComponent
+public record class System
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new System();
 
@@ -1302,7 +1407,10 @@ public record class System : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies a thumbprint, </summary>
 /// <value><inheritdoc cref="Thumbprint.UriString" path="/value" /></value>
-public record class Thumbprint : ClaimType, IClaimType, IIdentityComponent
+public record class Thumbprint
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Thumbprint();
 
@@ -1337,7 +1445,7 @@ public record class Thumbprint : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies a user principal name (UPN), </summary>
 /// <value><inheritdoc cref="Upn.UriString" path="/value" /></value>
-public record class Upn : ClaimType, IClaimType, IIdentityComponent
+public record class Upn : ClaimType<DgmjrId.ClaimValueTypes.UpnName>, IClaimType, IIdentityComponent
 {
     public static readonly IClaimType Instance = new Upn();
 
@@ -1367,7 +1475,10 @@ public record class Upn : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies a user principal name (UPN), </summary>
 /// <value><inheritdoc cref="Upn2005.UriString" path="/value" /></value>
-public record class Upn2005 : ClaimType, IClaimType, IIdentityComponent
+public record class Upn2005
+    : ClaimType<DgmjrId.ClaimValueTypes.UpnName>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Upn2005();
 
@@ -1397,7 +1508,7 @@ public record class Upn2005 : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies a URI, </summary>
 /// <value><inheritdoc cref="_Uri.UriString" path="/value" /></value>
-public record class _Uri : ClaimType, IClaimType, IIdentityComponent
+public record class _Uri : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>, IClaimType, IIdentityComponent
 {
     public static readonly IClaimType Instance = new _Uri();
 
@@ -1427,7 +1538,10 @@ public record class _Uri : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the user data, </summary>
 /// <value><inheritdoc cref="UserData.UriString" path="/value" /></value>
-public record class UserData : ClaimType, IClaimType, IIdentityComponent
+public record class UserData
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new UserData();
 
@@ -1457,7 +1571,10 @@ public record class UserData : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the version, </summary>
 /// <value><inheritdoc cref="Version.UriString" path="/value" /></value>
-public record class Version : ClaimType, IClaimType, IIdentityComponent
+public record class Version
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Version();
 
@@ -1487,7 +1604,10 @@ public record class Version : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the webpage of an entity, </summary>
 /// <value><inheritdoc cref="Webpage.UriString" path="/value" /></value>
-public record class Webpage : ClaimType, IClaimType, IIdentityComponent
+public record class Webpage
+    : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new Webpage();
 
@@ -1517,7 +1637,10 @@ public record class Webpage : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for a claim that specifies the Windows domain account name of an entity, </summary>
 /// <value><inheritdoc cref="WindowsAccountName.UriString" path="/value" /></value>
-public record class WindowsAccountName : ClaimType, IClaimType, IIdentityComponent
+public record class WindowsAccountName
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new WindowsAccountName();
 
@@ -1547,7 +1670,10 @@ public record class WindowsAccountName : ClaimType, IClaimType, IIdentityCompone
 
 /// <summary>http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsdeviceclaim.</summary>
 /// <value><inheritdoc cref="WindowsDeviceClaim.UriString" path="/value" /></value>
-public record class WindowsDeviceClaim : ClaimType, IClaimType, IIdentityComponent
+public record class WindowsDeviceClaim
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new WindowsDeviceClaim();
 
@@ -1577,7 +1703,10 @@ public record class WindowsDeviceClaim : ClaimType, IClaimType, IIdentityCompone
 
 /// <summary>The URI for a claim that specifies the Windows group SID of the device, </summary>
 /// <value><inheritdoc cref="WindowsDeviceGroup.UriString" path="/value" /></value>
-public record class WindowsDeviceGroup : ClaimType, IClaimType, IIdentityComponent
+public record class WindowsDeviceGroup
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new WindowsDeviceGroup();
 
@@ -1607,7 +1736,10 @@ public record class WindowsDeviceGroup : ClaimType, IClaimType, IIdentityCompone
 
 /// <summary>windowsfqbnversion.</summary>
 /// <value><inheritdoc cref="WindowsFqbnVersion.UriString" path="/value" /></value>
-public record class WindowsFqbnVersion : ClaimType, IClaimType, IIdentityComponent
+public record class WindowsFqbnVersion
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new WindowsFqbnVersion();
 
@@ -1637,7 +1769,10 @@ public record class WindowsFqbnVersion : ClaimType, IClaimType, IIdentityCompone
 
 /// <summary></summary>
 /// <value><inheritdoc cref="WindowsSubAuthority.UriString" path="/value" /></value>
-public record class WindowsSubAuthority : ClaimType, IClaimType, IIdentityComponent
+public record class WindowsSubAuthority
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new WindowsSubAuthority();
 
@@ -1667,7 +1802,10 @@ public record class WindowsSubAuthority : ClaimType, IClaimType, IIdentityCompon
 
 /// <summary></summary>
 /// <value><inheritdoc cref="WindowsUserClaim.UriString" path="/value" /></value>
-public record class WindowsUserClaim : ClaimType, IClaimType, IIdentityComponent
+public record class WindowsUserClaim
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new WindowsUserClaim();
 
@@ -1697,7 +1835,10 @@ public record class WindowsUserClaim : ClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for an X.500 distinguished name claim, such as the subject of an X.509 Public Key Certificate or an entry identifier in a directory services Directory Information Tree; </summary>
 /// <value><inheritdoc cref="X500DistinguishedName.UriString" path="/value" /></value>
-public record class X500DistinguishedName : ClaimType, IClaimType, IIdentityComponent
+public record class X500DistinguishedName
+    : ClaimType<DgmjrId.ClaimValueTypes.X500Name>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new X500DistinguishedName();
 
@@ -1725,7 +1866,10 @@ public record class X500DistinguishedName : ClaimType, IClaimType, IIdentityComp
     public override uri ShortUri => ShortUriString;
 }
 
-public record class ObjectId : ClaimType, IClaimType, IIdentityComponent
+public record class ObjectId
+    : ClaimType<DgmjrId.ClaimValueTypes.ObjectId>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new ObjectId();
 

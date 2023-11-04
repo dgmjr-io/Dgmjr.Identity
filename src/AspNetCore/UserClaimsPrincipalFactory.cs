@@ -20,4 +20,4 @@ public class UserClaimsPrincipalFactory<TUser>(
     UserManager<TUser> userManager,
     IOptions<IdentityOptions> optionsAccessor
 ) : MSID.UserClaimsPrincipalFactory<TUser>(userManager, optionsAccessor)
-    where TUser : class, IIdentityUser { }
+    where TUser : class, IIdentityUserBase { }
