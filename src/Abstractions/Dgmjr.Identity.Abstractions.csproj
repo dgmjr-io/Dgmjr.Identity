@@ -19,6 +19,7 @@
   <ItemGroup Condition="true">
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.AspNetCore.Hashids" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas" />
     <PackageReference Include="Dgmjr.Primitives" />
     <PackageReference Include="Dgmjr.System.Extensions" />

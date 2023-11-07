@@ -11,13 +11,14 @@
  */
 
 using Dgmjr.Identity.Models;
+using Dgmjr.Identity.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
 namespace Dgmjr.Identity;
 
 public class RoleManager<TRole> : MSID.RoleManager<TRole>
-    where TRole : class, IIdentityRole
+    where TRole : class, IIdentityRoleBase
 {
     public RoleManager(
         IRoleStore<TRole> store,

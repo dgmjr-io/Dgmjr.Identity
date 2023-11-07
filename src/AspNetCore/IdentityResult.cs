@@ -33,6 +33,8 @@ using MSIDR = Microsoft.AspNetCore.Identity.IdentityResult;
 using HttpStatus = System.Net.HttpStatusCode;
 
 using SC = System.Net.HttpStatusCode;
+using ApplicationMediaTypeNames = Dgmjr.Mime.ApplicationMediaTypeNames;
+using TextMediaTypeNames = Dgmjr.Mime.TextMediaTypeNames;
 
 namespace Dgmjr.Identity;
 
@@ -43,11 +45,11 @@ public class IdentityResult : MSIDR, IResponsePayload<MSIDR>
         Result = result;
         Message = message ?? string.Empty;
         StatusCode = statusCode;
-        ContentTypes.Add(new MediaTypeHeaderValue("application/json"));
-        ContentTypes.Add(new MediaTypeHeaderValue("application/xml"));
-        ContentTypes.Add(new MediaTypeHeaderValue("application/x-msgpack"));
-        ContentTypes.Add(new MediaTypeHeaderValue("application/bson"));
-        ContentTypes.Add(new MediaTypeHeaderValue("text/plain"));
+        ContentTypes.Add(new MediaTypeHeaderValue(ApplicationMediaTypeNames.Json));
+        ContentTypes.Add(new MediaTypeHeaderValue(ApplicationMediaTypeNames.Xml));
+        ContentTypes.Add(new MediaTypeHeaderValue(ApplicationMediaTypeNames.MessagePack));
+        ContentTypes.Add(new MediaTypeHeaderValue(ApplicationMediaTypeNames.Bson));
+        ContentTypes.Add(new MediaTypeHeaderValue(TextMediaTypeNames.Plain));
     }
 
     [JProp("isSuccess"), XAttribute("isSuccess")]

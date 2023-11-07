@@ -27,4 +27,6 @@ public abstract class ApplicationIdentityEntity<TKey> : IIdentityEntity<TKey>
     public override int GetHashCode() => HashCode.Combine(GetType(), Id);
 
     public override bool Equals(object? obj) => GetHashCode() == obj?.GetHashCode();
+
+    public virtual bool Equals(IEntity<TKey>? other) => GetHashCode() == other?.GetHashCode();
 }

@@ -28,7 +28,7 @@ public static class IdentityDependencyInjectionExtensions
         where TRole : class, IIdentityRole<TKey, TUser, TRole>
         where TKey : IEquatable<TKey>, IComparable
     {
-        _ = builder.Services.AddSingleton<IPasswordGenerator, PasswordGenerator>();
+        _ = builder.Services.AddSingleton<IPassphraseGenerator, PassphraseGenerator>();
         _ = builder.Services.Configure<PassphraseGeneratorOptions>(
             builder.Configuration.GetSection("PassphraseGeneratorOptions")
         );
@@ -63,7 +63,9 @@ public static class IdentityDependencyInjectionExtensions
             .AddUserValidator<DgmjrId.UserValidator<TUser>>()
             .AddPasswordValidator<DgmjrId.PasswordValidator<TUser>>();
         if (addDefaultUI)
+        {
             idBuilder.AddDefaultUI();
+        }
         return builder;
     }
 }

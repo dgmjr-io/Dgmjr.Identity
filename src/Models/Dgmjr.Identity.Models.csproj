@@ -19,6 +19,7 @@
     <PackageReference Include="AspNetCore.Hashids" Condition="!$(TargetFramework.Contains('netstandard'))" />
     <PackageReference Include="AutoMapper" />
     <PackageReference Include="Dgmjr.ComponentModel" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
     <PackageReference Include="Dgmjr.Primitives" />
     <PackageReference Include="Humanizer.Core" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />

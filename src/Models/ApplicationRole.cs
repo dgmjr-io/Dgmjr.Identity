@@ -37,6 +37,11 @@ public partial class ApplicationRole<TKey>
 {
     public const string RoleUriDefaultFormatString = "urn:role:{0}";
 
+    object IIdentifiable.Id
+    {
+        get => Id;
+    }
+
     public virtual string? ConcurrencyStamp { get; set; } = NewGuid().ToString();
 
     public virtual string Name { get; set; }
@@ -50,7 +55,12 @@ public partial class ApplicationRole<TKey>
         }
     }
 
-    public string? Description { get; set; } = string.Empty;
+    Uri IHaveAUri.Uri
+    {
+        get => Uri;
+    }
+
+    public string Description { get; set; } = string.Empty;
 
     public virtual uri Uri { get; set; }
 
