@@ -1,10 +1,9 @@
 ---
-
-author:
+authors:
 - dgmjr
-title: Commmonly-Assigned Roles
-lastmod: 2023-02-15-02:19:27
-created: 2023-02-15-02:19:27
+title: Commonly-Assigned Roles
+lastmod: 2023-02-15T02:19:27:00.0000Z
+created: 2023-02-15T02:19:27:00.0000Z
 license: MIT
 keywords:
 - dgmjr
@@ -16,9 +15,10 @@ categories:
 - dgmjr
 - admin
 - roles
--------
+type: readme
+---
 
-# Commmonly-Assigned Roles
+# Commonly-Assigned Roles
 
 This project contains an enumeration of roles that can be assigned to users.
 
