@@ -14,7 +14,7 @@ keywords:
 - dgmjr
 - dgmjr-io
 type: readme
-------------
+---
 
 # Dgmjr.Identity.AspNetCore Readme
 
