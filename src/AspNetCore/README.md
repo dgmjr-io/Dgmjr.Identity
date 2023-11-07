@@ -1,6 +1,5 @@
 ---
-
-title:
+title: Dgmjr.Identity.AspNetCore Readme
 lastmod: 2023-05-29T23:05:28.6865-04:00Z
 date: 2023-05-29T23:05:28.6867-04:00Z
 license: MIT
@@ -14,7 +13,7 @@ keywords:
 - dgmjr
 - dgmjr-io
 type: readme
-------------
+---
 
 # Dgmjr.Identity.AspNetCore Readme
 
