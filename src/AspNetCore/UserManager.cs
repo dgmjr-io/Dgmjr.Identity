@@ -50,57 +50,57 @@ public class UserManager<TUser, TRole>(
     where TRole : class, IIdentityRoleBase
 {
     private readonly IPassphraseGenerator _passphraseGenerator = passphraseGenerator;
-    public IIdentityDbContext<TUser, TRole> Db { get; } = db;
+public IIdentityDbContext<TUser, TRole> Db { get; } = db;
 
-    public override IQueryable<TUser> Users => Db.Users;
+public override IQueryable<TUser> Users => Db.Users;
 
-    public virtual Task<TUser?> FindByIdAsync(int userId) => FindByIdAsync(userId.ToString());
+public virtual Task<TUser?> FindByIdAsync(int userId) => FindByIdAsync(userId.ToString());
 
-    public override Task<TUser?> FindByNameAsync(string userName)
-    {
-        if (userName is null)
-            throw new ArgumentNullException(nameof(userName));
+public override Task<TUser?> FindByNameAsync(string userName)
+{
+    if (userName is null)
+        throw new ArgumentNullException(nameof(userName));
 
-        var users = Users ?? Db.Users;
-        return users.FirstOrDefaultAsync(u => u.Username == userName);
-    }
+    var users = Users ?? Db.Users;
+    return users.FirstOrDefaultAsync(u => u.Username == userName);
+}
 
-    // public override async Task<IList<C>> GetClaimsAsync(TUser user)
-    // {
-    //     if (user is null)
-    //         throw new ArgumentNullException(nameof(user));
+// public override async Task<IList<C>> GetClaimsAsync(TUser user)
+// {
+//     if (user is null)
+//         throw new ArgumentNullException(nameof(user));
 
-    //     var claims = await Db.UserClaims
-    //         .Where(uc => uc.UserId == user.Id)
-    //         .Select(uc => uc.ToClaim())
-    //         .ToListAsync();
-    //     return claims;
-    // }
+//     var claims = await Db.UserClaims
+//         .Where(uc => uc.UserId == user.Id)
+//         .Select(uc => uc.ToClaim())
+//         .ToListAsync();
+//     return claims;
+// }
 
-    // public override async Task<MSIDR> AddClaimAsync(TUser user, Claim claim)
-    // {
-    //     return user is null
-    //         ? throw new ArgumentNullException(nameof(user))
-    //         : claim is null
-    //             ? throw new ArgumentNullException(nameof(claim))
-    //             : user.Claims.Any(c => c.ClaimType == claim.Type && c.ClaimValue == claim.Value)
-    //                 ? MSIDR.Success
-    //                 : await AddUserClaimAsync(user, UserClaim.FromClaim(user.Id, claim));
+// public override async Task<MSIDR> AddClaimAsync(TUser user, Claim claim)
+// {
+//     return user is null
+//         ? throw new ArgumentNullException(nameof(user))
+//         : claim is null
+//             ? throw new ArgumentNullException(nameof(claim))
+//             : user.Claims.Any(c => c.ClaimType == claim.Type && c.ClaimValue == claim.Value)
+//                 ? MSIDR.Success
+//                 : await AddUserClaimAsync(user, UserClaim.FromClaim(user.Id, claim));
 
-    //     async Task<MSIDR> AddUserClaimAsync(TUser user, UserClaim claim)
-    //     {
-    //         user.Claims.Add(claim);
-    //         _ = Db.Users.Update(user);
-    //         return await Db.SaveChangesAsync(default).ContinueWith(t => MSIDR.Success);
-    //     }
-    //     ;
-    // }
+//     async Task<MSIDR> AddUserClaimAsync(TUser user, UserClaim claim)
+//     {
+//         user.Claims.Add(claim);
+//         _ = Db.Users.Update(user);
+//         return await Db.SaveChangesAsync(default).ContinueWith(t => MSIDR.Success);
+//     }
+//     ;
+// }
 
-    public virtual async Task<string> GeneratePasswordAsync(TUser user)
-    {
-        var passphrase = _passphraseGenerator.Generate();
-        return (await AddPasswordAsync(user, passphrase)).Succeeded
-            ? passphrase
-            : throw new Exception("Failed to generate passphrase");
-    }
+public virtual async Task<string> GeneratePasswordAsync(TUser user)
+{
+    var passphrase = _passphraseGenerator.Generate();
+    return (await AddPasswordAsync(user, passphrase)).Succeeded
+        ? passphrase
+        : throw new Exception("Failed to generate passphrase");
+}
 }
