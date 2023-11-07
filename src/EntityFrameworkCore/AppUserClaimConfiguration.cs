@@ -132,4 +132,5 @@ public class AppUserClaimConfiguration
         AppUserToken,
         AppClaimType,
         AppClaimValueType
-    > { }
+    >
+{ }
