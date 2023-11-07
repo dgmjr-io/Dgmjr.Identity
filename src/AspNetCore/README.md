@@ -7,7 +7,7 @@ license: MIT
 slug: Dgmjr.Identity.AspNetCore-readme
 version:
 authors:
-- dgmjr;
+- dgmjr
 description: Dgmjr.Identity.AspNetCore Readme #TODO: write description for Dgmjr.Identity.AspNetCore Readme
 keywords:
 - Dgmjr.Identity.AspNetCore
