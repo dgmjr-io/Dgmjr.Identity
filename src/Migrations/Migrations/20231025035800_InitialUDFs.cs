@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using System.Domain;
+using System.Net.Mail;
+
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -15,26 +18,32 @@ namespace Dgmjr.Identity.EntityFrameworkCore.Migrations.Migrations
             migrationBuilder.Sql(
                 GetType().Assembly.ReadAssemblyResourceAllText("id.ufn_GetBotToken.sql")
             );
-            migrationBuilder.Sql(
-                GetType().Assembly.ReadAssemblyResourceAllText("id.ufn_IsValidGender.sql")
+            migrationBuilder.HasIsValidGenderFunction(
+                Dgmjr.EntityFrameworkCore.DbSchemas.IdentitySchema.ShortName,
+                ufn_ + nameof(IdentityDbContext.IsValidGender)
             );
-            migrationBuilder.Sql(
-                GetType().Assembly.ReadAssemblyResourceAllText("data.ufn_IsValidEmailAddress.sql")
+            migrationBuilder.HasIsValidEmailAddressFunction(
+                Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
+                ufn_ + nameof(IdentityDbContext.IsValidEmailAddress)
             );
-            migrationBuilder.Sql(
-                GetType().Assembly.ReadAssemblyResourceAllText("data.ufn_IsValidPhoneNumber.sql")
+            migrationBuilder.HasIsValidPhoneNumberFunction(
+                Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
+                ufn_ + nameof(IdentityDbContext.IsValidPhoneNumber)
             );
             migrationBuilder.Sql(
                 GetType().Assembly.ReadAssemblyResourceAllText("data.ufn_IsValidBotApiToken.sql")
             );
-            migrationBuilder.Sql(
-                GetType().Assembly.ReadAssemblyResourceAllText("data.ufn_IsUri.sql")
+            migrationBuilder.HasIsValidUriFunction(
+                Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
+                ufn_ + nameof(IdentityDbContext.IsValidUri)
             );
-            migrationBuilder.Sql(
-                GetType().Assembly.ReadAssemblyResourceAllText("data.ufn_IsUrl.sql")
+            migrationBuilder.HasIsValidUrlFunction(
+                Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
+                ufn_ + nameof(IdentityDbContext.IsValidUrl)
             );
-            migrationBuilder.Sql(
-                GetType().Assembly.ReadAssemblyResourceAllText("data.ufn_IsUrn.sql")
+            migrationBuilder.HasIsValidUrnFunction(
+                Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
+                ufn_ + nameof(IdentityDbContext.IsValidUrn)
             );
         }
 
@@ -42,7 +51,10 @@ namespace Dgmjr.Identity.EntityFrameworkCore.Migrations.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql("DROP FUNCTION IF EXISTS [id].[ufn_GetBotToken]");
-            migrationBuilder.Sql("DROP FUNCTION IF EXISTS [id].[ufn_IsValidGender]");
+            migrationBuilder.RollBackIsValidGenderFunction(
+                Dgmjr.EntityFrameworkCore.DbSchemas.IdentitySchema.ShortName,
+                ufn_ + nameof(IdentityDbContext.IsValidGender)
+            );
             migrationBuilder.Sql("DROP FUNCTION IF EXISTS [data].[ufn_IsValidEmailAddress]");
             migrationBuilder.Sql("DROP FUNCTION IF EXISTS [data].[ufn_IsValidPhoneNumber]");
             migrationBuilder.Sql("DROP FUNCTION IF EXISTS [data].[ufn_IsValidBotApiToken]");

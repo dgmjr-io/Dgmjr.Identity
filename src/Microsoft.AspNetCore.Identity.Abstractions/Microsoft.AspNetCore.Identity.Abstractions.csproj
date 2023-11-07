@@ -15,7 +15,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <SourceGeneratorPackageReference  Include="Dgmjr.InterfaceGenerator" />
+    <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" />
     <PackageReference Include="System.Text.Json.Usings" />
   </ItemGroup>

@@ -12,19 +12,18 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-      <TargetFrameworks>netstandard2.0</TargetFrameworks>
+      <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
       <ProjectGuid>9b1fe8b0-8fbf-4681-bc60-a6177c403073</ProjectGuid>
       <Description>This package contains all of the standard roles as well as a data structure for defining and using custom ones.</Description>
     </PropertyGroup>
    <ItemGroup>
-      <SourceGeneratorPackageReference Include="Dgmjr.Enumerations.CodeGenerator" />
+      <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Build;Analyzers" ExcludeAssets="Compile;Runtime;Native" PrivateAssets="All" />
       <PackageReference Include="System.Text.Json" />
       <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
       <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" />
       <PackageReference Include="Dgmjr.ComponentModel" ExcludeAssets="ContentFiles" />
       <PackageReference Include="Dgmjr.Identity.Core" ExcludeAssets="ContentFiles" />
       <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
-      <PackageReference Include="Dgmjr.Tuples" ExcludeAssets="ContentFiles" />
       <PackageReference Include="System.Runtime.Serialization.Primitives" Condition="$(TargetFramework.Contains('netstandard1'))" />
       <!-- <PackageReference Include="Microsoft.AspNetCore.Identity.Core"  /> -->
    </ItemGroup>

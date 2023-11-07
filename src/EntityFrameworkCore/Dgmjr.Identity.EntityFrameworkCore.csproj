@@ -22,26 +22,26 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Azure.Core" />
     <PackageReference Include="Azure.Identity" />
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" />
-    <UsingsPackageReference Include="System.Collections.Generic.Usings" />
+    <PackageReference Include="System.Collections.Generic.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
   </ItemGroup>
   <ItemGroup Condition="true">
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.AspNetCore.Hashids" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Extensions" />
     <PackageReference Include="Dgmjr.Primitives" />
     <PackageReference Include="Dgmjr.System.Extensions" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" />
     <PackageReference Include="Telegram.Identity" />
-    <SourceGeneratorPackageReference Include="Dgmjr.InterfaceGenerator" />
+    <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup Condition="true">
     <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" />

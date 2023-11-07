@@ -103,34 +103,33 @@ public class IdentityDbContext : DbContext
             typeof(IdentityDbContext).GetMethod(nameof(GetBotToken)),
             builder =>
             {
-            builder.HasName(ufn_ + nameof(GetBotToken));
-            builder.HasSchema(IdentitySchema.ShortName);
-            builder.HasParameter("userId");
-            builder.HasStoreType($"char({BotApiToken.Length})");
-            builder
-                .GetInfrastructure()
-                .HasTypeMapping(
-                    new StringTypeMapping(DbTypeNames.NVarCharMax.ShortName, DbType.String)
-                );
-            builder
-                .GetInfrastructure()
-                .HasTranslation(
-                    args =>
-                        args[0] is SqlConstantExpression sqlConstantExpression
-                            ? new SqlFragmentExpression(
-                                $"""
-
-                                SELECT TOP 1[{ IdentityConstants.UserClaim.Columns.Value }]
-                                    FROM[{ IdentitySchema.ShortName}].[{ UserClaim}]
-                                    WHERE[{ IdentityConstants.UserClaim.Columns.UserId}] = { sqlConstantExpression.Value}
-        AND[{ IdentityConstants.UserClaim.Columns.Type}] = '{Telegram.Identity.BotApiToken.UriString}'
-                                    """
+                builder.HasName(ufn_ + nameof(GetBotToken));
+                builder.HasSchema(IdentitySchema.ShortName);
+                builder.HasParameter("userId");
+                builder.HasStoreType($"char({BotApiToken.Length})");
+                builder
+                    .GetInfrastructure()
+                    .HasTypeMapping(
+                        new StringTypeMapping(DbTypeNames.NVarCharMax.ShortName, DbType.String)
+                    );
+                builder
+                    .GetInfrastructure()
+                    .HasTranslation(
+                        args =>
+                            args[0] is SqlConstantExpression sqlConstantExpression
+                                ? new SqlFragmentExpression(
+                                    $"""
+                                SELECT TOP 1[{IdentityConstants.UserClaim.Columns.Value}]
+                                FROM[{IdentitySchema.ShortName}].[{UserClaim}]
+                                WHERE[{IdentityConstants.UserClaim.Columns.UserId}] = {sqlConstantExpression.Value}
+                                AND[{IdentityConstants.UserClaim.Columns.Type}] = '{Telegram.Identity.BotApiToken.UriString}'
+                                """
                                 )
                                 : throw new InvalidOperationException(
                                     "The argument must be a constant expression."
                                 )
                     );
-    }
+            }
         );
 
         modelBuilder.HasDbFunction(
@@ -177,14 +176,29 @@ public class IdentityDbContext : DbContext
         );
     }
 
-public static bool IsBot(long userId) => !GetBotToken(userId).IsEmpty;
+    public static bool IsBot(long userId) => !GetBotToken(userId).IsEmpty;
 
-[DbFunction(ufn_ + nameof(GetBotToken), Schema = DataSchema.ShortName)]
-public static BotApiToken GetBotToken(long userId) => default!;
+    [DbFunction(ufn_ + nameof(GetBotToken), Schema = DataSchema.ShortName)]
+    public static BotApiToken GetBotToken(long userId) => default!;
 
-[DbFunction(ufn_ + nameof(IsValidEmailAddress), Schema = IdentitySchema.ShortName)]
-public static bool IsValidEmailAddress(string email) => default!;
+    [DbFunction(ufn_ + nameof(IsValidEmailAddress), Schema = IdentitySchema.ShortName)]
+    public static bool IsValidEmailAddress(string email) => default!;
 
-[DbFunction(ufn_ + nameof(IsValidGender), Schema = IdentitySchema.ShortName)]
-public static bool IsValidGender(string gender) => default!;
+    [DbFunction(ufn_ + nameof(IsValidPhoneNumber), Schema = IdentitySchema.ShortName)]
+    public static bool IsValidPhoneNumber(string phoneNumber) => default!;
+
+    [DbFunction(ufn_ + nameof(IsValidGender), Schema = IdentitySchema.ShortName)]
+    public static bool IsValidGender(string gender) => default!;
+
+    [DbFunction(ufn_ + nameof(IsValidUri), Schema = IdentitySchema.ShortName)]
+    public static bool IsValidUri(string uri) => default!;
+
+    [DbFunction(ufn_ + nameof(IsValidUrn), Schema = IdentitySchema.ShortName)]
+    public static bool IsValidUrn(string urn) => default!;
+
+    [DbFunction(ufn_ + nameof(IsValidUrl), Schema = IdentitySchema.ShortName)]
+    public static bool IsValidUrl(string url) => default!;
+
+    [DbFunction(ufn_ + nameof(IsValidObjectId), Schema = IdentitySchema.ShortName)]
+    public static bool IsValidObjectId(string objectId) => default!;
 }

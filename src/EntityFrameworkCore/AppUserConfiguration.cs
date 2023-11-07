@@ -123,7 +123,7 @@ public class AppUserConfiguration<
             }
         );
         builder.Property(e => e.Id).ValueGeneratedNever();
-        builder.HasKey(e => e.Id).HasName(PK_ + TableNames.User);
+        builder.HasKey(e => e.Id).HasName(pk_ + TableNames.User);
         builder.EmailAddressProperty(e => e.EmailAddress);
         builder.PhoneNumberProperty(e => e.PhoneNumber);
         builder
@@ -133,14 +133,14 @@ public class AppUserConfiguration<
             );
         builder
             .HasIndex(e => e.EmailAddress)
-            .HasDatabaseName(IX_ + TableNames.User + IdentityConstants.User.Columns.EmailAddress);
+            .HasDatabaseName(ix_ + TableNames.User + IdentityConstants.User.Columns.EmailAddress);
         builder
             .HasIndex(e => e.Username)
-            .HasDatabaseName(IX_ + TableNames.User + IdentityConstants.User.Columns.Username);
+            .HasDatabaseName(ix_ + TableNames.User + IdentityConstants.User.Columns.Username);
         builder
             .HasIndex(e => e.TelegramUsername)
             .HasDatabaseName(
-                IX_ + TableNames.User + IdentityConstants.User.Columns.TelegramUsername
+                ix_ + TableNames.User + IdentityConstants.User.Columns.TelegramUsername
             );
         builder
             .Property(e => e.TelegramUsername)
@@ -148,11 +148,11 @@ public class AppUserConfiguration<
             .IsUnicode(false);
         builder
             .HasIndex(e => e.NormalizedEmailAddress)
-            .HasDatabaseName(IX_ + TableNames.User + nameof(AppUser.NormalizedEmailAddress));
+            .HasDatabaseName(ix_ + TableNames.User + nameof(AppUser.NormalizedEmailAddress));
         builder
             .HasIndex(e => e.NormalizedUsername)
             .HasDatabaseName(
-                IX_ + TableNames.User + IdentityConstants.User.Columns.NormalizedUsername
+                ix_ + TableNames.User + IdentityConstants.User.Columns.NormalizedUsername
             );
         builder
             .Property<byte[]>(IdentityConstants.User.Columns.ConcurrencyStamp)
@@ -217,5 +217,4 @@ public class AppUserConfiguration
         AppUserToken,
         AppClaimType,
         AppClaimValueType
-    >
-{ }
+    > { }

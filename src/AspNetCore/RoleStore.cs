@@ -25,7 +25,7 @@ using Dgmjr.Identity.Models;
 
 using MSIDR = MSID.IdentityResult;
 
-[GenerateInterface]
+// [GenerateInterface]
 public interface IRoleStore<TKey, TUser, TRole> : IRoleStore<TRole>
     where TRole : class, IIdentityRole<TKey, TUser, TRole>
     where TUser : class, IIdentityUser<TKey, TUser, TRole>

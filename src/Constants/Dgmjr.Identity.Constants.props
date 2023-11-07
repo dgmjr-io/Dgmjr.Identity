@@ -13,6 +13,6 @@
 <Project>
   <ItemGroup>
     <Using Include="Dgmjr.IdentityConstants" />
-    <Using Include="Dgmjr.IdentityConstants.Fragments" Static="true" />
+    <!-- <Using Include="Dgmjr.IdentityConstants.Fragments" Static="true" /> -->
   </ItemGroup>
 </Project>

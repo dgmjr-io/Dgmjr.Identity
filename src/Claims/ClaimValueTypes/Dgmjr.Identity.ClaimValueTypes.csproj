@@ -12,7 +12,7 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <ProjectGuid>c5824e03-649b-4944-8491-e84cd007fb07</ProjectGuid>
   </PropertyGroup>
@@ -24,7 +24,7 @@
     <PackageReference Include="System.Security.Cryptography.Xml" />
     <PackageReference Include="System.Security.Principal.Windows" />
     <ProjectReference Include="../Core/Dgmjr.Identity.Core.csproj" />
-    <SourceGeneratorPackageReference Include="Dgmjr.RegexDtoGenerator" />
+    <PackageReference Include="Dgmjr.RegexDtoGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
   </ItemGroup>
   <Import Project="../Core/Dgmjr.Identity.Core.props" Condition="Exists('../Core/Dgmjr.Identity.Core.props')" />
 </Project>

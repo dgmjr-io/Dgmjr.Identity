@@ -19,7 +19,7 @@
   <ItemGroup Condition="true">
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.AspNetCore.Hashids" />
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas" />
     <PackageReference Include="Dgmjr.Primitives" />
     <PackageReference Include="Dgmjr.System.Extensions" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
@@ -34,13 +34,13 @@
 
     <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
 
-    <SourceGeneratorPackageReference Include="Dgmjr.InterfaceGenerator" />
+    <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
 
-    <UsingsPackageReference Include="System.Collections.Generic.Usings" />
-    <UsingsPackageReference Include="System.ComponentModel.Usings" />
-    <UsingsPackageReference Include="System.Security.Usings" />
-    <UsingsPackageReference Include="System.Text.Json.Usings" />
+    <PackageReference Include="System.Collections.Generic.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.ComponentModel.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.Security.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
   </ItemGroup>
-  <Import Project="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.props" Condition="Exists('../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.props')" />
+  <Import Project="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas.props" Condition="Exists('../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas.props')" />
   <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" Condition="Exists('../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props')" />
 </Project>

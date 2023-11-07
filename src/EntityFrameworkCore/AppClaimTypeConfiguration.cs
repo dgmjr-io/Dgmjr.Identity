@@ -17,10 +17,10 @@ public class AppClaimTypeConfiguration : IEntityTypeConfiguration<AppClaimType>
     {
         builder.ToTable(ClaimType, IdentitySchema.ShortName, tb => tb.IsTemporal());
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
-        builder.HasKey(e => e.Id).HasName(PK_ + ClaimType);
+        builder.HasKey(e => e.Id).HasName(pk_ + ClaimType);
         builder
             .HasIndex(e => e.Uri)
-            .HasDatabaseName(IX_ + ClaimType + "_" + nameof(DgmjrId.ClaimType.Uri))
+            .HasDatabaseName(ix_ + ClaimType + "_" + nameof(DgmjrId.ClaimType.Uri))
             .IsUnique();
         builder.Property(e => e.Name).IsUnicode(false);
         builder.UriProperty(e => e.Uri).IsUnicode(false);

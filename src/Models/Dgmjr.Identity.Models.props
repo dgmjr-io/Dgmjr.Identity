@@ -14,10 +14,10 @@
 
   </ItemGroup>
   <ItemGroup>
-    <UsingsPackageReference Include="System.All.Usings" />
-    <UsingsPackageReference Include="System.ComponentModel.Usings" />
-    <UsingsPackageReference Include="System.ComponentModel.Usings" />
-    <UsingsPackageReference Include="System.Usings" />
+    <PackageReference Include="System.All.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.ComponentModel.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.ComponentModel.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
   </ItemGroup>
   <ItemGroup>
     <!-- <Using Include="Dgmjr.Identity.ClaimTypeUris" Alias="DgmjrCt" /> -->

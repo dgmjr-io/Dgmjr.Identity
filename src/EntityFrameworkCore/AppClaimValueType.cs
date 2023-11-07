@@ -17,7 +17,7 @@ public class AppClaimValueTypeConfiguration : IEntityTypeConfiguration<AppClaimV
     {
         builder.ToTable(ClaimValueType, IdentitySchema.ShortName, tb => tb.IsTemporal());
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
-        builder.HasKey(e => e.Id).HasName(PK_ + ClaimValueType);
+        builder.HasKey(e => e.Id).HasName(pk_ + ClaimValueType);
         builder.Property(e => e.Name).IsUnicode(false);
         builder.UriProperty(e => e.Uri).IsUnicode(false);
     }

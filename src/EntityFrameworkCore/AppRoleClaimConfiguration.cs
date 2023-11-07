@@ -16,7 +16,7 @@ public class AppRoleClaimConfiguration : IEntityTypeConfiguration<AppRoleClaim>
     public virtual void Configure(EntityTypeBuilder<AppRoleClaim> builder)
     {
         builder.ToTable(RoleClaim, IdentitySchema.ShortName, tb => tb.IsTemporal());
-        builder.HasKey(e => e.Id).HasName(PK_ + RoleClaim);
+        builder.HasKey(e => e.Id).HasName(pk_ + RoleClaim);
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
         builder
             .Property(e => e.Properties)

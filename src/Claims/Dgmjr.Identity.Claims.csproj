@@ -1,15 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
     <ProjectGuid>852898f8-d9f0-45e2-af51-2e6e26c2cb91</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
-    <SourceGeneratorPackageReference Include="Dgmjr.Enumerations.CodeGenerator" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
     <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.ComponentModel" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Tuples" ExcludeAssets="ContentFiles" />
     <PackageReference Include="System.Runtime.Serialization.Primitives" Condition="$(TargetFramework.Contains('netstandard1'))" />
     <!-- <PackageReference Include="Microsoft.AspNetCore.Identity.Core" /> -->
     <ProjectReference Include="./ClaimTypes/Dgmjr.Identity.ClaimTypes.csproj" />

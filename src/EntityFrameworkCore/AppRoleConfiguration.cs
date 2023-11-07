@@ -98,7 +98,7 @@ public class AppRoleConfiguration<
             }
         );
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
-        builder.HasKey(e => e.Id).HasName(PK_ + Role);
+        builder.HasKey(e => e.Id).HasName(pk_ + Role);
         builder
             .Property(e => e.ConcurrencyStamp)
             .HasColumnType(RowVersion.ShortName)
@@ -140,5 +140,4 @@ public class AppRoleConfiguration
         AppUserToken,
         AppClaimType,
         AppClaimValueType
-    >
-{ }
+    > { }

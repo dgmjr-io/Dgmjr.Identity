@@ -1,5 +1,6 @@
 <Project>
   <ItemGroup>
     <Using Include="Microsoft.AspNetCore.Identity" Alias="MSID" />
+    <Using Include="Dgmjr.Identity" Alias="DgmjrId" />
   </ItemGroup>
 </Project>

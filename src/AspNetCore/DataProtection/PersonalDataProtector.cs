@@ -98,7 +98,7 @@ public class PersonalDataProtector : IPersonalDataProtector
 
         // Now we need to put our key identifier in. In our implementation this is a GUID
         // so let's convert it back to one, then turn it to bytes.
-        byte[] output = CombineByteArrays(Guid.Parse(keyId).ToByteArray(), dataPlusAlgorithmId);
+        byte[] output = CombineByteArrays(global::System.Guid.Parse(keyId).ToByteArray(), dataPlusAlgorithmId);
 
         // Clean everything up.
         encryptingAlgorithm.Clear();

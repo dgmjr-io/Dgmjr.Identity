@@ -16,7 +16,7 @@
     <Description>This package contains security-related constants such as [`Dgmjr.Security.Operations`](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Security/Constants/src/Operations.cs).</Description>
   </PropertyGroup>
   <ItemGroup>
-    <SourceGeneratorPackageReference  Include="Dgmjr.Enumerations.CodeGenerator" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
     <!-- <PackageReference Include="Dgmjr.Enumerations.Enumeration" /> -->

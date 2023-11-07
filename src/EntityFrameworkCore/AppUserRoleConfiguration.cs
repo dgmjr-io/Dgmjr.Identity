@@ -92,7 +92,7 @@ public class AppUserRoleConfiguration<
     public void Configure(EntityTypeBuilder<TUserRole> builder)
     {
         builder.ToTable(UserRole, IdentitySchema.ShortName, tb => tb.IsTemporal());
-        builder.HasKey(e => e.Id).HasName(PK_ + UserRole);
+        builder.HasKey(e => e.Id).HasName(pk_ + UserRole);
         // builder
         //     .HasOne(e => e.User)
         //     .WithMany(e => e.Roles)

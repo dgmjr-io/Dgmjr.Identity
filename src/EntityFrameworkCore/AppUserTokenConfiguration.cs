@@ -16,7 +16,7 @@ public class AppUserTokenConfiguration : IEntityTypeConfiguration<AppUserToken>
     public virtual void Configure(EntityTypeBuilder<AppUserToken> builder)
     {
         builder.ToTable(UserToken, IdentitySchema.ShortName, tb => tb.IsTemporal());
-        builder.HasKey(e => e.Id).HasName(PK_ + UserToken);
+        builder.HasKey(e => e.Id).HasName(pk_ + UserToken);
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
         builder
             .HasOne(e => e.User)

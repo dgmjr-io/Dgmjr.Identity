@@ -17,7 +17,7 @@ public class AppUserLoginConfiguration : IEntityTypeConfiguration<AppUserLogin>
     public virtual void Configure(EntityTypeBuilder<AppUserLogin> builder)
     {
         builder.ToTable(UserLogin, IdentitySchema.ShortName, tb => tb.IsTemporal());
-        builder.HasKey(e => e.Id).HasName(PK_ + UserLogin);
+        builder.HasKey(e => e.Id).HasName(pk_ + UserLogin);
         builder
             .HasOne(e => e.User)
             .WithMany(u => u.Logins)

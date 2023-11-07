@@ -1,11 +1,11 @@
 <!--
  * Dgmjr.Identity.Authorization.csproj
- * 
+ *
  *   Created: 2022-12-16-05:16:05
  *   Modified: 2022-12-16-05:16:06
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
@@ -20,6 +20,6 @@
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="System.ComponentModel.Usings" />
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
-    <SourceGenerator  Include="Dgmjr.Enumerations.CodeGenerator" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
   </ItemGroup>
 </Project>

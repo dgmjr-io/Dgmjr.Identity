@@ -12,7 +12,7 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net6.0;net8.0</TargetFrameworks>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <ItemGroup>
@@ -46,7 +46,7 @@
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.AspNetCore.Hashids" ExcludeAssets="ContentFiles" />
     <!-- <PackageReference Include="Dgmjr.ComponentModel" Aliases="DgmjrCm" /> -->
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Enumerations.Enumeration" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
@@ -57,8 +57,9 @@
     <PackageReference Include="Telegram.Identity" />
     <!-- <Reference Include="Dgmjr.ComponentModel" Aliases="DgmjrCm" /> -->
     <!-- <Reference Remove="Dgmjr.Enumerations.CodeGenerator" /> -->
-    <SourceGeneratorPackageReference  Include="Dgmjr.Enumerations.CodeGenerator" />
-  </ItemGroup>
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+    <PackageReference Include="System.Private.CoreLib.Polyfills" IncludeAssets="ContentFiles;Build;BuildTransitive;BuildMultitargeting" ExcludeAssets="Analyzers;Runtime;Native" PrivateAssets="All" />
+      </ItemGroup>
   <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" Condition="Exists('../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props')" />
   <Import Project="../Claims/Core/Dgmjr.Identity.Core.props" Condition="Exists('../Claims/Core/Dgmjr.Identity.Core.props')" />
   <Import Project="../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.props" Condition="Exists('../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.props')" />

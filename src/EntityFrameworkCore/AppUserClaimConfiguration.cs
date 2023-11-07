@@ -101,7 +101,7 @@ public class AppUserClaimConfiguration<
     public virtual void Configure(EntityTypeBuilder<TUserClaim> builder)
     {
         builder.ToTable(UserClaim, IdentitySchema.ShortName, tb => tb.IsTemporal());
-        builder.HasKey(e => e.Id).HasName(PK_ + UserClaim);
+        builder.HasKey(e => e.Id).HasName(pk_ + UserClaim);
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
         builder
             .Property(e => e.Properties)
@@ -132,5 +132,4 @@ public class AppUserClaimConfiguration
         AppUserToken,
         AppClaimType,
         AppClaimValueType
-    >
-{ }
+    > { }

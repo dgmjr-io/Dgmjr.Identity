@@ -13,7 +13,7 @@ public static class Triggers
 
 public static class Tables
 {
-    public const string tbl_ = nameof(tbl_);
+    private const string tbl_ = nameof(tbl_);
     public const string UserClaim = tbl_ + nameof(UserClaim);
     public const string Role = tbl_ + nameof(Role);
     public const string RoleClaim = tbl_ + nameof(RoleClaim);
@@ -112,10 +112,10 @@ public static class Columns
     public const string RoleId = nameof(RoleId);
 }
 
-public static class Fragments
-{
-    public const string IX_ = "IX_";
-    public const string ufn_ = "ufn_";
-    public const string PK_ = "PK_";
-    public const string CK_ = "CK_";
-}
+// public static class Fragments
+// {
+//     public const string ix_ = "ix_";
+//     public const string ufn_ = "ufn_";
+//     public const string pk_ = "pk_";
+//     public const string ck_ = "ck_";
+// }

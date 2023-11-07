@@ -29,16 +29,20 @@
     <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" />
-    <UsingsPackageReference Include="System.Usings" />
+    <PackageReference Include="System.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
     <!-- <PackageReference Include="Dgmjr.Http.Extensions" /> -->
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />
-    <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" />
-    <ProjectReference Include="../Roles/Dgmjr.Identity.Roles.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <ProjectReference Include="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" />
+    <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" />
+    <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" />
+    <ProjectReference Include="../Roles/Dgmjr.Identity.Roles.csproj" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" />
+    <ProjectReference Include="../Claims/Core/Dgmjr.Identity.Core.csproj" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" />
+    <ProjectReference Include="../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.csproj" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" />
+    <ProjectReference Include="../Claims/ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.csproj" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Microsoft.AspNetCore.Identity" Alias="AspNetId" />
