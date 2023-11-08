@@ -7,14 +7,16 @@ license: MIT
 slug: Dgmjr.Security.Constants-readme
 version: 0.0.1-Local
 authors:
+
 - dgmjr
-description: Dgmjr.Security.Constants Readme #TODO: write description for Dgmjr.Security.Constants Readme
-keywords:
+  description: Dgmjr.Security.Constants Readme #TODO: write description for Dgmjr.Security.Constants Readme
+  keywords:
 - Dgmjr.Security.Constants
 - dgmjr
 - dgmjr-io
-type: readme
-------------
+  type: readme
+
+---
 
 # Dgmjr.Security.Constants Readme
 
@@ -35,4 +37,3 @@ This package contains security-related constants such as [`Dgmjr.Security.Operat
 ## Contributing
 
 ## Versioning
-

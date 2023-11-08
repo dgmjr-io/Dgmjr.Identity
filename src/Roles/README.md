@@ -1,23 +1,25 @@
 ---
 
 authors:
+
 - dgmjr
-title: Commonly-Assigned Roles
-lastmod: 2023-02-15T02:19:27:00.0000Z
-created: 2023-02-15T02:19:27:00.0000Z
-license: MIT
-keywords:
-- dgmjr
-- roles
-tags:
+  title: Commonly-Assigned Roles
+  lastmod: 2023-02-15T02:19:27:00.0000Z
+  created: 2023-02-15T02:19:27:00.0000Z
+  license: MIT
+  keywords:
 - dgmjr
 - roles
-categories:
+  tags:
+- dgmjr
+- roles
+  categories:
 - dgmjr
 - admin
 - roles
-type: readme
-------------
+  type: readme
+
+---
 
 # Commonly-Assigned Roles
 
@@ -44,4 +46,3 @@ This project contains an enumeration of roles that can be assigned to users.
 ### `https://dgmjr.io/roles/contestant`
 
 ### `https://dgmjr.io/roles/voter`
-

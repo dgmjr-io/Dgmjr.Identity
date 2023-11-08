@@ -10,14 +10,16 @@ type: readme
 authors:
 description: Package Description
 
-Built from [commit  on branch  at ]
+Built from [commit on branch at ]
 (/tree/)
 keywords:
+
 - Dgmjr.Identity.ClaimValueTypes
 - dgmjr
 - dgmjr-io
-type: readme
-------------
+  type: readme
+
+---
 
 # Dgmjr.Identity.ClaimValueTypes Readme
 
@@ -25,7 +27,7 @@ type: readme
 
 Package Description
 
-Built from [commit  on branch  at]
+Built from [commit on branch at]
 (/tree/)
 
 ## Getting Started
@@ -40,5 +42,5 @@ Built from [commit  on branch  at]
 
 ## Versioning
 
-Built from [commit  on branch  at]
+Built from [commit on branch at]
 (/tree/)

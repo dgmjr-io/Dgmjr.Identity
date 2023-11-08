@@ -7,14 +7,16 @@ license: MIT
 slug: Dgmjr.Identity.AspNetCore-readme
 version:
 authors:
+
 - dgmjr
-description: Dgmjr.Identity.AspNetCore Readme #TODO: write description for Dgmjr.Identity.AspNetCore Readme
-keywords:
+  description: Dgmjr.Identity.AspNetCore Readme #TODO: write description for Dgmjr.Identity.AspNetCore Readme
+  keywords:
 - Dgmjr.Identity.AspNetCore
 - dgmjr
 - dgmjr-io
-type: readme
-------------
+  type: readme
+
+---
 
 # Dgmjr.Identity.AspNetCore Readme
 
@@ -34,5 +36,5 @@ type: readme
 
 ## Versioning
 
-Built from [commit  on branch  at]
+Built from [commit on branch at]
 (/tree/)

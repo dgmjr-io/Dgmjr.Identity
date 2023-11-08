@@ -6,9 +6,11 @@ description: This library contains the base interface and class for claim types 
 lastmod: 2023-08-29T17:25:51.228Z
 date: 2023-08-29T17:25:51.228Z
 authors:
+
 - dgmjr
-project: identity
------------------
+  project: identity
+
+---
 
 # Dgmjr.Identity.Core
 
@@ -53,4 +55,3 @@ Contributions are welcome! Please see the [CONTRIBUTING.md](https://github.com/d
 ## License
 
 The Dgmjr.Identity.Core library is licensed under the MIT license. See the [LICENSE](../../LICENSE.md) file for more information.
-

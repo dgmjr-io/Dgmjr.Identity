@@ -7,14 +7,16 @@ license: MIT
 slug: Dgmjr.Identity.Constants-readme
 version:
 authors:
+
 - dgmjr;
-description: Dgmjr.Identity.Constants Readme #TODO: write description for Dgmjr.Identity.Constants Readme
-keywords:
+  description: Dgmjr.Identity.Constants Readme #TODO: write description for Dgmjr.Identity.Constants Readme
+  keywords:
 - Dgmjr.Identity.Constants
 - dgmjr
 - dgmjr-io
-type: readme
-------------
+  type: readme
+
+---
 
 # Dgmjr.Identity.Constants Readme
 
@@ -34,5 +36,5 @@ type: readme
 
 ## Versioning
 
-Built from [commit  on branch  at]
+Built from [commit on branch at]
 (/tree/)

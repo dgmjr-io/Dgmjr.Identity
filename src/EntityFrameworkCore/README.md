@@ -7,14 +7,16 @@ license: MIT
 slug: Dgmjr.Identity.EntityFrameworkCore-readme
 version: 0.0.1
 authors:
+
 - dgmjr
-description: Dgmjr.Identity.EntityFrameworkCore Readme #TODO: write description for Dgmjr.Identity.EntityFrameworkCore Readme
-keywords:
+  description: Dgmjr.Identity.EntityFrameworkCore Readme #TODO: write description for Dgmjr.Identity.EntityFrameworkCore Readme
+  keywords:
 - Dgmjr.Identity.EntityFrameworkCore
 - dgmjr
 - dgmjr-io
-type: readme
-------------
+  type: readme
+
+---
 
 # Dgmjr.Identity.EntityFrameworkCore Readme
 
@@ -34,5 +36,5 @@ type: readme
 
 ## Versioning
 
-Built from [commit  on branch  at]
+Built from [commit on branch at]
 (/tree/)
