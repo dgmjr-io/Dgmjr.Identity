@@ -19,13 +19,13 @@ public class AppUserTokenConfiguration : IEntityTypeConfiguration<AppUserToken>
         builder.HasKey(e => e.Id).HasName(pk_ + UserToken);
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
         builder
-            .HasOne(e => e.User)
-            .WithMany(u => u.Tokens)
-            .HasForeignKey(e => e.UserId)
-            .HasPrincipalKey(e => e.Id);
+        .HasOne(e => e.User)
+        .WithMany(u => u.Tokens)
+        .HasForeignKey(e => e.UserId)
+        .HasPrincipalKey(e => e.Id);
         builder
-            .Property(e => e.Provider)
-            .IsUnicode(false)
-            .HasConversion(v => v.Uri.ToString(), v => AppUserLoginProvider.Parse(v));
+        .Property(e => e.Provider)
+        .IsUnicode(false)
+        .HasConversion(v => v.Uri.ToString(), v => AppUserLoginProvider.Parse(v));
     }
 }

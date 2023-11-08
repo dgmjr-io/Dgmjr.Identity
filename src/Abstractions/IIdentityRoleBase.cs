@@ -14,21 +14,27 @@ namespace Dgmjr.Identity.Abstractions;
 
 public interface IIdentityRoleBase
     : IIdentifiable,
-        IHaveAName,
-        IHaveADescription,
-        IHaveAUri,
-        IHaveAuri
+      IHaveAName,
+      IHaveADescription,
+      IHaveAUri,
+      IHaveAuri
 {
     /// <summary>
     /// Gets or sets the normalized name for this role.
     /// </summary>
-    string NormalizedName { get; set; }
+    string NormalizedName {
+        get;
+        set;
+    }
 
     /// <summary>
     /// A random value that should change whenever a role is persisted to the store
     /// </summary>
     [Timestamp]
-    string? ConcurrencyStamp { get; set; }
+    string? ConcurrencyStamp {
+        get;
+        set;
+    }
 
     /// <summary>
     /// Returns the name of the role.

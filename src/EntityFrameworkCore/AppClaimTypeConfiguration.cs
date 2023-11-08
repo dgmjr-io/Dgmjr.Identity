@@ -19,9 +19,9 @@ public class AppClaimTypeConfiguration : IEntityTypeConfiguration<AppClaimType>
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
         builder.HasKey(e => e.Id).HasName(pk_ + ClaimType);
         builder
-            .HasIndex(e => e.Uri)
-            .HasDatabaseName(ix_ + ClaimType + "_" + nameof(DgmjrId.ClaimType.Uri))
-            .IsUnique();
+        .HasIndex(e => e.Uri)
+        .HasDatabaseName(ix_ + ClaimType + "_" + nameof(DgmjrId.ClaimType.Uri))
+        .IsUnique();
         builder.Property(e => e.Name).IsUnicode(false);
         builder.UriProperty(e => e.Uri).IsUnicode(false);
 
@@ -42,9 +42,9 @@ public class AppClaimTypeConfiguration : IEntityTypeConfiguration<AppClaimType>
         //         e => e.HasKey(e => e.Id)
         //     );
         builder
-            .HasOne(e => e.ClaimValueType)
-            .WithMany()
-            .HasForeignKey(e => e.ClaimValueTypeId)
-            .HasPrincipalKey(e => e.Id);
+        .HasOne(e => e.ClaimValueType)
+        .WithMany()
+        .HasForeignKey(e => e.ClaimValueTypeId)
+        .HasPrincipalKey(e => e.Id);
     }
 }

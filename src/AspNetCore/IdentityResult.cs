@@ -54,10 +54,13 @@ public class IdentityResult : MSIDR, IResponsePayload<MSIDR>
 
     [JProp("isSuccess"), XAttribute("isSuccess")]
     public virtual bool IsSuccess =>
-        StatusCode.HasValue && StatusCode.Value >= OK && StatusCode.Value <= (SC)299;
+    StatusCode.HasValue && StatusCode.Value >= OK && StatusCode.Value <= (SC)299;
 
     [XAttribute("message"), JProp("message"), JIgnore(Condition = JIgnore.WhenWritingNull)]
-    public virtual string Message { get; set; }
+    public virtual string Message {
+        get;
+        set;
+    }
 
     [XIgnore, JIgnore]
     public virtual string? StringValue
@@ -67,13 +70,19 @@ public class IdentityResult : MSIDR, IResponsePayload<MSIDR>
     }
 
     [JIgnore, XIgnore]
-    public virtual SC? StatusCode { get; set; }
+    public virtual SC? StatusCode {
+        get;
+        set;
+    }
 
     [JIgnore, XIgnore]
     int? IStatusCodeActionResult.StatusCode => (int?)StatusCode;
 
     [JProp("result"), JIgnore(Condition = JIgnore.WhenWritingNull), XAttribute("result")]
-    public virtual MSIDR Result { get; set; }
+    public virtual MSIDR Result {
+        get;
+        set;
+    }
 
     [JProp("value"), JIgnore(Condition = JIgnore.WhenWritingNull), XAttribute("value")]
     public virtual MSIDR? Value
@@ -90,10 +99,14 @@ public class IdentityResult : MSIDR, IResponsePayload<MSIDR>
     }
 
     [JsonIgnore, XIgnore]
-    public ICollection<IOutputFormatter> OutputFormatters { get; } = new List<IOutputFormatter>();
+    public ICollection<IOutputFormatter> OutputFormatters {
+        get;
+    } = new List<IOutputFormatter>();
 
     [JsonIgnore, XIgnore]
-    public MediaTypeCollection ContentTypes { get; } = new MediaTypeCollection();
+    public MediaTypeCollection ContentTypes {
+        get;
+    } = new MediaTypeCollection();
 
     public static IdentityResult Failed(
         SC statusCode = InternalServerError,
@@ -104,31 +117,35 @@ public class IdentityResult : MSIDR, IResponsePayload<MSIDR>
         SC statusCode = InternalServerError,
         params string[] errors
     ) =>
-        new(
-            Failed(errors.Select(e => new IdentityError { Description = e }).ToArray()),
-            statusCode: statusCode
-        );
+    new(
+    Failed(errors.Select(e => new IdentityError {
+        Description = e
+    }).ToArray()),
+    statusCode: statusCode
+    );
 
     public static IdentityResult Failed(IdentityError error, SC statusCode = InternalServerError) =>
-        new(MSIDR.Failed(error), statusCode: statusCode);
+    new(MSIDR.Failed(error), statusCode: statusCode);
 
     public static IdentityResult Failed(string error, SC statusCode = InternalServerError) =>
-        new(MSIDR.Failed(new IdentityError { Description = error }), statusCode: statusCode);
+    new(MSIDR.Failed(new IdentityError {
+        Description = error
+    }), statusCode: statusCode);
 
     public static IdentityResult Failed(MSIDR result, SC statusCode = InternalServerError) =>
-        new(result, statusCode: statusCode);
+    new(result, statusCode: statusCode);
 
     public static IdentityResult Failed(SC statusCode = InternalServerError) =>
-        new(MSIDR.Failed(), statusCode: statusCode);
+    new(MSIDR.Failed(), statusCode: statusCode);
 
     public static new IdentityResult Success(string message = "Success", SC statusCode = OK) =>
-        new(MSIDR.Success, message: message, statusCode: statusCode);
+    new(MSIDR.Success, message: message, statusCode: statusCode);
 
     public virtual async Task ExecuteResultAsync(ActionContext context)
     {
         var executor = context.HttpContext.RequestServices.GetRequiredService<
-            IActionResultExecutor<IdentityResult>
-        >();
+                       IActionResultExecutor<IdentityResult>
+                       >();
         await executor.ExecuteAsync(context, this);
     }
 

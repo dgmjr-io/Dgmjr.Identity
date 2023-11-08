@@ -20,7 +20,7 @@ public abstract record class ClaimType : IIdentityComponent, IClaimType
     public virtual bool Equals(IClaimType? other)
     {
         return other is not null
-            && (ReferenceEquals(this, other) || ((IClaimType)this).Uri == other.Uri);
+               && (ReferenceEquals(this, other) || ((IClaimType)this).Uri == other.Uri);
     }
 
     public override int GetHashCode() => ((IClaimType)this).GetHashCode();

@@ -21,70 +21,70 @@ public class AppRoleConfiguration<
     TUserToken,
     TClaimType,
     TClaimValueType
-> : IEntityTypeConfiguration<TRole>
+    > : IEntityTypeConfiguration<TRole>
     where TUser : class,
-        IIdentityUser<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+    IIdentityUser<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TRole : class,
-        IIdentityRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+    IIdentityRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TKey : IEquatable<TKey>, IComparable
     where TUserClaim : class,
-        IIdentityUserClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    IIdentityUserClaim<
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TUserRole : class,
-        IIdentityUserRole<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    IIdentityUserRole<
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TUserLogin : class,
-        IIdentityUserLogin<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    IIdentityUserLogin<
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TRoleClaim : class,
-        IIdentityRoleClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    IIdentityRoleClaim<
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TUserToken : class,
-        IIdentityUserToken<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    IIdentityUserToken<
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TClaimType : class, IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValueType>
     where TClaimValueType : class,
-        IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType>
+    IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType>
 {
     public virtual void Configure(EntityTypeBuilder<TRole> builder)
     {
@@ -92,17 +92,17 @@ public class AppRoleConfiguration<
             Role,
             IdentitySchema.ShortName,
             tb =>
-            {
-                tb.HasComment("The Roles table contains the roles for the application.");
-                tb.IsTemporal();
-            }
+        {
+            tb.HasComment("The Roles table contains the roles for the application.");
+            tb.IsTemporal();
+        }
         );
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
         builder.HasKey(e => e.Id).HasName(pk_ + Role);
         builder
-            .Property(e => e.ConcurrencyStamp)
-            .HasColumnType(RowVersion.ShortName)
-            .IsConcurrencyToken();
+        .Property(e => e.ConcurrencyStamp)
+        .HasColumnType(RowVersion.ShortName)
+        .IsConcurrencyToken();
         // builder.Property(e => e.Name).HasMaxLength(256);
         // builder.Property(e => e.NormalizedName).HasMaxLength(256);
         // builder.HasIndex(e => e.NormalizedName).IsUnique().HasName("RoleNameIndex").HasFilter("[NormalizedName] IS NOT NULL");
@@ -130,15 +130,15 @@ public class AppRoleConfiguration<
 
 public class AppRoleConfiguration
     : AppRoleConfiguration<
-        AppUser,
-        AppRole,
-        long,
-        AppUserClaim,
-        AppUserRole,
-        AppUserLogin,
-        AppRoleClaim,
-        AppUserToken,
-        AppClaimType,
-        AppClaimValueType
-    >
+      AppUser,
+      AppRole,
+      long,
+      AppUserClaim,
+      AppUserRole,
+      AppUserLogin,
+      AppRoleClaim,
+      AppUserToken,
+      AppClaimType,
+      AppClaimValueType
+      >
 { }

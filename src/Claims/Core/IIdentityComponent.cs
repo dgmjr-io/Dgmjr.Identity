@@ -16,11 +16,23 @@ public interface IIdentityComponent : IEquatable<IIdentityComponent>, IHaveAUriS
 {
     bool Equals(object other);
 
-    string Namespace { get; }
-    string Name { get; }
-    string ShortUriString { get; }
-    string ShortNamespace { get; }
-    uri Uri { get; }
-    uri ShortUri { get; }
+    string Namespace {
+        get;
+    }
+    string Name {
+        get;
+    }
+    string ShortUriString {
+        get;
+    }
+    string ShortNamespace {
+        get;
+    }
+    uri Uri {
+        get;
+    }
+    uri ShortUri {
+        get;
+    }
     int GetHashCode();
 }

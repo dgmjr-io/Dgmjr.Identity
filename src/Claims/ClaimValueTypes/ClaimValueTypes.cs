@@ -44,10 +44,10 @@ public record class Base64Binary : ClaimValueType<byte[]>, IClaimValueType
     public static implicit operator string(Base64Binary value) => value.Value.ToBase64String();
 
     public static implicit operator Base64Binary(string value) =>
-        (Instance as Base64Binary) with
-        {
-            Value = value.FromBase64String()
-        };
+    (Instance as Base64Binary) with
+    {
+        Value = value.FromBase64String()
+    };
 }
 
 public record class Boolean : ClaimValueType<bool>, IClaimValueType
@@ -77,18 +77,18 @@ public record class Boolean : ClaimValueType<bool>, IClaimValueType
     public static implicit operator bool(Boolean value) => value.Value;
 
     public static implicit operator Boolean(bool value) =>
-        (Instance as Boolean) with
-        {
-            Value = value
-        };
+    (Instance as Boolean) with
+    {
+        Value = value
+    };
 
     public static implicit operator string(Boolean value) => value.Value.ToString().ToLower();
 
     public static implicit operator Boolean(string value) =>
-        (Instance as Boolean) with
-        {
-            Value = value.Equals(bool.TrueString, InvariantCultureIgnoreCase)
-        };
+    (Instance as Boolean) with
+    {
+        Value = value.Equals(bool.TrueString, InvariantCultureIgnoreCase)
+    };
 }
 
 public record class Date : ClaimValueType<date>, IClaimValueType
@@ -122,10 +122,10 @@ public record class Date : ClaimValueType<date>, IClaimValueType
     public static implicit operator string(Date value) => value.Value.ToShortDateString();
 
     public static implicit operator Date(string value) =>
-        (Instance as Date) with
-        {
-            Value = date.Parse(value, CultureInfo.InvariantCulture)
-        };
+    (Instance as Date) with
+    {
+        Value = date.Parse(value, CultureInfo.InvariantCulture)
+    };
 }
 
 public record class _DateTime : ClaimValueType<datetime>, IClaimValueType
@@ -155,26 +155,26 @@ public record class _DateTime : ClaimValueType<datetime>, IClaimValueType
     public static implicit operator datetime(_DateTime value) => value.Value;
 
     public static implicit operator _DateTime(datetime value) =>
-        (Instance as _DateTime) with
-        {
-            Value = value
-        };
+    (Instance as _DateTime) with
+    {
+        Value = value
+    };
 
     public static implicit operator string(_DateTime value) => value.Value.ToLongDateString();
 
     public static implicit operator _DateTime(string value) =>
-        (Instance as _DateTime) with
-        {
-            Value = datetime.Parse(value, CultureInfo.InvariantCulture)
-        };
+    (Instance as _DateTime) with
+    {
+        Value = datetime.Parse(value, CultureInfo.InvariantCulture)
+    };
 
     public static implicit operator long(_DateTime value) => value.Value.Ticks;
 
     public static implicit operator _DateTime(long value) =>
-        (Instance as _DateTime) with
-        {
-            Value = new datetime(value)
-        };
+    (Instance as _DateTime) with
+    {
+        Value = new datetime(value)
+    };
 }
 
 public record class Double : ClaimValueType<double>, IClaimValueType
@@ -204,10 +204,10 @@ public record class Double : ClaimValueType<double>, IClaimValueType
     public static implicit operator double(Double value) => value.Value;
 
     public static implicit operator Double(double value) =>
-        (Instance as Double) with
-        {
-            Value = value
-        };
+    (Instance as Double) with
+    {
+        Value = value
+    };
 }
 
 public record class Fqbn : ClaimValueType<string>, IClaimValueType
@@ -266,18 +266,18 @@ public record class HexBinary : ClaimValueType<byte[]>, IClaimValueType
     public static implicit operator byte[](HexBinary value) => value.Value;
 
     public static implicit operator HexBinary(byte[] value) =>
-        (Instance as HexBinary) with
-        {
-            Value = value
-        };
+    (Instance as HexBinary) with
+    {
+        Value = value
+    };
 
     public static implicit operator string(HexBinary value) => value.Value.ToHexString();
 
     public static implicit operator HexBinary(string value) =>
-        (Instance as HexBinary) with
-        {
-            Value = value.FromHexString()
-        };
+    (Instance as HexBinary) with
+    {
+        Value = value.FromHexString()
+    };
 }
 
 public record class Integer : ClaimValueType<int>, IClaimValueType
@@ -307,18 +307,18 @@ public record class Integer : ClaimValueType<int>, IClaimValueType
     public static implicit operator int(Integer value) => value.Value;
 
     public static implicit operator Integer(int value) =>
-        (Instance as Integer) with
-        {
-            Value = value
-        };
+    (Instance as Integer) with
+    {
+        Value = value
+    };
 
     public static implicit operator string(Integer value) => value.Value.ToString();
 
     public static implicit operator Integer(string value) =>
-        (Instance as Integer) with
-        {
-            Value = int.Parse(value, NumberStyles.Integer, CultureInfo.InvariantCulture)
-        };
+    (Instance as Integer) with
+    {
+        Value = int.Parse(value, NumberStyles.Integer, CultureInfo.InvariantCulture)
+    };
 }
 
 public record class Integer32 : ClaimValueType<int>, IClaimValueType
@@ -348,18 +348,18 @@ public record class Integer32 : ClaimValueType<int>, IClaimValueType
     public static implicit operator int(Integer32 value) => value.Value;
 
     public static implicit operator Integer32(int value) =>
-        (Instance as Integer32) with
-        {
-            Value = value
-        };
+    (Instance as Integer32) with
+    {
+        Value = value
+    };
 
     public static implicit operator string(Integer32 value) => value.Value.ToString();
 
     public static implicit operator Integer32(string value) =>
-        (Instance as Integer32) with
-        {
-            Value = int.Parse(value, NumberStyles.Integer, CultureInfo.InvariantCulture)
-        };
+    (Instance as Integer32) with
+    {
+        Value = int.Parse(value, NumberStyles.Integer, CultureInfo.InvariantCulture)
+    };
 }
 
 public record class Integer64 : ClaimValueType<long>, IClaimValueType
@@ -389,24 +389,24 @@ public record class Integer64 : ClaimValueType<long>, IClaimValueType
     public static implicit operator long(Integer64 value) => value.Value;
 
     public static implicit operator Integer64(long value) =>
-        (Instance as Integer64) with
-        {
-            Value = value
-        };
+    (Instance as Integer64) with
+    {
+        Value = value
+    };
 
     public static implicit operator string(Integer64 value) => value.Value.ToString();
 
     public static implicit operator Integer64(string value) =>
-        (Instance as Integer64) with
-        {
-            Value = long.Parse(value, NumberStyles.Integer, CultureInfo.InvariantCulture)
-        };
+    (Instance as Integer64) with
+    {
+        Value = long.Parse(value, NumberStyles.Integer, CultureInfo.InvariantCulture)
+    };
 }
 
 #if WINDOWS
 public record class Sid
     : ClaimValueType<System.Security.Principal.SecurityIdentifier>,
-        IClaimValueType
+      IClaimValueType
 {
     public static readonly IClaimValueType Instance = new Sid();
 
@@ -438,18 +438,18 @@ public record class Sid
     }
 
     public static implicit operator Sid(byte[] value) =>
-        (Instance as Sid) with
-        {
-            Value = new(value, 0)
-        };
+    (Instance as Sid) with
+    {
+        Value = new(value, 0)
+    };
 
     public static implicit operator string(Sid value) => value.Value.ToString();
 
     public static implicit operator Sid(string value) =>
-        (Instance as Sid) with
-        {
-            Value = new System.Security.Principal.SecurityIdentifier(value)
-        };
+    (Instance as Sid) with
+    {
+        Value = new System.Security.Principal.SecurityIdentifier(value)
+    };
 }
 #endif
 
@@ -480,10 +480,10 @@ public record class String : ClaimValueType<string>, IClaimValueType
     public static implicit operator string(String value) => value.Value;
 
     public static implicit operator String(string value) =>
-        (Instance as String) with
-        {
-            Value = value
-        };
+    (Instance as String) with
+    {
+        Value = value
+    };
 }
 
 public record class Time : ClaimValueType<time>, IClaimValueType
@@ -517,18 +517,18 @@ public record class Time : ClaimValueType<time>, IClaimValueType
     public static implicit operator string(Time value) => value.Value.ToLongTimeString();
 
     public static implicit operator Time(string value) =>
-        (Instance as Time) with
-        {
-            Value = time.Parse(value, CultureInfo.InvariantCulture)
-        };
+    (Instance as Time) with
+    {
+        Value = time.Parse(value, CultureInfo.InvariantCulture)
+    };
 
     public static implicit operator long(Time value) => value.Value.Ticks;
 
     public static implicit operator Time(long value) =>
-        (Instance as Time) with
-        {
-            Value = new time(value)
-        };
+    (Instance as Time) with
+    {
+        Value = new time(value)
+    };
 }
 
 public record class UInteger32 : ClaimValueType<uint>, IClaimValueType
@@ -558,18 +558,18 @@ public record class UInteger32 : ClaimValueType<uint>, IClaimValueType
     public static implicit operator uint(UInteger32 value) => value.Value;
 
     public static implicit operator UInteger32(uint value) =>
-        (Instance as UInteger32) with
-        {
-            Value = value
-        };
+    (Instance as UInteger32) with
+    {
+        Value = value
+    };
 
     public static implicit operator string(UInteger32 value) => value.Value.ToString();
 
     public static implicit operator UInteger32(string value) =>
-        (Instance as UInteger32) with
-        {
-            Value = uint.Parse(value, NumberStyles.Integer, CultureInfo.InvariantCulture)
-        };
+    (Instance as UInteger32) with
+    {
+        Value = uint.Parse(value, NumberStyles.Integer, CultureInfo.InvariantCulture)
+    };
 }
 
 public record class UInteger64 : ClaimValueType<ulong>, IClaimValueType
@@ -599,18 +599,18 @@ public record class UInteger64 : ClaimValueType<ulong>, IClaimValueType
     public static implicit operator ulong(UInteger64 value) => value.Value;
 
     public static implicit operator UInteger64(ulong value) =>
-        (Instance as UInteger64) with
-        {
-            Value = value
-        };
+    (Instance as UInteger64) with
+    {
+        Value = value
+    };
 
     public static implicit operator string(UInteger64 value) => value.Value.ToString();
 
     public static implicit operator UInteger64(string value) =>
-        (Instance as UInteger64) with
-        {
-            Value = ulong.Parse(value, NumberStyles.Integer, CultureInfo.InvariantCulture)
-        };
+    (Instance as UInteger64) with
+    {
+        Value = ulong.Parse(value, NumberStyles.Integer, CultureInfo.InvariantCulture)
+    };
 }
 
 public record class DnsName : ClaimValueType<string>, IClaimValueType
@@ -640,10 +640,10 @@ public record class DnsName : ClaimValueType<string>, IClaimValueType
     public static implicit operator string(DnsName value) => value.Value;
 
     public static implicit operator DnsName(string value) =>
-        (Instance as DnsName) with
-        {
-            Value = value
-        };
+    (Instance as DnsName) with
+    {
+        Value = value
+    };
 }
 
 public record class Email : ClaimValueType<EmailAddress>, IClaimValueType
@@ -673,10 +673,10 @@ public record class Email : ClaimValueType<EmailAddress>, IClaimValueType
     public static implicit operator string?(Email value) => value.Value;
 
     public static implicit operator Email(string value) =>
-        (Instance as Email) with
-        {
-            Value = EmailAddress.From(value)
-        };
+    (Instance as Email) with
+    {
+        Value = EmailAddress.From(value)
+    };
 }
 
 public record class Rsa : ClaimValueType<RSA>, IClaimValueType
@@ -741,10 +741,10 @@ public record class UpnName : ClaimValueType<EmailAddress>, IClaimValueType
     public static implicit operator string?(UpnName value) => value.Value;
 
     public static implicit operator UpnName(string value) =>
-        (Instance as UpnName) with
-        {
-            Value = EmailAddress.From(value)
-        };
+    (Instance as UpnName) with
+    {
+        Value = EmailAddress.From(value)
+    };
 };
 
 public record class DsaKeyValue : ClaimValueType<XE>, IClaimValueType
@@ -774,10 +774,10 @@ public record class DsaKeyValue : ClaimValueType<XE>, IClaimValueType
     public static implicit operator string(DsaKeyValue value) => value.Value.ToString();
 
     public static implicit operator DsaKeyValue(string value) =>
-        (Instance as DsaKeyValue) with
-        {
-            Value = value.ToXElement()
-        };
+    (Instance as DsaKeyValue) with
+    {
+        Value = value.ToXElement()
+    };
 
     public static implicit operator DSAKeyValue(DsaKeyValue value)
     {
@@ -827,10 +827,10 @@ public record class KeyInfo : ClaimValueType, IClaimValueType
     public static implicit operator string(KeyInfo value) => value.Value.ToString();
 
     public static implicit operator KeyInfo(string value) =>
-        (Instance as KeyInfo) with
-        {
-            Value = value.ToXElement()
-        };
+    (Instance as KeyInfo) with
+    {
+        Value = value.ToXElement()
+    };
 
     public static implicit operator SSCXmlKeyInfo(KeyInfo value)
     {
@@ -880,10 +880,10 @@ public record class RsaKeyValue : ClaimValueType<XE>, IClaimValueType
     public static implicit operator string(RsaKeyValue value) => value.Value.ToString();
 
     public static implicit operator RsaKeyValue(string value) =>
-        (Instance as RsaKeyValue) with
-        {
-            Value = value.ToXElement()
-        };
+    (Instance as RsaKeyValue) with
+    {
+        Value = value.ToXElement()
+    };
 
     public static implicit operator RSAKeyValue(RsaKeyValue value)
     {
@@ -933,15 +933,15 @@ public record class DaytimeDuration : ClaimValueType<DayTimeDuration>, IClaimVal
     public static implicit operator string(DaytimeDuration value) => value.Value;
 
     public static implicit operator DaytimeDuration(string value) =>
-        (Instance as DaytimeDuration) with
-        {
-            Value = DayTimeDuration.Parse(value)
-        };
+    (Instance as DaytimeDuration) with
+    {
+        Value = DayTimeDuration.Parse(value)
+    };
 }
 
 public record class YearMonthDuration
     : ClaimValueType<Primitives.YearMonthDuration>,
-        IClaimValueType
+      IClaimValueType
 {
     public static readonly IClaimValueType Instance = new YearMonthDuration();
 
@@ -968,10 +968,10 @@ public record class YearMonthDuration
     public static implicit operator string(YearMonthDuration value) => value.Value;
 
     public static implicit operator YearMonthDuration(string value) =>
-        (Instance as YearMonthDuration) with
-        {
-            Value = Dgmjr.Primitives.YearMonthDuration.Parse(value)
-        };
+    (Instance as YearMonthDuration) with
+    {
+        Value = Dgmjr.Primitives.YearMonthDuration.Parse(value)
+    };
 }
 
 public record class Rfc822Name : ClaimValueType<EmailAddress>, IClaimValueType
@@ -1001,10 +1001,10 @@ public record class Rfc822Name : ClaimValueType<EmailAddress>, IClaimValueType
     public static implicit operator string?(Rfc822Name value) => value.Value;
 
     public static implicit operator Rfc822Name(string value) =>
-        (Instance as Rfc822Name) with
-        {
-            Value = EmailAddress.From(value)
-        };
+    (Instance as Rfc822Name) with
+    {
+        Value = EmailAddress.From(value)
+    };
 }
 
 public record class PhoneNumber : ClaimValueType<System.Domain.PhoneNumber>, IClaimValueType
@@ -1034,10 +1034,10 @@ public record class PhoneNumber : ClaimValueType<System.Domain.PhoneNumber>, ICl
     public static implicit operator string?(PhoneNumber value) => value.Value;
 
     public static implicit operator PhoneNumber(string value) =>
-        (Instance as PhoneNumber) with
-        {
-            Value = System.Domain.PhoneNumber.From(value)
-        };
+    (Instance as PhoneNumber) with
+    {
+        Value = System.Domain.PhoneNumber.From(value)
+    };
 }
 
 public record class X500Name : ClaimValueType<X500DistinguishedName>, IClaimValueType
@@ -1067,10 +1067,10 @@ public record class X500Name : ClaimValueType<X500DistinguishedName>, IClaimValu
     public static implicit operator string?(X500Name value) => value.Value.Name;
 
     public static implicit operator X500Name(string value) =>
-        (Instance as X500Name) with
-        {
-            Value = new X500DistinguishedName(value)
-        };
+    (Instance as X500Name) with
+    {
+        Value = new X500DistinguishedName(value)
+    };
 }
 
 public record class XacmlDnsName : ClaimValueType<string>, IClaimValueType
@@ -1100,10 +1100,10 @@ public record class XacmlDnsName : ClaimValueType<string>, IClaimValueType
     public static implicit operator string(XacmlDnsName value) => value.Value;
 
     public static implicit operator XacmlDnsName(string value) =>
-        (Instance as XacmlDnsName) with
-        {
-            Value = value
-        };
+    (Instance as XacmlDnsName) with
+    {
+        Value = value
+    };
 }
 
 public record class AnyUri : ClaimValueType<uri>, IClaimValueType
@@ -1133,18 +1133,18 @@ public record class AnyUri : ClaimValueType<uri>, IClaimValueType
     public static implicit operator string(AnyUri value) => value.Value.ToString();
 
     public static implicit operator AnyUri(string value) =>
-        (Instance as AnyUri) with
-        {
-            Value = System.uri.From(value)
-        };
+    (Instance as AnyUri) with
+    {
+        Value = System.uri.From(value)
+    };
 
     public static implicit operator uri(AnyUri value) => value.Value.ToString();
 
     public static implicit operator AnyUri(uri value) =>
-        (Instance as AnyUri) with
-        {
-            Value = System.uri.From(value.ToString())
-        };
+    (Instance as AnyUri) with
+    {
+        Value = System.uri.From(value.ToString())
+    };
 }
 
 public record class ObjectId : ClaimValueType<System.ObjectId>, IClaimValueType
@@ -1174,16 +1174,16 @@ public record class ObjectId : ClaimValueType<System.ObjectId>, IClaimValueType
     public static implicit operator string(ObjectId value) => value.Value.ToString();
 
     public static implicit operator ObjectId(string value) =>
-        (Instance as ObjectId) with
-        {
-            Value = System.ObjectId.From(value)
-        };
+    (Instance as ObjectId) with
+    {
+        Value = System.ObjectId.From(value)
+    };
 }
 
 [RegexDto(
-    @"(?<Address:string>((^\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\s*$)|(^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$)))",
-    typeof(ClaimValueType<System.Net.IPAddress>)
-)]
+     @"(?<Address:string>((^\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\s*$)|(^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$)))",
+     typeof(ClaimValueType<System.Net.IPAddress>)
+ )]
 public partial record class IpAddress : IClaimValueType<System.Net.IPAddress>
 {
     public static readonly IClaimValueType Instance = new IpAddress();
@@ -1191,7 +1191,7 @@ public partial record class IpAddress : IClaimValueType<System.Net.IPAddress>
     // private IpAddress() { }
 
     System.Net.IPAddress IClaimValueType<System.Net.IPAddress>.Value =>
-        System.Net.IPAddress.Parse(Address);
+    System.Net.IPAddress.Parse(Address);
     object IClaimValueType.Value => Value;
 
     /// <value><inheritdoc cref="Xacml30Namespace" path="/value" /></value>

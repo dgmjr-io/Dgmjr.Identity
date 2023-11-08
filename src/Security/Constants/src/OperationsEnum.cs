@@ -36,10 +36,10 @@ public enum Operations : byte
     Delete = 8,
 
     [Display(
-        Name = nameof(All),
-        Description = "Perform any/all operation(s) on a resource",
-        ShortName = "A"
-    )]
+         Name = nameof(All),
+         Description = "Perform any/all operation(s) on a resource",
+         ShortName = "A"
+     )]
     [EnumMember(Value = nameof(All))]
     All = Create | Read | Update | Delete
 }

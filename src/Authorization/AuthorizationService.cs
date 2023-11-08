@@ -44,5 +44,5 @@ public class AuthorizationService : Microsoft.AspNetCore.Authorization.DefaultAu
 public class AuthorizationHandler : IAuthorizationHandler
 {
     public Task HandleAsync(AuthorizationHandlerContext context) =>
-        throw new NotImplementedException();
+    throw new NotImplementedException();
 }

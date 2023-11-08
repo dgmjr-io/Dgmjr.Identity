@@ -54,7 +54,7 @@ public class ApplicationUserLoginProviderJsonConverter
 public partial record struct ApplicationUserLoginProvider
 {
     public static Dgmjr.Identity.Models.Abstractions.IApplicationUserLoginProvider FromId(int id) =>
-        FromValue((Dgmjr.Identity.Models.Enums.ApplicationUserLoginProvider)id);
+    FromValue((Dgmjr.Identity.Models.Enums.ApplicationUserLoginProvider)id);
 }
 
 public record class UserLoginProvider { }

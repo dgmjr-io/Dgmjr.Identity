@@ -20,7 +20,10 @@ public abstract class ApplicationIdentityEntity<TKey> : IIdentityEntity<TKey>
     where TKey : IEquatable<TKey>, IComparable
 {
     [Key, DbGen(DbGen.Identity), Column(nameof(Id), TypeName = BigInt.ShortName), Required]
-    public TKey Id { get; set; } = default!;
+    public TKey Id {
+        get;
+        set;
+    } = default!;
 
     object IIdentifiable.Id => Id;
 

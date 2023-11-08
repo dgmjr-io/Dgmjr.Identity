@@ -19,8 +19,8 @@ public class AppRoleClaimConfiguration : IEntityTypeConfiguration<AppRoleClaim>
         builder.HasKey(e => e.Id).HasName(pk_ + RoleClaim);
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
         builder
-            .Property(e => e.Properties)
-            .HasConversion(new JsonObjectConverter<IStringDictionary>());
+        .Property(e => e.Properties)
+        .HasConversion(new JsonObjectConverter<IStringDictionary>());
         builder.UriProperty(e => e.Type);
         builder.UriProperty(e => e.Issuer);
         builder.UriProperty(e => e.OriginalIssuer);
@@ -28,9 +28,9 @@ public class AppRoleClaimConfiguration : IEntityTypeConfiguration<AppRoleClaim>
         builder.Ignore(e => e.EntityId);
         builder.Ignore(e => e.Entity);
         builder
-            .HasOne(e => e.Role)
-            .WithMany()
-            .HasForeignKey(e => e.RoleId)
-            .HasPrincipalKey(e => e.Id);
+        .HasOne(e => e.Role)
+        .WithMany()
+        .HasForeignKey(e => e.RoleId)
+        .HasPrincipalKey(e => e.Id);
     }
 }

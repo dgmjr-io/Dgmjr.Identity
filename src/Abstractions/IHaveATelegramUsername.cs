@@ -21,5 +21,8 @@ public interface IHaveATelegramUsername
     /// <example>@IAmTheAntitwink</example>
     [RegularExpression(Account.UsernameRegex)]
     [Column(nameof(TelegramUsername), TypeName = VarChar.ShortName)]
-    string TelegramUsername { get; set; }
+    string TelegramUsername {
+        get;
+        set;
+    }
 }

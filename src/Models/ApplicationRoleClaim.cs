@@ -24,19 +24,19 @@ using Microsoft.AspNetCore.Identity;
 // [JSerializable(typeof(ApplicationRoleClaim<TSelf, TKey>))]
 public class ApplicationRoleClaim<TKey>
     : EntityClaim<ApplicationRoleClaim<TKey>, ApplicationRole<TKey>, TKey>,
-        IIdentityRoleClaim<
-            ApplicationUser<TKey>,
-            ApplicationRole<TKey>,
-            TKey,
-            ApplicationUserClaim<TKey>,
-            ApplicationUserRole<TKey>,
-            ApplicationUserLogin<TKey>,
-            ApplicationRoleClaim<TKey>,
-            ApplicationUserToken<TKey>,
-            ApplicationClaimType<TKey>,
-            ApplicationClaimValueType<TKey>
-        >
-    where TKey : IEquatable<TKey>, IComparable
+      IIdentityRoleClaim<
+      ApplicationUser<TKey>,
+      ApplicationRole<TKey>,
+      TKey,
+      ApplicationUserClaim<TKey>,
+      ApplicationUserRole<TKey>,
+      ApplicationUserLogin<TKey>,
+      ApplicationRoleClaim<TKey>,
+      ApplicationUserToken<TKey>,
+      ApplicationClaimType<TKey>,
+      ApplicationClaimValueType<TKey>
+      >
+      where TKey : IEquatable<TKey>, IComparable
 {
     public static implicit operator ApplicationRoleClaim<TKey>(C claim) => FromClaim(claim);
 
@@ -46,9 +46,14 @@ public class ApplicationRoleClaim<TKey>
         set => EntityId = value;
     }
 
-    public virtual ApplicationRole<TKey> Role { get; set; } = default!;
+    public virtual ApplicationRole<TKey> Role {
+        get;
+        set;
+    } = default!;
 
-    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; } =
+    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes {
+        get;
+    } =
         new Collection<ApplicationClaimType<TKey>>();
 }
 
@@ -59,20 +64,38 @@ public record struct ApplicationRoleClaimInsertDto
     public ApplicationRoleClaimInsertDto() => Properties = new StringDictionary();
 
     [Required, Url, StringLength(UriMaxLength, MinimumLength = 0)]
-    public Uri Type { get; set; }
+    public Uri Type {
+        get;
+        set;
+    }
 
     [Required, Url, StringLength(UriMaxLength, MinimumLength = 0)]
-    public Uri ValueType { get; set; }
+    public Uri ValueType {
+        get;
+        set;
+    }
 
     [StringLength(int.MaxValue, MinimumLength = 0)]
-    public string? Value { get; set; }
+    public string? Value {
+        get;
+        set;
+    }
 
     [Required, Url, StringLength(UriMaxLength, MinimumLength = 0)]
-    public Uri Issuer { get; set; }
+    public Uri Issuer {
+        get;
+        set;
+    }
 
     [Required, Url, StringLength(UriMaxLength, MinimumLength = 0)]
-    public Uri OriginalIssuer { get; set; }
+    public Uri OriginalIssuer {
+        get;
+        set;
+    }
 
     [Required]
-    public StringDictionary Properties { get; set; } = new StringDictionary();
+    public StringDictionary Properties {
+        get;
+        set;
+    } = new StringDictionary();
 }

@@ -19,13 +19,13 @@ public class AppUserLoginConfiguration : IEntityTypeConfiguration<AppUserLogin>
         builder.ToTable(UserLogin, IdentitySchema.ShortName, tb => tb.IsTemporal());
         builder.HasKey(e => e.Id).HasName(pk_ + UserLogin);
         builder
-            .HasOne(e => e.User)
-            .WithMany(u => u.Logins)
-            .HasForeignKey(e => e.UserId)
-            .HasPrincipalKey(e => e.Id);
+        .HasOne(e => e.User)
+        .WithMany(u => u.Logins)
+        .HasForeignKey(e => e.UserId)
+        .HasPrincipalKey(e => e.Id);
         builder
-            .Property(e => e.Provider)
-            .IsUnicode(false)
-            .HasConversion(v => v.ToString(), v => AppUserLoginProvider.Parse(v));
+        .Property(e => e.Provider)
+        .IsUnicode(false)
+        .HasConversion(v => v.ToString(), v => AppUserLoginProvider.Parse(v));
     }
 }

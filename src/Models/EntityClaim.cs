@@ -7,9 +7,9 @@ namespace Dgmjr.Identity.Models;
 
 public abstract class EntityClaim<TSelf, TEntity, TKey>
     : ApplicationIdentityEntity<TKey>,
-        IEntityClaim<TSelf, TEntity, TKey>
-    where TKey : IEquatable<TKey>, IComparable
-    where TSelf : IEntityClaim<TSelf, TEntity, TKey>, new()
+      IEntityClaim<TSelf, TEntity, TKey>
+      where TKey : IEquatable<TKey>, IComparable
+      where TSelf : IEntityClaim<TSelf, TEntity, TKey>, new()
 {
     protected EntityClaim()
     {
@@ -37,7 +37,10 @@ public abstract class EntityClaim<TSelf, TEntity, TKey>
         set => Properties[nameof(EntityId)] = value.ToString();
     }
 
-    public TEntity Entity { get; set; }
+    public TEntity Entity {
+        get;
+        set;
+    }
 
     [Required, Url, StringLength(UriMaxLength, MinimumLength = 0)]
     public string? Value
@@ -79,7 +82,10 @@ public abstract class EntityClaim<TSelf, TEntity, TKey>
         get => uri.From(Properties[nameof(OriginalIssuer)]);
         set => Properties[nameof(OriginalIssuer)] = value;
     }
-    public IStringDictionary Properties { get; set; } = new StringDictionary();
+    public IStringDictionary Properties {
+        get;
+        set;
+    } = new StringDictionary();
 
     public void InitializeFromClaim(C? claim)
     {
@@ -90,11 +96,11 @@ public abstract class EntityClaim<TSelf, TEntity, TKey>
         OriginalIssuer = claim.OriginalIssuer ?? DgmjrIdentity;
         ValueType = claim.ValueType ?? ClaimValueTypes.String.Instance.Uri;
         EntityId = claim.Properties.ContainsKey(nameof(EntityId))
-            ? (TKey)Convert.ChangeType(claim.Properties[nameof(EntityId)], typeof(TKey))
-            : default;
+                   ? (TKey)Convert.ChangeType(claim.Properties[nameof(EntityId)], typeof(TKey))
+                   : default;
         Id = claim.Properties.ContainsKey(nameof(Id))
-            ? (TKey)Convert.ChangeType(claim.Properties[nameof(Id)], typeof(TKey))
-            : default;
+             ? (TKey)Convert.ChangeType(claim.Properties[nameof(Id)], typeof(TKey))
+             : default;
     }
 
     public C ToClaim()

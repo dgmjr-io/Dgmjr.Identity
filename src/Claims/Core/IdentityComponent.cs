@@ -35,9 +35,9 @@ public abstract record class IdentityComponent : IIdentityComponent
 
     /// <value>about</value>
     string IHaveAUriString.UriString =>
-        $"{((IIdentityComponent)this).Namespace}{((IIdentityComponent)this).UriString}";
+    $"{((IIdentityComponent)this).Namespace}{((IIdentityComponent)this).UriString}";
     string IIdentityComponent.ShortUriString =>
-        $"{((IIdentityComponent)this).Namespace}{((IIdentityComponent)this).ShortUriString}";
+    $"{((IIdentityComponent)this).Namespace}{((IIdentityComponent)this).ShortUriString}";
 
     /// <value>blank</value>
     string IIdentityComponent.Name => "blank";

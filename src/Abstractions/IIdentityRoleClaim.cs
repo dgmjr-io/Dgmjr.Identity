@@ -23,82 +23,88 @@ public interface IIdentityRoleClaim<
     TUserLogin,
     TRoleClaim,
     TUserToken
-> : IEntityClaim<TRoleClaim, TRole, TKey>
+    > : IEntityClaim<TRoleClaim, TRole, TKey>
     where TUser : IIdentityUser<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TRole : IIdentityRole<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TKey : IEquatable<TKey>, IComparable
     where TUserClaim : IIdentityUserClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TUserRole : IIdentityUserRole<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TUserLogin : IIdentityUserLogin<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TRoleClaim : IIdentityRoleClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TUserToken : IIdentityUserToken<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
 {
-    TKey RoleId { get; set; }
+    TKey RoleId {
+        get;
+        set;
+    }
 
-    TRole Role { get; set; }
+    TRole Role {
+        get;
+        set;
+    }
 }
 
 public interface IIdentityRoleClaim<
@@ -112,103 +118,105 @@ public interface IIdentityRoleClaim<
     TUserToken,
     TClaimType,
     TClaimValueType
->
-    : IIdentityRoleClaim<
-        TUser,
-        TRole,
-        TKey,
-        TUserClaim,
-        TUserRole,
-        TUserLogin,
-        TRoleClaim,
-        TUserToken
     >
-    where TUser : IIdentityUser<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TRole : IIdentityRole<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TKey : IEquatable<TKey>, IComparable
-    where TUserClaim : IIdentityUserClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TUserRole : IIdentityUserRole<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TUserLogin : IIdentityUserLogin<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TRoleClaim : IIdentityRoleClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TUserToken : IIdentityUserToken<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    : IIdentityRoleClaim<
+      TUser,
+      TRole,
+      TKey,
+      TUserClaim,
+      TUserRole,
+      TUserLogin,
+      TRoleClaim,
+      TUserToken
+      >
+      where TUser : IIdentityUser<
+      TUser,
+      TRole,
+      TKey,
+      TUserClaim,
+      TUserRole,
+      TUserLogin,
+      TRoleClaim,
+      TUserToken
+      >
+      where TRole : IIdentityRole<
+      TUser,
+      TRole,
+      TKey,
+      TUserClaim,
+      TUserRole,
+      TUserLogin,
+      TRoleClaim,
+      TUserToken
+      >
+      where TKey : IEquatable<TKey>, IComparable
+      where TUserClaim : IIdentityUserClaim<
+      TUser,
+      TRole,
+      TKey,
+      TUserClaim,
+      TUserRole,
+      TUserLogin,
+      TRoleClaim,
+      TUserToken
+      >
+      where TUserRole : IIdentityUserRole<
+      TUser,
+      TRole,
+      TKey,
+      TUserClaim,
+      TUserRole,
+      TUserLogin,
+      TRoleClaim,
+      TUserToken
+      >
+      where TUserLogin : IIdentityUserLogin<
+      TUser,
+      TRole,
+      TKey,
+      TUserClaim,
+      TUserRole,
+      TUserLogin,
+      TRoleClaim,
+      TUserToken
+      >
+      where TRoleClaim : IIdentityRoleClaim<
+      TUser,
+      TRole,
+      TKey,
+      TUserClaim,
+      TUserRole,
+      TUserLogin,
+      TRoleClaim,
+      TUserToken
+      >
+      where TUserToken : IIdentityUserToken<
+      TUser,
+      TRole,
+      TKey,
+      TUserClaim,
+      TUserRole,
+      TUserLogin,
+      TRoleClaim,
+      TUserToken
+      >
 {
-    ICollection<TClaimType> ClaimTypes { get; }
+    ICollection<TClaimType> ClaimTypes {
+        get;
+    }
 }
 
 public interface IIdentityRoleClaim
     : IIdentityRoleClaim<
-        IIdentityUser,
-        IIdentityRole,
-        long,
-        IIdentityUserClaim,
-        IIdentityUserRole,
-        IIdentityUserLogin,
-        IIdentityRoleClaim,
-        IIdentityUserToken,
-        IIdentityClaimType,
-        IIdentityClaimValueType
-    >
+      IIdentityUser,
+      IIdentityRole,
+      long,
+      IIdentityUserClaim,
+      IIdentityUserRole,
+      IIdentityUserLogin,
+      IIdentityRoleClaim,
+      IIdentityUserToken,
+      IIdentityClaimType,
+      IIdentityClaimValueType
+      >
 { }

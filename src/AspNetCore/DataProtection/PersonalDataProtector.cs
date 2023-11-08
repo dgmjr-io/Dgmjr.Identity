@@ -55,39 +55,39 @@ public class PersonalDataProtector : IPersonalDataProtector
 
         // Derive a key for encryption from the master key
         encryptingAlgorithm.Key = DerivedEncryptionKey(
-            masterKey,
-            encryptingAlgorithm,
-            keyDerivationIterationCount
-        );
+                                      masterKey,
+                                      encryptingAlgorithm,
+                                      keyDerivationIterationCount
+                                  );
 
         // When the underlying encryption class is created it has a random IV by default
         // So we don't need to do anything IV wise.
 
         // And encrypt
         using (var ms = new MemoryStream())
-        using (
-            var cs = new CryptoStream(
+            using (
+                var cs = new CryptoStream(
                 ms,
                 encryptingAlgorithm.CreateEncryptor(),
                 CryptoStreamMode.Write
             )
-        )
-        {
-            cs.Write(plainText);
-            cs.FlushFinalBlock();
-            var encryptedData = ms.ToArray();
+            )
+            {
+                cs.Write(plainText);
+                cs.FlushFinalBlock();
+                var encryptedData = ms.ToArray();
 
-            cipherTextAndIV = CombineByteArrays(encryptingAlgorithm.IV, encryptedData);
-        }
+                cipherTextAndIV = CombineByteArrays(encryptingAlgorithm.IV, encryptedData);
+            }
 
         // Now get a signature for the data so we can detect tampering in situ.
         byte[] signature = SignData(
-            cipherTextAndIV,
-            masterKey,
-            encryptingAlgorithm,
-            signingAlgorithm,
-            keyDerivationIterationCount
-        );
+                               cipherTextAndIV,
+                               masterKey,
+                               encryptingAlgorithm,
+                               signingAlgorithm,
+                               keyDerivationIterationCount
+                           );
 
         // Add the signature to the cipher text.
         var signedData = CombineByteArrays(signature, cipherTextAndIV);
@@ -133,8 +133,8 @@ public class PersonalDataProtector : IPersonalDataProtector
         byte[] algorithmIdentifierAsBytes = new byte[4];
         Buffer.BlockCopy(payload, offset, algorithmIdentifierAsBytes, 0, 4);
         var algorithmIdentifier = (ProtectorAlgorithm)(
-            BitConverter.ToInt32(algorithmIdentifierAsBytes, 0)
-        );
+                                      BitConverter.ToInt32(algorithmIdentifierAsBytes, 0)
+                                  );
         ProtectorAlgorithmHelper.GetAlgorithms(
             _defaultAlgorithm,
             out SymmetricAlgorithm encryptingAlgorithm,
@@ -156,12 +156,12 @@ public class PersonalDataProtector : IPersonalDataProtector
         // Check the signature before anything else is done to detect tampering and avoid
         // oracles.
         byte[] computedSignature = SignData(
-            cipherTextAndIV,
-            masterKey,
-            encryptingAlgorithm,
-            signingAlgorithm,
-            keyDerivationIterationCount
-        );
+                                       cipherTextAndIV,
+                                       masterKey,
+                                       encryptingAlgorithm,
+                                       signingAlgorithm,
+                                       keyDerivationIterationCount
+                                   );
         if (!ByteArraysEqual(computedSignature, signature))
         {
             throw new CryptographicException(@"Invalid Signature.");
@@ -185,26 +185,26 @@ public class PersonalDataProtector : IPersonalDataProtector
         );
 
         encryptingAlgorithm.Key = DerivedEncryptionKey(
-            masterKey,
-            encryptingAlgorithm,
-            keyDerivationIterationCount
-        );
+                                      masterKey,
+                                      encryptingAlgorithm,
+                                      keyDerivationIterationCount
+                                  );
         encryptingAlgorithm.IV = initializationVector;
 
         // Decrypt
         using (var ms = new MemoryStream())
-        using (
-            var cs = new CryptoStream(
+            using (
+                var cs = new CryptoStream(
                 ms,
                 encryptingAlgorithm.CreateDecryptor(),
                 CryptoStreamMode.Write
             )
-        )
-        {
-            cs.Write(cipherText);
-            cs.FlushFinalBlock();
-            plainText = ms.ToArray();
-        }
+            )
+            {
+                cs.Write(cipherText);
+                cs.FlushFinalBlock();
+                plainText = ms.ToArray();
+            }
         encryptingAlgorithm.Clear();
         encryptingAlgorithm.Dispose();
 
@@ -226,10 +226,10 @@ public class PersonalDataProtector : IPersonalDataProtector
     )
     {
         hashAlgorithm.Key = DerivedSigningKey(
-            masterKey,
-            symmetricAlgorithm,
-            keyDerivationIterationCount
-        );
+                                masterKey,
+                                symmetricAlgorithm,
+                                keyDerivationIterationCount
+                            );
         byte[] signature = hashAlgorithm.ComputeHash(cipherText);
         hashAlgorithm.Clear();
         return signature;
@@ -242,12 +242,12 @@ public class PersonalDataProtector : IPersonalDataProtector
     )
     {
         return KeyDerivation.Pbkdf2(
-            @"PersonalDataSigning",
-            key,
-            KeyDerivationPrf.HMACSHA512,
-            keyDerivationIterationCount,
-            algorithm.KeySize / 8
-        );
+                   @"PersonalDataSigning",
+                   key,
+                   KeyDerivationPrf.HMACSHA512,
+                   keyDerivationIterationCount,
+                   algorithm.KeySize / 8
+               );
     }
 
     private static byte[] DerivedEncryptionKey(
@@ -257,12 +257,12 @@ public class PersonalDataProtector : IPersonalDataProtector
     )
     {
         return KeyDerivation.Pbkdf2(
-            @"PersonalDataEncryption",
-            key,
-            KeyDerivationPrf.HMACSHA512,
-            keyDerivationIterationCount,
-            algorithm.KeySize / 8
-        );
+                   @"PersonalDataEncryption",
+                   key,
+                   KeyDerivationPrf.HMACSHA512,
+                   keyDerivationIterationCount,
+                   algorithm.KeySize / 8
+               );
     }
 
     private static byte[] CombineByteArrays(byte[] left, byte[] right)

@@ -24,9 +24,15 @@ public partial interface IIdentityDbContext : IDbContext<IIdentityDbContext>
 // [GenerateInterface(typeof(IdentityDbContext<,,,,,,,,,>))]
 public partial interface IIdentityDbContext<TUser, TRole>
     : IDbContext<IIdentityDbContext<TUser, TRole>>
-    where TUser : class, IIdentityUserBase
-    where TRole : class, IIdentityRoleBase
+      where TUser : class, IIdentityUserBase
+      where TRole : class, IIdentityRoleBase
 {
-    DbSet<TUser> Users { get; set; }
-    DbSet<TRole> Roles { get; set; }
+    DbSet<TUser> Users {
+        get;
+        set;
+    }
+    DbSet<TRole> Roles {
+        get;
+        set;
+    }
 }

@@ -23,17 +23,17 @@ using static System.Guid;
 [DebuggerDisplay("ApplicationRole ({Id} - {Name} {Uri})")]
 public partial class ApplicationRole<TKey>
     : ApplicationIdentityEntity<TKey>,
-        IIdentityRole<
-            ApplicationUser<TKey>,
-            ApplicationRole<TKey>,
-            TKey,
-            ApplicationUserClaim<TKey>,
-            ApplicationUserRole<TKey>,
-            ApplicationUserLogin<TKey>,
-            ApplicationRoleClaim<TKey>,
-            ApplicationUserToken<TKey>
-        >
-    where TKey : IEquatable<TKey>, IComparable
+      IIdentityRole<
+      ApplicationUser<TKey>,
+      ApplicationRole<TKey>,
+      TKey,
+      ApplicationUserClaim<TKey>,
+      ApplicationUserRole<TKey>,
+      ApplicationUserLogin<TKey>,
+      ApplicationRoleClaim<TKey>,
+      ApplicationUserToken<TKey>
+      >
+      where TKey : IEquatable<TKey>, IComparable
 {
     public const string RoleUriDefaultFormatString = "urn:role:{0}";
 
@@ -42,9 +42,15 @@ public partial class ApplicationRole<TKey>
         get => Id;
     }
 
-    public virtual string? ConcurrencyStamp { get; set; } = NewGuid().ToString();
+    public virtual string? ConcurrencyStamp {
+        get;
+        set;
+    } = NewGuid().ToString();
 
-    public virtual string Name { get; set; }
+    public virtual string Name {
+        get;
+        set;
+    }
 
     public virtual string NormalizedName
     {
@@ -60,15 +66,30 @@ public partial class ApplicationRole<TKey>
         get => Uri;
     }
 
-    public string Description { get; set; } = string.Empty;
+    public string Description {
+        get;
+        set;
+    } = string.Empty;
 
-    public virtual uri Uri { get; set; }
+    public virtual uri Uri {
+        get;
+        set;
+    }
 
-    public virtual ICollection<ApplicationUser<TKey>> Users { get; set; } =
+    public virtual ICollection<ApplicationUser<TKey>> Users {
+        get;
+        set;
+    } =
         new Collection<ApplicationUser<TKey>>();
-    public virtual ICollection<ApplicationUserRole<TKey>> UserRoles { get; set; } =
+    public virtual ICollection<ApplicationUserRole<TKey>> UserRoles {
+        get;
+        set;
+    } =
         new Collection<ApplicationUserRole<TKey>>();
-    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; set; } =
+    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes {
+        get;
+        set;
+    } =
         new Collection<ApplicationClaimType<TKey>>();
 }
 

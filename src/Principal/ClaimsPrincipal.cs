@@ -26,8 +26,8 @@ public class ClaimsIdentity : SystemClaimsIdentity
 {
     public ClaimsIdentity(IHaveClaims user)
         : base(
-            user.Claims /*.Select(c => c.ToClaim())*/
-        )
+              user.Claims /*.Select(c => c.ToClaim())*/
+          )
     { }
 }
 // #endif

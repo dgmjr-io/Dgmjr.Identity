@@ -58,76 +58,76 @@ public class IdentityDbContext<
     TUserToken,
     TClaimType,
     TClaimValueType
->
+    >
     : IdentityDbContext<TUser, TRole>,
-        IIdentityDbContext,
-        IDbContext<IIdentityDbContext>,
-        IIdentityDbContext<TUser, TRole>
-    where TUser : class,
-        IIdentityUser<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-    where TRole : class,
-        IIdentityRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-    where TKey : IEquatable<TKey>, IComparable
-    where TUserClaim : class,
-        IIdentityUserClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TUserRole : class,
-        IIdentityUserRole<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TUserLogin : class,
-        IIdentityUserLogin<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TRoleClaim : class,
-        IIdentityRoleClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TUserToken : class,
-        IIdentityUserToken<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TClaimType : class,
-        IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValueType>,
-        IHaveAName
-    where TClaimValueType : class,
-        IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType>
+      IIdentityDbContext,
+      IDbContext<IIdentityDbContext>,
+      IIdentityDbContext<TUser, TRole>
+      where TUser : class,
+      IIdentityUser<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+      where TRole : class,
+      IIdentityRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+      where TKey : IEquatable<TKey>, IComparable
+      where TUserClaim : class,
+      IIdentityUserClaim<
+      TUser,
+      TRole,
+      TKey,
+      TUserClaim,
+      TUserRole,
+      TUserLogin,
+      TRoleClaim,
+      TUserToken
+      >
+      where TUserRole : class,
+      IIdentityUserRole<
+      TUser,
+      TRole,
+      TKey,
+      TUserClaim,
+      TUserRole,
+      TUserLogin,
+      TRoleClaim,
+      TUserToken
+      >
+      where TUserLogin : class,
+      IIdentityUserLogin<
+      TUser,
+      TRole,
+      TKey,
+      TUserClaim,
+      TUserRole,
+      TUserLogin,
+      TRoleClaim,
+      TUserToken
+      >
+      where TRoleClaim : class,
+      IIdentityRoleClaim<
+      TUser,
+      TRole,
+      TKey,
+      TUserClaim,
+      TUserRole,
+      TUserLogin,
+      TRoleClaim,
+      TUserToken
+      >
+      where TUserToken : class,
+      IIdentityUserToken<
+      TUser,
+      TRole,
+      TKey,
+      TUserClaim,
+      TUserRole,
+      TUserLogin,
+      TRoleClaim,
+      TUserToken
+      >
+      where TClaimType : class,
+      IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValueType>,
+      IHaveAName
+      where TClaimValueType : class,
+      IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType>
 {
     public IdentityDbContext(DbContextOptions options)
         : base(options) { }
@@ -135,30 +135,57 @@ public class IdentityDbContext<
     public IdentityDbContext(DbContextOptions<IdentityDbContext> options)
         : base(options) { }
 
-    public virtual DbSet<TUser> Users { get; set; }
-    public virtual DbSet<TRole> Roles { get; set; }
-    public virtual DbSet<TUserClaim> UserClaims { get; set; }
-    public virtual DbSet<TUserRole> UserRoles { get; set; }
-    public virtual DbSet<TUserLogin> UserLogins { get; set; }
-    public virtual DbSet<TRoleClaim> RoleClaims { get; set; }
-    public virtual DbSet<TUserToken> UserTokens { get; set; }
-    public virtual DbSet<TClaimType> ClaimTypes { get; set; }
-    public virtual DbSet<TClaimValueType> ClaimValueTypes { get; set; }
+    public virtual DbSet<TUser> Users {
+        get;
+        set;
+    }
+    public virtual DbSet<TRole> Roles {
+        get;
+        set;
+    }
+    public virtual DbSet<TUserClaim> UserClaims {
+        get;
+        set;
+    }
+    public virtual DbSet<TUserRole> UserRoles {
+        get;
+        set;
+    }
+    public virtual DbSet<TUserLogin> UserLogins {
+        get;
+        set;
+    }
+    public virtual DbSet<TRoleClaim> RoleClaims {
+        get;
+        set;
+    }
+    public virtual DbSet<TUserToken> UserTokens {
+        get;
+        set;
+    }
+    public virtual DbSet<TClaimType> ClaimTypes {
+        get;
+        set;
+    }
+    public virtual DbSet<TClaimValueType> ClaimValueTypes {
+        get;
+        set;
+    }
 
     static string DefaultConnectionStringConfigurationKey => "IdentityDb";
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder
-            .EnableSensitiveDataLogging()
-            .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
-            .EnableDetailedErrors()
-            .ConfigureWarnings(_ => { })
-            .UseSqlServer(options =>
-            {
-                options.MigrationsAssembly(typeof(IdentityDbContext).Assembly.FullName);
-                options.EnableRetryOnFailure();
-            });
+        .EnableSensitiveDataLogging()
+        .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
+        .EnableDetailedErrors()
+        .ConfigureWarnings(_ => { })
+        .UseSqlServer(options =>
+        {
+            options.MigrationsAssembly(typeof(IdentityDbContext).Assembly.FullName);
+            options.EnableRetryOnFailure();
+        });
         base.OnConfiguring(optionsBuilder);
     }
 
@@ -196,17 +223,17 @@ public class IdentityDbContext<
     public virtual bool IsBot(long userId) => !GetBotToken(userId).IsEmpty;
 
     public virtual BotApiToken GetBotToken(long userId) =>
-        BotApiToken.TryParse(ufn_GetBotToken(userId), out var botToken) ? botToken.Value : default!;
+    BotApiToken.TryParse(ufn_GetBotToken(userId), out var botToken) ? botToken.Value : default!;
 
     [DbFunction(nameof(ufn_GetBotToken), Schema = DataSchema.ShortName)]
     public virtual string ufn_GetBotToken(long userId) =>
-        UserClaims
-            .FirstOrDefault(
-                u =>
-                    u.Type.Equals(Telegram.Identity.ClaimTypes.BotApiToken.UriString)
-                    && u.UserId.Equals(userId.ToString())
-            )
-            ?.Value ?? string.Empty;
+    UserClaims
+    .FirstOrDefault(
+        u =>
+        u.Type.Equals(Telegram.Identity.ClaimTypes.BotApiToken.UriString)
+        && u.UserId.Equals(userId.ToString())
+    )
+    ?.Value ?? string.Empty;
 
     [DbFunction(nameof(ufn_GetBotToken), Schema = DataSchema.ShortName)]
     public virtual bool IsValidBotToken(string token) => BotApiToken.TryParse(token, out _);
@@ -216,7 +243,7 @@ public class IdentityDbContext<
 
     [DbFunction(ufn_ + nameof(IsValidPhoneNumber), Schema = IdentitySchema.ShortName)]
     public virtual bool IsValidPhoneNumber(string phoneNumber) =>
-        PhoneNumber.TryParse(phoneNumber, out _);
+    PhoneNumber.TryParse(phoneNumber, out _);
 
     [DbFunction(ufn_ + nameof(IsValidGender), Schema = IdentitySchema.ShortName)]
     public virtual bool IsValidGender(string gender) => Gender.TryParse(gender, out _);
@@ -236,17 +263,17 @@ public class IdentityDbContext<
 
 public class IdentityDbContext
     : IdentityDbContext<
-        AppUser,
-        AppRole,
-        long,
-        AppUserClaim,
-        AppUserRole,
-        AppUserLogin,
-        AppRoleClaim,
-        AppUserToken,
-        AppClaimType,
-        AppClaimValueType
-    >
+      AppUser,
+      AppRole,
+      long,
+      AppUserClaim,
+      AppUserRole,
+      AppUserLogin,
+      AppRoleClaim,
+      AppUserToken,
+      AppClaimType,
+      AppClaimValueType
+      >
 {
     public IdentityDbContext(DbContextOptions options)
         : base(options) { }

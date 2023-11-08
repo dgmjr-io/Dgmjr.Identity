@@ -22,48 +22,50 @@ using MSIDR = Microsoft.AspNetCore.Identity.IdentityResult;
 namespace Dgmjr.Identity;
 
 public class UserManager<TUser, TRole>(
-    IUserStore<TUser> store,
-    IOptions<IdentityOptions> optionsAccessor,
-    IPasswordHasher<TUser> passwordHasher,
-    IEnumerable<IUserValidator<TUser>> userValidators,
-    IEnumerable<IPasswordValidator<TUser>> passphraseValidators,
-    ILookupNormalizer keyNormalizer,
-    IdentityErrorDescriber errors,
-    IServiceProvider services,
-    ILogger<UserManager<TUser>> logger,
-    IIdentityDbContext<TUser, TRole> db,
-    IPassphraseGenerator passphraseGenerator
-)
-    : UserManager<TUser>(
-        store,
-        optionsAccessor,
-        passwordHasher,
-        userValidators,
-        passphraseValidators,
-        keyNormalizer,
-        errors,
-        services,
-        logger
-    ),
-        IHaveADbContext<IIdentityDbContext<TUser, TRole>>
-    where TUser : class, IIdentityUserBase
-    where TRole : class, IIdentityRoleBase
+        IUserStore<TUser> store,
+        IOptions<IdentityOptions> optionsAccessor,
+        IPasswordHasher<TUser> passwordHasher,
+        IEnumerable<IUserValidator<TUser>> userValidators,
+        IEnumerable<IPasswordValidator<TUser>> passphraseValidators,
+        ILookupNormalizer keyNormalizer,
+        IdentityErrorDescriber errors,
+        IServiceProvider services,
+        ILogger<UserManager<TUser>> logger,
+        IIdentityDbContext<TUser, TRole> db,
+        IPassphraseGenerator passphraseGenerator
+    )
+        : UserManager<TUser>(
+              store,
+              optionsAccessor,
+              passwordHasher,
+              userValidators,
+              passphraseValidators,
+              keyNormalizer,
+              errors,
+              services,
+              logger
+          ),
+          IHaveADbContext<IIdentityDbContext<TUser, TRole>>
+          where TUser : class, IIdentityUserBase
+          where TRole : class, IIdentityRoleBase
 {
     private readonly IPassphraseGenerator _passphraseGenerator = passphraseGenerator;
-public IIdentityDbContext<TUser, TRole> Db { get; } = db;
+    public IIdentityDbContext<TUser, TRole> Db {
+        get;
+    } = db;
 
-public override IQueryable<TUser> Users => Db.Users;
+    public override IQueryable<TUser> Users => Db.Users;
 
-public virtual Task<TUser?> FindByIdAsync(int userId) => FindByIdAsync(userId.ToString());
+    public virtual Task<TUser?> FindByIdAsync(int userId) => FindByIdAsync(userId.ToString());
 
-public override Task<TUser?> FindByNameAsync(string userName)
-{
-    if (userName is null)
-        throw new ArgumentNullException(nameof(userName));
+    public override Task<TUser?> FindByNameAsync(string userName)
+    {
+        if (userName is null)
+            throw new ArgumentNullException(nameof(userName));
 
-    var users = Users ?? Db.Users;
-    return users.FirstOrDefaultAsync(u => u.Username == userName);
-}
+        var users = Users ?? Db.Users;
+        return users.FirstOrDefaultAsync(u => u.Username == userName);
+    }
 
 // public override async Task<IList<C>> GetClaimsAsync(TUser user)
 // {
@@ -96,11 +98,11 @@ public override Task<TUser?> FindByNameAsync(string userName)
 //     ;
 // }
 
-public virtual async Task<string> GeneratePasswordAsync(TUser user)
-{
-    var passphrase = _passphraseGenerator.Generate();
-    return (await AddPasswordAsync(user, passphrase)).Succeeded
-        ? passphrase
-        : throw new Exception("Failed to generate passphrase");
-}
+    public virtual async Task<string> GeneratePasswordAsync(TUser user)
+    {
+        var passphrase = _passphraseGenerator.Generate();
+        return (await AddPasswordAsync(user, passphrase)).Succeeded
+               ? passphrase
+               : throw new Exception("Failed to generate passphrase");
+    }
 }

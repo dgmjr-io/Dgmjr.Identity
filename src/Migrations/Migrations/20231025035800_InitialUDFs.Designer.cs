@@ -11,16 +11,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dgmjr.Identity.EntityFrameworkCore.Migrations.Migrations
 {
-    [DbContext(typeof(IdentityDbContext))]
-    [Migration("20231025035800_InitialUDFs")]
-    partial class InitialUDFs
+[DbContext(typeof(IdentityDbContext))]
+[Migration("20231025035800_InitialUDFs")]
+partial class InitialUDFs
+{
+    /// <inheritdoc />
+    protected override void BuildTargetModel(ModelBuilder modelBuilder)
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder.UseIdentityColumns();
+        modelBuilder.UseIdentityColumns();
 #pragma warning restore 612, 618
-        }
     }
+}
 }

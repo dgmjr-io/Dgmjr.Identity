@@ -17,38 +17,62 @@ public interface IEntityClaim<TSelf, TEntity, TKey> : IIdentityEntity<TKey>
     where TKey : IEquatable<TKey>, IComparable
 {
     [Hashids]
-    TKey EntityId { get; set; }
+    TKey EntityId {
+        get;
+        set;
+    }
 
-    TEntity Entity { get; set; }
+    TEntity Entity {
+        get;
+        set;
+    }
 
-    string? Value { get; set; }
+    string? Value {
+        get;
+        set;
+    }
 
     [StringLength(UriMaxLength, MinimumLength = 1)]
     [Required]
     [Url]
     [DefaultValue(DgmjrCt.DgmjrClaims.UriString)]
-    uri Type { get; set; }
+    uri Type {
+        get;
+        set;
+    }
 
     [StringLength(UriMaxLength, MinimumLength = 1)]
     [Required]
     [Url]
     [DefaultValue(ClaimValueTypes.String.UriString)]
-    uri ValueType { get; set; }
+    uri ValueType {
+        get;
+        set;
+    }
 
     [StringLength(UriMaxLength, MinimumLength = 1)]
     [Required]
     [Url]
     [DefaultValue(DgmjrCt.DgmjrClaims.BaseUri)]
-    uri Issuer { get; set; }
+    uri Issuer {
+        get;
+        set;
+    }
 
     [StringLength(UriMaxLength, MinimumLength = 1)]
     [Required]
     [Url]
     [DefaultValue(DgmjrCt.DgmjrClaims.BaseUri)]
-    uri OriginalIssuer { get; set; }
+    uri OriginalIssuer {
+        get;
+        set;
+    }
 
     [DefaultValue("{}")]
-    IStringDictionary Properties { get; set; }
+    IStringDictionary Properties {
+        get;
+        set;
+    }
 
     C ToClaim();
     void InitializeFromClaim(C? claim);

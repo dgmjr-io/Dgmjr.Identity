@@ -21,29 +21,44 @@ using Microsoft.AspNetCore.Identity;
 [DebuggerDisplay("User Role ({Id} - User ID: {UserId}, Role: {Role})")]
 public class ApplicationUserRole<TKey>
     : ApplicationIdentityEntity<TKey>,
-        IIdentityUserRole<
-            ApplicationUser<TKey>,
-            ApplicationRole<TKey>,
-            TKey,
-            ApplicationUserClaim<TKey>,
-            ApplicationUserRole<TKey>,
-            ApplicationUserLogin<TKey>,
-            ApplicationRoleClaim<TKey>,
-            ApplicationUserToken<TKey>
-        >
-    where TKey : IEquatable<TKey>, IComparable
+      IIdentityUserRole<
+      ApplicationUser<TKey>,
+      ApplicationRole<TKey>,
+      TKey,
+      ApplicationUserClaim<TKey>,
+      ApplicationUserRole<TKey>,
+      ApplicationUserLogin<TKey>,
+      ApplicationRoleClaim<TKey>,
+      ApplicationUserToken<TKey>
+      >
+      where TKey : IEquatable<TKey>, IComparable
 {
     [Key, DbGen(DbGen.Identity), Column(TypeName = BigInt.ShortName)]
-    public virtual TKey Id { get; set; }
+    public virtual TKey Id {
+        get;
+        set;
+    }
 
     [Column(nameof(RoleId), Order = 2, TypeName = BigInt.ShortName)]
-    public virtual TKey RoleId { get; set; }
+    public virtual TKey RoleId {
+        get;
+        set;
+    }
 
     [Column(nameof(UserId), Order = 1, TypeName = BigInt.ShortName)]
-    public virtual TKey UserId { get; set; }
+    public virtual TKey UserId {
+        get;
+        set;
+    }
 
-    public ApplicationUser<TKey> User { get; set; }
-    public ApplicationRole<TKey> Role { get; set; }
+    public ApplicationUser<TKey> User {
+        get;
+        set;
+    }
+    public ApplicationRole<TKey> Role {
+        get;
+        set;
+    }
 
     //[ForeignKey(ColUserId)]
     //public virtual BackroomUser User { get; set; }
@@ -61,8 +76,14 @@ public class ApplicationUserRole : ApplicationUserRole<long> { }
 
 public record class ApplicationUserUserRoleInsertDto<TKey>
 {
-    public long UserId { get; set; }
-    public long RoleId { get; set; }
+    public long UserId {
+        get;
+        set;
+    }
+    public long RoleId {
+        get;
+        set;
+    }
 }
 
 public record class ApplicationUserUserRoleInsertDto : ApplicationUserUserRoleInsertDto<long> { }

@@ -30,14 +30,14 @@ public class IdentityDbContextDesignTimeFactory : IDesignTimeDbContextFactory<Id
             new ConfigurationManager().AddUserSecrets<IdentityDbContextDesignTimeFactory>();
         // var connectionString = ((IConfigurationRoot)config)[DefaultConnectionStringKey];
         var connectionString = config
-            // .AddAzureAppConfiguration(
-            //     options =>
-            //         options
-            //             .Connect(connectionString)
-            //             .ConfigureKeyVault(kv => kv.SetCredential(new DefaultAzureCredential()))
-            // )
-            .Build()
-            .GetConnectionString("IdentityDb");
+                               // .AddAzureAppConfiguration(
+                               //     options =>
+                               //         options
+                               //             .Connect(connectionString)
+                               //             .ConfigureKeyVault(kv => kv.SetCredential(new DefaultAzureCredential()))
+                               // )
+                               .Build()
+                               .GetConnectionString("IdentityDb");
         var builder = new DbContextOptionsBuilder<IdentityDbContext>();
         builder.UseSqlServer(
             connectionString,

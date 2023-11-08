@@ -16,10 +16,14 @@ using Dgmjr.Abstractions;
 
 public interface IClaimValueType<TValue> : IClaimValueType, IHaveAValue<TValue>
 {
-    new TValue Value { get; }
+    new TValue Value {
+        get;
+    }
 }
 
 public interface IClaimValueType : IIdentityComponent, IEquatable<IClaimValueType>
 {
-    object Value { get; }
+    object Value {
+        get;
+    }
 }

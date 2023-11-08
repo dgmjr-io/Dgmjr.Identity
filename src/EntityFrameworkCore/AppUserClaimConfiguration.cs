@@ -33,70 +33,70 @@ public class AppUserClaimConfiguration<
     TUserToken,
     TClaimType,
     TClaimValueType
-> : IEntityTypeConfiguration<TUserClaim>
+    > : IEntityTypeConfiguration<TUserClaim>
     where TUser : class,
-        IIdentityUser<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+    IIdentityUser<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TRole : class,
-        IIdentityRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+    IIdentityRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TKey : IEquatable<TKey>, IComparable
     where TUserClaim : class,
-        IIdentityUserClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    IIdentityUserClaim<
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TUserRole : class,
-        IIdentityUserRole<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    IIdentityUserRole<
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TUserLogin : class,
-        IIdentityUserLogin<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    IIdentityUserLogin<
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TRoleClaim : class,
-        IIdentityRoleClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    IIdentityRoleClaim<
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TUserToken : class,
-        IIdentityUserToken<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    IIdentityUserToken<
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TClaimType : class, IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValueType>
     where TClaimValueType : class,
-        IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType>
+    IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType>
 {
     public virtual void Configure(EntityTypeBuilder<TUserClaim> builder)
     {
@@ -104,8 +104,8 @@ public class AppUserClaimConfiguration<
         builder.HasKey(e => e.Id).HasName(pk_ + UserClaim);
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
         builder
-            .Property(e => e.Properties)
-            .HasConversion(new JsonObjectConverter<IStringDictionary>());
+        .Property(e => e.Properties)
+        .HasConversion(new JsonObjectConverter<IStringDictionary>());
         builder.UriProperty(e => e.Type);
         builder.UriProperty(e => e.Issuer);
         builder.UriProperty(e => e.OriginalIssuer);
@@ -113,24 +113,24 @@ public class AppUserClaimConfiguration<
         builder.Ignore(e => e.EntityId);
         builder.Ignore(e => e.Entity);
         builder
-            .HasOne(e => e.User)
-            .WithMany(e => e.Claims)
-            .HasForeignKey(e => e.UserId)
-            .HasPrincipalKey(e => e.Id);
+        .HasOne(e => e.User)
+        .WithMany(e => e.Claims)
+        .HasForeignKey(e => e.UserId)
+        .HasPrincipalKey(e => e.Id);
     }
 }
 
 public class AppUserClaimConfiguration
     : AppUserClaimConfiguration<
-        AppUser,
-        AppRole,
-        long,
-        AppUserClaim,
-        AppUserRole,
-        AppUserLogin,
-        AppRoleClaim,
-        AppUserToken,
-        AppClaimType,
-        AppClaimValueType
-    >
+      AppUser,
+      AppRole,
+      long,
+      AppUserClaim,
+      AppUserRole,
+      AppUserLogin,
+      AppRoleClaim,
+      AppUserToken,
+      AppClaimType,
+      AppClaimValueType
+      >
 { }

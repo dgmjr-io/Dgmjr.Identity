@@ -14,5 +14,7 @@ namespace Dgmjr.Identity.Abstractions;
 
 public interface IHaveAUserId
 {
-    string UserId { get; }
+    string UserId {
+        get;
+    }
 }

@@ -36,10 +36,13 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
     public virtual bool Equals(IClaimValueType? other)
     {
         return other is not null
-            && (ReferenceEquals(this, other) || ((IClaimValueType)this).Uri == other.Uri);
+               && (ReferenceEquals(this, other) || ((IClaimValueType)this).Uri == other.Uri);
     }
 
-    public object Value { get; set; }
+    public object Value {
+        get;
+        set;
+    }
 
     string IIdentityComponent.Name => string.Empty;
     string IHaveAUriString.UriString => "about:blank";
@@ -112,14 +115,14 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
 
     public class EFCoreConverter<TClaimValueType, TPersistedType>
         : ValueConverter<TClaimValueType?, TPersistedType?>
-        where TClaimValueType : notnull, IClaimValueType
-        where TPersistedType : notnull
+          where TClaimValueType : notnull, IClaimValueType
+          where TPersistedType : notnull
     {
         public EFCoreConverter()
             : base(
-                v => (TPersistedType)v.Value,
-                v => (TClaimValueType)Activator.CreateInstance(typeof(TClaimValueType), v)
-            )
+                  v => (TPersistedType)v.Value,
+                  v => (TClaimValueType)Activator.CreateInstance(typeof(TClaimValueType), v)
+              )
         { }
     }
 }

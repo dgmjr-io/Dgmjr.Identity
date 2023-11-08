@@ -24,15 +24,20 @@ using Dgmjr.Abstractions;
 
 public partial interface IIdentityUser<TKey, TUser, TRole>
     : IIdentityUserBase,
-        IIdentityEntity<TKey>
-    where TKey : IEquatable<TKey>, IComparable
-    where TRole : IIdentityRole<TKey, TUser, TRole>
-    where TUser : IIdentityUser<TKey, TUser, TRole>
+      IIdentityEntity<TKey>
+      where TKey : IEquatable<TKey>, IComparable
+      where TRole : IIdentityRole<TKey, TUser, TRole>
+      where TUser : IIdentityUser<TKey, TUser, TRole>
 {
     /// <summary>Gets or sets the primary key for this user.</summary>
     [PersonalData, Key, DbGen(DbGen.None), Hashids]
-    new TKey Id { get; set; }
-    ICollection<TRole> Roles { get; }
+    new TKey Id {
+        get;
+        set;
+    }
+    ICollection<TRole> Roles {
+        get;
+    }
 }
 
 public partial interface IIdentityUser<
@@ -44,94 +49,102 @@ public partial interface IIdentityUser<
     TUserLogin,
     TRoleClaim,
     TUserToken
-> : IIdentityUser<TKey, TUser, TRole>
+    > : IIdentityUser<TKey, TUser, TRole>
     where TUser : IIdentityUser<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TRole : IIdentityRole<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TKey : IEquatable<TKey>, IComparable
     where TUserClaim : IIdentityUserClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TUserRole : IIdentityUserRole<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TUserLogin : IIdentityUserLogin<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TRoleClaim : IIdentityRoleClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
     where TUserToken : IIdentityUserToken<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    TUser,
+    TRole,
+    TKey,
+    TUserClaim,
+    TUserRole,
+    TUserLogin,
+    TRoleClaim,
+    TUserToken
+    >
 {
-    ICollection<TUserClaim> Claims { get; }
-    ICollection<TUserLogin> Logins { get; }
-    ICollection<TUserToken> Tokens { get; }
-    ICollection<TUserRole> UserRoles { get; }
+    ICollection<TUserClaim> Claims {
+        get;
+    }
+    ICollection<TUserLogin> Logins {
+        get;
+    }
+    ICollection<TUserToken> Tokens {
+        get;
+    }
+    ICollection<TUserRole> UserRoles {
+        get;
+    }
 }
 
 public interface IIdentityUser
     : IIdentityUser<
-        IIdentityUser,
-        IIdentityRole,
-        long,
-        IIdentityUserClaim,
-        IIdentityUserRole,
-        IIdentityUserLogin,
-        IIdentityRoleClaim,
-        IIdentityUserToken
-    >
+      IIdentityUser,
+      IIdentityRole,
+      long,
+      IIdentityUserClaim,
+      IIdentityUserRole,
+      IIdentityUserLogin,
+      IIdentityRoleClaim,
+      IIdentityUserToken
+      >
 { }
