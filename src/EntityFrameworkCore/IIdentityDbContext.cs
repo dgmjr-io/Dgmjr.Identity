@@ -15,24 +15,17 @@ namespace Dgmjr.Identity;
 using Microsoft.EntityFrameworkCore.Abstractions;
 
 // [GenerateInterface(typeof(IdentityDbContext<,,,,,,,,,>))]
-public partial interface IIdentityDbContext : IDbContext<IIdentityDbContext>
-{
-    // static string IDbContext.DefaultConnectionStringConfigurationKey => "IdentityDb";
-    // public string DefaultConnectionStringConfigurationKey => "IdentityDb";
+public partial interface IIdentityDbContext : IDbContext<IIdentityDbContext> {
+  // static string IDbContext.DefaultConnectionStringConfigurationKey =>
+  // "IdentityDb"; public string DefaultConnectionStringConfigurationKey =>
+  // "IdentityDb";
 }
 
 // [GenerateInterface(typeof(IdentityDbContext<,,,,,,,,,>))]
 public partial interface IIdentityDbContext<TUser, TRole>
     : IDbContext<IIdentityDbContext<TUser, TRole>>
-      where TUser : class, IIdentityUserBase
-      where TRole : class, IIdentityRoleBase
-{
-    DbSet<TUser> Users {
-        get;
-        set;
-    }
-    DbSet<TRole> Roles {
-        get;
-        set;
-    }
+    where TUser : class, IIdentityUserBase
+    where TRole : class, IIdentityRoleBase {
+  DbSet<TUser> Users { get; set; }
+  DbSet<TRole> Roles { get; set; }
 }

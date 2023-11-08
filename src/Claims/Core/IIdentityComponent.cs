@@ -12,27 +12,15 @@
 
 namespace Dgmjr.Identity;
 
-public interface IIdentityComponent : IEquatable<IIdentityComponent>, IHaveAUriString
-{
-    bool Equals(object other);
+public interface IIdentityComponent : IEquatable<IIdentityComponent>,
+                                      IHaveAUriString {
+  bool Equals(object other);
 
-    string Namespace {
-        get;
-    }
-    string Name {
-        get;
-    }
-    string ShortUriString {
-        get;
-    }
-    string ShortNamespace {
-        get;
-    }
-    uri Uri {
-        get;
-    }
-    uri ShortUri {
-        get;
-    }
-    int GetHashCode();
+  string Namespace { get; }
+  string Name { get; }
+  string ShortUriString { get; }
+  string ShortNamespace { get; }
+  uri Uri { get; }
+  uri ShortUri { get; }
+  int GetHashCode();
 }

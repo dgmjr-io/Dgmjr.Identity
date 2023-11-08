@@ -20,21 +20,11 @@ using Microsoft.Extensions.Options;
 namespace Dgmjr.Identity;
 
 public class SignInManager<TUser>(
-        UserManager<TUser> userManager,
-        IHttpContextAccessor contextAccessor,
-        IUserClaimsPrincipalFactory<TUser> claimsFactory,
-        IOptions<IdentityOptions> optionsAccessor,
-        ILogger<SignInManager<TUser>> logger,
-        IAuthenticationSchemeProvider schemes,
-        IUserConfirmation<TUser> confirmation
-    )
-        : MSID.SignInManager<TUser>(
-              userManager,
-              contextAccessor,
-              claimsFactory,
-              optionsAccessor,
-              logger,
-              schemes,
-              confirmation
-          )
-          where TUser : class, IIdentityUserBase { }
+    UserManager<TUser> userManager, IHttpContextAccessor contextAccessor,
+    IUserClaimsPrincipalFactory<TUser> claimsFactory,
+    IOptions<IdentityOptions> optionsAccessor,
+    ILogger<SignInManager<TUser>> logger, IAuthenticationSchemeProvider schemes,
+    IUserConfirmation<TUser> confirmation)
+    : MSID.SignInManager<TUser>(userManager, contextAccessor, claimsFactory,
+                                optionsAccessor, logger, schemes, confirmation)
+    where TUser : class, IIdentityUserBase {}

@@ -13,15 +13,15 @@ namespace Dgmjr.Identity.Abstractions;
 
 public partial interface IRole // : IIdentityComponent
 {
-    // string Scheme { get; }
+  // string Scheme { get; }
 
-    // // string Name { get; }
+  // // string Name { get; }
 
-    // // bool Equals(DgmjrR other);
+  // // bool Equals(DgmjrR other);
 
-    // bool Equals(object obj);
-    // bool Equals(IIdentityComponent? other);
+  // bool Equals(object obj);
+  // bool Equals(IIdentityComponent? other);
 
-    // // int GetHashCode();
-    // string ToString();
+  // // int GetHashCode();
+  // string ToString();
 }

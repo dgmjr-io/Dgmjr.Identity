@@ -13,11 +13,8 @@
 namespace Dgmjr.Identity.Abstractions;
 
 public interface IHaveClaims<TKey> : IIdentityEntity<TKey>
-    where TKey : IEquatable<TKey>, IComparable
-{
-    /// <summary>Gets or sets the claims associated with the entity.</summary>
-    /// <value>The claims associated with the entity.</value>
-    ICollection<C> Claims {
-        get;
-    }
+    where TKey : IEquatable<TKey>, IComparable {
+  /// <summary>Gets or sets the claims associated with the entity.</summary>
+  /// <value>The claims associated with the entity.</value>
+  ICollection<C> Claims { get; }
 }

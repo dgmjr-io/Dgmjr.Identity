@@ -20,95 +20,55 @@ using Dgmjr.Identity.Models.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 
-[Table(EntityFrameworkCore.Constants.TableNames.UserLogin, Schema = IdentitySchema.ShortName)]
+[Table(EntityFrameworkCore.Constants.TableNames.UserLogin,
+       Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Login (Id} - {LoginProvider}: {ProviderKey})")]
 public class ApplicationUserLogin<TKey>
     : ApplicationIdentityEntity<TKey>,
-      IUserLoginEntity<
-      ApplicationUser<TKey>,
-      ApplicationRole<TKey>,
-      TKey,
-      ApplicationUserClaim<TKey>,
-      ApplicationUserRole<TKey>,
-      ApplicationUserLogin<TKey>,
-      ApplicationRoleClaim<TKey>,
-      ApplicationUserToken<TKey>
-      >,
-      IIdentityUserLogin<
-      ApplicationUser<TKey>,
-      ApplicationRole<TKey>,
-      TKey,
-      ApplicationUserClaim<TKey>,
-      ApplicationUserRole<TKey>,
-      ApplicationUserLogin<TKey>,
-      ApplicationRoleClaim<TKey>,
-      ApplicationUserToken<TKey>
-      >
-      where TKey : IEquatable<TKey>, IComparable
-{
-    [NotMapped]
-    public virtual string ProviderName => Provider.Name;
+      IUserLoginEntity<ApplicationUser<TKey>, ApplicationRole<TKey>, TKey,
+                       ApplicationUserClaim<TKey>, ApplicationUserRole<TKey>,
+                       ApplicationUserLogin<TKey>, ApplicationRoleClaim<TKey>,
+                       ApplicationUserToken<TKey>>,
+      IIdentityUserLogin<ApplicationUser<TKey>, ApplicationRole<TKey>, TKey,
+                         ApplicationUserClaim<TKey>, ApplicationUserRole<TKey>,
+                         ApplicationUserLogin<TKey>, ApplicationRoleClaim<TKey>,
+                         ApplicationUserToken<TKey>>
+    where TKey : IEquatable<TKey>, IComparable {
+  [NotMapped]
+  public virtual string ProviderName => Provider.Name;
 
-    public virtual string ProviderKey {
-        get;
-        set;
-    }
+  public virtual string ProviderKey { get; set; }
 
-    [NotMapped]
-    public virtual string ProviderDisplayName => Provider.DisplayName;
+  [NotMapped]
+  public virtual string ProviderDisplayName => Provider.DisplayName;
 
-    [JConverter(typeof(ApplicationUserLoginProviderJsonConverter))]
-    public virtual Abstractions.IApplicationUserLoginProvider Provider {
-        get;
-        set;
-    }
+  [JConverter(typeof(ApplicationUserLoginProviderJsonConverter))]
+  public virtual Abstractions.IApplicationUserLoginProvider Provider { get;
+                                                                       set; }
 
-    public virtual int ProviderId {
-        get;
-        set;
-    }
+  public virtual int ProviderId { get; set; }
 
-    public virtual ApplicationUser<TKey> User {
-        get;
-        set;
-    }
+  public virtual ApplicationUser<TKey> User { get; set; }
 
-    [Hashids]
-    public virtual TKey UserId {
-        get;
-        set;
-    }
-    public virtual DateTimeOffset Created {
-        get;
-        set;
-    } = DateTimeOffset.UtcNow;
+  [Hashids]
+  public virtual TKey UserId { get; set; }
+  public virtual DateTimeOffset Created { get; set; } = DateTimeOffset.UtcNow;
 }
 
-public class ApplicationUserLogin : ApplicationUserLogin<long> { }
+public class ApplicationUserLogin : ApplicationUserLogin<long> {}
 
 // public class TelegramUserLogin : BackroomUserLogin
 // {
-//     public override byte ProviderId { get => ProviderId = (byte)TelegramLoginProvider; set => base.ProviderId = (byte)TelegramLoginProvider; }
-//     [NotMapped]
-//     public long TelegramId { get => long.Parse(base.ProviderKey); set => base.ProviderKey = value.ToString(); }
+//     public override byte ProviderId { get => ProviderId =
+//     (byte)TelegramLoginProvider; set => base.ProviderId =
+//     (byte)TelegramLoginProvider; } [NotMapped] public long TelegramId { get
+//     => long.Parse(base.ProviderKey); set => base.ProviderKey =
+//     value.ToString(); }
 // }
 
-public struct UserLoginInsertDto
-{
-    public string ProviderName {
-        get;
-        set;
-    }
-    public string ProviderKey {
-        get;
-        set;
-    }
-    public string ProviderDisplayName {
-        get;
-        set;
-    }
-    public long UserId {
-        get;
-        set;
-    }
+public struct UserLoginInsertDto {
+  public string ProviderName { get; set; }
+  public string ProviderKey { get; set; }
+  public string ProviderDisplayName { get; set; }
+  public long UserId { get; set; }
 }

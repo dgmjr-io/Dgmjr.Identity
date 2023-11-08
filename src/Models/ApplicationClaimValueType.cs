@@ -21,46 +21,24 @@ namespace Dgmjr.Identity.Models;
 
 public class ApplicationClaimValueType<TKey>
     : ApplicationIdentityEntity<TKey>,
-      IIdentityClaimValueType<
-      TKey,
-      ApplicationUser<TKey>,
-      ApplicationRole<TKey>,
-      ApplicationClaimType<TKey>,
-      ApplicationClaimValueType<TKey>
-      >,
+      IIdentityClaimValueType<TKey, ApplicationUser<TKey>,
+                              ApplicationRole<TKey>, ApplicationClaimType<TKey>,
+                              ApplicationClaimValueType<TKey>>,
       IIdentifiable<TKey>
-      where TKey : IEquatable<TKey>, IComparable
-{
-    [Key, DbGen(DbGen.Identity)]
-    public virtual TKey Id {
-        get;
-        set;
-    }
+    where TKey : IEquatable<TKey>, IComparable {
+  [Key, DbGen(DbGen.Identity)]
+  public virtual TKey Id { get; set; }
 
-    public virtual string? Example {
-        get;
-        set;
-    }
+  public virtual string? Example { get; set; }
 
-    public virtual string? Default => throw new NotImplementedException();
+  public virtual string? Default => throw new NotImplementedException();
 
-    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes {
-        get;
-    } =
-        new Collection<ApplicationClaimType<TKey>>();
+  public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes {
+      get; } = new Collection<ApplicationClaimType<TKey>>();
 
-    public virtual required uri Uri {
-        get;
-        set;
-    }
+  public virtual required uri Uri { get; set; }
 
-    public virtual required string Name {
-        get;
-        set;
-    }
+  public virtual required string Name { get; set; }
 
-    public virtual string Description {
-        get;
-        set;
-    }
+  public virtual string Description { get; set; }
 }

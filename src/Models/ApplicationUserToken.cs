@@ -19,88 +19,62 @@ using Dgmjr.Identity.Abstractions;
 
 using Microsoft.EntityFrameworkCore.Internal;
 
-[Table(EntityFrameworkCore.Constants.TableNames.UserToken, Schema = IdentitySchema.ShortName)]
-[DebuggerDisplay("User Token ({UserId} - {LoginProvider}, Created: {DateTimeCreated})")]
+[Table(EntityFrameworkCore.Constants.TableNames.UserToken,
+       Schema = IdentitySchema.ShortName)]
+[DebuggerDisplay(
+    "User Token ({UserId} - {LoginProvider}, Created: {DateTimeCreated})")]
 public class ApplicationUserToken<TKey>
     : ApplicationIdentityEntity<TKey>,
-      IIdentityUserToken<
-      ApplicationUser<TKey>,
-      ApplicationRole<TKey>,
-      TKey,
-      ApplicationUserClaim<TKey>,
-      ApplicationUserRole<TKey>,
-      ApplicationUserLogin<TKey>,
-      ApplicationRoleClaim<TKey>,
-      ApplicationUserToken<TKey>
-      >
-      where TKey : IEquatable<TKey>, IComparable
-{
-    [Column]
-    public virtual TKey UserId {
-        get;
-        set;
-    }
+      IIdentityUserToken<ApplicationUser<TKey>, ApplicationRole<TKey>, TKey,
+                         ApplicationUserClaim<TKey>, ApplicationUserRole<TKey>,
+                         ApplicationUserLogin<TKey>, ApplicationRoleClaim<TKey>,
+                         ApplicationUserToken<TKey>>
+    where TKey : IEquatable<TKey>, IComparable {
+  [Column]
+  public virtual TKey UserId { get; set; }
 
-    //[ForeignKey(ColUserId)]
-    public virtual ApplicationUser<TKey> User {
-        get;
-        set;
-    }
+  //[ForeignKey(ColUserId)]
+  public virtual ApplicationUser<TKey> User { get; set; }
 
-    [Column]
-    public virtual int ProviderId
-    {
-        get => ((IIdentifiable<int>)Provider).Id;
-        set => Provider = ApplicationUserLoginProvider.FromId(value);
-    }
+  [Column]
+  public virtual int ProviderId {
+    get => ((IIdentifiable<int>)Provider).Id;
+    set => Provider = ApplicationUserLoginProvider.FromId(value);
+  }
 
-    public virtual string ProviderName
-    {
-        get => Provider.Name;
-        set
-        {   /* no op */
-        }
+  public virtual string ProviderName {
+    get => Provider.Name;
+    set { /* no op */
     }
-    public virtual string ProviderDisplayName
-    {
-        get => Provider.DisplayName;
-        set
-        {   /* no op */
-        }
+  }
+  public virtual string ProviderDisplayName {
+    get => Provider.DisplayName;
+    set { /* no op */
     }
+  }
 
-    //[ForeignKey(nameof(ProviderId)), BackingField("_provider")]
-    public virtual IApplicationUserLoginProvider Provider {
-        get;
-        set;
-    }
+  //[ForeignKey(nameof(ProviderId)), BackingField("_provider")]
+  public virtual IApplicationUserLoginProvider Provider { get; set; }
 
-    [Column(nameof(Name)), StringLength(64)]
-    public virtual string Name {
-        get;
-        set;
-    }
+  [Column(nameof(Name)), StringLength(64)]
+  public virtual string Name { get; set; }
 
-    [Column(nameof(Value)), StringLength(256)]
-    public virtual string Value {
-        get;
-        set;
-    }
+  [Column(nameof(Value)), StringLength(256)]
+  public virtual string Value { get; set; }
 
-    [Column(nameof(Created))]
-    public virtual DateTimeOffset Created {
-        get;
-        set;
-    } = DateTimeOffset.Now;
+  [Column(nameof(Created))]
+  public virtual DateTimeOffset Created { get; set; } = DateTimeOffset.Now;
 
-    //         public Timestamp Created { get; set; }
-    //         public Timestamp LastUpdated { get; set; }
-    //         public Timestamp? Deleted { get; set; }
+  //         public Timestamp Created { get; set; }
+  //         public Timestamp LastUpdated { get; set; }
+  //         public Timestamp? Deleted { get; set; }
 }
 
-public class ApplicationUserToken : ApplicationUserToken<long> { }
+public class ApplicationUserToken : ApplicationUserToken<long> {}
 
 // public class TelegramUserToken : BackroomUserToken
 // {
-//     public override byte ProviderId { get => ProviderId = (byte)TelegramLoginProvider; set => ProviderId = (byte)TelegramLoginProvider; }
+//     public override byte ProviderId { get => ProviderId =
+//     (byte)TelegramLoginProvider; set => ProviderId =
+//     (byte)TelegramLoginProvider; }
 // }
