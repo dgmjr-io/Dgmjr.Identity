@@ -11,15 +11,15 @@ using static Dgmjr.EntityFrameworkCore.DbSchemas;
 using Dgmjr.Identity.EntityFrameworkCore.Constants;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 
-public class AppClaimTypeConfiguration : IEntityTypeConfiguration<AppClaimType>
+public class AppClaimTypeConfiguration
+    : IEntityTypeConfiguration<AppClaimType>
 {
     public virtual void Configure(EntityTypeBuilder<AppClaimType> builder)
     {
         builder.ToTable(ClaimType, IdentitySchema.ShortName, tb => tb.IsTemporal());
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
         builder.HasKey(e => e.Id).HasName(pk_ + ClaimType);
-        builder
-            .HasIndex(e => e.Uri)
+        builder.HasIndex(e => e.Uri)
             .HasDatabaseName(ix_ + ClaimType + "_" + nameof(DgmjrId.ClaimType.Uri))
             .IsUnique();
         builder.Property(e => e.Name).IsUnicode(false);
@@ -41,8 +41,7 @@ public class AppClaimTypeConfiguration : IEntityTypeConfiguration<AppClaimType>
         //                 .HasPrincipalKey(ct => ct.Uri),
         //         e => e.HasKey(e => e.Id)
         //     );
-        builder
-            .HasOne(e => e.ClaimValueType)
+        builder.HasOne(e => e.ClaimValueType)
             .WithMany()
             .HasForeignKey(e => e.ClaimValueTypeId)
             .HasPrincipalKey(e => e.Id);

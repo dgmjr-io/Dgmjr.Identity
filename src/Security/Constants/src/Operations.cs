@@ -30,7 +30,8 @@
 //     public static Enums.Operations[] GetValues() =>
 //         Enum.GetValues(typeof(Enums.Operations)).OfType<Enums.Operations>().ToArray();
 
-//     public static IOperations[] GetObjects() => GetValues().Select(FromEnum).ToArray();
+//     public static IOperations[] GetObjects() =>
+//     GetValues().Select(FromEnum).ToArray();
 
 //     public static IOperations FromEnum(Enums.Operations op) =>
 //         op switch
@@ -82,7 +83,8 @@
 //             // string str when str is Delete.GuidString => Delete.Instance,
 //             // string str when str is All.GuidString => All.Instance,
 //             _
-//                 => throw new InvalidEnumArgumentException(nameof(s), -0, typeof(Enums.Operations))
+//                 => throw new InvalidEnumArgumentException(nameof(s), -0,
+//                 typeof(Enums.Operations))
 //         };
 
 //     public record class Create : Operations, IOperations
@@ -94,9 +96,9 @@
 //         public const string DisplayName = "Create a resource";
 //         public const string Description = "Create a resource";
 //         public const string GroupName = nameof(Operations);
-//         public const string UriString = "https://dgmjr.io/security/constants/operations/create";
-//         public const int Order = Id;
-//         public static string GuidString = MD5.Create()
+//         public const string UriString =
+//         "https://dgmjr.io/security/constants/operations/create"; public const
+//         int Order = Id; public static string GuidString = MD5.Create()
 //             .ComputeHash(UriString.ToUTF8Bytes())
 //             .ToHexString();
 //         public const TypeCode TypeCode = System.TypeCode.Byte;
@@ -125,7 +127,8 @@
 
 //         public FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
 
-//         public bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
+//         public bool Equals(IOperations? other) => GetHashCode() ==
+//         other?.GetHashCode();
 
 //         public int CompareTo(IOperations? other) =>
 //             Value.CompareTo(((IHaveAValue<Enums.Operations>?)other).Value);
@@ -135,7 +138,8 @@
 //         int IOperations.CompareTo(IEnumeration other) =>
 //             Value.CompareTo(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-//         int IOperations.CompareTo(Enums.Operations other) => Value.CompareTo(other);
+//         int IOperations.CompareTo(Enums.Operations other) =>
+//         Value.CompareTo(other);
 
 //         bool IOperations.Equals(IEnumeration? other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
@@ -143,9 +147,11 @@
 //         bool IOperations.Equals(IEnumeration<IOperations> other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-//         bool IOperations.Equals(Enums.Operations other) => Value.Equals(other);
+//         bool IOperations.Equals(Enums.Operations other) =>
+//         Value.Equals(other);
 
-//         bool IOperations.Equals(IEquatable<IHaveAValue<Enums.Operations>> other) =>
+//         bool IOperations.Equals(IEquatable<IHaveAValue<Enums.Operations>>
+//         other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
 //         TypeCode IConvertible.GetTypeCode() => TypeCode;
@@ -160,7 +166,8 @@
 //             (char)Convert.ChangeType(Value, typeof(char), provider);
 
 //         datetime IConvertible.ToDateTime(IFormatProvider provider) =>
-//             (datetime)((IConvertible)this).ToType(typeof(datetime), provider);
+//             (datetime)((IConvertible)this).ToType(typeof(datetime),
+//             provider);
 
 //         decimal IConvertible.ToDecimal(IFormatProvider provider) =>
 //             (decimal)((IConvertible)this).ToType(typeof(decimal), provider);
@@ -183,9 +190,11 @@
 //         float IConvertible.ToSingle(IFormatProvider provider) =>
 //             (float)((IConvertible)this).ToType(typeof(float), provider);
 
-//         string IConvertible.ToString(IFormatProvider provider) => DisplayName;
+//         string IConvertible.ToString(IFormatProvider provider) =>
+//         DisplayName;
 
-//         object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
+//         object IConvertible.ToType(type conversionType, IFormatProvider
+//         provider) =>
 //             Convert.ChangeType(Value, conversionType, provider);
 
 //         ushort IConvertible.ToUInt16(IFormatProvider provider) =>
@@ -201,11 +210,13 @@
 //             obj is Enums.Operations op
 //                 ? Value.CompareTo(op)
 //                 : obj is IOperations op2
-//                     ? Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
+//                     ?
+//                     Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
 //                     : -1;
 
 //         public TAttribute? GetCustomAttribute<TAttribute>()
-//             where TAttribute : Attribute => FieldInfo.GetCustomAttribute<TAttribute>();
+//             where TAttribute : Attribute =>
+//             FieldInfo.GetCustomAttribute<TAttribute>();
 //     }
 
 //     public record class Read : Operations, IOperations
@@ -217,9 +228,9 @@
 //         public const string DisplayName = "Read a resource";
 //         public const string Description = "Read a resource";
 //         public const string GroupName = nameof(Operations);
-//         public const string UriString = "https://dgmjr.io/security/constants/operations/read";
-//         public const int Order = Id;
-//         public static string GuidString = MD5.Create()
+//         public const string UriString =
+//         "https://dgmjr.io/security/constants/operations/read"; public const
+//         int Order = Id; public static string GuidString = MD5.Create()
 //             .ComputeHash(UriString.ToUTF8Bytes())
 //             .ToHexString();
 //         public const TypeCode TypeCode = System.TypeCode.Byte;
@@ -247,7 +258,8 @@
 
 //         public FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
 
-//         public bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
+//         public bool Equals(IOperations? other) => GetHashCode() ==
+//         other?.GetHashCode();
 
 //         public int CompareTo(IOperations? other) =>
 //             Value.CompareTo(((IHaveAValue<Enums.Operations>?)other).Value);
@@ -257,7 +269,8 @@
 //         int IOperations.CompareTo(IEnumeration other) =>
 //             Value.CompareTo(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-//         int IOperations.CompareTo(Enums.Operations other) => Value.CompareTo(other);
+//         int IOperations.CompareTo(Enums.Operations other) =>
+//         Value.CompareTo(other);
 
 //         bool IOperations.Equals(IEnumeration? other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
@@ -265,9 +278,11 @@
 //         bool IOperations.Equals(IEnumeration<IOperations> other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-//         bool IOperations.Equals(Enums.Operations other) => Value.Equals(other);
+//         bool IOperations.Equals(Enums.Operations other) =>
+//         Value.Equals(other);
 
-//         bool IOperations.Equals(IEquatable<IHaveAValue<Enums.Operations>> other) =>
+//         bool IOperations.Equals(IEquatable<IHaveAValue<Enums.Operations>>
+//         other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
 //         TypeCode IConvertible.GetTypeCode() => TypeCode;
@@ -282,7 +297,8 @@
 //             (char)Convert.ChangeType(Value, typeof(char), provider);
 
 //         datetime IConvertible.ToDateTime(IFormatProvider provider) =>
-//             (datetime)((IConvertible)this).ToType(typeof(datetime), provider);
+//             (datetime)((IConvertible)this).ToType(typeof(datetime),
+//             provider);
 
 //         decimal IConvertible.ToDecimal(IFormatProvider provider) =>
 //             (decimal)((IConvertible)this).ToType(typeof(decimal), provider);
@@ -305,9 +321,11 @@
 //         float IConvertible.ToSingle(IFormatProvider provider) =>
 //             (float)((IConvertible)this).ToType(typeof(float), provider);
 
-//         string IConvertible.ToString(IFormatProvider provider) => DisplayName;
+//         string IConvertible.ToString(IFormatProvider provider) =>
+//         DisplayName;
 
-//         object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
+//         object IConvertible.ToType(type conversionType, IFormatProvider
+//         provider) =>
 //             Convert.ChangeType(Value, conversionType, provider);
 
 //         ushort IConvertible.ToUInt16(IFormatProvider provider) =>
@@ -323,11 +341,13 @@
 //             obj is Enums.Operations op
 //                 ? Value.CompareTo(op)
 //                 : obj is IOperations op2
-//                     ? Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
+//                     ?
+//                     Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
 //                     : -1;
 
 //         public TAttribute? GetCustomAttribute<TAttribute>()
-//             where TAttribute : Attribute => FieldInfo.GetCustomAttribute<TAttribute>();
+//             where TAttribute : Attribute =>
+//             FieldInfo.GetCustomAttribute<TAttribute>();
 //     }
 
 //     public record class Update : Operations, IOperations
@@ -339,9 +359,9 @@
 //         public const string DisplayName = "Update an existing resource";
 //         public const string Description = "Update an existing resource";
 //         public const string GroupName = nameof(Operations);
-//         public const string UriString = "https://dgmjr.io/security/constants/operations/update";
-//         public const int Order = Id;
-//         public static string GuidString = MD5.Create()
+//         public const string UriString =
+//         "https://dgmjr.io/security/constants/operations/update"; public const
+//         int Order = Id; public static string GuidString = MD5.Create()
 //             .ComputeHash(UriString.ToUTF8Bytes())
 //             .ToHexString();
 //         public const TypeCode TypeCode = System.TypeCode.Byte;
@@ -369,7 +389,8 @@
 
 //         public FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
 
-//         public bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
+//         public bool Equals(IOperations? other) => GetHashCode() ==
+//         other?.GetHashCode();
 
 //         public int CompareTo(IOperations? other) =>
 //             Value.CompareTo(((IHaveAValue<Enums.Operations>?)other)?.Value);
@@ -379,7 +400,8 @@
 //         int IOperations.CompareTo(IEnumeration other) =>
 //             Value.CompareTo(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-//         int IOperations.CompareTo(Enums.Operations other) => Value.CompareTo(other);
+//         int IOperations.CompareTo(Enums.Operations other) =>
+//         Value.CompareTo(other);
 
 //         bool IOperations.Equals(IEnumeration? other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
@@ -387,9 +409,11 @@
 //         bool IOperations.Equals(IEnumeration<IOperations> other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-//         bool IOperations.Equals(Enums.Operations other) => Value.Equals(other);
+//         bool IOperations.Equals(Enums.Operations other) =>
+//         Value.Equals(other);
 
-//         bool IOperations.Equals(IEquatable<IHaveAValue<Enums.Operations>> other) =>
+//         bool IOperations.Equals(IEquatable<IHaveAValue<Enums.Operations>>
+//         other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
 //         TypeCode IConvertible.GetTypeCode() => TypeCode;
@@ -404,7 +428,8 @@
 //             (char)Convert.ChangeType(Value, typeof(char), provider);
 
 //         datetime IConvertible.ToDateTime(IFormatProvider provider) =>
-//             (datetime)((IConvertible)this).ToType(typeof(datetime), provider);
+//             (datetime)((IConvertible)this).ToType(typeof(datetime),
+//             provider);
 
 //         decimal IConvertible.ToDecimal(IFormatProvider provider) =>
 //             (decimal)((IConvertible)this).ToType(typeof(decimal), provider);
@@ -427,9 +452,11 @@
 //         float IConvertible.ToSingle(IFormatProvider provider) =>
 //             (float)((IConvertible)this).ToType(typeof(float), provider);
 
-//         string IConvertible.ToString(IFormatProvider provider) => DisplayName;
+//         string IConvertible.ToString(IFormatProvider provider) =>
+//         DisplayName;
 
-//         object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
+//         object IConvertible.ToType(type conversionType, IFormatProvider
+//         provider) =>
 //             Convert.ChangeType(Value, conversionType, provider);
 
 //         ushort IConvertible.ToUInt16(IFormatProvider provider) =>
@@ -445,11 +472,13 @@
 //             obj is Enums.Operations op
 //                 ? Value.CompareTo(op)
 //                 : obj is IOperations op2
-//                     ? Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
+//                     ?
+//                     Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
 //                     : -1;
 
 //         public TAttribute? GetCustomAttribute<TAttribute>()
-//             where TAttribute : Attribute => FieldInfo.GetCustomAttribute<TAttribute>();
+//             where TAttribute : Attribute =>
+//             FieldInfo.GetCustomAttribute<TAttribute>();
 //     }
 
 //     public record class Delete : Operations, IOperations
@@ -461,9 +490,9 @@
 //         public const string DisplayName = "Delete an existing resource";
 //         public const string Description = "Delete an existing resource";
 //         public const string GroupName = nameof(Operations);
-//         public const string UriString = "https://dgmjr.io/security/constants/operations/delete";
-//         public const int Order = Id;
-//         public static string GuidString = MD5.Create()
+//         public const string UriString =
+//         "https://dgmjr.io/security/constants/operations/delete"; public const
+//         int Order = Id; public static string GuidString = MD5.Create()
 //             .ComputeHash(UriString.ToUTF8Bytes())
 //             .ToHexString();
 //         public const TypeCode TypeCode = System.TypeCode.Byte;
@@ -491,7 +520,8 @@
 
 //         public FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
 
-//         public bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
+//         public bool Equals(IOperations? other) => GetHashCode() ==
+//         other?.GetHashCode();
 
 //         public int CompareTo(IOperations? other) =>
 //             Value.CompareTo(((IHaveAValue<Enums.Operations>?)other).Value);
@@ -501,7 +531,8 @@
 //         int IOperations.CompareTo(IEnumeration other) =>
 //             Value.CompareTo(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-//         int IOperations.CompareTo(Enums.Operations other) => Value.CompareTo(other);
+//         int IOperations.CompareTo(Enums.Operations other) =>
+//         Value.CompareTo(other);
 
 //         bool IOperations.Equals(IEnumeration? other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
@@ -509,9 +540,11 @@
 //         bool IOperations.Equals(IEnumeration<IOperations> other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-//         bool IOperations.Equals(Enums.Operations other) => Value.Equals(other);
+//         bool IOperations.Equals(Enums.Operations other) =>
+//         Value.Equals(other);
 
-//         bool IOperations.Equals(IEquatable<IHaveAValue<Enums.Operations>> other) =>
+//         bool IOperations.Equals(IEquatable<IHaveAValue<Enums.Operations>>
+//         other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
 //         TypeCode IConvertible.GetTypeCode() => TypeCode;
@@ -526,7 +559,8 @@
 //             (char)Convert.ChangeType(Value, typeof(char), provider);
 
 //         datetime IConvertible.ToDateTime(IFormatProvider provider) =>
-//             (datetime)((IConvertible)this).ToType(typeof(datetime), provider);
+//             (datetime)((IConvertible)this).ToType(typeof(datetime),
+//             provider);
 
 //         decimal IConvertible.ToDecimal(IFormatProvider provider) =>
 //             (decimal)((IConvertible)this).ToType(typeof(decimal), provider);
@@ -549,9 +583,11 @@
 //         float IConvertible.ToSingle(IFormatProvider provider) =>
 //             (float)((IConvertible)this).ToType(typeof(float), provider);
 
-//         string IConvertible.ToString(IFormatProvider provider) => DisplayName;
+//         string IConvertible.ToString(IFormatProvider provider) =>
+//         DisplayName;
 
-//         object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
+//         object IConvertible.ToType(type conversionType, IFormatProvider
+//         provider) =>
 //             Convert.ChangeType(Value, conversionType, provider);
 
 //         ushort IConvertible.ToUInt16(IFormatProvider provider) =>
@@ -567,11 +603,13 @@
 //             obj is Enums.Operations op
 //                 ? Value.CompareTo(op)
 //                 : obj is IOperations op2
-//                     ? Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
+//                     ?
+//                     Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
 //                     : -1;
 
 //         public TAttribute? GetCustomAttribute<TAttribute>()
-//             where TAttribute : Attribute => FieldInfo.GetCustomAttribute<TAttribute>();
+//             where TAttribute : Attribute =>
+//             FieldInfo.GetCustomAttribute<TAttribute>();
 //     }
 
 //     public record class All : Operations, IOperations
@@ -580,12 +618,12 @@
 //         public const byte Id = (byte)Value;
 //         public const string Name = nameof(Delete);
 //         public const string ShortName = "A";
-//         public const string DisplayName = "Perform any/all operation(s) on a resource";
-//         public const string Description = "Perform any/all operation(s) on a resource";
-//         public const string GroupName = nameof(Operations);
-//         public const string UriString = "https://dgmjr.io/security/constants/operations/all";
-//         public const int Order = Id;
-//         public static string GuidString = MD5.Create()
+//         public const string DisplayName = "Perform any/all operation(s) on a
+//         resource"; public const string Description = "Perform any/all
+//         operation(s) on a resource"; public const string GroupName =
+//         nameof(Operations); public const string UriString =
+//         "https://dgmjr.io/security/constants/operations/all"; public const
+//         int Order = Id; public static string GuidString = MD5.Create()
 //             .ComputeHash(UriString.ToUTF8Bytes())
 //             .ToHexString();
 //         public const TypeCode TypeCode = System.TypeCode.Byte;
@@ -613,7 +651,8 @@
 
 //         public FieldInfo FieldInfo => GetType().GetRuntimeField(Name);
 
-//         public bool Equals(IOperations? other) => GetHashCode() == other?.GetHashCode();
+//         public bool Equals(IOperations? other) => GetHashCode() ==
+//         other?.GetHashCode();
 
 //         public int CompareTo(IOperations? other) =>
 //             Value.CompareTo(((IHaveAValue<Enums.Operations>?)other).Value);
@@ -623,7 +662,8 @@
 //         int IOperations.CompareTo(IEnumeration other) =>
 //             Value.CompareTo(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-//         int IOperations.CompareTo(Enums.Operations other) => Value.CompareTo(other);
+//         int IOperations.CompareTo(Enums.Operations other) =>
+//         Value.CompareTo(other);
 
 //         bool IOperations.Equals(IEnumeration? other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
@@ -631,9 +671,11 @@
 //         bool IOperations.Equals(IEnumeration<IOperations> other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
-//         bool IOperations.Equals(Enums.Operations other) => Value.Equals(other);
+//         bool IOperations.Equals(Enums.Operations other) =>
+//         Value.Equals(other);
 
-//         bool IOperations.Equals(IEquatable<IHaveAValue<Enums.Operations>> other) =>
+//         bool IOperations.Equals(IEquatable<IHaveAValue<Enums.Operations>>
+//         other) =>
 //             Value.Equals(((IHaveAValue<Enums.Operations>?)other)?.Value);
 
 //         TypeCode IConvertible.GetTypeCode() => TypeCode;
@@ -648,7 +690,8 @@
 //             (char)Convert.ChangeType(Value, typeof(char), provider);
 
 //         datetime IConvertible.ToDateTime(IFormatProvider provider) =>
-//             (datetime)((IConvertible)this).ToType(typeof(datetime), provider);
+//             (datetime)((IConvertible)this).ToType(typeof(datetime),
+//             provider);
 
 //         decimal IConvertible.ToDecimal(IFormatProvider provider) =>
 //             (decimal)((IConvertible)this).ToType(typeof(decimal), provider);
@@ -671,9 +714,11 @@
 //         float IConvertible.ToSingle(IFormatProvider provider) =>
 //             (float)((IConvertible)this).ToType(typeof(float), provider);
 
-//         string IConvertible.ToString(IFormatProvider provider) => DisplayName;
+//         string IConvertible.ToString(IFormatProvider provider) =>
+//         DisplayName;
 
-//         object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
+//         object IConvertible.ToType(type conversionType, IFormatProvider
+//         provider) =>
 //             Convert.ChangeType(Value, conversionType, provider);
 
 //         ushort IConvertible.ToUInt16(IFormatProvider provider) =>
@@ -689,10 +734,12 @@
 //             obj is Enums.Operations op
 //                 ? Value.CompareTo(op)
 //                 : obj is IOperations op2
-//                     ? Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
+//                     ?
+//                     Value.CompareTo(((IHaveAValue<Enums.Operations>)op2).Value)
 //                     : -1;
 
 //         public TAttribute? GetCustomAttribute<TAttribute>()
-//             where TAttribute : Attribute => FieldInfo.GetCustomAttribute<TAttribute>();
+//             where TAttribute : Attribute =>
+//             FieldInfo.GetCustomAttribute<TAttribute>();
 //     }
 // }

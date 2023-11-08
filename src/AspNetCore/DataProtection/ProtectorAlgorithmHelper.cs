@@ -14,10 +14,7 @@ using System.Security.Cryptography;
 
 namespace Dgmjr.Identity.DataProtection;
 
-public enum ProtectorAlgorithm
-{
-    Aes256Hmac512 = 1
-}
+public enum ProtectorAlgorithm { Aes256Hmac512 = 1 }
 
 public static class ProtectorAlgorithmHelper
 {
@@ -26,12 +23,10 @@ public static class ProtectorAlgorithmHelper
         get { return ProtectorAlgorithm.Aes256Hmac512; }
     }
 
-    public static void GetAlgorithms(
-        ProtectorAlgorithm algorithmId,
-        out SymmetricAlgorithm encryptionAlgorithm,
-        out KeyedHashAlgorithm signingAlgorithm,
-        out int keyDerivationIterationCount
-    )
+    public static void GetAlgorithms(ProtectorAlgorithm algorithmId,
+                                     out SymmetricAlgorithm encryptionAlgorithm,
+                                     out KeyedHashAlgorithm signingAlgorithm,
+                                     out int keyDerivationIterationCount)
     {
         switch (algorithmId)
         {

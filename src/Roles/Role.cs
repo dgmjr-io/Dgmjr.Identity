@@ -18,8 +18,8 @@
 //     /// <value><inheritdoc cref="Constants.Scheme" path="/value" /></value>
 //     public const string Scheme = Constants.Scheme;
 
-//     /// <value><inheritdoc cref="Constants.Namespace" path="/value" /></value>
-//     public const string Namespace = Constants.Namespace;
+//     /// <value><inheritdoc cref="Constants.Namespace" path="/value"
+//     /></value> public const string Namespace = Constants.Namespace;
 
 //     /// <value><inheritdoc cref="Scheme" path="/value" /></value>
 //     string IRole.Scheme => Scheme;

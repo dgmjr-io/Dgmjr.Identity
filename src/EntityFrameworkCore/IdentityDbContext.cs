@@ -39,98 +39,43 @@ using Telegram.Bot.Types;
 
 public class IdentityDbContext<TUser, TRole> : DbContext, IDbContext
 {
-    public IdentityDbContext(DbContextOptions<IdentityDbContext<TUser, TRole>> options)
+    public IdentityDbContext(
+        DbContextOptions<IdentityDbContext<TUser, TRole>> options)
         : base(options) { }
 
-    public IdentityDbContext(DbContextOptions options)
-        : base(options) { }
+    public IdentityDbContext(DbContextOptions options) : base(options) { }
 }
 
 // [GenerateInterface]
-public class IdentityDbContext<
-    TUser,
-    TRole,
-    TKey,
-    TUserClaim,
-    TUserRole,
-    TUserLogin,
-    TRoleClaim,
-    TUserToken,
-    TClaimType,
-    TClaimValueType
->
+public class IdentityDbContext<TUser, TRole, TKey, TUserClaim, TUserRole,
+                               TUserLogin, TRoleClaim, TUserToken, TClaimType,
+                               TClaimValueType>
     : IdentityDbContext<TUser, TRole>,
-        IIdentityDbContext,
-        IDbContext<IIdentityDbContext>,
-        IIdentityDbContext<TUser, TRole>
+      IIdentityDbContext,
+      IDbContext<IIdentityDbContext>,
+      IIdentityDbContext<TUser, TRole>
     where TUser : class,
-        IIdentityUser<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+                  IIdentityUser<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TRole : class,
-        IIdentityRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+                  IIdentityRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TKey : IEquatable<TKey>, IComparable
     where TUserClaim : class,
-        IIdentityUserClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+                       IIdentityUserClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUserRole : class,
-        IIdentityUserRole<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+                      IIdentityUserRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUserLogin : class,
-        IIdentityUserLogin<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+                       IIdentityUserLogin<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TRoleClaim : class,
-        IIdentityRoleClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+                       IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUserToken : class,
-        IIdentityUserToken<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+                       IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TClaimType : class,
-        IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValueType>,
-        IHaveAName
+                       IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValueType>,
+                       IHaveAName
     where TClaimValueType : class,
-        IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType>
+                            IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType>
 {
-    public IdentityDbContext(DbContextOptions options)
-        : base(options) { }
+    public IdentityDbContext(DbContextOptions options) : base(options) { }
 
     public IdentityDbContext(DbContextOptions<IdentityDbContext> options)
         : base(options) { }
@@ -147,16 +92,18 @@ public class IdentityDbContext<
 
     static string DefaultConnectionStringConfigurationKey => "IdentityDb";
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void
+    OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder
-            .EnableSensitiveDataLogging()
+        optionsBuilder.EnableSensitiveDataLogging()
             .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
             .EnableDetailedErrors()
-            .ConfigureWarnings(_ => { })
+            .ConfigureWarnings(
+                _ => { })
             .UseSqlServer(options =>
             {
-                options.MigrationsAssembly(typeof(IdentityDbContext).Assembly.FullName);
+                options.MigrationsAssembly(
+                typeof(IdentityDbContext).Assembly.FullName);
                 options.EnableRetryOnFailure();
             });
         base.OnConfiguring(optionsBuilder);
@@ -172,22 +119,28 @@ public class IdentityDbContext<
         modelBuilder.ApplyConfiguration<AppRoleClaimConfiguration, AppRoleClaim>();
         modelBuilder.ApplyConfiguration<AppUserTokenConfiguration, AppUserToken>();
         modelBuilder.ApplyConfiguration<AppClaimTypeConfiguration, AppClaimType>();
-        modelBuilder.ApplyConfiguration<AppClaimValueTypeConfiguration, AppClaimValueType>();
+        modelBuilder.ApplyConfiguration<AppClaimValueTypeConfiguration,
+                                        AppClaimValueType>();
         modelBuilder.ApplyConfiguration<AppUserRoleConfiguration, AppUserRole>();
         // builder.Entity<Bot>(builder
         // {
         //     builder.Property(e => e.Id).ValueGeneratedOnAdd();
-        //     builder.Property(e => e.ApiToken).HasConversion<BotApiToken.EfCoreValueConverter>();
-        //     builder.Property(e => e.SendPulseId).HasConversion<ObjectId.EfCoreValueConverter>();
+        //     builder.Property(e =>
+        //     e.ApiToken).HasConversion<BotApiToken.EfCoreValueConverter>();
+        //     builder.Property(e =>
+        //     e.SendPulseId).HasConversion<ObjectId.EfCoreValueConverter>();
         // });
         // builder.Entity<UserContactId>(builder =>
         // {
-        //     builder.Property(e => e.ContactId).HasConversion<ObjectId.EfCoreValueConverter>();
+        //     builder.Property(e =>
+        //     e.ContactId).HasConversion<ObjectId.EfCoreValueConverter>();
         // });
-        // builder.HasMany(e => e.Users).WithMany(u => u.ClaimTypes).UsingEntity<AppUserClaim>(
-        //     uc => uc.HasOne(uc => uc.User).WithMany().HasForeignKey(uc => uc.UserId).HasPrincipalKey(u => u.Id),
-        //     uc => uc.HasOne<IdentityClaimType>("ClaimType").WithMany().HasForeignKey<int>("ClaimTypeId").HasPrincipalKey(ct => ct.Id
-        //     uc => uc.HasKey(uc => new { uc.UserId, uc.ClaimTypeId })
+        // builder.HasMany(e => e.Users).WithMany(u =>
+        // u.ClaimTypes).UsingEntity<AppUserClaim>(
+        //     uc => uc.HasOne(uc => uc.User).WithMany().HasForeignKey(uc =>
+        //     uc.UserId).HasPrincipalKey(u => u.Id), uc =>
+        //     uc.HasOne<IdentityClaimType>("ClaimType").WithMany().HasForeignKey<int>("ClaimTypeId").HasPrincipalKey(ct
+        //     => ct.Id uc => uc.HasKey(uc => new { uc.UserId, uc.ClaimTypeId })
         // );
         // builder.HasMany(e => e.Roles).WithMany().UsingEntity<RoleClaim>();
     }
@@ -195,31 +148,40 @@ public class IdentityDbContext<
     [DbFunction(ufn_ + nameof(IsBot), Schema = IdentitySchema.ShortName)]
     public virtual bool IsBot(long userId) => !GetBotToken(userId).IsEmpty;
 
-    public virtual BotApiToken GetBotToken(long userId) =>
-        BotApiToken.TryParse(ufn_GetBotToken(userId), out var botToken) ? botToken.Value : default!;
+    public virtual BotApiToken
+    GetBotToken(long userId) => BotApiToken.TryParse(ufn_GetBotToken(userId),
+                                                     out var botToken)
+                                    ? botToken.Value
+                                    : default!;
 
     [DbFunction(nameof(ufn_GetBotToken), Schema = DataSchema.ShortName)]
-    public virtual string ufn_GetBotToken(long userId) =>
-        UserClaims
-            .FirstOrDefault(
-                u =>
-                    u.Type.Equals(Telegram.Identity.ClaimTypes.BotApiToken.UriString)
-                    && u.UserId.Equals(userId.ToString())
-            )
-            ?.Value ?? string.Empty;
+    public virtual string ufn_GetBotToken(
+        long userId) => UserClaims
+                            .FirstOrDefault(
+                                u => u.Type.Equals(Telegram.Identity.ClaimTypes
+                                                       .BotApiToken.UriString) &&
+                                     u.UserId.Equals(userId.ToString()))
+                            ?.Value
+                        ?? string.Empty;
 
     [DbFunction(nameof(ufn_GetBotToken), Schema = DataSchema.ShortName)]
-    public virtual bool IsValidBotToken(string token) => BotApiToken.TryParse(token, out _);
+    public virtual bool
+    IsValidBotToken(string token) => BotApiToken.TryParse(token, out _);
 
-    [DbFunction(ufn_ + nameof(IsValidEmailAddress), Schema = IdentitySchema.ShortName)]
-    public virtual bool IsValidEmailAddress(string email) => EmailAddress.TryParse(email, out _);
+    [DbFunction(ufn_ + nameof(IsValidEmailAddress),
+                Schema = IdentitySchema.ShortName)]
+    public virtual bool
+    IsValidEmailAddress(string email) => EmailAddress.TryParse(email, out _);
 
-    [DbFunction(ufn_ + nameof(IsValidPhoneNumber), Schema = IdentitySchema.ShortName)]
-    public virtual bool IsValidPhoneNumber(string phoneNumber) =>
-        PhoneNumber.TryParse(phoneNumber, out _);
+    [DbFunction(ufn_ + nameof(IsValidPhoneNumber),
+                Schema = IdentitySchema.ShortName)]
+    public virtual bool
+    IsValidPhoneNumber(string phoneNumber) => PhoneNumber.TryParse(phoneNumber,
+                                                                   out _);
 
     [DbFunction(ufn_ + nameof(IsValidGender), Schema = IdentitySchema.ShortName)]
-    public virtual bool IsValidGender(string gender) => Gender.TryParse(gender, out _);
+    public virtual bool IsValidGender(string gender) => Gender.TryParse(gender,
+                                                                        out _);
 
     [DbFunction(ufn_ + nameof(IsUri), Schema = IdentitySchema.ShortName)]
     public virtual bool IsUri(string uri) => System.uri.TryParse(uri, out _);
@@ -230,24 +192,16 @@ public class IdentityDbContext<
     [DbFunction(ufn_ + nameof(IsUrl), Schema = IdentitySchema.ShortName)]
     public virtual bool IsUrl(string url) => System.url.TryParse(url, out _);
 
-    [DbFunction(ufn_ + nameof(IsValidObjectId), Schema = IdentitySchema.ShortName)]
-    public virtual bool IsValidObjectId(string objectId) => ObjectId.TryParse(objectId, out _);
+    [DbFunction(ufn_ + nameof(IsValidObjectId),
+                Schema = IdentitySchema.ShortName)]
+    public virtual bool
+    IsValidObjectId(string objectId) => ObjectId.TryParse(objectId, out _);
 }
 
 public class IdentityDbContext
-    : IdentityDbContext<
-        AppUser,
-        AppRole,
-        long,
-        AppUserClaim,
-        AppUserRole,
-        AppUserLogin,
-        AppRoleClaim,
-        AppUserToken,
-        AppClaimType,
-        AppClaimValueType
-    >
+    : IdentityDbContext<AppUser, AppRole, long, AppUserClaim, AppUserRole,
+                        AppUserLogin, AppRoleClaim, AppUserToken, AppClaimType,
+                        AppClaimValueType>
 {
-    public IdentityDbContext(DbContextOptions options)
-        : base(options) { }
+    public IdentityDbContext(DbContextOptions options) : base(options) { }
 }

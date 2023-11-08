@@ -7,14 +7,16 @@ license: MIT
 slug: Microsoft.AspNetCore.Identity.Abstractions-readme
 version:
 authors:
+
 - dgmjr;
-description: Microsoft.AspNetCore.Identity.Abstractions Readme #TODO: write description for Microsoft.AspNetCore.Identity.Abstractions Readme
-keywords:
+  description: Microsoft.AspNetCore.Identity.Abstractions Readme #TODO: write description for Microsoft.AspNetCore.Identity.Abstractions Readme
+  keywords:
 - Microsoft.AspNetCore.Identity.Abstractions
 - dgmjr
 - dgmjr-io
-type: readme
-------------
+  type: readme
+
+---
 
 # Microsoft.AspNetCore.Identity.Abstractions Readme
 
@@ -34,5 +36,5 @@ type: readme
 
 ## Versioning
 
-Built from [commit  on branch  at]
+Built from [commit on branch at]
 (/tree/)

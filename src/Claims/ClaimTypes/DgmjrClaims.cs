@@ -12,7 +12,9 @@
 
 namespace Dgmjr.Identity.ClaimTypes;
 
-public abstract record class DgmjrClaims : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType
+public abstract record class DgmjrClaims
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+      IClaimType
 {
     /// <inheritdoc cref="DgmjrIdentity" />
     public const string UriString = DgmjrIdentity;
@@ -24,19 +26,22 @@ public abstract record class DgmjrClaims : ClaimType<DgmjrId.ClaimValueTypes.Str
 
     public override uri Uri => ((IIdentityComponent)this).UriString;
 
-    /// <summary>The base URI for claims in the <inheritdoc cref="BaseUri" path="/value" /> namespace</summary>
-    /// <value>https://dgmjr.io</value>
+    /// <summary>The base URI for claims in the <inheritdoc cref="BaseUri"
+    /// path="/value" /> namespace</summary> <value>https://dgmjr.io</value>
     public const string BaseUri = "https://dgmjr.io";
 
     /// <value>/identity</value>
     public const string Identity = "/identity";
 
-    /// <summary>The base URI for claims in the <inheritdoc cref="Identity" /> namespace</summary>
-    /// <value><inheritdoc cref="BaseUri" /><inheritdoc cref="Identity" /></value>
+    /// <summary>The base URI for claims in the <inheritdoc cref="Identity" />
+    /// namespace</summary> <value><inheritdoc cref="BaseUri" /><inheritdoc
+    /// cref="Identity" /></value>
     public const string DgmjrIdentity = BaseUri + Identity;
 }
 
-public record class UnknownClaimType : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType
+public record class UnknownClaimType
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+      IClaimType
 {
     /// <value><inheritdoc cref="DgmjrClaims.DgmjrIdentity" />/unknown</value>
     public const string UriString = $"{DgmjrClaims.DgmjrIdentity}/unknown";

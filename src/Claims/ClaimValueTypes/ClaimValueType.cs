@@ -17,7 +17,8 @@ using System.Reflection;
 using global::System;
 using global::System.Security;
 
-public partial record class ClaimValueType<TValue> : ClaimValueType, IClaimValueType<TValue>
+public partial record class ClaimValueType<TValue> : ClaimValueType,
+                                                     IClaimValueType<TValue>
 {
     public new virtual TValue Value
     {
@@ -28,15 +29,16 @@ public partial record class ClaimValueType<TValue> : ClaimValueType, IClaimValue
     public static implicit operator TValue(ClaimValueType<TValue> cvt) => cvt.Value;
 }
 
-public partial record class ClaimValueType : IdentityComponent, IClaimValueType
+public partial record class ClaimValueType : IdentityComponent,
+                                             IClaimValueType
 {
     // public virtual bool Equals(IIdentityComponent? other)
     //     => Equals(other as IClaimValueType);
 
     public virtual bool Equals(IClaimValueType? other)
     {
-        return other is not null
-            && (ReferenceEquals(this, other) || ((IClaimValueType)this).Uri == other.Uri);
+        return other is not null && (ReferenceEquals(this, other) ||
+                                     ((IClaimValueType)this).Uri == other.Uri);
     }
 
     public object Value { get; set; }
@@ -46,7 +48,8 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
     public virtual uri Uri => ((IIdentityComponent)this).UriString;
     public virtual uri ShortUri => ((IIdentityComponent)this).ShortUriString;
 
-    // public override bool Equals(object? other) => Equals(other as IClaimValueType);
+    // public override bool Equals(object? other) => Equals(other as
+    // IClaimValueType);
 
     public override int GetHashCode() => Uri.GetHashCode();
 
@@ -82,7 +85,8 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
     public const string ShortXacml30Namespace = "xacml";
 
     /// <value>http://www.w3.org/2000/09/xmldsig#</value>
-    public const string XmlSignatureConstantsNamespace = "http://www.w3.org/2000/09/xmldsig#";
+    public const string XmlSignatureConstantsNamespace =
+        "http://www.w3.org/2000/09/xmldsig#";
 
     /// <value>ds</value>
     public const string ShortXmlSignatureConstantsNamespace = "ds";
@@ -90,19 +94,25 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
     /// <value>http://schemas.xmlsoap.org</value>
     public const string SoapNamespacePrefix = "http://schemas.xmlsoap.org";
 
-    /// <value><inheritdoc cref="SoapNamespacePrefix" path="/value" />/identity/claims</value>
+    /// <value><inheritdoc cref="SoapNamespacePrefix" path="/value"
+    /// />/identity/claims</value>
     public const string SoapNamespace = SoapNamespacePrefix + "/identity/claims";
 
-    /// <value><inheritdoc cref="SoapNamespacePrefix" path="/value" />/ws/2005/05/identity/claims</value>
-    public const string Soap2005Namespace = SoapNamespacePrefix + "/ws/2005/05/identity/claims";
+    /// <value><inheritdoc cref="SoapNamespacePrefix" path="/value"
+    /// />/ws/2005/05/identity/claims</value>
+    public const string Soap2005Namespace =
+        SoapNamespacePrefix + "/ws/2005/05/identity/claims";
 
-    /// <value><inheritdoc cref="SoapNamespacePrefix" path="/value" />/ws/2005/05/identity/claims</value>
-    public const string Soap2008Namespace = SoapNamespacePrefix + "/ws/2008/06/identity/claims";
+    /// <value><inheritdoc cref="SoapNamespacePrefix" path="/value"
+    /// />/ws/2005/05/identity/claims</value>
+    public const string Soap2008Namespace =
+        SoapNamespacePrefix + "/ws/2008/06/identity/claims";
 
     /// <value><inheritdoc cref="Soap2005Namespace" path="/value" />/phone</value>
     public const string PhoneNumberUri = Soap2005Namespace + "/phone";
 
-    /// <value><inheritdoc cref="ShortSoapSchemaNamespace" path="/value" />:phone</value>
+    /// <value><inheritdoc cref="ShortSoapSchemaNamespace" path="/value"
+    /// />:phone</value>
     public const string PhoneNumberShortUri = ShortSoapSchemaNamespace + ":phone";
 
     /// <value>soap</value>
@@ -116,10 +126,9 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
         where TPersistedType : notnull
     {
         public EFCoreConverter()
-            : base(
-                v => (TPersistedType)v.Value,
-                v => (TClaimValueType)Activator.CreateInstance(typeof(TClaimValueType), v)
-            )
+            : base(v => (TPersistedType)v.Value,
+                   v => (TClaimValueType)Activator.CreateInstance(
+                       typeof(TClaimValueType), v))
         { }
     }
 }

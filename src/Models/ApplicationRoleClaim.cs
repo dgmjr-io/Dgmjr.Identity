@@ -24,21 +24,15 @@ using Microsoft.AspNetCore.Identity;
 // [JSerializable(typeof(ApplicationRoleClaim<TSelf, TKey>))]
 public class ApplicationRoleClaim<TKey>
     : EntityClaim<ApplicationRoleClaim<TKey>, ApplicationRole<TKey>, TKey>,
-        IIdentityRoleClaim<
-            ApplicationUser<TKey>,
-            ApplicationRole<TKey>,
-            TKey,
-            ApplicationUserClaim<TKey>,
-            ApplicationUserRole<TKey>,
-            ApplicationUserLogin<TKey>,
-            ApplicationRoleClaim<TKey>,
-            ApplicationUserToken<TKey>,
-            ApplicationClaimType<TKey>,
-            ApplicationClaimValueType<TKey>
-        >
+      IIdentityRoleClaim<ApplicationUser<TKey>, ApplicationRole<TKey>, TKey,
+                         ApplicationUserClaim<TKey>, ApplicationUserRole<TKey>,
+                         ApplicationUserLogin<TKey>, ApplicationRoleClaim<TKey>,
+                         ApplicationUserToken<TKey>, ApplicationClaimType<TKey>,
+                         ApplicationClaimValueType<TKey>>
     where TKey : IEquatable<TKey>, IComparable
 {
-    public static implicit operator ApplicationRoleClaim<TKey>(C claim) => FromClaim(claim);
+    public static implicit
+    operator ApplicationRoleClaim<TKey>(C claim) => FromClaim(claim);
 
     public virtual TKey RoleId
     {
@@ -48,8 +42,10 @@ public class ApplicationRoleClaim<TKey>
 
     public virtual ApplicationRole<TKey> Role { get; set; } = default!;
 
-    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; } =
-        new Collection<ApplicationClaimType<TKey>>();
+    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes
+    {
+        get;
+    } = new Collection<ApplicationClaimType<TKey>>();
 }
 
 public class ApplicationRoleClaim : ApplicationRoleClaim<long> { }

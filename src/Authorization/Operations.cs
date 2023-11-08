@@ -34,7 +34,8 @@ namespace Dgmjr.Identity.Authorization.Enums
 
 namespace Dgmjr.Identity.Authorization
 {
-    public partial class Operations : OperationAuthorizationRequirement, IEquatable<Operations>
+    public partial class Operations : OperationAuthorizationRequirement,
+                                      IEquatable<Operations>
     {
         public virtual bool Equals(Operations? op) => Name == op?.Name;
     }

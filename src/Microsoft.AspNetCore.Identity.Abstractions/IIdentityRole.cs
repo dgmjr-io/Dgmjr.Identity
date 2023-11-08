@@ -17,5 +17,6 @@ namespace Microsoft.AspNetCore.Identity.Abstractions
     [GenerateInterface(typeof(IdentityRole<TKey>))]
     public partial interface IIdentityRole<TKey>
         where TKey : IEquatable<TKey>, IComparable
-    { }
+    {
+    }
 }

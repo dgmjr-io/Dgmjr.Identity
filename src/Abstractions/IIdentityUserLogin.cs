@@ -12,87 +12,18 @@
 
 namespace Dgmjr.Identity.Abstractions;
 
-public interface IIdentityUserLogin<
-    TUser,
-    TRole,
-    TKey,
-    TUserClaim,
-    TUserRole,
-    TUserLogin,
-    TRoleClaim,
-    TUserToken
-> : IUserLoginEntity<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-    where TUser : IIdentityUser<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TRole : IIdentityRole<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+public interface IIdentityUserLogin<TUser, TRole, TKey, TUserClaim, TUserRole,
+                                    TUserLogin, TRoleClaim, TUserToken>
+    : IUserLoginEntity<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin,
+                       TRoleClaim, TUserToken>
+    where TUser : IIdentityUser<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+    where TRole : IIdentityRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TKey : IEquatable<TKey>, IComparable
-    where TUserClaim : IIdentityUserClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TUserRole : IIdentityUserRole<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TUserLogin : IIdentityUserLogin<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TRoleClaim : IIdentityRoleClaim<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
-    where TUserToken : IIdentityUserToken<
-            TUser,
-            TRole,
-            TKey,
-            TUserClaim,
-            TUserRole,
-            TUserLogin,
-            TRoleClaim,
-            TUserToken
-        >
+    where TUserClaim : IIdentityUserClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+    where TUserRole : IIdentityUserRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+    where TUserLogin : IIdentityUserLogin<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+    where TRoleClaim : IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
 {
     /// <summary>
     /// Gets or sets the unique provider identifier for this login.
@@ -101,14 +32,7 @@ public interface IIdentityUserLogin<
 }
 
 public interface IIdentityUserLogin
-    : IIdentityUserLogin<
-        IIdentityUser,
-        IIdentityRole,
-        long,
-        IIdentityUserClaim,
-        IIdentityUserRole,
-        IIdentityUserLogin,
-        IIdentityRoleClaim,
-        IIdentityUserToken
-    >
+    : IIdentityUserLogin<IIdentityUser, IIdentityRole, long, IIdentityUserClaim,
+                         IIdentityUserRole, IIdentityUserLogin,
+                         IIdentityRoleClaim, IIdentityUserToken>
 { }

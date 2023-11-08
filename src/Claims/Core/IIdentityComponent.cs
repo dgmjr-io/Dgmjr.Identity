@@ -12,7 +12,8 @@
 
 namespace Dgmjr.Identity;
 
-public interface IIdentityComponent : IEquatable<IIdentityComponent>, IHaveAUriString
+public interface IIdentityComponent : IEquatable<IIdentityComponent>,
+                                      IHaveAUriString
 {
     bool Equals(object other);
 

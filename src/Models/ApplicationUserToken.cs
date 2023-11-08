@@ -19,20 +19,16 @@ using Dgmjr.Identity.Abstractions;
 
 using Microsoft.EntityFrameworkCore.Internal;
 
-[Table(EntityFrameworkCore.Constants.TableNames.UserToken, Schema = IdentitySchema.ShortName)]
-[DebuggerDisplay("User Token ({UserId} - {LoginProvider}, Created: {DateTimeCreated})")]
+[Table(EntityFrameworkCore.Constants.TableNames.UserToken,
+       Schema = IdentitySchema.ShortName)]
+[DebuggerDisplay(
+    "User Token ({UserId} - {LoginProvider}, Created: {DateTimeCreated})")]
 public class ApplicationUserToken<TKey>
     : ApplicationIdentityEntity<TKey>,
-        IIdentityUserToken<
-            ApplicationUser<TKey>,
-            ApplicationRole<TKey>,
-            TKey,
-            ApplicationUserClaim<TKey>,
-            ApplicationUserRole<TKey>,
-            ApplicationUserLogin<TKey>,
-            ApplicationRoleClaim<TKey>,
-            ApplicationUserToken<TKey>
-        >
+      IIdentityUserToken<ApplicationUser<TKey>, ApplicationRole<TKey>, TKey,
+                         ApplicationUserClaim<TKey>, ApplicationUserRole<TKey>,
+                         ApplicationUserLogin<TKey>, ApplicationRoleClaim<TKey>,
+                         ApplicationUserToken<TKey>>
     where TKey : IEquatable<TKey>, IComparable
 {
     [Column]
@@ -84,5 +80,7 @@ public class ApplicationUserToken : ApplicationUserToken<long> { }
 
 // public class TelegramUserToken : BackroomUserToken
 // {
-//     public override byte ProviderId { get => ProviderId = (byte)TelegramLoginProvider; set => ProviderId = (byte)TelegramLoginProvider; }
+//     public override byte ProviderId { get => ProviderId =
+//     (byte)TelegramLoginProvider; set => ProviderId =
+//     (byte)TelegramLoginProvider; }
 // }

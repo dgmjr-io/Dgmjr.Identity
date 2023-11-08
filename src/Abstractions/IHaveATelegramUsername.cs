@@ -13,7 +13,8 @@
 namespace Dgmjr.Identity.Abstractions;
 
 /// <summary>
-/// Marker interface for a type that has a property called <see cref="TelegramUsername" />.
+/// Marker interface for a type that has a property called <see
+/// cref="TelegramUsername" />.
 /// </summary>
 public interface IHaveATelegramUsername
 {

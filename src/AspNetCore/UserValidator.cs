@@ -17,4 +17,4 @@ namespace Dgmjr.Identity;
 
 public class UserValidator<TUser>(IdentityErrorDescriber? errors = null)
     : MSID.UserValidator<TUser>(errors)
-    where TUser : class, IIdentityUserBase { }
+    where TUser : class, IIdentityUserBase {}

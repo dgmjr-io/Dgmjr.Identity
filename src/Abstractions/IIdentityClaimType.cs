@@ -1,9 +1,7 @@
 namespace Dgmjr.Identity.Abstractions;
 
 public interface IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValue>
-    : IIdentityEntity<TKey>,
-        IHaveAName,
-        IHaveADescription
+    : IIdentityEntity<TKey>, IHaveAName, IHaveADescription
     where TKey : IEquatable<TKey>, IComparable
     where TClaimType : IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValue>
     where TClaimValue : IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValue>
@@ -21,11 +19,6 @@ public interface IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValue>
 }
 
 public interface IIdentityClaimType
-    : IIdentityClaimType<
-        long,
-        IIdentityUser,
-        IIdentityRole,
-        IIdentityClaimType,
-        IIdentityClaimValueType
-    >
+    : IIdentityClaimType<long, IIdentityUser, IIdentityRole, IIdentityClaimType,
+                         IIdentityClaimValueType>
 { }

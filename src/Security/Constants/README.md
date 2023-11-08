@@ -7,14 +7,16 @@ license: MIT
 slug: Dgmjr.Security.Constants.Sln-readme
 version:
 authors:
+
 - dgmjr;
-description: Dgmjr.Security.Constants.Sln Readme #TODO: write description for Dgmjr.Security.Constants.Sln Readme
-keywords:
+  description: Dgmjr.Security.Constants.Sln Readme #TODO: write description for Dgmjr.Security.Constants.Sln Readme
+  keywords:
 - Dgmjr.Security.Constants.Sln
 - dgmjr
 - dgmjr-io
-type: readme
-------------
+  type: readme
+
+---
 
 # Dgmjr.Security.Constants.Sln Readme
 
@@ -34,5 +36,5 @@ type: readme
 
 ## Versioning
 
-Built from [commit  on branch  at]
+Built from [commit on branch at]
 (/tree/)

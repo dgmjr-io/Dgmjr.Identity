@@ -23,7 +23,8 @@ public abstract record class IdentityComponent : IIdentityComponent
         return ((IIdentityComponent)this).Uri == other.Uri;
     }
 
-    // public override bool Equals(object? other) => Equals(other as IIdentityComponent);
+    // public override bool Equals(object? other) => Equals(other as
+    // IIdentityComponent);
 
     public override int GetHashCode() => ((IIdentityComponent)this).GetHashCode();
 

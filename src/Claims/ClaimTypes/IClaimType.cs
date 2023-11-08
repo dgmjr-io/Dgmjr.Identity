@@ -12,4 +12,7 @@
 
 namespace Dgmjr.Identity;
 
-public interface IClaimType : IIdentityComponent, IEquatable<IClaimType>, IHaveAUriString { }
+public interface IClaimType : IIdentityComponent,
+                              IEquatable<IClaimType>,
+                              IHaveAUriString
+{ }

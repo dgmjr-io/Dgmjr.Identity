@@ -14,20 +14,20 @@
 // using ClaimTypeUris = Dgmjr.Identity.ClaimTypeUris;
 
 // /// <summary>
-// /// A enumeration representing the built-in claim types in the <see cref="System.Security.Claims.ClaimTypes" /> class.
+// /// A enumeration representing the built-in claim types in the <see
+// cref="System.Security.Claims.ClaimTypes" /> class.
 // /// </summary>
 // [GenerateEnumerationClass("ClaimType", "Dgmjr.Identity")]
 // public enum ClaimType
 // {
 //     /// <inheritdoc cref="ClaimTypeUris.UnknownLoginProvider" />
-//     [Display(Name = ClaimTypeUris.UnknownLoginProvider, ShortName = nameof(UnknownLoginProvider))]
-//     [Uri(ClaimTypeUris.UnknownLoginProvider)]
+//     [Display(Name = ClaimTypeUris.UnknownLoginProvider, ShortName =
+//     nameof(UnknownLoginProvider))] [Uri(ClaimTypeUris.UnknownLoginProvider)]
 //     UnknownLoginProvider,
 
 //     /// <inheritdoc cref="ClaimTypeUris.SecurityStamp" />
-//     [Display(Name = ClaimTypeUris.SecurityStamp, ShortName = nameof(SecurityStamp))]
-//     [Uri(ClaimTypeUris.SecurityStamp)]
-//     SecurityStamp,
+//     [Display(Name = ClaimTypeUris.SecurityStamp, ShortName =
+//     nameof(SecurityStamp))] [Uri(ClaimTypeUris.SecurityStamp)] SecurityStamp,
 
 //     /// <inheritdoc cref="ClaimTypeUris.BaseUri" />
 //     [Display(Name = ClaimTypeUris.BaseUri, ShortName = nameof(BaseUri))]
@@ -50,29 +50,30 @@
 //     Anonymous,
 
 //     /// <inheritdoc cref="ClaimTypeUris.Authentication" />
-//     [Display(Name = ClaimTypeUris.Authentication, ShortName = nameof(Authentication))]
-//     [Uri(ClaimTypeUris.Authentication)]
+//     [Display(Name = ClaimTypeUris.Authentication, ShortName =
+//     nameof(Authentication))] [Uri(ClaimTypeUris.Authentication)]
 //     Authentication,
 
 //     /// <inheritdoc cref="ClaimTypeUris.AuthenticationInstant" />
-//     [Display(Name = ClaimTypeUris.AuthenticationInstant, ShortName = nameof(AuthenticationInstant))]
+//     [Display(Name = ClaimTypeUris.AuthenticationInstant, ShortName =
+//     nameof(AuthenticationInstant))]
 //     [Uri(ClaimTypeUris.AuthenticationInstant)]
 //     AuthenticationInstant,
 
 //     /// <inheritdoc cref="ClaimTypeUris.AuthenticationMethod" />
-//     [Display(Name = ClaimTypeUris.AuthenticationMethod, ShortName = nameof(AuthenticationMethod))]
-//     [Uri(ClaimTypeUris.AuthenticationMethod)]
+//     [Display(Name = ClaimTypeUris.AuthenticationMethod, ShortName =
+//     nameof(AuthenticationMethod))] [Uri(ClaimTypeUris.AuthenticationMethod)]
 //     AuthenticationMethod,
 
 //     /// <inheritdoc cref="ClaimTypeUris.AuthorizationDecision" />
-//     [Display(Name = ClaimTypeUris.AuthorizationDecision, ShortName = nameof(AuthorizationDecision))]
+//     [Display(Name = ClaimTypeUris.AuthorizationDecision, ShortName =
+//     nameof(AuthorizationDecision))]
 //     [Uri(ClaimTypeUris.AuthorizationDecision)]
 //     AuthorizationDecision,
 
 //     /// <inheritdoc cref="ClaimTypeUris.CookiePath" />
-//     [Display(Name = ClaimTypeUris.CookiePath, ShortName = nameof(CookiePath))]
-//     [Uri(ClaimTypeUris.CookiePath)]
-//     CookiePath,
+//     [Display(Name = ClaimTypeUris.CookiePath, ShortName =
+//     nameof(CookiePath))] [Uri(ClaimTypeUris.CookiePath)] CookiePath,
 
 //     /// <inheritdoc cref="ClaimTypeUris.Country" />
 
@@ -82,9 +83,8 @@
 
 //     /// <inheritdoc cref="ClaimTypeUris.DateOfBirth" />
 
-//     [Display(Name = ClaimTypeUris.DateOfBirth, ShortName = nameof(DateOfBirth))]
-//     [Uri(ClaimTypeUris.DateOfBirth)]
-//     DateOfBirth,
+//     [Display(Name = ClaimTypeUris.DateOfBirth, ShortName =
+//     nameof(DateOfBirth))] [Uri(ClaimTypeUris.DateOfBirth)] DateOfBirth,
 
 //     /// <inheritdoc cref="ClaimTypeUris.DenyOnlyPrimaryGroupSid" />
 
@@ -97,15 +97,14 @@
 
 //     /// <inheritdoc cref="ClaimTypeUris.DenyOnlyPrimarySid" />
 
-//     [Display(Name = ClaimTypeUris.DenyOnlyPrimarySid, ShortName = nameof(DenyOnlyPrimarySid))]
-//     [Uri(ClaimTypeUris.DenyOnlyPrimarySid)]
+//     [Display(Name = ClaimTypeUris.DenyOnlyPrimarySid, ShortName =
+//     nameof(DenyOnlyPrimarySid))] [Uri(ClaimTypeUris.DenyOnlyPrimarySid)]
 //     DenyOnlyPrimarySid,
 
 //     /// <inheritdoc cref="ClaimTypeUris.DenyOnlySid" />
 
-//     [Display(Name = ClaimTypeUris.DenyOnlySid, ShortName = nameof(DenyOnlySid))]
-//     [Uri(ClaimTypeUris.DenyOnlySid)]
-//     DenyOnlySid,
+//     [Display(Name = ClaimTypeUris.DenyOnlySid, ShortName =
+//     nameof(DenyOnlySid))] [Uri(ClaimTypeUris.DenyOnlySid)] DenyOnlySid,
 
 //     /// <inheritdoc cref="ClaimTypeUris.DenyOnlyWindowsDeviceGroup" />
 
@@ -136,9 +135,8 @@
 
 //     /// <inheritdoc cref="ClaimTypeUris.Expiration" />
 
-//     [Display(Name = ClaimTypeUris.Expiration, ShortName = nameof(Expiration))]
-//     [Uri(ClaimTypeUris.Expiration)]
-//     Expiration,
+//     [Display(Name = ClaimTypeUris.Expiration, ShortName =
+//     nameof(Expiration))] [Uri(ClaimTypeUris.Expiration)] Expiration,
 
 //     /// <inheritdoc cref="ClaimTypeUris.Expired" />
 //     [Display(Name = ClaimTypeUris.Expired, ShortName = nameof(Expired))]
@@ -177,9 +175,8 @@
 
 //     /// <inheritdoc cref="ClaimTypeUris.IsPersistent" />
 
-//     [Display(Name = ClaimTypeUris.IsPersistent, ShortName = nameof(IsPersistent))]
-//     [Uri(ClaimTypeUris.IsPersistent)]
-//     IsPersistent,
+//     [Display(Name = ClaimTypeUris.IsPersistent, ShortName =
+//     nameof(IsPersistent))] [Uri(ClaimTypeUris.IsPersistent)] IsPersistent,
 
 //     /// <inheritdoc cref="ClaimTypeUris.Locality" />
 
@@ -189,45 +186,40 @@
 
 //     /// <inheritdoc cref="ClaimTypeUris.MobilePhone" />
 
-//     [Display(Name = ClaimTypeUris.MobilePhone, ShortName = nameof(MobilePhone))]
-//     [Uri(ClaimTypeUris.MobilePhone)]
-//     MobilePhone,
+//     [Display(Name = ClaimTypeUris.MobilePhone, ShortName =
+//     nameof(MobilePhone))] [Uri(ClaimTypeUris.MobilePhone)] MobilePhone,
 
 //     /// <inheritdoc cref="ClaimTypeUris.Name" />
 
-//     [Display(Name = ClaimTypeUris.Name, ShortName = nameof(ClaimTypeUris.Name))]
-//     [Uri(ClaimTypeUris.Name)]
-//     NameClaim,
+//     [Display(Name = ClaimTypeUris.Name, ShortName =
+//     nameof(ClaimTypeUris.Name))] [Uri(ClaimTypeUris.Name)] NameClaim,
 
 //     /// <inheritdoc cref="ClaimTypeUris.NameIdentifier" />
 
-//     [Display(Name = ClaimTypeUris.NameIdentifier, ShortName = nameof(NameIdentifier))]
-//     [Uri(ClaimTypeUris.NameIdentifier)]
+//     [Display(Name = ClaimTypeUris.NameIdentifier, ShortName =
+//     nameof(NameIdentifier))] [Uri(ClaimTypeUris.NameIdentifier)]
 //     NameIdentifier,
 
 //     /// <inheritdoc cref="ClaimTypeUris.OtherPhone" />
 
-//     [Display(Name = ClaimTypeUris.OtherPhone, ShortName = nameof(OtherPhone))]
-//     [Uri(ClaimTypeUris.OtherPhone)]
-//     OtherPhone,
+//     [Display(Name = ClaimTypeUris.OtherPhone, ShortName =
+//     nameof(OtherPhone))] [Uri(ClaimTypeUris.OtherPhone)] OtherPhone,
 
 //     /// <inheritdoc cref="ClaimTypeUris.PostalCode" />
 
-//     [Display(Name = ClaimTypeUris.PostalCode, ShortName = nameof(PostalCode))]
-//     [Uri(ClaimTypeUris.PostalCode)]
-//     PostalCode,
+//     [Display(Name = ClaimTypeUris.PostalCode, ShortName =
+//     nameof(PostalCode))] [Uri(ClaimTypeUris.PostalCode)] PostalCode,
 
 //     /// <inheritdoc cref="ClaimTypeUris.PrimaryGroupSid" />
 
-//     [Display(Name = ClaimTypeUris.PrimaryGroupSid, ShortName = nameof(PrimaryGroupSid))]
-//     [Uri(ClaimTypeUris.PrimaryGroupSid)]
+//     [Display(Name = ClaimTypeUris.PrimaryGroupSid, ShortName =
+//     nameof(PrimaryGroupSid))] [Uri(ClaimTypeUris.PrimaryGroupSid)]
 //     PrimaryGroupSid,
 
 //     /// <inheritdoc cref="ClaimTypeUris.PrimarySid" />
 
-//     [Display(Name = ClaimTypeUris.PrimarySid, ShortName = nameof(PrimarySid))]
-//     [Uri(ClaimTypeUris.PrimarySid)]
-//     PrimarySid,
+//     [Display(Name = ClaimTypeUris.PrimarySid, ShortName =
+//     nameof(PrimarySid))] [Uri(ClaimTypeUris.PrimarySid)] PrimarySid,
 
 //     /// <inheritdoc cref="ClaimTypeUris.Role" />
 
@@ -243,9 +235,8 @@
 
 //     /// <inheritdoc cref="ClaimTypeUris.SerialNumber" />
 
-//     [Display(Name = ClaimTypeUris.SerialNumber, ShortName = nameof(SerialNumber))]
-//     [Uri(ClaimTypeUris.SerialNumber)]
-//     SerialNumber,
+//     [Display(Name = ClaimTypeUris.SerialNumber, ShortName =
+//     nameof(SerialNumber))] [Uri(ClaimTypeUris.SerialNumber)] SerialNumber,
 
 //     /// <inheritdoc cref="ClaimTypeUris.Sid" />
 
@@ -261,15 +252,14 @@
 
 //     /// <inheritdoc cref="ClaimTypeUris.StateOrProvince" />
 
-//     [Display(Name = ClaimTypeUris.StateOrProvince, ShortName = nameof(StateOrProvince))]
-//     [Uri(ClaimTypeUris.StateOrProvince)]
+//     [Display(Name = ClaimTypeUris.StateOrProvince, ShortName =
+//     nameof(StateOrProvince))] [Uri(ClaimTypeUris.StateOrProvince)]
 //     StateOrProvince,
 
 //     /// <inheritdoc cref="ClaimTypeUris.StreetAddress" />
 
-//     [Display(Name = ClaimTypeUris.StreetAddress, ShortName = nameof(StreetAddress))]
-//     [Uri(ClaimTypeUris.StreetAddress)]
-//     StreetAddress,
+//     [Display(Name = ClaimTypeUris.StreetAddress, ShortName =
+//     nameof(StreetAddress))] [Uri(ClaimTypeUris.StreetAddress)] StreetAddress,
 
 //     /// <inheritdoc cref="ClaimTypeUris.Surname" />
 
@@ -285,9 +275,8 @@
 
 //     /// <inheritdoc cref="ClaimTypeUris.Thumbprint" />
 
-//     [Display(Name = ClaimTypeUris.Thumbprint, ShortName = nameof(Thumbprint))]
-//     [Uri(ClaimTypeUris.Thumbprint)]
-//     Thumbprint,
+//     [Display(Name = ClaimTypeUris.Thumbprint, ShortName =
+//     nameof(Thumbprint))] [Uri(ClaimTypeUris.Thumbprint)] Thumbprint,
 
 //     /// <inheritdoc cref="ClaimTypeUris.Upn" />
 
@@ -297,9 +286,8 @@
 
 //     /// <inheritdoc cref="ClaimTypeUris.uri" />
 
-//     [Display(Name = ClaimTypeUris.Uri, ShortName = nameof(ClaimTypeUris.Uri))]
-//     [Uri(ClaimTypeUris.Uri)]
-//     UriClaim,
+//     [Display(Name = ClaimTypeUris.Uri, ShortName =
+//     nameof(ClaimTypeUris.Uri))] [Uri(ClaimTypeUris.Uri)] UriClaim,
 
 //     /// <inheritdoc cref="ClaimTypeUris.UserData" />
 
@@ -321,43 +309,44 @@
 
 //     /// <inheritdoc cref="ClaimTypeUris.WindowsAccountName" />
 
-//     [Display(Name = ClaimTypeUris.WindowsAccountName, ShortName = nameof(WindowsAccountName))]
-//     [Uri(ClaimTypeUris.WindowsAccountName)]
+//     [Display(Name = ClaimTypeUris.WindowsAccountName, ShortName =
+//     nameof(WindowsAccountName))] [Uri(ClaimTypeUris.WindowsAccountName)]
 //     WindowsAccountName,
 
 //     /// <inheritdoc cref="ClaimTypeUris.WindowsDeviceClaim" />
 
-//     [Display(Name = ClaimTypeUris.WindowsDeviceClaim, ShortName = nameof(WindowsDeviceClaim))]
-//     [Uri(ClaimTypeUris.WindowsDeviceClaim)]
+//     [Display(Name = ClaimTypeUris.WindowsDeviceClaim, ShortName =
+//     nameof(WindowsDeviceClaim))] [Uri(ClaimTypeUris.WindowsDeviceClaim)]
 //     WindowsDeviceClaim,
 
 //     /// <inheritdoc cref="ClaimTypeUris.WindowsDeviceGroup" />
 
-//     [Display(Name = ClaimTypeUris.WindowsDeviceGroup, ShortName = nameof(WindowsDeviceGroup))]
-//     [Uri(ClaimTypeUris.WindowsDeviceGroup)]
+//     [Display(Name = ClaimTypeUris.WindowsDeviceGroup, ShortName =
+//     nameof(WindowsDeviceGroup))] [Uri(ClaimTypeUris.WindowsDeviceGroup)]
 //     WindowsDeviceGroup,
 
 //     /// <inheritdoc cref="ClaimTypeUris.WindowsFqbnVersion" />
 
-//     [Display(Name = ClaimTypeUris.WindowsFqbnVersion, ShortName = nameof(WindowsFqbnVersion))]
-//     [Uri(ClaimTypeUris.WindowsFqbnVersion)]
+//     [Display(Name = ClaimTypeUris.WindowsFqbnVersion, ShortName =
+//     nameof(WindowsFqbnVersion))] [Uri(ClaimTypeUris.WindowsFqbnVersion)]
 //     WindowsFqbnVersion,
 
 //     /// <inheritdoc cref="ClaimTypeUris.WindowsSubAuthority" />
 
-//     [Display(Name = ClaimTypeUris.WindowsSubAuthority, ShortName = nameof(WindowsSubAuthority))]
-//     [Uri(ClaimTypeUris.WindowsSubAuthority)]
+//     [Display(Name = ClaimTypeUris.WindowsSubAuthority, ShortName =
+//     nameof(WindowsSubAuthority))] [Uri(ClaimTypeUris.WindowsSubAuthority)]
 //     WindowsSubAuthority,
 
 //     /// <inheritdoc cref="ClaimTypeUris.WindowsUserClaim" />
 
-//     [Display(Name = ClaimTypeUris.WindowsUserClaim, ShortName = nameof(WindowsUserClaim))]
-//     [Uri(ClaimTypeUris.WindowsUserClaim)]
+//     [Display(Name = ClaimTypeUris.WindowsUserClaim, ShortName =
+//     nameof(WindowsUserClaim))] [Uri(ClaimTypeUris.WindowsUserClaim)]
 //     WindowsUserClaim,
 
 //     /// <inheritdoc cref="ClaimTypeUris.X500DistinguishedName" />
 
-//     [Display(Name = ClaimTypeUris.X500DistinguishedName, ShortName = nameof(X500DistinguishedName))]
+//     [Display(Name = ClaimTypeUris.X500DistinguishedName, ShortName =
+//     nameof(X500DistinguishedName))]
 //     [Uri(ClaimTypeUris.X500DistinguishedName)]
 //     X500DistinguishedName,
 // }

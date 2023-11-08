@@ -19,14 +19,17 @@ namespace Dgmjr.Identity.Models;
 public abstract class ApplicationIdentityEntity<TKey> : IIdentityEntity<TKey>
     where TKey : IEquatable<TKey>, IComparable
 {
-    [Key, DbGen(DbGen.Identity), Column(nameof(Id), TypeName = BigInt.ShortName), Required]
+    [Key, DbGen(DbGen.Identity), Column(nameof(Id), TypeName = BigInt.ShortName),
+     Required]
     public TKey Id { get; set; } = default!;
 
     object IIdentifiable.Id => Id;
 
     public override int GetHashCode() => HashCode.Combine(GetType(), Id);
 
-    public override bool Equals(object? obj) => GetHashCode() == obj?.GetHashCode();
+    public override bool
+        Equals(object? obj) => GetHashCode() == obj?.GetHashCode();
 
-    public virtual bool Equals(IEntity<TKey>? other) => GetHashCode() == other?.GetHashCode();
+    public virtual bool
+        Equals(IEntity<TKey>? other) => GetHashCode() == other?.GetHashCode();
 }

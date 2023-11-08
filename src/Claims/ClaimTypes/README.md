@@ -41,4 +41,3 @@ Defines a set of claim types and claim value types for use with the `Dgmjr.Ident
 #### `http://www.w3.org/2001/XMLSchema#double`
 
         The claim value type for double values.
-

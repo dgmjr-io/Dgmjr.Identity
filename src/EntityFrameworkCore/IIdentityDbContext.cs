@@ -17,8 +17,9 @@ using Microsoft.EntityFrameworkCore.Abstractions;
 // [GenerateInterface(typeof(IdentityDbContext<,,,,,,,,,>))]
 public partial interface IIdentityDbContext : IDbContext<IIdentityDbContext>
 {
-    // static string IDbContext.DefaultConnectionStringConfigurationKey => "IdentityDb";
-    // public string DefaultConnectionStringConfigurationKey => "IdentityDb";
+    // static string IDbContext.DefaultConnectionStringConfigurationKey =>
+    // "IdentityDb"; public string DefaultConnectionStringConfigurationKey =>
+    // "IdentityDb";
 }
 
 // [GenerateInterface(typeof(IdentityDbContext<,,,,,,,,,>))]

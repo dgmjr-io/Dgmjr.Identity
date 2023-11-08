@@ -34,46 +34,32 @@ using static Dgmjr.Identity.EntityFrameworkCore.Constants.UriMaxLengthConstant;
 
 using Humanizer;
 
-[Table(EntityFrameworkCore.Constants.TableNames.User, Schema = IdentitySchema.ShortName)]
+[Table(EntityFrameworkCore.Constants.TableNames.User,
+       Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User ({UserName} - {Email})")]
 public class ApplicationUser<TKey>
     : ApplicationIdentityEntity<TKey>,
-        IIdentityUser<
-            ApplicationUser<TKey>,
-            ApplicationRole<TKey>,
-            TKey,
-            ApplicationUserClaim<TKey>,
-            ApplicationUserRole<TKey>,
-            ApplicationUserLogin<TKey>,
-            ApplicationRoleClaim<TKey>,
-            ApplicationUserToken<TKey>
-        >,
-        IHaveClaims<TKey>,
-        IHaveUserClaims<
-            ApplicationUser<TKey>,
-            ApplicationRole<TKey>,
-            TKey,
-            ApplicationUserClaim<TKey>,
-            ApplicationUserRole<TKey>,
-            ApplicationUserLogin<TKey>,
-            ApplicationRoleClaim<TKey>,
-            ApplicationUserToken<TKey>
-        >
+      IIdentityUser<ApplicationUser<TKey>, ApplicationRole<TKey>, TKey,
+                    ApplicationUserClaim<TKey>, ApplicationUserRole<TKey>,
+                    ApplicationUserLogin<TKey>, ApplicationRoleClaim<TKey>,
+                    ApplicationUserToken<TKey>>,
+      IHaveClaims<TKey>,
+      IHaveUserClaims<ApplicationUser<TKey>, ApplicationRole<TKey>, TKey,
+                      ApplicationUserClaim<TKey>, ApplicationUserRole<TKey>,
+                      ApplicationUserLogin<TKey>, ApplicationRoleClaim<TKey>,
+                      ApplicationUserToken<TKey>>
     where TKey : IEquatable<TKey>, IComparable
 {
     public const string DefaultPassword = "Dav1d is really fuckin' sexy 123!";
     public const string DefaultLockoutEndString = "1/1/1970";
-    public static readonly DateTimeOffset DefaultLockoutEnd = DateTimeOffset.Parse(
-        DefaultLockoutEndString
-    );
+    public static readonly DateTimeOffset DefaultLockoutEnd =
+        DateTimeOffset.Parse(DefaultLockoutEndString);
     private readonly IPasswordHasher<ApplicationUser<TKey>>? _passwordHasher;
 
-    public ApplicationUser()
-    {
-        LockoutEnd = DefaultLockoutEnd;
-    }
+    public ApplicationUser() { LockoutEnd = DefaultLockoutEnd; }
 
-    private ApplicationUser(IPasswordHasher<ApplicationUser<TKey>> passwordHasher)
+    private ApplicationUser(
+        IPasswordHasher<ApplicationUser<TKey>> passwordHasher)
     {
         _passwordHasher = passwordHasher;
     }
@@ -82,7 +68,8 @@ public class ApplicationUser<TKey>
 
     public virtual string? TelegramUsername { get; set; }
 
-    [StringLength(Account.UsernameMaxLength, MinimumLength = Account.UsernameMinLength)]
+    [StringLength(Account.UsernameMaxLength,
+                  MinimumLength = Account.UsernameMinLength)]
     public virtual string? Username { get; set; }
 
     public virtual string? GivenName { get; set; } = null;
@@ -110,7 +97,8 @@ public class ApplicationUser<TKey>
     [Column(nameof(IsLockedOut))]
     [DbGen(DbGen.Computed)]
     [BackingField(nameof(_isLockedOut))]
-    public virtual bool IsLockedOut => IsLockoutEnabled && LockoutEnd > DateTimeOffset.Now;
+    public virtual bool IsLockedOut => IsLockoutEnabled &&
+                                       LockoutEnd > DateTimeOffset.Now;
     private bool _isLockedOut = false;
 
     [DefaultValue(DefaultLockoutEndString)]
@@ -139,23 +127,17 @@ public class ApplicationUser<TKey>
     public virtual IGender Gender { get; set; }
 
     public override bool Equals(object? obj) =>
-        obj
-            is IIdentityUser<
-                ApplicationUser<TKey>,
-                ApplicationRole<TKey>,
-                TKey,
-                ApplicationUserClaim<TKey>,
-                ApplicationUserRole<TKey>,
-                ApplicationUserLogin<TKey>,
-                ApplicationRoleClaim<TKey>,
-                ApplicationUserToken<TKey>
-            > user
-        && obj is IIdentifiable<long> userId
-        && userId.Id.Equals(Id);
+        obj is
+        IIdentityUser<ApplicationUser<TKey>, ApplicationRole<TKey>, TKey,
+                      ApplicationUserClaim<TKey>, ApplicationUserRole<TKey>,
+                      ApplicationUserLogin<TKey>, ApplicationRoleClaim<TKey>,
+                      ApplicationUserToken<TKey>> user
+        && obj is IIdentifiable<long> userId && userId.Id.Equals(Id);
 
     public override int GetHashCode() => Id.GetHashCode();
 
-    // public virtual string ConcurrencyStamp { get; } = guid.NewGuid().ToByteArray().ToHexString();
+    // public virtual string ConcurrencyStamp { get; } =
+    // guid.NewGuid().ToByteArray().ToHexString();
 
     public virtual string? Password
     {
@@ -168,25 +150,37 @@ public class ApplicationUser<TKey>
     // public virtual string SecurityStamp { get; } = NewGuid().ToString();
 
     /// <summary>The roles to which the user belongs</summary>
-    public virtual ICollection<ApplicationRole<TKey>> Roles { get; } =
-        new Collection<ApplicationRole<TKey>>();
+    public virtual ICollection<ApplicationRole<TKey>> Roles
+    {
+        get;
+    } = new Collection<ApplicationRole<TKey>>();
 
     /// <summary>The user's logins for various federated providers</summary>
-    public virtual ICollection<ApplicationUserLogin<TKey>> Logins { get; } =
-        new Collection<ApplicationUserLogin<TKey>>();
+    public virtual ICollection<ApplicationUserLogin<TKey>> Logins
+    {
+        get;
+    } = new Collection<ApplicationUserLogin<TKey>>();
 
     /// <summary>The user's tokens</summary>
-    public virtual ICollection<ApplicationUserToken<TKey>> Tokens { get; } =
-        new Collection<ApplicationUserToken<TKey>>();
+    public virtual ICollection<ApplicationUserToken<TKey>> Tokens
+    {
+        get;
+    } = new Collection<ApplicationUserToken<TKey>>();
 
     /// <summary>The user's claims</summary>
-    public virtual ICollection<ApplicationUserClaim<TKey>> Claims { get; } =
-        new Collection<ApplicationUserClaim<TKey>>();
+    public virtual ICollection<ApplicationUserClaim<TKey>> Claims
+    {
+        get;
+    } = new Collection<ApplicationUserClaim<TKey>>();
 
-    public virtual ICollection<ApplicationUserRole<TKey>> UserRoles { get; } =
-        new Collection<ApplicationUserRole<TKey>>();
-    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; } =
-        new Collection<ApplicationClaimType<TKey>>();
+    public virtual ICollection<ApplicationUserRole<TKey>> UserRoles
+    {
+        get;
+    } = new Collection<ApplicationUserRole<TKey>>();
+    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes
+    {
+        get;
+    } = new Collection<ApplicationClaimType<TKey>>();
 
     ICollection<C> IHaveClaims<TKey>.Claims
     {
@@ -194,13 +188,12 @@ public class ApplicationUser<TKey>
     }
 
     private Lazy<bool> _isBot = default!;
-    private Lazy<bool> LazyIsBot =>
-        _isBot ??= new(
-            () => ClaimTypes.Any(ct => ct.Uri == Telegram.Identity.ClaimTypes.BotApiToken.UriString)
-        );
+    private Lazy<bool> LazyIsBot => _isBot ??= new(
+        () => ClaimTypes.Any(
+            ct => ct.Uri == Telegram.Identity.ClaimTypes.BotApiToken.UriString));
 
-    public virtual bool IsBot =>
-        ClaimTypes.Any(ct => ct.Uri == Telegram.Identity.ClaimTypes.BotApiToken.UriString);
+    public virtual bool IsBot => ClaimTypes.Any(
+        ct => ct.Uri == Telegram.Identity.ClaimTypes.BotApiToken.UriString);
 }
 
 public class ApplicationUser : ApplicationUser<long> { }

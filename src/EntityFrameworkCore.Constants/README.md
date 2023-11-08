@@ -7,14 +7,16 @@ license: MIT
 slug: Dgmjr.Identity.EntityFrameworkCore.Constants-readme
 version: 0.0.1-Local
 authors:
+
 - dgmjr
-description: Dgmjr.Identity.EntityFrameworkCore.Constants Readme #TODO: write description for Dgmjr.Identity.EntityFrameworkCore.Constants Readme
-keywords:
+  description: Dgmjr.Identity.EntityFrameworkCore.Constants Readme #TODO: write description for Dgmjr.Identity.EntityFrameworkCore.Constants Readme
+  keywords:
 - Dgmjr.Identity.EntityFrameworkCore.Constants
 - dgmjr
 - dgmjr-io
-type: readme
-------------
+  type: readme
+
+---
 
 # Dgmjr.Identity.EntityFrameworkCore.Constants Readme
 
@@ -24,7 +26,7 @@ type: readme
 
 Package Description
 
-Built from [commit  on branch  at]
+Built from [commit on branch at]
 (/tree/)
 
 ## Getting Started
@@ -39,5 +41,5 @@ Built from [commit  on branch  at]
 
 ## Versioning
 
-Built from [commit  on branch  at]
+Built from [commit on branch at]
 (/tree/)

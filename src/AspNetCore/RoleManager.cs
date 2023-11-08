@@ -20,13 +20,12 @@ namespace Dgmjr.Identity;
 public class RoleManager<TRole> : MSID.RoleManager<TRole>
     where TRole : class, IIdentityRoleBase
 {
-    public RoleManager(
-        IRoleStore<TRole> store,
-        IEnumerable<IRoleValidator<TRole>> roleValidators,
-        ILookupNormalizer keyNormalizer,
-        IdentityErrorDescriber errors,
-        ILogger<RoleManager<TRole>> logger
-    )
-        : base(store, roleValidators, keyNormalizer, errors as MSID.IdentityErrorDescriber, logger)
+    public RoleManager(IRoleStore<TRole> store,
+                       IEnumerable<IRoleValidator<TRole>> roleValidators,
+                       ILookupNormalizer keyNormalizer,
+                       IdentityErrorDescriber errors,
+                       ILogger<RoleManager<TRole>> logger)
+        : base(store, roleValidators, keyNormalizer,
+               errors as MSID.IdentityErrorDescriber, logger)
     { }
 }

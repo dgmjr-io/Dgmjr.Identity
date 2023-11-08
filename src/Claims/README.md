@@ -7,14 +7,16 @@ license: MIT
 slug: Dgmjr.Identity.Claims-readme
 version: 0.0.1
 authors:
+
 - dgmjr
-description: Dgmjr.Identity.Claims Readme #TODO: write description for Dgmjr.Identity.Claims Readme
-keywords:
+  description: Dgmjr.Identity.Claims Readme #TODO: write description for Dgmjr.Identity.Claims Readme
+  keywords:
 - Dgmjr.Identity.Claims
 - dgmjr
 - dgmjr-io
-type: readme
-------------
+  type: readme
+
+---
 
 # Dgmjr.Identity.Claims Readme
 
@@ -34,5 +36,5 @@ type: readme
 
 ## Versioning
 
-Built from [commit  on branch  at]
+Built from [commit on branch at]
 (/tree/)

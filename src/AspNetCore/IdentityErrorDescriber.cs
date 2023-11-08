@@ -7,7 +7,8 @@ public class IdentityErrorDescriber : MSID.IdentityErrorDescriber
         return new MSID.IdentityError
         {
             Code = nameof(UserNotInRole),
-            Description = $"User is not in role {role}."
+            Description =
+                                            $"User is not in role {role}."
         };
     }
 }

@@ -6,8 +6,7 @@ using System.Security.Claims;
 namespace Dgmjr.Identity.Models;
 
 public abstract class EntityClaim<TSelf, TEntity, TKey>
-    : ApplicationIdentityEntity<TKey>,
-        IEntityClaim<TSelf, TEntity, TKey>
+    : ApplicationIdentityEntity<TKey>, IEntityClaim<TSelf, TEntity, TKey>
     where TKey : IEquatable<TKey>, IComparable
     where TSelf : IEntityClaim<TSelf, TEntity, TKey>, new()
 {
@@ -27,7 +26,8 @@ public abstract class EntityClaim<TSelf, TEntity, TKey>
         {
             try
             {
-                return (TKey)Convert.ChangeType(Properties[nameof(EntityId)], typeof(TKey));
+                return (TKey)Convert.ChangeType(Properties[nameof(EntityId)],
+                                                typeof(TKey));
             }
             catch
             {
@@ -66,14 +66,16 @@ public abstract class EntityClaim<TSelf, TEntity, TKey>
         set => Properties[nameof(ValueType)] = value;
     }
 
-    [Required, Url, StringLength(UriMaxLength, MinimumLength = 0), DefaultValue(DgmjrIo)]
+    [Required, Url, StringLength(UriMaxLength, MinimumLength = 0),
+     DefaultValue(DgmjrIo)]
     public uri Issuer
     {
         get => uri.From(Properties[nameof(Issuer)]);
         set => Properties[nameof(Issuer)] = value;
     }
 
-    [Required, Url, StringLength(UriMaxLength, MinimumLength = 0), DefaultValue(DgmjrIo)]
+    [Required, Url, StringLength(UriMaxLength, MinimumLength = 0),
+     DefaultValue(DgmjrIo)]
     public uri OriginalIssuer
     {
         get => uri.From(Properties[nameof(OriginalIssuer)]);
@@ -84,17 +86,20 @@ public abstract class EntityClaim<TSelf, TEntity, TKey>
     public void InitializeFromClaim(C? claim)
     {
         Properties = claim.Properties;
-        Type = claim.Type ?? Dgmjr.Identity.ClaimTypes.UnknownClaimType.Instance.Uri;
+        Type =
+            claim.Type ?? Dgmjr.Identity.ClaimTypes.UnknownClaimType.Instance.Uri;
         Value = claim.Value;
         Issuer = claim.Issuer ?? DgmjrIdentity;
         OriginalIssuer = claim.OriginalIssuer ?? DgmjrIdentity;
         ValueType = claim.ValueType ?? ClaimValueTypes.String.Instance.Uri;
         EntityId = claim.Properties.ContainsKey(nameof(EntityId))
-            ? (TKey)Convert.ChangeType(claim.Properties[nameof(EntityId)], typeof(TKey))
-            : default;
+                       ? (TKey)Convert.ChangeType(
+                             claim.Properties[nameof(EntityId)], typeof(TKey))
+                       : default;
         Id = claim.Properties.ContainsKey(nameof(Id))
-            ? (TKey)Convert.ChangeType(claim.Properties[nameof(Id)], typeof(TKey))
-            : default;
+                 ? (TKey)Convert.ChangeType(claim.Properties[nameof(Id)],
+                                            typeof(TKey))
+                 : default;
     }
 
     public C ToClaim()

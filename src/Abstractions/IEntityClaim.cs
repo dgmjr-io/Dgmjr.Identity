@@ -25,30 +25,33 @@ public interface IEntityClaim<TSelf, TEntity, TKey> : IIdentityEntity<TKey>
 
     [StringLength(UriMaxLength, MinimumLength = 1)]
     [Required]
-    [Url]
-    [DefaultValue(DgmjrCt.DgmjrClaims.UriString)]
-    uri Type { get; set; }
+    [Url] [DefaultValue(DgmjrCt.DgmjrClaims.UriString)] uri Type { get; set; }
 
     [StringLength(UriMaxLength, MinimumLength = 1)]
     [Required]
     [Url]
     [DefaultValue(ClaimValueTypes.String.UriString)]
-    uri ValueType { get; set; }
+    uri ValueType
+    {
+        get;
+        set;
+    }
+
+    [StringLength(UriMaxLength, MinimumLength = 1)]
+    [Required]
+    [Url] [DefaultValue(DgmjrCt.DgmjrClaims.BaseUri)] uri Issuer { get; set; }
 
     [StringLength(UriMaxLength, MinimumLength = 1)]
     [Required]
     [Url]
     [DefaultValue(DgmjrCt.DgmjrClaims.BaseUri)]
-    uri Issuer { get; set; }
+    uri OriginalIssuer
+    {
+        get;
+        set;
+    }
 
-    [StringLength(UriMaxLength, MinimumLength = 1)]
-    [Required]
-    [Url]
-    [DefaultValue(DgmjrCt.DgmjrClaims.BaseUri)]
-    uri OriginalIssuer { get; set; }
-
-    [DefaultValue("{}")]
-    IStringDictionary Properties { get; set; }
+    [DefaultValue("{}")] IStringDictionary Properties { get; set; }
 
     C ToClaim();
     void InitializeFromClaim(C? claim);

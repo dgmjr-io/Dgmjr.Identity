@@ -27,8 +27,8 @@ namespace Dgmjr.Identity.Models;
 using System;
 using Dgmjr.Identity.Abstractions;
 
-// /// <summary>A join entity between <see cref="Models.User" />s and <see cref="Models.Bot" />s</summary>
-// public record UserContactId : IUserContactId
+// /// <summary>A join entity between <see cref="Models.User" />s and <see
+// cref="Models.Bot" />s</summary> public record UserContactId : IUserContactId
 // {
 //     [Key, DbGen(DbGen.Identity)]
 //     public virtual int Id { get; set; }
@@ -51,6 +51,7 @@ using Dgmjr.Identity.Abstractions;
 //     /// <summary>Gets or sets the bot's identifier.</summary>
 //     [Hashids]
 //     public int BotId { get; set; }
-//     /// <summary>Gets or sets the users <see cref="ObjectId" /> unique to that <see cref="Models.Bot" />.</summary>
-//     public ObjectId ContactId { get; set; }
+//     /// <summary>Gets or sets the users <see cref="ObjectId" /> unique to
+//     that <see cref="Models.Bot" />.</summary> public ObjectId ContactId {
+//     get; set; }
 // }

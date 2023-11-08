@@ -28,7 +28,8 @@ public static class DescribeDataTypesExtensions
     //     return builder;
     // }
 
-    public static IServiceCollection DescribeIdentityDataTypes(this IServiceCollection services)
+    public static IServiceCollection
+    DescribeIdentityDataTypes(this IServiceCollection services)
     {
         services.Describe<EmailAddress>();
         services.Describe<PhoneNumber>();
@@ -42,12 +43,14 @@ public static class DescribeDataTypesExtensions
         //                 Pattern = EmailAddress.RegexString,
         //                 Format = nameof(EmailAddress),
         //                 Description = EmailAddress.Description,
-        //                 Example = new OpenApiString(EmailAddress.ExampleValueString),
-        //                 Default = new OpenApiString(EmailAddress.EmptyValueString),
+        //                 Example = new
+        //                 OpenApiString(EmailAddress.ExampleValueString), Default =
+        //                 new OpenApiString(EmailAddress.EmptyValueString),
         //                 ExternalDocs = new OpenApiExternalDocs
         //                 {
         //                     Description = "Email Address",
-        //                     Url = new("https://en.wikipedia.org/wiki/Email_address")
+        //                     Url =
+        //                     new("https://en.wikipedia.org/wiki/Email_address")
         //                 }
         //             }
         //     );

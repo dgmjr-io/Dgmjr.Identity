@@ -12,7 +12,9 @@
 
 namespace Dgmjr.Identity.ClaimTypes;
 
-public abstract record class OtherClaimType : ClaimType<DgmjrId.ClaimValueTypes.String> { }
+public abstract record class OtherClaimType
+    : ClaimType<DgmjrId.ClaimValueTypes.String>
+{ }
 
 /// <summary>The URI for an unknown user login provider</summary>
 /// <value>urn:users:login:provider:none</value>
@@ -36,7 +38,9 @@ public record class UnknownLoginProvider : OtherClaimType, IClaimType
 
 /// <summary>The URI for a login provider</summary>
 /// <value>urn:users:login:provider:{provider}</value>
-public record class LoginProviderPattern : OtherClaimType, IClaimType, IIdentityComponent
+public record class LoginProviderPattern : OtherClaimType,
+                                           IClaimType,
+                                           IIdentityComponent
 {
     private LoginProviderPattern() { }
 
@@ -60,7 +64,9 @@ public record class LoginProviderPattern : OtherClaimType, IClaimType, IIdentity
 
 /// <summary>The URI for a security stamp</summary>
 /// <value>urn:identity:securitystamp</value>
-public record class SecurityStamp : OtherClaimType, IClaimType, IIdentityComponent
+public record class SecurityStamp : OtherClaimType,
+                                    IClaimType,
+                                    IIdentityComponent
 {
     private SecurityStamp() { }
 
@@ -84,7 +90,9 @@ public record class SecurityStamp : OtherClaimType, IClaimType, IIdentityCompone
 
 /// <summary>The URI for a generic claim type</summary>
 /// <value>urn:identity:claim:generic:{0}</value>
-public record class GenericClaimTypePattern : OtherClaimType, IClaimType, IIdentityComponent
+public record class GenericClaimTypePattern : OtherClaimType,
+                                              IClaimType,
+                                              IIdentityComponent
 {
     private GenericClaimTypePattern() { }
 
@@ -108,7 +116,8 @@ public record class GenericClaimTypePattern : OtherClaimType, IClaimType, IIdent
 
 /// <summary>The URI for a generic claims issuer</summary>
 /// <value>urn:identity:claim:issuer:generic:{0}</value>
-public record class GenericClaimsIssuerTypePattern : OtherClaimType, IClaimType
+public record class GenericClaimsIssuerTypePattern : OtherClaimType,
+                                                     IClaimType
 {
     private GenericClaimsIssuerTypePattern() { }
 
