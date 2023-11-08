@@ -190,109 +190,48 @@ public class IdentityDbContext<
         //     uc => uc.HasKey(uc => new { uc.UserId, uc.ClaimTypeId })
         // );
         // builder.HasMany(e => e.Roles).WithMany().UsingEntity<RoleClaim>();
-
-        modelBuilder.HasDbFunction(
-            typeof(IdentityDbContext).GetMethod(nameof(GetBotToken)),
-            builder =>
-            {
-                builder.HasName(ufn_ + nameof(GetBotToken));
-                builder.HasSchema(IdentitySchema.ShortName);
-                builder.HasParameter("userId");
-                builder.HasStoreType($"char({BotApiToken.Length})");
-                builder
-                    .GetInfrastructure()
-                    .HasTypeMapping(
-                        new StringTypeMapping(DbTypeNames.NVarCharMax.ShortName, DbType.String)
-                    );
-                //         builder
-                //             .GetInfrastructure()
-                //             .HasTranslation(
-                //                 args =>
-                //                     args[0] is SqlConstantExpression sqlConstantExpression
-                //                         ? new SqlFragmentExpression(
-                //                             $"""
-                //                             SELECT TOP 1[{ IdentityConstants.UserClaim.Columns.Value }]
-                //                             FROM[{ IdentitySchema.ShortName}].[{ UserClaim}]
-                //                             WHERE[{ IdentityConstants.UserClaim.Columns.UserId}] = { sqlConstantExpression.Value}
-                // AND[{ IdentityConstants.UserClaim.Columns.Type}] = '{Telegram.Identity.BotApiToken.UriString}'
-                //                             """
-                //                         )
-                //                         : throw new InvalidOperationException(
-                //                             "The argument must be a constant expression."
-                //                         )
-                //             );
-            }
-        );
-
-        modelBuilder.HasDbFunction(
-            typeof(IdentityDbContext).GetMethod(nameof(IsValidEmailAddress)),
-            builder =>
-            {
-                builder.HasName(ufn_ + nameof(IsValidEmailAddress));
-                builder.HasSchema(DataSchema.ShortName);
-                builder.HasParameter("email");
-                builder.HasStoreType($"char({BotApiToken.Length})");
-                builder
-                    .GetInfrastructure()
-                    .HasTypeMapping(
-                        new StringTypeMapping(DbTypeNames.NVarCharMax.ShortName, DbType.String)
-                    );
-                // builder.HasTranslation(
-                //     args =>
-                //         args[0] is SqlConstantExpression sqlConstantExpression
-                //             ? new SqlFragmentExpression(
-                //                 $$$"""
-                //                 DECLARE @bitEmailVal as Bit
-                //                 DECLARE @EmailText nvarchar(MAX) = '{{{sqlConstantExpression.Value}}}'
-
-                //                 SET @EmailText = ltrim(rtrim(isnull(@EMAIL, '')))
-
-                //                 SET @bitEmailVal = case when @EmailText = '' then 0
-                //                                         when @EmailText like '% %' then 0
-                //                                         when @EmailText like ('%["(),:;<>\]%') then 0
-                //                                         when substring(@EmailText, charindex('@', @EmailText),len(@EmailText)) like('%[!#$%&*+/=?^`_{|]%') then 0
-                //                                         when(left(@EmailText,1) like('[-_.+]') or right(@EmailText,1) like('[-_.+]')) then 0
-                //                                         when(@EmailText like '%[%' or @EmailText like '%]%') then 0
-                //                                         when @EmailText LIKE '%@%@%' then 0
-                //                                         when @EmailText NOT LIKE '_%@_%._%' then 0
-                //                                         else 1
-                //                                     end
-                //                 RETURN @bitEmailVal
-                //                 """
-                //             )
-                //             : throw new InvalidOperationException(
-                //                 "The argument must be a constant expression."
-                //             )
-                // );
-            }
-        );
     }
 
-    public static bool IsBot(long userId) => !GetBotToken(userId).IsEmpty;
+    [DbFunction(ufn_ + nameof(IsBot), Schema = IdentitySchema.ShortName)]
+    public virtual bool IsBot(long userId) => !GetBotToken(userId).IsEmpty;
 
-    [DbFunction(ufn_ + nameof(GetBotToken), Schema = DataSchema.ShortName)]
-    public static BotApiToken GetBotToken(long userId) => default!;
+    public virtual BotApiToken GetBotToken(long userId) =>
+        BotApiToken.TryParse(ufn_GetBotToken(userId), out var botToken) ? botToken.Value : default!;
+
+    [DbFunction(nameof(ufn_GetBotToken), Schema = DataSchema.ShortName)]
+    public virtual string ufn_GetBotToken(long userId) =>
+        UserClaims
+            .FirstOrDefault(
+                u =>
+                    u.Type.Equals(Telegram.Identity.ClaimTypes.BotApiToken.UriString)
+                    && u.UserId.Equals(userId.ToString())
+            )
+            ?.Value ?? string.Empty;
+
+    [DbFunction(nameof(ufn_GetBotToken), Schema = DataSchema.ShortName)]
+    public virtual bool IsValidBotToken(string token) => BotApiToken.TryParse(token, out _);
 
     [DbFunction(ufn_ + nameof(IsValidEmailAddress), Schema = IdentitySchema.ShortName)]
-    public static bool IsValidEmailAddress(string email) => default!;
+    public virtual bool IsValidEmailAddress(string email) => EmailAddress.TryParse(email, out _);
 
     [DbFunction(ufn_ + nameof(IsValidPhoneNumber), Schema = IdentitySchema.ShortName)]
-    public static bool IsValidPhoneNumber(string phoneNumber) => default!;
+    public virtual bool IsValidPhoneNumber(string phoneNumber) =>
+        PhoneNumber.TryParse(phoneNumber, out _);
 
     [DbFunction(ufn_ + nameof(IsValidGender), Schema = IdentitySchema.ShortName)]
-    public static bool IsValidGender(string gender) => default!;
+    public virtual bool IsValidGender(string gender) => Gender.TryParse(gender, out _);
 
-    [DbFunction(ufn_ + nameof(IsValidUri), Schema = IdentitySchema.ShortName)]
-    public static bool IsValidUri(string uri) => default!;
+    [DbFunction(ufn_ + nameof(IsUri), Schema = IdentitySchema.ShortName)]
+    public virtual bool IsUri(string uri) => System.uri.TryParse(uri, out _);
 
-    [DbFunction(ufn_ + nameof(IsValidUrn), Schema = IdentitySchema.ShortName)]
-    public static bool IsValidUrn(string urn) => default!;
+    [DbFunction(ufn_ + nameof(IsUrn), Schema = IdentitySchema.ShortName)]
+    public virtual bool IsUrn(string urn) => System.urn.TryParse(urn, out _);
 
-    [DbFunction(ufn_ + nameof(IsValidUrl), Schema = IdentitySchema.ShortName)]
-    public static bool IsValidUrl(string url) => default!;
+    [DbFunction(ufn_ + nameof(IsUrl), Schema = IdentitySchema.ShortName)]
+    public virtual bool IsUrl(string url) => System.url.TryParse(url, out _);
 
     [DbFunction(ufn_ + nameof(IsValidObjectId), Schema = IdentitySchema.ShortName)]
-    public static bool IsValidObjectId(string objectId) => default!;
+    public virtual bool IsValidObjectId(string objectId) => ObjectId.TryParse(objectId, out _);
 }
 
 public class IdentityDbContext

@@ -111,10 +111,7 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
     public override string? ToString() => Value?.ToString();
 
     public class EFCoreConverter<TClaimValueType, TPersistedType>
-        : Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<
-            TClaimValueType?,
-            TPersistedType?
-        >
+        : ValueConverter<TClaimValueType?, TPersistedType?>
         where TClaimValueType : notnull, IClaimValueType
         where TPersistedType : notnull
     {
@@ -122,7 +119,6 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
             : base(
                 v => (TPersistedType)v.Value,
                 v => (TClaimValueType)Activator.CreateInstance(typeof(TClaimValueType), v)
-            )
-        { }
+            ) { }
     }
 }

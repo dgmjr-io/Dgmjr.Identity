@@ -96,6 +96,21 @@ public class AppUserConfiguration<
             IdentitySchema.ShortName,
             tb =>
             {
+                tb.HasEmailAddressCheckConstraint(
+                    IdentityConstants.User.Columns.EmailAddress,
+                    ufn_ + nameof(IdentityDbContext.IsValidEmailAddress),
+                    DataSchema.ShortName
+                );
+                tb.HasPhoneNumberCheckConstraint(
+                    IdentityConstants.User.Columns.PhoneNumber,
+                    ufn_ + nameof(IdentityDbContext.IsValidPhoneNumber),
+                    DataSchema.ShortName
+                );
+                tb.HasGenderCheckConstraint(
+                    nameof(AppUser.Gender),
+                    ufn_ + nameof(IdentityDbContext.IsValidGender),
+                    IdentitySchema.ShortName
+                );
                 // tb.HasCheckConstraint(
                 //     CK_ + nameof(AppUser.EmailAddress),
                 //     $"[data].{ufn_ + nameof(IdentityDbContext.IsValidEmailAddress)}([{nameof(AppUser.TelegramUsername)}]) = 1)"
@@ -217,5 +232,4 @@ public class AppUserConfiguration
         AppUserToken,
         AppClaimType,
         AppClaimValueType
-    >
-{ }
+    > { }

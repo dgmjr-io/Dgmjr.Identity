@@ -27,7 +27,7 @@ public abstract record class ClaimType : IIdentityComponent, IClaimType
 }
 
 public partial record class ClaimType<TValueType> : ClaimType
-    where TValueType : class, IEquatable<TValueType>, IClaimValueType
+    where TValueType : IEquatable<TValueType>, IClaimValueType
 {
     /// <value>http://schemas.microsoft.com</value>
     public const string NamespacePrefix = "http://schemas.microsoft.com";

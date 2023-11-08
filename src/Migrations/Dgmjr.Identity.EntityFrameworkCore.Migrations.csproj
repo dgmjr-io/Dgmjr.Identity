@@ -16,12 +16,12 @@
     <TargetFrameworks>net8.0</TargetFrameworks>
     <!-- <EfCoreVersionOverride>[8.0.0-rc,)</EfCoreVersionOverride> -->
     <!-- <EfCoreVersionOverride>[7.0.12,)</EfCoreVersionOverride> -->
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies> -->
 		<UserSecretsId>e6b186e0-e9c0-45e1-a0e0-caaf78d8b2d5</UserSecretsId>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup Condition="true">
-    <ProjectReference Include="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" />
+    <!-- <ProjectReference Include="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" /> -->
     <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />
   </ItemGroup>
   <!-- <ItemGroup>
@@ -42,8 +42,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools"  />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design"  />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Extensions"  />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Migrations"  />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants"  />
+    <PackageReference Include="Telegram.Bot.Extensions"  />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas"  />
     <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" ExcludeAssets="ContentFiles" VersionOverride="[5.2.0,)" />
-    <Reference Include="System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Version="8.0.0.0" />
+    <!-- <Reference Include="System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Version="8.0.0.0" /> -->
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="./Resources/*.sql" LogicalName="%(Filename)%(Extension)" />

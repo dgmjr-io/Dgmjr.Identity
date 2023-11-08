@@ -8,7 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DgmjrId.IdentityDbContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityDb")),
+    options =>
+        options
+            .UseSqlServer(
+                builder.Configuration.GetConnectionString("IdentityDb"),
+                builder => builder.MigrationsAssembly(typeof(Program).Assembly.GetName().Name)
+            )
+            .EnableSensitiveDataLogging(false)
+            .EnableDetailedErrors(false)
+            .EnableThreadSafetyChecks(false)
+            .EnableServiceProviderCaching(false),
     ServiceLifetime.Transient,
     ServiceLifetime.Transient
 );

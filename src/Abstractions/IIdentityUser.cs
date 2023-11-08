@@ -24,8 +24,7 @@ using Dgmjr.Abstractions;
 
 public partial interface IIdentityUser<TKey, TUser, TRole>
     : IIdentityUserBase,
-        IIdentityEntity<TKey>,
-        IHaveATelegramUsername
+        IIdentityEntity<TKey>
     where TKey : IEquatable<TKey>, IComparable
     where TRole : IIdentityRole<TKey, TUser, TRole>
     where TUser : IIdentityUser<TKey, TUser, TRole>
@@ -134,5 +133,4 @@ public interface IIdentityUser
         IIdentityUserLogin,
         IIdentityRoleClaim,
         IIdentityUserToken
-    >
-{ }
+    > { }

@@ -24,16 +24,30 @@ public interface IEntityClaim<TSelf, TEntity, TKey> : IIdentityEntity<TKey>
     string? Value { get; set; }
 
     [StringLength(UriMaxLength, MinimumLength = 1)]
-    uri? Type { get; set; }
+    [Required]
+    [Url]
+    [DefaultValue(DgmjrCt.DgmjrClaims.UriString)]
+    uri Type { get; set; }
 
     [StringLength(UriMaxLength, MinimumLength = 1)]
-    uri? ValueType { get; set; }
+    [Required]
+    [Url]
+    [DefaultValue(ClaimValueTypes.String.UriString)]
+    uri ValueType { get; set; }
 
     [StringLength(UriMaxLength, MinimumLength = 1)]
-    uri? Issuer { get; set; }
+    [Required]
+    [Url]
+    [DefaultValue(DgmjrCt.DgmjrClaims.BaseUri)]
+    uri Issuer { get; set; }
 
     [StringLength(UriMaxLength, MinimumLength = 1)]
-    uri? OriginalIssuer { get; set; }
+    [Required]
+    [Url]
+    [DefaultValue(DgmjrCt.DgmjrClaims.BaseUri)]
+    uri OriginalIssuer { get; set; }
+
+    [DefaultValue("{}")]
     IStringDictionary Properties { get; set; }
 
     C ToClaim();

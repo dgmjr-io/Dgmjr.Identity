@@ -38,22 +38,11 @@ public class IdentityDbContextDesignTimeFactory : IDesignTimeDbContextFactory<Id
             // )
             .Build()
             .GetConnectionString("IdentityDb");
-        var builder =
-            new DbContextOptionsBuilder<
-                IdentityDbContext<
-                    AppUser,
-                    AppRole,
-                    long,
-                    AppUserClaim,
-                    AppUserRole,
-                    AppUserLogin,
-                    AppRoleClaim,
-                    AppUserToken,
-                    AppClaimType,
-                    AppClaimValueType
-                >
-            >();
-        builder.UseSqlServer(connectionString);
+        var builder = new DbContextOptionsBuilder<IdentityDbContext>();
+        builder.UseSqlServer(
+            connectionString,
+            b => b.MigrationsAssembly("Dgmjr.Identity.EntityFrameworkCore.Migrations")
+        );
         return new IdentityDbContext(builder.Options);
     }
 }

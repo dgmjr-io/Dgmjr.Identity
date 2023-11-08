@@ -18,7 +18,7 @@ using System.Domain;
 using System.Net.Mail;
 using System.Security.Claims;
 
-public interface IIdentityUserBase : IHaveATelegramUsername
+public interface IIdentityUserBase : IHaveATelegramUsername, IIdentityEntity
 {
     /// <summary>Gets or sets the user's username (usually the same as <see cref="IHaveATelegramUsername.TelegramUsername" />)</summary>
     /// <example>IAmTheAntitwink</example>
@@ -56,6 +56,7 @@ public interface IIdentityUserBase : IHaveATelegramUsername
     EmailAddress EmailAddress { get; set; }
 
     /// <summary>Gets or sets the normalized email address for this user.</summary>
+    [ProtectedPersonalData]
     [Column(nameof(EmailAddress))]
     [StringLength(UriMaxLength, MinimumLength = 0)]
     [JIgnore, XIgnore]

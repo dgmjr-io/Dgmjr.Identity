@@ -34,6 +34,8 @@
     <PackageReference Include="Dgmjr.Primitives.Gender" />
 
     <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
+    <ProjectReference Include="../Claims/ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.csproj" />
+    <ProjectReference Include="../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.csproj" />
 
     <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
 
@@ -44,4 +46,6 @@
   </ItemGroup>
   <Import Project="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas.props" Condition="Exists('../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas.props')" />
   <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" Condition="Exists('../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props')" />
+  <Import Project="../Claims/ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.props" />
+  <Import Project="../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.props" />
 </Project>

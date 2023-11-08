@@ -737,7 +737,10 @@ public record class GivenName
 
 /// <summary>The URI for a claim that specifies the SID for the group of an entity, </summary>
 /// <value><inheritdoc cref="GroupSid.UriString" path="/value" /></value>
-public record class GroupSid : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType, IIdentityComponent
+public record class GroupSid
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new GroupSid();
 
@@ -797,7 +800,10 @@ public record class Hash : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType
 
 /// <summary>The URI for a claim that specifies the home phone number of an entity, </summary>
 /// <value><inheritdoc cref="HomePhone.UriString" path="/value" /></value>
-public record class HomePhone : ClaimType<PhoneNumber>, IClaimType, IIdentityComponent
+public record class HomePhone
+    : ClaimType<DgmjrId.ClaimValueTypes.PhoneNumber>,
+        IClaimType,
+        IIdentityComponent
 {
     public static readonly IClaimType Instance = new HomePhone();
 

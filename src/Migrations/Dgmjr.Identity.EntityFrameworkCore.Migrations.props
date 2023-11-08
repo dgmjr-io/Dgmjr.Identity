@@ -1,0 +1,5 @@
+<Project>
+  <ItemGroup>
+    <Using Include="Dgmjr.EntityFrameworkCore.Constants.Prefixes" Static="true" />
+  </ItemGroup>
+</Project>

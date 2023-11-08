@@ -50,7 +50,7 @@ public abstract class EntityClaim<TSelf, TEntity, TKey>
     [Url]
     [StringLength(UriMaxLength, MinimumLength = 0)]
     [DefaultValue(DgmjrCt.Unknown.UriString)]
-    public uri? Type
+    public uri Type
     {
         get => uri.From(Properties[nameof(Type)]);
         set => Properties[nameof(Type)] = value;
@@ -60,21 +60,21 @@ public abstract class EntityClaim<TSelf, TEntity, TKey>
     [Url]
     [StringLength(UriMaxLength, MinimumLength = 0)]
     [DefaultValue(DgmjrCvt.String.UriString)]
-    public uri? ValueType
+    public uri ValueType
     {
         get => uri.From(Properties[nameof(ValueType)]);
         set => Properties[nameof(ValueType)] = value;
     }
 
     [Required, Url, StringLength(UriMaxLength, MinimumLength = 0), DefaultValue(DgmjrIo)]
-    public uri? Issuer
+    public uri Issuer
     {
         get => uri.From(Properties[nameof(Issuer)]);
         set => Properties[nameof(Issuer)] = value;
     }
 
     [Required, Url, StringLength(UriMaxLength, MinimumLength = 0), DefaultValue(DgmjrIo)]
-    public uri? OriginalIssuer
+    public uri OriginalIssuer
     {
         get => uri.From(Properties[nameof(OriginalIssuer)]);
         set => Properties[nameof(OriginalIssuer)] = value;

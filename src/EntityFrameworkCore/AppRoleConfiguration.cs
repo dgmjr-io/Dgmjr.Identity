@@ -106,7 +106,7 @@ public class AppRoleConfiguration<
         // builder.Property(e => e.Name).HasMaxLength(256);
         // builder.Property(e => e.NormalizedName).HasMaxLength(256);
         // builder.HasIndex(e => e.NormalizedName).IsUnique().HasName("RoleNameIndex").HasFilter("[NormalizedName] IS NOT NULL");
-        builder.UriProperty(e => e.Uri).IsUnicode(false);
+        builder.UriProperty(e => (e as IHaveAuri).Uri).IsUnicode(false);
         builder.HasMany(
             e => e.Users
         ) /*
@@ -140,5 +140,4 @@ public class AppRoleConfiguration
         AppUserToken,
         AppClaimType,
         AppClaimValueType
-    >
-{ }
+    > { }
