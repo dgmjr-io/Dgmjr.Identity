@@ -23,14 +23,16 @@ public interface IIdentityUserLogin<TUser, TRole, TKey, TUserClaim, TUserRole,
     where TUserRole : IIdentityUserRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUserLogin : IIdentityUserLogin<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TRoleClaim : IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken> {
-  /// <summary>
-  /// Gets or sets the unique provider identifier for this login.
-  /// </summary>
-  string ProviderKey { get; set; }
+    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+{
+    /// <summary>
+    /// Gets or sets the unique provider identifier for this login.
+    /// </summary>
+    string ProviderKey { get; set; }
 }
 
 public interface IIdentityUserLogin
     : IIdentityUserLogin<IIdentityUser, IIdentityRole, long, IIdentityUserClaim,
                          IIdentityUserRole, IIdentityUserLogin,
-                         IIdentityRoleClaim, IIdentityUserToken> {}
+                         IIdentityRoleClaim, IIdentityUserToken>
+{ }

@@ -12,6 +12,7 @@
 
 namespace Dgmjr.Identity.EntityFrameworkCore.Constants;
 
-public static class UriMaxLengthConstant {
-  public const int UriMaxLength = 2048;
+public static class UriMaxLengthConstant
+{
+    public const int UriMaxLength = 2048;
 }

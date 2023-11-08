@@ -23,19 +23,21 @@ public interface IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole,
     where TUserRole : IIdentityUserRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUserLogin : IIdentityUserLogin<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TRoleClaim : IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken> {
-  /// <summary>
-  /// Gets or sets the name of the token.
-  /// </summary>
-  string Name { get; set; }
+    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+{
+    /// <summary>
+    /// Gets or sets the name of the token.
+    /// </summary>
+    string Name { get; set; }
 
-  /// <summary>
-  /// Gets or sets the token value.
-  /// </summary>
-  [ProtectedPersonalData] string? Value { get; set; }
+    /// <summary>
+    /// Gets or sets the token value.
+    /// </summary>
+    [ProtectedPersonalData] string? Value { get; set; }
 }
 
 public interface IIdentityUserToken
     : IIdentityUserToken<IIdentityUser, IIdentityRole, long, IIdentityUserClaim,
                          IIdentityUserRole, IIdentityUserLogin,
-                         IIdentityRoleClaim, IIdentityUserToken> {}
+                         IIdentityRoleClaim, IIdentityUserToken>
+{ }

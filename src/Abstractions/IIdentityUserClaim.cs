@@ -26,10 +26,12 @@ public interface IIdentityUserClaim<TUser, TRole, TKey, TUserClaim, TUserRole,
     where TUserRole : IIdentityUserRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUserLogin : IIdentityUserLogin<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TRoleClaim : IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken> {
+    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+{
 }
 
 public interface IIdentityUserClaim
     : IIdentityUserClaim<IIdentityUser, IIdentityRole, long, IIdentityUserClaim,
                          IIdentityUserRole, IIdentityUserLogin,
-                         IIdentityRoleClaim, IIdentityUserToken> {}
+                         IIdentityRoleClaim, IIdentityUserToken>
+{ }

@@ -10,11 +10,13 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace Microsoft.AspNetCore.Identity.Abstractions {
-using Microsoft.AspNetCore.Identity;
+namespace Microsoft.AspNetCore.Identity.Abstractions
+{
+    using Microsoft.AspNetCore.Identity;
 
-[GenerateInterface(typeof(IdentityRole<TKey>))]
-public partial interface IIdentityRole<TKey>
-    where TKey : IEquatable<TKey>, IComparable {
-}
+    [GenerateInterface(typeof(IdentityRole<TKey>))]
+    public partial interface IIdentityRole<TKey>
+        where TKey : IEquatable<TKey>, IComparable
+    {
+    }
 }

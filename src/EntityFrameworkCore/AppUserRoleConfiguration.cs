@@ -35,24 +35,27 @@ public class AppUserRoleConfiguration<TUser, TRole, TKey, TUserClaim, TUserRole,
     where TClaimType : class,
                        IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValueType>
     where TClaimValueType : class,
-                            IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType> {
-  public void Configure(EntityTypeBuilder<TUserRole> builder) {
-    builder.ToTable(UserRole, IdentitySchema.ShortName, tb => tb.IsTemporal());
-    builder.HasKey(e => e.Id).HasName(pk_ + UserRole);
-    // builder
-    //     .HasOne(e => e.User)
-    //     .WithMany(e => e.Roles)
-    //     .HasForeignKey(e => e.UserId)
-    //     .HasPrincipalKey(e => e.Id);
-    // builder
-    //     .HasOne(e => e.Role)
-    //     .WithMany(e => e.Users)
-    //     .HasForeignKey(e => e.RoleId)
-    //     .HasPrincipalKey(e => e.Id);
-  }
+                            IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType>
+{
+    public void Configure(EntityTypeBuilder<TUserRole> builder)
+    {
+        builder.ToTable(UserRole, IdentitySchema.ShortName, tb => tb.IsTemporal());
+        builder.HasKey(e => e.Id).HasName(pk_ + UserRole);
+        // builder
+        //     .HasOne(e => e.User)
+        //     .WithMany(e => e.Roles)
+        //     .HasForeignKey(e => e.UserId)
+        //     .HasPrincipalKey(e => e.Id);
+        // builder
+        //     .HasOne(e => e.Role)
+        //     .WithMany(e => e.Users)
+        //     .HasForeignKey(e => e.RoleId)
+        //     .HasPrincipalKey(e => e.Id);
+    }
 }
 
 public class AppUserRoleConfiguration
     : AppUserRoleConfiguration<AppUser, AppRole, long, AppUserClaim,
                                AppUserRole, AppUserLogin, AppRoleClaim,
-                               AppUserToken, AppClaimType, AppClaimValueType> {}
+                               AppUserToken, AppClaimType, AppClaimValueType>
+{ }

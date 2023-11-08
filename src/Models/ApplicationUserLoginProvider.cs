@@ -22,36 +22,42 @@ using Dgmjr.Identity.Abstractions;
 using Dgmjr.Identity.Models.Abstractions;
 
 public class ApplicationUserLoginProviderConverter
-    : ValueConverter<IApplicationUserLoginProvider, int> {
-  public ApplicationUserLoginProviderConverter()
-      : base(v => ((IIdentifiable<int>)v).Id,
-             v => ApplicationUserLoginProvider.FromId(v)) {}
+    : ValueConverter<IApplicationUserLoginProvider, int>
+{
+    public ApplicationUserLoginProviderConverter()
+        : base(v => ((IIdentifiable<int>)v).Id,
+               v => ApplicationUserLoginProvider.FromId(v))
+    { }
 }
 
 public class ApplicationUserLoginProviderJsonConverter
-    : JsonConverter<IApplicationUserLoginProvider> {
-  public override
-      IApplicationUserLoginProvider Read(ref Utf8JsonReader reader,
-                                         Type typeToConvert,
-                                         JsonSerializerOptions options) {
-    var value = reader.GetInt32();
-    return ApplicationUserLoginProvider.FromId(value);
-  }
+    : JsonConverter<IApplicationUserLoginProvider>
+{
+    public override
+        IApplicationUserLoginProvider Read(ref Utf8JsonReader reader,
+                                           Type typeToConvert,
+                                           JsonSerializerOptions options)
+    {
+        var value = reader.GetInt32();
+        return ApplicationUserLoginProvider.FromId(value);
+    }
 
-  public override void Write(Utf8JsonWriter writer,
-                             IApplicationUserLoginProvider value,
-                             JsonSerializerOptions options) {
-    writer.WriteNumberValue(((IIdentifiable<int>)value).Id);
-  }
+    public override void Write(Utf8JsonWriter writer,
+                               IApplicationUserLoginProvider value,
+                               JsonSerializerOptions options)
+    {
+        writer.WriteNumberValue(((IIdentifiable<int>)value).Id);
+    }
 }
 
-public partial record struct ApplicationUserLoginProvider {
-  public static Dgmjr.Identity.Models.Abstractions.IApplicationUserLoginProvider
-  FromId(int id) =>
-      FromValue((Dgmjr.Identity.Models.Enums.ApplicationUserLoginProvider)id);
+public partial record struct ApplicationUserLoginProvider
+{
+    public static Dgmjr.Identity.Models.Abstractions.IApplicationUserLoginProvider
+    FromId(int id) =>
+        FromValue((Dgmjr.Identity.Models.Enums.ApplicationUserLoginProvider)id);
 }
 
-public record class UserLoginProvider {}
+public record class UserLoginProvider { }
 
 // public partial record class UserLoginProvider //:
 // Dgmjr.Enumerations.EnumerationClass<UserLoginProvider, int,

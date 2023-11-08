@@ -26,13 +26,16 @@ public partial interface IIdentityUser<TKey, TUser, TRole>
     : IIdentityUserBase, IIdentityEntity<TKey>
     where TKey : IEquatable<TKey>, IComparable
     where TRole : IIdentityRole<TKey, TUser, TRole>
-    where TUser : IIdentityUser<TKey, TUser, TRole> {
-  /// <summary>Gets or sets the primary key for this user.</summary>
-  [PersonalData, Key, DbGen(DbGen.None), Hashids]
-  new TKey Id { get;
-  set;
-}
-ICollection<TRole> Roles { get; }
+    where TUser : IIdentityUser<TKey, TUser, TRole>
+{
+    /// <summary>Gets or sets the primary key for this user.</summary>
+    [PersonalData, Key, DbGen(DbGen.None), Hashids]
+    new TKey Id
+    {
+        get;
+        set;
+    }
+    ICollection<TRole> Roles { get; }
 }
 
 public partial
@@ -46,14 +49,16 @@ public partial
     where TUserRole : IIdentityUserRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUserLogin : IIdentityUserLogin<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TRoleClaim : IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken> {
-  ICollection<TUserClaim> Claims { get; }
-  ICollection<TUserLogin> Logins { get; }
-  ICollection<TUserToken> Tokens { get; }
-  ICollection<TUserRole> UserRoles { get; }
+    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+{
+    ICollection<TUserClaim> Claims { get; }
+    ICollection<TUserLogin> Logins { get; }
+    ICollection<TUserToken> Tokens { get; }
+    ICollection<TUserRole> UserRoles { get; }
 }
 
 public interface IIdentityUser
     : IIdentityUser<IIdentityUser, IIdentityRole, long, IIdentityUserClaim,
                     IIdentityUserRole, IIdentityUserLogin, IIdentityRoleClaim,
-                    IIdentityUserToken> {}
+                    IIdentityUserToken>
+{ }

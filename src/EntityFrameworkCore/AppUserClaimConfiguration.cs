@@ -44,28 +44,31 @@ public class AppUserClaimConfiguration<TUser, TRole, TKey, TUserClaim,
     where TClaimType : class,
                        IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValueType>
     where TClaimValueType : class,
-                            IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType> {
-  public virtual void Configure(EntityTypeBuilder<TUserClaim> builder) {
-    builder.ToTable(UserClaim, IdentitySchema.ShortName, tb => tb.IsTemporal());
-    builder.HasKey(e => e.Id).HasName(pk_ + UserClaim);
-    builder.Property(e => e.Id).ValueGeneratedOnAdd();
-    builder.Property(e => e.Properties)
-        .HasConversion(new JsonObjectConverter<IStringDictionary>());
-    builder.UriProperty(e => e.Type);
-    builder.UriProperty(e => e.Issuer);
-    builder.UriProperty(e => e.OriginalIssuer);
-    builder.UriProperty(e => e.ValueType);
-    builder.Ignore(e => e.EntityId);
-    builder.Ignore(e => e.Entity);
-    builder.HasOne(e => e.User)
-        .WithMany(e => e.Claims)
-        .HasForeignKey(e => e.UserId)
-        .HasPrincipalKey(e => e.Id);
-  }
+                            IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType>
+{
+    public virtual void Configure(EntityTypeBuilder<TUserClaim> builder)
+    {
+        builder.ToTable(UserClaim, IdentitySchema.ShortName, tb => tb.IsTemporal());
+        builder.HasKey(e => e.Id).HasName(pk_ + UserClaim);
+        builder.Property(e => e.Id).ValueGeneratedOnAdd();
+        builder.Property(e => e.Properties)
+            .HasConversion(new JsonObjectConverter<IStringDictionary>());
+        builder.UriProperty(e => e.Type);
+        builder.UriProperty(e => e.Issuer);
+        builder.UriProperty(e => e.OriginalIssuer);
+        builder.UriProperty(e => e.ValueType);
+        builder.Ignore(e => e.EntityId);
+        builder.Ignore(e => e.Entity);
+        builder.HasOne(e => e.User)
+            .WithMany(e => e.Claims)
+            .HasForeignKey(e => e.UserId)
+            .HasPrincipalKey(e => e.Id);
+    }
 }
 
 public class AppUserClaimConfiguration
     : AppUserClaimConfiguration<AppUser, AppRole, long, AppUserClaim,
                                 AppUserRole, AppUserLogin, AppRoleClaim,
-                                AppUserToken, AppClaimType, AppClaimValueType> {
+                                AppUserToken, AppClaimType, AppClaimValueType>
+{
 }

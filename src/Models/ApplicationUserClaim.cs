@@ -33,59 +33,64 @@ public class ApplicationUserClaim<TKey>
                          ApplicationUserClaim<TKey>, ApplicationUserRole<TKey>,
                          ApplicationUserLogin<TKey>, ApplicationRoleClaim<TKey>,
                          ApplicationUserToken<TKey>>
-    where TKey : IEquatable<TKey>, IComparable {
-  public static implicit operator ApplicationUserClaim<TKey>(C claim) =>
-      FromClaim(claim) as ApplicationUserClaim<TKey>;
+    where TKey : IEquatable<TKey>, IComparable
+{
+    public static implicit operator ApplicationUserClaim<TKey>(C claim) =>
+        FromClaim(claim) as ApplicationUserClaim<TKey>;
 
-  public ApplicationUser<TKey> User {
-    get => Entity;
-    set => Entity = value;
-  }
+    public ApplicationUser<TKey> User
+    {
+        get => Entity;
+        set => Entity = value;
+    }
 
-  public virtual TKey UserId {
-    get => EntityId;
-    set => EntityId = value;
-  }
+    public virtual TKey UserId
+    {
+        get => EntityId;
+        set => EntityId = value;
+    }
 }
 
-public class ApplicationUserClaim : ApplicationUserClaim<long> {}
+public class ApplicationUserClaim : ApplicationUserClaim<long> { }
 
-public record struct ApplicationUserClaimCreateDto {
-  public ApplicationUserClaimCreateDto() {
-    Type = DgmjrCt.Unknown.UriString;
-    Issuer = DgmjrIo;
-    ValueType = DgmjrCvt.String.UriString;
-    Value = string.Empty;
-  }
+public record struct ApplicationUserClaimCreateDto
+{
+    public ApplicationUserClaimCreateDto()
+    {
+        Type = DgmjrCt.Unknown.UriString;
+        Issuer = DgmjrIo;
+        ValueType = DgmjrCvt.String.UriString;
+        Value = string.Empty;
+    }
 
-  /// <summary>The value of the claim</summary>
-  /// <example>Justin</example>
-  /// <remarks>See <see
-  /// href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">Claim.Value</see>
-  /// for more information.</remarks> <default />
-  public string Value { get; set; } = string.Empty;
+    /// <summary>The value of the claim</summary>
+    /// <example>Justin</example>
+    /// <remarks>See <see
+    /// href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">Claim.Value</see>
+    /// for more information.</remarks> <default />
+    public string Value { get; set; } = string.Empty;
 
-  /// <summary>The type of the claim</summary>
-  /// <example>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name</example>
-  /// <remarks>See <see
-  /// href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">ClaimTypes</see>
-  /// for more information.</remarks> <default><inheritdoc
-  /// cref="DgmjrCt.Unknown.UriString" path="/value/text()" /></default>
-  public uri? Type { get; set; } = DgmjrCt.Unknown.UriString;
+    /// <summary>The type of the claim</summary>
+    /// <example>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name</example>
+    /// <remarks>See <see
+    /// href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">ClaimTypes</see>
+    /// for more information.</remarks> <default><inheritdoc
+    /// cref="DgmjrCt.Unknown.UriString" path="/value/text()" /></default>
+    public uri? Type { get; set; } = DgmjrCt.Unknown.UriString;
 
-  /// <summary>The issuer of the claim</summary>
-  /// <example><inheritdoc cref="DgmjrIo" path="/value" /></example>
-  /// <remarks>See <see
-  /// href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">Claim.Issuer</see>
-  /// for more information.</remarks> <default><inheritdoc cref="DgmjrIo"
-  /// path="/value/text()" /></default>
-  public uri? Issuer { get; set; } = DgmjrIo;
+    /// <summary>The issuer of the claim</summary>
+    /// <example><inheritdoc cref="DgmjrIo" path="/value" /></example>
+    /// <remarks>See <see
+    /// href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">Claim.Issuer</see>
+    /// for more information.</remarks> <default><inheritdoc cref="DgmjrIo"
+    /// path="/value/text()" /></default>
+    public uri? Issuer { get; set; } = DgmjrIo;
 
-  /// <summary>The type of the claim's value</summary>
-  /// <example>http://www.w3.org/2001/XMLSchema#string</example>
-  /// <remarks>See <see
-  /// href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">ClaimValueType</see>
-  /// for more information.</remarks> <default><inheritdoc
-  /// cref="DgmjrCvt.String.UriString" path="/value/text()" /></default>
-  public uri? ValueType { get; set; } = DgmjrCvt.String.UriString;
+    /// <summary>The type of the claim's value</summary>
+    /// <example>http://www.w3.org/2001/XMLSchema#string</example>
+    /// <remarks>See <see
+    /// href="https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimvaluetypes?view=net-8.0">ClaimValueType</see>
+    /// for more information.</remarks> <default><inheritdoc
+    /// cref="DgmjrCvt.String.UriString" path="/value/text()" /></default>
+    public uri? ValueType { get; set; } = DgmjrCvt.String.UriString;
 }

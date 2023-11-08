@@ -33,29 +33,33 @@ public class ApplicationUserLogin<TKey>
                          ApplicationUserClaim<TKey>, ApplicationUserRole<TKey>,
                          ApplicationUserLogin<TKey>, ApplicationRoleClaim<TKey>,
                          ApplicationUserToken<TKey>>
-    where TKey : IEquatable<TKey>, IComparable {
-  [NotMapped]
-  public virtual string ProviderName => Provider.Name;
+    where TKey : IEquatable<TKey>, IComparable
+{
+    [NotMapped]
+    public virtual string ProviderName => Provider.Name;
 
-  public virtual string ProviderKey { get; set; }
+    public virtual string ProviderKey { get; set; }
 
-  [NotMapped]
-  public virtual string ProviderDisplayName => Provider.DisplayName;
+    [NotMapped]
+    public virtual string ProviderDisplayName => Provider.DisplayName;
 
-  [JConverter(typeof(ApplicationUserLoginProviderJsonConverter))]
-  public virtual Abstractions.IApplicationUserLoginProvider Provider { get;
-                                                                       set; }
+    [JConverter(typeof(ApplicationUserLoginProviderJsonConverter))]
+    public virtual Abstractions.IApplicationUserLoginProvider Provider
+    {
+        get;
+        set;
+    }
 
-  public virtual int ProviderId { get; set; }
+    public virtual int ProviderId { get; set; }
 
-  public virtual ApplicationUser<TKey> User { get; set; }
+    public virtual ApplicationUser<TKey> User { get; set; }
 
-  [Hashids]
-  public virtual TKey UserId { get; set; }
-  public virtual DateTimeOffset Created { get; set; } = DateTimeOffset.UtcNow;
+    [Hashids]
+    public virtual TKey UserId { get; set; }
+    public virtual DateTimeOffset Created { get; set; } = DateTimeOffset.UtcNow;
 }
 
-public class ApplicationUserLogin : ApplicationUserLogin<long> {}
+public class ApplicationUserLogin : ApplicationUserLogin<long> { }
 
 // public class TelegramUserLogin : BackroomUserLogin
 // {
@@ -66,9 +70,10 @@ public class ApplicationUserLogin : ApplicationUserLogin<long> {}
 //     value.ToString(); }
 // }
 
-public struct UserLoginInsertDto {
-  public string ProviderName { get; set; }
-  public string ProviderKey { get; set; }
-  public string ProviderDisplayName { get; set; }
-  public long UserId { get; set; }
+public struct UserLoginInsertDto
+{
+    public string ProviderName { get; set; }
+    public string ProviderKey { get; set; }
+    public string ProviderDisplayName { get; set; }
+    public long UserId { get; set; }
 }

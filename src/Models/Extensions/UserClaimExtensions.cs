@@ -14,16 +14,19 @@ using Dgmjr.Identity.Models;
 
 namespace Dgmjr.Identity;
 
-public static class UserClaimExtensions {
-  public static ApplicationUserClaim ToUserClaim(this C c) {
-    var uc = new ApplicationUserClaim();
-    uc.InitializeFromClaim(c);
-    return uc;
-  }
+public static class UserClaimExtensions
+{
+    public static ApplicationUserClaim ToUserClaim(this C c)
+    {
+        var uc = new ApplicationUserClaim();
+        uc.InitializeFromClaim(c);
+        return uc;
+    }
 
-  public static ApplicationRoleClaim ToRoleClaim(this C c) {
-    var rc = new ApplicationRoleClaim();
-    rc.InitializeFromClaim(c);
-    return rc;
-  }
+    public static ApplicationRoleClaim ToRoleClaim(this C c)
+    {
+        var rc = new ApplicationRoleClaim();
+        rc.InitializeFromClaim(c);
+        return rc;
+    }
 }

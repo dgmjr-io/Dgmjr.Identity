@@ -24,10 +24,11 @@ public interface IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole,
     where TUserRole : IIdentityUserRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUserLogin : IIdentityUserLogin<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TRoleClaim : IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken> {
-  TKey RoleId { get; set; }
+    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+{
+    TKey RoleId { get; set; }
 
-  TRole Role { get; set; }
+    TRole Role { get; set; }
 }
 
 public interface IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole,
@@ -42,12 +43,14 @@ public interface IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole,
     where TUserRole : IIdentityUserRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUserLogin : IIdentityUserLogin<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TRoleClaim : IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken> {
-  ICollection<TClaimType> ClaimTypes { get; }
+    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+{
+    ICollection<TClaimType> ClaimTypes { get; }
 }
 
 public interface IIdentityRoleClaim
     : IIdentityRoleClaim<IIdentityUser, IIdentityRole, long, IIdentityUserClaim,
                          IIdentityUserRole, IIdentityUserLogin,
                          IIdentityRoleClaim, IIdentityUserToken,
-                         IIdentityClaimType, IIdentityClaimValueType> {}
+                         IIdentityClaimType, IIdentityClaimValueType>
+{ }

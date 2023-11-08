@@ -27,36 +27,39 @@ public class ApplicationUserRole<TKey>
                         ApplicationUserClaim<TKey>, ApplicationUserRole<TKey>,
                         ApplicationUserLogin<TKey>, ApplicationRoleClaim<TKey>,
                         ApplicationUserToken<TKey>>
-    where TKey : IEquatable<TKey>, IComparable {
-  [Key, DbGen(DbGen.Identity), Column(TypeName = BigInt.ShortName)]
-  public virtual TKey Id { get; set; }
+    where TKey : IEquatable<TKey>, IComparable
+{
+    [Key, DbGen(DbGen.Identity), Column(TypeName = BigInt.ShortName)]
+    public virtual TKey Id { get; set; }
 
-  [Column(nameof(RoleId), Order = 2, TypeName = BigInt.ShortName)]
-  public virtual TKey RoleId { get; set; }
+    [Column(nameof(RoleId), Order = 2, TypeName = BigInt.ShortName)]
+    public virtual TKey RoleId { get; set; }
 
-  [Column(nameof(UserId), Order = 1, TypeName = BigInt.ShortName)]
-  public virtual TKey UserId { get; set; }
+    [Column(nameof(UserId), Order = 1, TypeName = BigInt.ShortName)]
+    public virtual TKey UserId { get; set; }
 
-  public ApplicationUser<TKey> User { get; set; }
-  public ApplicationRole<TKey> Role { get; set; }
+    public ApplicationUser<TKey> User { get; set; }
+    public ApplicationRole<TKey> Role { get; set; }
 
-  //[ForeignKey(ColUserId)]
-  // public virtual BackroomUser User { get; set; }
+    //[ForeignKey(ColUserId)]
+    // public virtual BackroomUser User { get; set; }
 
-  //[ForeignKey(nameof(RoleId))]
-  // public virtual BackroomRole Role { get; set; }
+    //[ForeignKey(nameof(RoleId))]
+    // public virtual BackroomRole Role { get; set; }
 
-  //         public Timestamp Created { get; set; }
-  //         public Timestamp LastUpdated { get; set; }
-  //         public Timestamp? Deleted { get; set; }
+    //         public Timestamp Created { get; set; }
+    //         public Timestamp LastUpdated { get; set; }
+    //         public Timestamp? Deleted { get; set; }
 }
 
-public class ApplicationUserRole : ApplicationUserRole<long> {}
+public class ApplicationUserRole : ApplicationUserRole<long> { }
 
-public record class ApplicationUserUserRoleInsertDto<TKey> {
-  public long UserId { get; set; }
-  public long RoleId { get; set; }
+public record class ApplicationUserUserRoleInsertDto<TKey>
+{
+    public long UserId { get; set; }
+    public long RoleId { get; set; }
 }
 
 public record class ApplicationUserUserRoleInsertDto
-    : ApplicationUserUserRoleInsertDto<long> {}
+    : ApplicationUserUserRoleInsertDto<long>
+{ }

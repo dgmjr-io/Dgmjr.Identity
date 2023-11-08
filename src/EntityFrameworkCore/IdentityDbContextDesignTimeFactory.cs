@@ -21,30 +21,32 @@ using Dgmjr.Identity;
 namespace Dgmjr.Identity.EntityFrameworkCore;
 
 public class IdentityDbContextDesignTimeFactory
-    : IDesignTimeDbContextFactory<IdentityDbContext> {
-  public const string DefaultConnectionStringKey =
-      "AZURE_APPCONFIGURATION_CONNECTIONSTRING";
+    : IDesignTimeDbContextFactory<IdentityDbContext>
+{
+    public const string DefaultConnectionStringKey =
+        "AZURE_APPCONFIGURATION_CONNECTIONSTRING";
 
-  public IdentityDbContext CreateDbContext(string[] args) {
-    var config = new ConfigurationManager()
-                     .AddUserSecrets<IdentityDbContextDesignTimeFactory>();
-    // var connectionString =
-    // ((IConfigurationRoot)config)[DefaultConnectionStringKey];
-    var connectionString =
-        config
-            // .AddAzureAppConfiguration(
-            //     options =>
-            //         options
-            //             .Connect(connectionString)
-            //             .ConfigureKeyVault(kv => kv.SetCredential(new
-            //             DefaultAzureCredential()))
-            // )
-            .Build()
-            .GetConnectionString("IdentityDb");
-    var builder = new DbContextOptionsBuilder<IdentityDbContext>();
-    builder.UseSqlServer(connectionString,
-                         b => b.MigrationsAssembly(
-                             "Dgmjr.Identity.EntityFrameworkCore.Migrations"));
-    return new IdentityDbContext(builder.Options);
-  }
+    public IdentityDbContext CreateDbContext(string[] args)
+    {
+        var config = new ConfigurationManager()
+                         .AddUserSecrets<IdentityDbContextDesignTimeFactory>();
+        // var connectionString =
+        // ((IConfigurationRoot)config)[DefaultConnectionStringKey];
+        var connectionString =
+            config
+                // .AddAzureAppConfiguration(
+                //     options =>
+                //         options
+                //             .Connect(connectionString)
+                //             .ConfigureKeyVault(kv => kv.SetCredential(new
+                //             DefaultAzureCredential()))
+                // )
+                .Build()
+                .GetConnectionString("IdentityDb");
+        var builder = new DbContextOptionsBuilder<IdentityDbContext>();
+        builder.UseSqlServer(connectionString,
+                             b => b.MigrationsAssembly(
+                                 "Dgmjr.Identity.EntityFrameworkCore.Migrations"));
+        return new IdentityDbContext(builder.Options);
+    }
 }

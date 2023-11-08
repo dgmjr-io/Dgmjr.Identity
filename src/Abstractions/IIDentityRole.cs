@@ -20,8 +20,9 @@ public partial interface IIdentityRole<TKey, TUser, TRole>
     : IIdentityRoleBase, IIdentityEntity<TKey>
     where TUser : IIdentityUser<TKey, TUser, TRole>
     where TRole : IIdentityRole<TKey, TUser, TRole>
-    where TKey : IEquatable<TKey>, IComparable {
-  ICollection<TUser> Users { get; set; }
+    where TKey : IEquatable<TKey>, IComparable
+{
+    ICollection<TUser> Users { get; set; }
 }
 
 public partial
@@ -35,8 +36,9 @@ public partial
     where TUserRole : IIdentityUserRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUserLogin : IIdentityUserLogin<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TRoleClaim : IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken> {
-  ICollection<TUserRole> UserRoles { get; set; }
+    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+{
+    ICollection<TUserRole> UserRoles { get; set; }
 }
 
 public partial interface IIdentityRole<TUser, TRole, TKey, TUserClaim,
@@ -53,12 +55,14 @@ public partial interface IIdentityRole<TUser, TRole, TKey, TUserClaim,
     where TRoleClaim : IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TClaimType : IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValueType>
-    where TClaimValueType : IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType> {
-  ICollection<TClaimType> ClaimTypes { get; }
+    where TClaimValueType : IIdentityClaimValueType<TKey, TUser, TRole, TClaimType, TClaimValueType>
+{
+    ICollection<TClaimType> ClaimTypes { get; }
 }
 
 public interface IIdentityRole
     : IIdentityRole<IIdentityUser, IIdentityRole, long, IIdentityUserClaim,
                     IIdentityUserRole, IIdentityUserLogin, IIdentityRoleClaim,
                     IIdentityUserToken, IIdentityClaimType,
-                    IIdentityClaimValueType> {}
+                    IIdentityClaimValueType>
+{ }

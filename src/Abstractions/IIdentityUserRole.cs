@@ -23,17 +23,19 @@ public interface IIdentityUserRole<TUser, TRole, TKey, TUserClaim, TUserRole,
     where TUserRole : IIdentityUserRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUserLogin : IIdentityUserLogin<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TRoleClaim : IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken> {
-  /// <summary>
-  /// Gets or sets the primary key of the role that is linked to the user.
-  /// </summary>
-  [Hashids]
-  TKey RoleId { get; set; }
+    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+{
+    /// <summary>
+    /// Gets or sets the primary key of the role that is linked to the user.
+    /// </summary>
+    [Hashids]
+    TKey RoleId { get; set; }
 
-  TRole Role { get; set; }
+    TRole Role { get; set; }
 }
 
 public interface IIdentityUserRole
     : IIdentityUserRole<IIdentityUser, IIdentityRole, long, IIdentityUserClaim,
                         IIdentityUserRole, IIdentityUserLogin,
-                        IIdentityRoleClaim, IIdentityUserToken> {}
+                        IIdentityRoleClaim, IIdentityUserToken>
+{ }

@@ -16,21 +16,22 @@ public interface IIdentityRoleBase : IIdentifiable,
                                      IHaveAName,
                                      IHaveADescription,
                                      IHaveAUri,
-                                     IHaveAuri {
-  /// <summary>
-  /// Gets or sets the normalized name for this role.
-  /// </summary>
-  string NormalizedName { get; set; }
+                                     IHaveAuri
+{
+    /// <summary>
+    /// Gets or sets the normalized name for this role.
+    /// </summary>
+    string NormalizedName { get; set; }
 
-  /// <summary>
-  /// A random value that should change whenever a role is persisted to the
-  /// store
-  /// </summary>
-  [Timestamp] string? ConcurrencyStamp { get; set; }
+    /// <summary>
+    /// A random value that should change whenever a role is persisted to the
+    /// store
+    /// </summary>
+    [Timestamp] string? ConcurrencyStamp { get; set; }
 
-  /// <summary>
-  /// Returns the name of the role.
-  /// </summary>
-  /// <returns>The name of the role.</returns>
-  string ToString();
+    /// <summary>
+    /// Returns the name of the role.
+    /// </summary>
+    /// <returns>The name of the role.</returns>
+    string ToString();
 }

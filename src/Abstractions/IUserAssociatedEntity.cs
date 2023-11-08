@@ -22,12 +22,13 @@ public interface IUserAssociatedEntity<TUser, TRole, TKey, TUserClaim,
     where TUserRole : IIdentityUserRole<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TUserLogin : IIdentityUserLogin<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
     where TRoleClaim : IIdentityRoleClaim<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken> {
-  /// <summary>Gets or sets the ID of the user who's associated with this
-  /// entity</summary>
-  [Hashids]
-  TKey UserId { get; set; }
+    where TUserToken : IIdentityUserToken<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+{
+    /// <summary>Gets or sets the ID of the user who's associated with this
+    /// entity</summary>
+    [Hashids]
+    TKey UserId { get; set; }
 
-  /// <summary>Gets or sets the user who's associated with this entity</summary>
-  TUser User { get; set; }
+    /// <summary>Gets or sets the user who's associated with this entity</summary>
+    TUser User { get; set; }
 }

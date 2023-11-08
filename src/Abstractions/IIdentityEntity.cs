@@ -15,11 +15,14 @@ namespace Dgmjr.Identity.Abstractions;
 public interface IIdentityEntity<TKey> : IHaveAWritableId<TKey>,
                                          IIdentifiable,
                                          IEntity<IIdentityEntity<TKey>, TKey>
-    where TKey : IEquatable<TKey>, IComparable {
-  [PersonalData, Key, DbGen(DbGen.Identity), Hashids]
-  new TKey Id { get;
-  set;
-}
+    where TKey : IEquatable<TKey>, IComparable
+{
+    [PersonalData, Key, DbGen(DbGen.Identity), Hashids]
+    new TKey Id
+    {
+        get;
+        set;
+    }
 }
 
-public interface IIdentityEntity : IEntity {}
+public interface IIdentityEntity : IEntity { }
