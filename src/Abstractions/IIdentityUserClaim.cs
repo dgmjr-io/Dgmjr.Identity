@@ -208,7 +208,8 @@ public interface IIdentityUserClaim<
             TUserLogin,
             TRoleClaim,
             TUserToken
-        > { }
+        >
+{ }
 
 public interface IIdentityUserClaim
     : IIdentityUserClaim<
@@ -222,4 +223,5 @@ public interface IIdentityUserClaim
         IIdentityUserToken,
         IIdentityClaimType,
         IIdentityClaimValueType
-    > { }
+    >
+{ }

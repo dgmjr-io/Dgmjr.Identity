@@ -217,7 +217,8 @@ public class AppUserConfiguration<
                     .HasForeignKey(ur => ur.UserId)
                     .HasPrincipalKey(u => u.Id),
             ur => ur.HasKey(ur => ur.Id)
-        )*/;
+        )*/
+        ;
     }
 }
 

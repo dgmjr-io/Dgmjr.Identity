@@ -128,13 +128,13 @@ public class IdentityDbContext<
     public IdentityDbContext(DbContextOptions<AppIdentityDbContext> options)
         : this(options as DbContextOptions) { }
 
-    public virtual DbSet<TUser> Users { get; set; }
-    public virtual DbSet<TRole> Roles { get; set; }
-    public virtual DbSet<TUserClaim> UserClaims { get; set; }
-    public virtual DbSet<TUserRole> UserRoles { get; set; }
-    public virtual DbSet<TUserLogin> UserLogins { get; set; }
-    public virtual DbSet<TRoleClaim> RoleClaims { get; set; }
-    public virtual DbSet<TUserToken> UserTokens { get; set; }
-    public virtual DbSet<TClaimType> ClaimTypes { get; set; }
-    public virtual DbSet<TClaimValueType> ClaimValueTypes { get; set; }
+public virtual DbSet<TUser> Users { get; set; }
+public virtual DbSet<TRole> Roles { get; set; }
+public virtual DbSet<TUserClaim> UserClaims { get; set; }
+public virtual DbSet<TUserRole> UserRoles { get; set; }
+public virtual DbSet<TUserLogin> UserLogins { get; set; }
+public virtual DbSet<TRoleClaim> RoleClaims { get; set; }
+public virtual DbSet<TUserToken> UserTokens { get; set; }
+public virtual DbSet<TClaimType> ClaimTypes { get; set; }
+public virtual DbSet<TClaimValueType> ClaimValueTypes { get; set; }
 }

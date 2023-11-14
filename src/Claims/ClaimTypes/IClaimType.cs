@@ -15,4 +15,5 @@ namespace Dgmjr.Identity;
 public interface IClaimType : IIdentityComponent, IEquatable<IClaimType> { }
 
 public interface IClaimType<TClaimValueType> : IClaimType
-    where TClaimValueType : IClaimValueType { }
+    where TClaimValueType : IClaimValueType
+{ }

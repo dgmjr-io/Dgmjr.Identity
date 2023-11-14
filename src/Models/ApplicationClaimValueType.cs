@@ -43,10 +43,10 @@ public class ApplicationClaimValueType<TKey>
 
     public virtual required uri Uri { get; set; }
 
-    public virtual required string Name { get; set; }
+public virtual required string Name { get; set; }
 
-    public virtual string Description { get; set; }
+public virtual string Description { get; set; }
 
-    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; } =
-        new Collection<ApplicationClaimType<TKey>>();
+public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; } =
+    new Collection<ApplicationClaimType<TKey>>();
 }

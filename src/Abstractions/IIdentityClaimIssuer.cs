@@ -14,4 +14,5 @@ public interface IIdentityClaimsIssuer<TKey, TUserClaim, TRoleClaim>
 }
 
 public interface IIdentityClaimIssuer
-    : IIdentityClaimsIssuer<long, IIdentityUserClaim, IIdentityRoleClaim> { }
+    : IIdentityClaimsIssuer<long, IIdentityUserClaim, IIdentityRoleClaim>
+{ }
