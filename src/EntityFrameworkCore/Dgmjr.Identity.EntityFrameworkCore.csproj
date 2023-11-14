@@ -17,6 +17,7 @@
     <EfCoreVersionOverride>[7.0.12,)</EfCoreVersionOverride>
     <ProjectGuid>5a958146-a437-4a42-b249-ceb5685b07de</ProjectGuid>
     <OutputType>Library</OutputType>
+    <BuildFromSource>true</BuildFromSource>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
@@ -48,12 +49,16 @@
     <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" />
     <ProjectReference Include="../Constants/Dgmjr.Identity.Constants.csproj" />
     <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
+    <!-- <ProjectReference Include="../Migrations/Dgmjr.Identity.EntityFrameworkCore.Migrations.csproj" /> -->
     <!-- <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" /> -->
     <PackageReference Include="Dgmjr.Identity.Models" />
     <Reference Include="System.Runtime" Version="4.3.1.0" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Dgmjr.Primitives.EntityFrameworkCore" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="./Resources/*.*" LogicalName="%(Filename)%(Extension)" />
   </ItemGroup>
   <Import Project="../Abstractions/Dgmjr.Identity.Abstractions.props" Condition="Exists('../Abstractions/Dgmjr.Identity.Abstractions.props')" />
   <Import Project="../Constants/Dgmjr.Identity.Constants.props" Condition="Exists('../Constants/Dgmjr.Identity.Constants.props')" />

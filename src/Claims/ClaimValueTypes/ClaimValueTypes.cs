@@ -997,6 +997,8 @@ public record class Rfc822Name : ClaimValueType<EmailAddress>, IClaimValueType
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     public override uri ShortUri => ShortUriString;
+    public override string ExampleStringValue => System.Net.Mail.EmailAddress.ExampleValueString;
+    public override string DefaultStringValue => System.Net.Mail.EmailAddress.EmptyValueString;
 
     public static implicit operator string?(Rfc822Name value) => value.Value;
 
@@ -1030,6 +1032,8 @@ public record class PhoneNumber : ClaimValueType<System.Domain.PhoneNumber>, ICl
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     public override uri ShortUri => ShortUriString;
+    public override string ExampleStringValue => System.Domain.PhoneNumber.ExampleString;
+    public override string DefaultStringValue => System.Domain.PhoneNumber.EmptyString;
 
     public static implicit operator string?(PhoneNumber value) => value.Value;
 
@@ -1153,10 +1157,10 @@ public record class ObjectId : ClaimValueType<System.ObjectId>, IClaimValueType
 
     private ObjectId() { }
 
-    /// <value><inheritdoc cref="https://www.mongodb.com/docs/manual/reference/method/ObjectId" path="/value" /></value>
+    /// <value>https://www.mongodb.com/docs/manual/reference/method/ObjectId</value>
     public const string UriString = "https://www.mongodb.com/docs/manual/reference/method/ObjectId";
 
-    /// <value><inheritdoc cref="mongodb:objectid" path="/value"/></value>
+    /// <value>mongodb:objectid</value>
     public const string ShortUriString = "mongodb:objectid";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
@@ -1170,6 +1174,12 @@ public record class ObjectId : ClaimValueType<System.ObjectId>, IClaimValueType
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     public override uri ShortUri => ShortUriString;
+
+    /// <value><inheritdoc cref="System.ObjectId.ExampleValueString" /></value>
+    public override string ExampleStringValue => System.ObjectId.ExampleValueString;
+
+    /// <value><inheritdoc cref="System.ObjectId.EmptyValue" /></value>
+    public override string DefaultStringValue => System.ObjectId.EmptyValue;
 
     public static implicit operator string(ObjectId value) => value.Value.ToString();
 

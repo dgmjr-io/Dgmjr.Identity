@@ -24,7 +24,11 @@ public class AppClaimTypeConfiguration : IEntityTypeConfiguration<AppClaimType>
             .IsUnique();
         builder.Property(e => e.Name).IsUnicode(false);
         builder.UriProperty(e => e.Uri).IsUnicode(false);
-
+        builder
+            .HasOne(e => e.ValueType)
+            .WithMany()
+            .HasForeignKey(e => e.ValueTypeUri)
+            .HasPrincipalKey(e => e.Uri);
         // builder
         //     .HasMany(e => e.Roles)
         //     .WithMany(e => e.ClaimTypes)
@@ -40,11 +44,11 @@ public class AppClaimTypeConfiguration : IEntityTypeConfiguration<AppClaimType>
         //                 .HasForeignKey(e => e.Type)
         //                 .HasPrincipalKey(ct => ct.Uri),
         //         e => e.HasKey(e => e.Id)
-        //     );
-        builder
-            .HasOne(e => e.ClaimValueType)
-            .WithMany()
-            .HasForeignKey(e => e.ClaimValueTypeId)
-            .HasPrincipalKey(e => e.Id);
+        // //     );
+        // builder
+        //     .HasOne(e => e.ValueType)
+        //     .WithMany()
+        //     .HasForeignKey(e => e.ClaimValueTypeId)
+        //     .HasPrincipalKey(e => e.Id);
     }
 }

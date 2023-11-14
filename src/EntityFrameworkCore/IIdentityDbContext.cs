@@ -13,12 +13,23 @@
 namespace Dgmjr.Identity;
 
 using Microsoft.EntityFrameworkCore.Abstractions;
+using Telegram.Bot.Types;
+using System;
 
 // [GenerateInterface(typeof(IdentityDbContext<,,,,,,,,,>))]
 public partial interface IIdentityDbContext : IDbContext<IIdentityDbContext>
 {
-    // static string IDbContext.DefaultConnectionStringConfigurationKey => "IdentityDb";
-    // public string DefaultConnectionStringConfigurationKey => "IdentityDb";
+    BotApiToken GetBotToken(long userId);
+    ObjectId GetSendPulseId(long userId);
+    bool IsBot(long userId);
+    bool IsUri(string uri);
+    bool IsUrl(string url);
+    bool IsUrn(string urn);
+    bool IsValidBotToken(string token);
+    bool IsValidEmailAddress(string email);
+    bool IsValidGender(string gender);
+    bool IsValidObjectId(string objectId);
+    bool IsValidPhoneNumber(string phoneNumber);
 }
 
 // [GenerateInterface(typeof(IdentityDbContext<,,,,,,,,,>))]

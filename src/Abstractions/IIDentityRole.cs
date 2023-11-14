@@ -109,6 +109,7 @@ public partial interface IIdentityRole<
         >
 {
     ICollection<TUserRole> UserRoles { get; set; }
+    ICollection<TRoleClaim> RoleClaims { get; set; }
 }
 
 public partial interface IIdentityRole<
@@ -214,5 +215,4 @@ public interface IIdentityRole
         IIdentityUserToken,
         IIdentityClaimType,
         IIdentityClaimValueType
-    >
-{ }
+    > { }

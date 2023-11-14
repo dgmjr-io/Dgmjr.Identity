@@ -31,19 +31,22 @@ public class ApplicationClaimValueType<TKey>
         IIdentifiable<TKey>
     where TKey : IEquatable<TKey>, IComparable
 {
+    [SetsRequiredMembers]
+    public ApplicationClaimValueType() { }
+
     [Key, DbGen(DbGen.Identity)]
     public virtual TKey Id { get; set; }
 
     public virtual string? Example { get; set; }
 
-    public virtual string? Default => throw new NotImplementedException();
-
-    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; } =
-        new Collection<ApplicationClaimType<TKey>>();
+    public virtual string? Default { get; set; }
 
     public virtual required uri Uri { get; set; }
 
-public virtual required string Name { get; set; }
+    public virtual required string Name { get; set; }
 
-public virtual string Description { get; set; }
+    public virtual string Description { get; set; }
+
+    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; } =
+        new Collection<ApplicationClaimType<TKey>>();
 }

@@ -8,6 +8,7 @@ using Dgmjr.EntityFrameworkCore.Migrations;
 using Dgmjr.Primitives.EntityFrameworkCore;
 using Dgmjr.Identity;
 using Telegram.Bot.Types;
+using static Dgmjr.Identity.EntityFrameworkCore.Migrations.Constants.FunctionNames;
 
 #nullable disable
 
@@ -16,6 +17,8 @@ namespace Dgmjr.Identity.EntityFrameworkCore.Migrations.Migrations
     /// <inheritdoc />
     public partial class InitialUDFs : Migration
     {
+        private const string _sql = ".sql";
+
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,40 +27,38 @@ namespace Dgmjr.Identity.EntityFrameworkCore.Migrations.Migrations
             migrationBuilder.Operations.Add(
                 new CreateFunctionOperation(
                     "id",
-                    ufn_ + nameof(IdentityDbContext.GetBotToken),
+                    ufn_ + GetBotToken,
                     "@userId bigint",
-                    GetType().Assembly.ReadAssemblyResourceAllText(
-                        ufn_ + nameof(IdentityDbContext.GetBotToken) + ".sql"
-                    )
+                    GetType().Assembly.ReadAssemblyResourceAllText(ufn_ + GetBotToken + _sql)
                 )
             );
             migrationBuilder.HasIsValidGenderFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.IdentitySchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsValidGender)
+                ufn_ + IsValidGender
             );
             migrationBuilder.HasIsValidEmailAddressFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsValidEmailAddress)
+                ufn_ + IsValidEmailAddress
             );
             migrationBuilder.HasIsValidPhoneNumberFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsValidPhoneNumber)
+                ufn_ + IsValidPhoneNumber
             );
             migrationBuilder.HasIsValidBotTokenFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsValidBotToken)
+                ufn_ + IsValidBotToken
             );
             migrationBuilder.HasIsValidUriFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsUri)
+                ufn_ + IsUri
             );
             migrationBuilder.HasIsValidUrlFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsUrl)
+                ufn_ + IsUrl
             );
             migrationBuilder.HasIsValidUrnFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsUrn)
+                ufn_ + IsUrn
             );
         }
 
@@ -66,31 +67,31 @@ namespace Dgmjr.Identity.EntityFrameworkCore.Migrations.Migrations
         {
             migrationBuilder.RollBackIsValidGenderFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.IdentitySchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsValidGender)
+                ufn_ + IsValidGender
             );
             migrationBuilder.RollBackIsValidBotTokenFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsValidBotToken)
+                ufn_ + IsValidBotToken
             );
             migrationBuilder.RollBackIsValidEmailAddressFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsValidEmailAddress)
+                ufn_ + IsValidEmailAddress
             );
             migrationBuilder.RollBackIsValidPhoneNumberFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsValidPhoneNumber)
+                ufn_ + IsValidPhoneNumber
             );
             migrationBuilder.RollBackIsValidUriFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsUri)
+                ufn_ + IsUri
             );
             migrationBuilder.RollBackIsValidUrlFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsUrl)
+                ufn_ + IsUrl
             );
             migrationBuilder.RollBackIsValidUrnFunction(
                 Dgmjr.EntityFrameworkCore.DbSchemas.DataSchema.ShortName,
-                ufn_ + nameof(IdentityDbContext.IsUrn)
+                ufn_ + IsUrn
             );
         }
     }

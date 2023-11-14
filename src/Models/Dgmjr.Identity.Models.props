@@ -40,13 +40,14 @@
     <Using Include="System.DateTime" />
     <Using Include="System.Diagnostics" />
     <Using Include="System.String" Static="true" />
+    <Using Include="EntityFrameworkCore.Projectables" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Dgmjr.Identity.Models.ApplicationRole&lt;long&gt;" Alias="AppRole" />
     <Using Include="Dgmjr.Identity.Models.ApplicationUser&lt;long&gt;" Alias="AppUser" />
     <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim&lt;long&gt;" Alias="AppUserClaim" />
     <Using Include="Dgmjr.Identity.Models.ApplicationUserLogin&lt;long&gt;" Alias="AppUserLogin" />
-    <Using Include="Dgmjr.Identity.Models.ApplicationUserLoginProvider" Alias="AppUserLoginProvider" />
+    <!-- <Using Include="Dgmjr.Identity.Models.ApplicationUserLoginProvider" Alias="AppUserLoginProvider" /> -->
     <Using Include="Dgmjr.Identity.Models.ApplicationUserRole&lt;long&gt;" Alias="AppUserRole" />
     <Using Include="Dgmjr.Identity.Models.ApplicationClaimValueType&lt;long&gt;" Alias="AppClaimValueType" />
     <Using Include="Dgmjr.Identity.Models.ApplicationClaimType&lt;long&gt;" Alias="AppClaimType" />

@@ -12,6 +12,8 @@
 
 namespace Dgmjr.Identity;
 
+/// <summary>A basic Identity Component</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public abstract record class IdentityComponent : IIdentityComponent
 {
     public virtual bool Equals(IIdentityComponent? other)
@@ -22,6 +24,9 @@ public abstract record class IdentityComponent : IIdentityComponent
             return true;
         return ((IIdentityComponent)this).Uri == other.Uri;
     }
+
+    /// <value>about:blank</value>
+    public const string UriString = "about";
 
     // public override bool Equals(object? other) => Equals(other as IIdentityComponent);
 
@@ -41,6 +46,10 @@ public abstract record class IdentityComponent : IIdentityComponent
 
     /// <value>blank</value>
     string IIdentityComponent.Name => "blank";
+
+    /// <inheritdoc cref="UriString" path="/value" />
     uri IIdentityComponent.Uri => ((IIdentityComponent)this).UriString;
+
+    /// <inheritdoc cref="UriString" path="/value" />
     uri IIdentityComponent.ShortUri => ((IIdentityComponent)this).ShortUriString;
 }

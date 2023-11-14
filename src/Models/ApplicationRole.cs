@@ -32,7 +32,8 @@ public partial class ApplicationRole<TKey>
             ApplicationUserLogin<TKey>,
             ApplicationRoleClaim<TKey>,
             ApplicationUserToken<TKey>
-        >
+        >,
+        IIdentityRole<TKey, ApplicationUser<TKey>, ApplicationRole<TKey>>
     where TKey : IEquatable<TKey>, IComparable
 {
     public const string RoleUriDefaultFormatString = "urn:role:{0}";
@@ -70,6 +71,8 @@ public partial class ApplicationRole<TKey>
         new Collection<ApplicationUserRole<TKey>>();
     public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; set; } =
         new Collection<ApplicationClaimType<TKey>>();
+    public virtual ICollection<ApplicationRoleClaim<TKey>> RoleClaims { get; set; } =
+        new Collection<ApplicationRoleClaim<TKey>>();
 }
 
 public class ApplicationRole : ApplicationRole<long> { }

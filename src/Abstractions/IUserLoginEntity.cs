@@ -10,6 +10,8 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
+using Dgmjr.Identity.Models;
+
 namespace Dgmjr.Identity.Abstractions;
 
 public interface IUserLoginEntity<
@@ -104,10 +106,7 @@ public interface IUserLoginEntity<
             TUserToken
         >
 {
-    /// <summary>
-    /// Gets or sets the login provider ID
-    /// </summary>
-    int ProviderId { get; set; }
     string ProviderName { get; }
     string ProviderDisplayName { get; }
+    Models.Abstractions.IUserLoginProvider Provider { get; set; }
 }

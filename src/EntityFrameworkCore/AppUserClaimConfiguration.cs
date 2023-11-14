@@ -48,7 +48,9 @@ public class AppUserClaimConfiguration<
             TUserRole,
             TUserLogin,
             TRoleClaim,
-            TUserToken
+            TUserToken,
+            TClaimType,
+            TClaimValueType
         >
     where TUserRole : class,
         IIdentityUserRole<
@@ -81,7 +83,9 @@ public class AppUserClaimConfiguration<
             TUserRole,
             TUserLogin,
             TRoleClaim,
-            TUserToken
+            TUserToken,
+            TClaimType,
+            TClaimValueType
         >
     where TUserToken : class,
         IIdentityUserToken<
@@ -103,20 +107,23 @@ public class AppUserClaimConfiguration<
         builder.ToTable(UserClaim, IdentitySchema.ShortName, tb => tb.IsTemporal());
         builder.HasKey(e => e.Id).HasName(pk_ + UserClaim);
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
-        builder
-            .Property(e => e.Properties)
-            .HasConversion(new JsonObjectConverter<IStringDictionary>());
-        builder.UriProperty(e => e.Type);
-        builder.UriProperty(e => e.Issuer);
-        builder.UriProperty(e => e.OriginalIssuer);
-        builder.UriProperty(e => e.ValueType);
         builder.Ignore(e => e.EntityId);
         builder.Ignore(e => e.Entity);
         builder
             .HasOne(e => e.User)
-            .WithMany(e => e.Claims)
+            .WithMany(e => e.UserClaims)
             .HasForeignKey(e => e.UserId)
             .HasPrincipalKey(e => e.Id);
+        builder
+            .HasOne(e => e.ClaimType)
+            .WithMany()
+            .HasForeignKey(e => e.Type)
+            .HasPrincipalKey(e => e.Uri);
+        // builder
+        //     .HasOne(e => e.ClaimType)
+        //     .WithMany()
+        //     .HasForeignKey(e => e.ClaimType)
+        //     .HasPrincipalKey(e => e.Uri);
     }
 }
 
@@ -132,5 +139,4 @@ public class AppUserClaimConfiguration
         AppUserToken,
         AppClaimType,
         AppClaimValueType
-    >
-{ }
+    > { }

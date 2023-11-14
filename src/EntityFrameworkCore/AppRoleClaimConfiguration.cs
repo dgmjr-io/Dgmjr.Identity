@@ -18,19 +18,22 @@ public class AppRoleClaimConfiguration : IEntityTypeConfiguration<AppRoleClaim>
         builder.ToTable(RoleClaim, IdentitySchema.ShortName, tb => tb.IsTemporal());
         builder.HasKey(e => e.Id).HasName(pk_ + RoleClaim);
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
-        builder
-            .Property(e => e.Properties)
-            .HasConversion(new JsonObjectConverter<IStringDictionary>());
-        builder.UriProperty(e => e.Type);
-        builder.UriProperty(e => e.Issuer);
-        builder.UriProperty(e => e.OriginalIssuer);
-        builder.UriProperty(e => e.ValueType);
         builder.Ignore(e => e.EntityId);
         builder.Ignore(e => e.Entity);
         builder
             .HasOne(e => e.Role)
-            .WithMany()
+            .WithMany(e => e.RoleClaims)
             .HasForeignKey(e => e.RoleId)
             .HasPrincipalKey(e => e.Id);
+        builder
+            .HasOne(e => e.ClaimType)
+            .WithMany()
+            .HasForeignKey(e => e.Type)
+            .HasPrincipalKey(e => e.Uri);
+        // builder
+        //     .HasOne(e => e.ClaimType)
+        //     .WithMany()
+        //     .HasForeignKey(e => e.ClaimType)
+        //     .HasPrincipalKey(e => e.Uri);
     }
 }

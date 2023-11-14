@@ -1,3 +1,5 @@
+using System;
+
 /*
  * IIdentityEntity.cs
  *
@@ -14,12 +16,17 @@ namespace Dgmjr.Identity.Abstractions;
 
 public interface IIdentityEntity<TKey>
     : IHaveAWritableId<TKey>,
-        IIdentifiable,
-        IEntity<IIdentityEntity<TKey>, TKey>
+        IEntity<IIdentityEntity<TKey>, TKey>,
+        IIdentityEntity
     where TKey : IEquatable<TKey>, IComparable
 {
     [PersonalData, Key, DbGen(DbGen.Identity), Hashids]
     new TKey Id { get; set; }
 }
 
-public interface IIdentityEntity : IEntity { }
+public interface IIdentityEntity : IEntity
+{
+    DateTimeOffset Created { get; }
+    DateTimeOffset? Deleted { get; set; }
+    bool IsDeleted { get; }
+}

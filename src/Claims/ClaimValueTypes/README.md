@@ -1,5 +1,4 @@
 ---
-
 title: Dgmjr.Identity.ClaimValueTypes
 lastmod:
 date:
@@ -17,7 +16,7 @@ keywords:
 - dgmjr
 - dgmjr-io
 type: readme
-------------
+---
 
 # Dgmjr.Identity.ClaimValueTypes Readme
 

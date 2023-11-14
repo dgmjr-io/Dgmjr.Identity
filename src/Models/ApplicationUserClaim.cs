@@ -36,8 +36,11 @@ public class ApplicationUserClaim<TKey>
             ApplicationUserRole<TKey>,
             ApplicationUserLogin<TKey>,
             ApplicationRoleClaim<TKey>,
-            ApplicationUserToken<TKey>
-        >
+            ApplicationUserToken<TKey>,
+            ApplicationClaimType<TKey>,
+            ApplicationClaimValueType<TKey>
+        >,
+        IEntityClaimBase<TKey>
     where TKey : IEquatable<TKey>, IComparable
 {
     public static implicit operator ApplicationUserClaim<TKey>(C claim) =>
@@ -54,9 +57,11 @@ public class ApplicationUserClaim<TKey>
         get => EntityId;
         set => EntityId = value;
     }
+
+    public virtual ApplicationClaimType<TKey> ClaimType { get; set; } = default!;
 }
 
-public class ApplicationUserClaim : ApplicationUserClaim<long> { }
+public class ApplicationUserClaim : ApplicationUserClaim<long>, IEntityClaimBase<long> { }
 
 public record struct ApplicationUserClaimCreateDto
 {

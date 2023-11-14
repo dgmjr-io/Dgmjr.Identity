@@ -94,5 +94,5 @@ public interface IHaveUserClaims<
             TUserToken
         >
 {
-    ICollection<TUserClaim> Claims { get; }
+    ICollection<TUserClaim> UserClaims { get; }
 }

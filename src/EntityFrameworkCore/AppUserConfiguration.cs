@@ -98,17 +98,17 @@ public class AppUserConfiguration<
             {
                 tb.HasEmailAddressCheckConstraint(
                     IdentityConstants.User.Columns.EmailAddress,
-                    ufn_ + nameof(IdentityDbContext.IsValidEmailAddress),
+                    ufn_ + nameof(AppIdentityDbContext.IsValidEmailAddress),
                     DataSchema.ShortName
                 );
                 tb.HasPhoneNumberCheckConstraint(
                     IdentityConstants.User.Columns.PhoneNumber,
-                    ufn_ + nameof(IdentityDbContext.IsValidPhoneNumber),
+                    ufn_ + nameof(AppIdentityDbContext.IsValidPhoneNumber),
                     DataSchema.ShortName
                 );
                 tb.HasGenderCheckConstraint(
                     nameof(AppUser.Gender),
-                    ufn_ + nameof(IdentityDbContext.IsValidGender),
+                    ufn_ + nameof(AppIdentityDbContext.IsValidGender),
                     IdentitySchema.ShortName
                 );
                 // tb.HasCheckConstraint(
@@ -139,13 +139,16 @@ public class AppUserConfiguration<
         );
         builder.Property(e => e.Id).ValueGeneratedNever();
         builder.HasKey(e => e.Id).HasName(pk_ + TableNames.User);
-        builder.EmailAddressProperty(e => e.EmailAddress);
-        builder.PhoneNumberProperty(e => e.PhoneNumber);
         builder
             .Property(e => e.IsLockedOut)
             .HasComputedColumnSql(
                 $"cast(CASE WHEN {nameof(AppUser.LockoutEnd)} IS NOT NULL AND {nameof(AppUser.LockoutEnd)} > GetUtcDate() THEN 1 ELSE 0 END as bit)"
             );
+        builder
+            .Property(e => e.Gender)
+            .HasMaxLength(8)
+            .IsUnicode(false)
+            .HasConversion<string>(new Gender.EfCoreValueConverter());
         builder
             .HasIndex(e => e.EmailAddress)
             .HasDatabaseName(ix_ + TableNames.User + IdentityConstants.User.Columns.EmailAddress);
@@ -196,13 +199,11 @@ public class AppUserConfiguration<
         builder.GenderProperty(e => e.Gender);
         builder.Property(e => e.LockoutEnd).HasDefaultValueSql($"'{AppUser.DefaultLockoutEnd}'");
         builder
-            .HasMany(e => e.Claims)
-            .WithOne()
+            .HasMany(e => e.UserClaims)
+            .WithOne(e => e.User)
             .HasForeignKey(e => e.UserId)
             .HasPrincipalKey(e => e.Id);
-        builder.HasMany(
-            e => e.Roles
-        )
+        builder.HasMany(e => e.Roles).WithMany(e => e.Users).UsingEntity<AppUserRole>();
         /*.WithMany(r => r.Users)
         .UsingEntity<TUserRole>(
             ur =>

@@ -45,7 +45,7 @@ public class ApplicationUserToken<TKey>
     public virtual int ProviderId
     {
         get => ((IIdentifiable<int>)Provider).Id;
-        set => Provider = ApplicationUserLoginProvider.FromId(value);
+        set => Provider = UserLoginProvider.FromId(value);
     }
 
     public virtual string ProviderName
@@ -63,8 +63,8 @@ public class ApplicationUserToken<TKey>
         }
     }
 
-    //[ForeignKey(nameof(ProviderId)), BackingField("_provider")]
-    public virtual IApplicationUserLoginProvider Provider { get; set; }
+    [JConverter(typeof(UserLoginProviderJsonConverter))]
+    public virtual Abstractions.IUserLoginProvider Provider { get; set; }
 
     [Column(nameof(Name)), StringLength(64)]
     public virtual string Name { get; set; }

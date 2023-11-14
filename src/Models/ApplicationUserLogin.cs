@@ -54,10 +54,10 @@ public class ApplicationUserLogin<TKey>
     [NotMapped]
     public virtual string ProviderDisplayName => Provider.DisplayName;
 
-    [JConverter(typeof(ApplicationUserLoginProviderJsonConverter))]
-    public virtual Abstractions.IApplicationUserLoginProvider Provider { get; set; }
+    [JConverter(typeof(UserLoginProviderJsonConverter))]
+    public virtual Abstractions.IUserLoginProvider Provider { get; set; }
 
-    public virtual int ProviderId { get; set; }
+    // public virtual int ProviderId { get; set; }
 
     public virtual ApplicationUser<TKey> User { get; set; }
 

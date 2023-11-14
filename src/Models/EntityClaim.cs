@@ -39,7 +39,14 @@ public abstract class EntityClaim<TSelf, TEntity, TKey>
 
     public TEntity Entity { get; set; }
 
-    [Required, Url, StringLength(UriMaxLength, MinimumLength = 0)]
+    [
+        Required,
+        Url,
+        StringLength(
+            Dgmjr.EntityFrameworkCore.Constants.UriMaxLengthConstant.UriMaxLength,
+            MinimumLength = 0
+        )
+    ]
     public string? Value
     {
         get => Properties[nameof(Value)];
@@ -48,7 +55,10 @@ public abstract class EntityClaim<TSelf, TEntity, TKey>
 
     [Required]
     [Url]
-    [StringLength(UriMaxLength, MinimumLength = 0)]
+    [StringLength(
+        Dgmjr.EntityFrameworkCore.Constants.UriMaxLengthConstant.UriMaxLength,
+        MinimumLength = 0
+    )]
     [DefaultValue(DgmjrCt.Unknown.UriString)]
     public uri Type
     {
@@ -58,7 +68,10 @@ public abstract class EntityClaim<TSelf, TEntity, TKey>
 
     [Required]
     [Url]
-    [StringLength(UriMaxLength, MinimumLength = 0)]
+    [StringLength(
+        Dgmjr.EntityFrameworkCore.Constants.UriMaxLengthConstant.UriMaxLength,
+        MinimumLength = 0
+    )]
     [DefaultValue(DgmjrCvt.String.UriString)]
     public uri ValueType
     {
@@ -66,14 +79,30 @@ public abstract class EntityClaim<TSelf, TEntity, TKey>
         set => Properties[nameof(ValueType)] = value;
     }
 
-    [Required, Url, StringLength(UriMaxLength, MinimumLength = 0), DefaultValue(DgmjrIo)]
+    [
+        Required,
+        Url,
+        StringLength(
+            Dgmjr.EntityFrameworkCore.Constants.UriMaxLengthConstant.UriMaxLength,
+            MinimumLength = 0
+        ),
+        DefaultValue(DgmjrIo)
+    ]
     public uri Issuer
     {
         get => uri.From(Properties[nameof(Issuer)]);
         set => Properties[nameof(Issuer)] = value;
     }
 
-    [Required, Url, StringLength(UriMaxLength, MinimumLength = 0), DefaultValue(DgmjrIo)]
+    [
+        Required,
+        Url,
+        StringLength(
+            Dgmjr.EntityFrameworkCore.Constants.UriMaxLengthConstant.UriMaxLength,
+            MinimumLength = 0
+        ),
+        DefaultValue(DgmjrIo)
+    ]
     public uri OriginalIssuer
     {
         get => uri.From(Properties[nameof(OriginalIssuer)]);

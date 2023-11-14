@@ -125,6 +125,7 @@ public class AppRoleConfiguration<
                 ur => ur.HasKey(ur => ur.Id)
             )*/
         ;
+        builder.HasMany(e => e.RoleClaims).WithOne(e => e.Role).HasForeignKey(e => e.RoleId);
     }
 }
 

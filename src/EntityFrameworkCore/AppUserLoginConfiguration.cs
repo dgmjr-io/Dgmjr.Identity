@@ -26,6 +26,6 @@ public class AppUserLoginConfiguration : IEntityTypeConfiguration<AppUserLogin>
         builder
             .Property(e => e.Provider)
             .IsUnicode(false)
-            .HasConversion(v => v.ToString(), v => AppUserLoginProvider.Parse(v));
+            .HasConversion(v => v.ToString(), v => UserLoginProvider.Parse(v));
     }
 }

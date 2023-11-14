@@ -93,16 +93,16 @@ public class AppUserRoleConfiguration<
     {
         builder.ToTable(UserRole, IdentitySchema.ShortName, tb => tb.IsTemporal());
         builder.HasKey(e => e.Id).HasName(pk_ + UserRole);
-        // builder
-        //     .HasOne(e => e.User)
-        //     .WithMany(e => e.Roles)
-        //     .HasForeignKey(e => e.UserId)
-        //     .HasPrincipalKey(e => e.Id);
-        // builder
-        //     .HasOne(e => e.Role)
-        //     .WithMany(e => e.Users)
-        //     .HasForeignKey(e => e.RoleId)
-        //     .HasPrincipalKey(e => e.Id);
+        builder
+            .HasOne(e => e.User)
+            .WithMany(e => e.UserRoles)
+            .HasForeignKey(e => e.UserId)
+            .HasPrincipalKey(e => e.Id);
+        builder
+            .HasOne(e => e.Role)
+            .WithMany(e => e.UserRoles)
+            .HasForeignKey(e => e.RoleId)
+            .HasPrincipalKey(e => e.Id);
     }
 }
 
@@ -118,5 +118,4 @@ public class AppUserRoleConfiguration
         AppUserToken,
         AppClaimType,
         AppClaimValueType
-    >
-{ }
+    > { }

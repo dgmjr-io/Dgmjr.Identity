@@ -44,7 +44,18 @@ public partial interface IIdentityUser<
     TUserLogin,
     TRoleClaim,
     TUserToken
-> : IIdentityUser<TKey, TUser, TRole>
+>
+    : IIdentityUser<TKey, TUser, TRole>,
+        IHaveUserClaims<
+            TUser,
+            TRole,
+            TKey,
+            TUserClaim,
+            TUserRole,
+            TUserLogin,
+            TRoleClaim,
+            TUserToken
+        >
     where TUser : IIdentityUser<
             TUser,
             TRole,
@@ -117,10 +128,14 @@ public partial interface IIdentityUser<
             TUserToken
         >
 {
-    ICollection<TUserClaim> Claims { get; }
     ICollection<TUserLogin> Logins { get; }
     ICollection<TUserToken> Tokens { get; }
     ICollection<TUserRole> UserRoles { get; }
+
+    /// <summary>Gets a value indicating whether the user is a bot</summary>
+    /// <value><see langword="true" /> if the user is a bot, <see langword="false" /> otherwise</value>
+    [Required, DefaultValue(false)]
+    bool IsBot { get; }
 }
 
 public interface IIdentityUser

@@ -33,9 +33,10 @@ using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.UriMaxLengthConstant;
 
 using Humanizer;
+using Telegram.Bot.Types;
 
 [Table(EntityFrameworkCore.Constants.TableNames.User, Schema = IdentitySchema.ShortName)]
-[DebuggerDisplay("User ({UserName} - {Email})")]
+[DebuggerDisplay($"User ({{{nameof(Username)}}} - {{{nameof(EmailAddress)}}})")]
 public class ApplicationUser<TKey>
     : ApplicationIdentityEntity<TKey>,
         IIdentityUser<
@@ -48,6 +49,7 @@ public class ApplicationUser<TKey>
             ApplicationRoleClaim<TKey>,
             ApplicationUserToken<TKey>
         >,
+        IIdentityUser<TKey, ApplicationUser<TKey>, ApplicationRole<TKey>>,
         IHaveClaims<TKey>,
         IHaveUserClaims<
             ApplicationUser<TKey>,
@@ -108,8 +110,8 @@ public class ApplicationUser<TKey>
 
     [DefaultValue(false)]
     [Column(nameof(IsLockedOut))]
-    [DbGen(DbGen.Computed)]
     [BackingField(nameof(_isLockedOut))]
+    [Projectable]
     public virtual bool IsLockedOut => IsLockoutEnabled && LockoutEnd > DateTimeOffset.Now;
     private bool _isLockedOut = false;
 
@@ -180,17 +182,21 @@ public class ApplicationUser<TKey>
         new Collection<ApplicationUserToken<TKey>>();
 
     /// <summary>The user's claims</summary>
-    public virtual ICollection<ApplicationUserClaim<TKey>> Claims { get; } =
-        new Collection<ApplicationUserClaim<TKey>>();
+    // public virtual ICollection<ApplicationUserClaim<TKey>> Claims { get; } =
+    //     new Collection<ApplicationUserClaim<TKey>>();
 
     public virtual ICollection<ApplicationUserRole<TKey>> UserRoles { get; } =
         new Collection<ApplicationUserRole<TKey>>();
     public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; } =
         new Collection<ApplicationClaimType<TKey>>();
 
-    ICollection<C> IHaveClaims<TKey>.Claims
+    public virtual ICollection<ApplicationUserClaim<TKey>> UserClaims { get; } =
+        new Collection<ApplicationUserClaim<TKey>>();
+
+    [NotMapped]
+    public ICollection<C> Claims
     {
-        get => Claims.Select(c => c.ToClaim()).ToArray();
+        get => UserClaims.Select(c => c.ToClaim()).ToArray();
     }
 
     private Lazy<bool> _isBot = default!;
@@ -199,8 +205,20 @@ public class ApplicationUser<TKey>
             () => ClaimTypes.Any(ct => ct.Uri == Telegram.Identity.ClaimTypes.BotApiToken.UriString)
         );
 
+    [Projectable]
     public virtual bool IsBot =>
         ClaimTypes.Any(ct => ct.Uri == Telegram.Identity.ClaimTypes.BotApiToken.UriString);
+
+    [Projectable]
+    public virtual BotApiToken BotToken =>
+        (BotApiToken)
+            UserClaims
+                .FirstOrDefault(
+                    c =>
+                        c.Type.Equals(Telegram.Identity.ClaimTypes.BotApiToken.UriString)
+                        && c.Value != null
+                )
+                ?.Value;
 }
 
 public class ApplicationUser : ApplicationUser<long> { }

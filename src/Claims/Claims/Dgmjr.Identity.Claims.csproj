@@ -11,14 +11,14 @@
     <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
     <PackageReference Include="System.Runtime.Serialization.Primitives" Condition="$(TargetFramework.Contains('netstandard1'))" />
     <!-- <PackageReference Include="Microsoft.AspNetCore.Identity.Core" /> -->
-    <ProjectReference Include="./ClaimTypes/Dgmjr.Identity.ClaimTypes.csproj" />
-    <ProjectReference Include="./ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.csproj" />
-    <ProjectReference Include="./Core/Dgmjr.Identity.Core.csproj" />
+    <ProjectReference Include="../ClaimTypes/Dgmjr.Identity.ClaimTypes.csproj" />
+    <ProjectReference Include="../ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.csproj" />
+    <ProjectReference Include="../Core/Dgmjr.Identity.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="**/*.cs" />
     <None Remove="./**/README.md" />
     <Compile Include="./ClaimsPrincipalExtensions.cs" />
   </ItemGroup>
-  <Import Project="./ClaimTypes/Dgmjr.Identity.ClaimTypes.props" Condition="Exists('./ClaimTypes/Dgmjr.Identity.ClaimTypes.props')" />
+  <Import Project="../ClaimTypes/Dgmjr.Identity.ClaimTypes.props" Condition="Exists('./ClaimTypes/Dgmjr.Identity.ClaimTypes.props')" />
 </Project>

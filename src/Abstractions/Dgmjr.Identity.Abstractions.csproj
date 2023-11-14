@@ -12,8 +12,9 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
     <ProjectGuid>828e6f24-cf9b-460c-8b98-a7d36e01d5c2</ProjectGuid>
+    <Description>This package contains a set of interfaces (abstractions) used by the DGMJR identity services</Description>
   </PropertyGroup>
 
   <ItemGroup Condition="true">
@@ -29,9 +30,11 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
     <PackageReference Include="System.Security.Claims" />
     <PackageReference Include="System.Text.Json" />
+    <PackageReference Include="SendPulse.Identity" />
     <PackageReference Include="Telegram.Bot.Extensions" />
     <PackageReference Include="Telegram.Constants" />
     <PackageReference Include="Dgmjr.Primitives.Gender" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
 
     <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
     <ProjectReference Include="../Claims/ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.csproj" />

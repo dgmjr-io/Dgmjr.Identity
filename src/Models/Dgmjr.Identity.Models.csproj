@@ -12,7 +12,7 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net6.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <ItemGroup>
@@ -30,6 +30,7 @@
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="System.ComponentModel.Annotations" />
     <PackageReference Include="Telegram.Constants" />
+    <PackageReference Include="EntityFrameworkCore.Projectables" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,7 +61,7 @@
     <!-- <Reference Remove="Dgmjr.Enumerations.CodeGenerator" /> -->
     <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
     <PackageReference Include="System.Private.CoreLib.Polyfills" IncludeAssets="ContentFiles;Build;BuildTransitive;BuildMultitargeting" ExcludeAssets="Analyzers;Runtime;Native" PrivateAssets="All" />
-      </ItemGroup>
+  </ItemGroup>
   <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" Condition="Exists('../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props')" />
   <Import Project="../Claims/Core/Dgmjr.Identity.Core.props" Condition="Exists('../Claims/Core/Dgmjr.Identity.Core.props')" />
   <Import Project="../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.props" Condition="Exists('../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.props')" />

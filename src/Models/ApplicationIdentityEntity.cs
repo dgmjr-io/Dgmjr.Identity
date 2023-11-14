@@ -1,3 +1,4 @@
+using System.ComponentModel;
 /*
  * ApplicationIdentityEntity.cs
  *
@@ -26,7 +27,13 @@ public abstract class ApplicationIdentityEntity<TKey> : IIdentityEntity<TKey>
 
     public override int GetHashCode() => HashCode.Combine(GetType(), Id);
 
-    public override bool Equals(object? obj) => GetHashCode() == obj?.GetHashCode();
+    public override bool Equals(object? obj) => obj is IEntity<TKey> entity && Equals(entity);
 
-    public virtual bool Equals(IEntity<TKey>? other) => GetHashCode() == other?.GetHashCode();
+    public virtual bool Equals(IEntity<TKey>? other) =>
+        ((other?.GetType().IsInstanceOfType(this) ?? false) || GetType().IsInstanceOfType(other))
+        && Id.Equals(other.Id);
+
+    public virtual DateTimeOffset Created { get; } = DateTimeOffset.Now;
+    public virtual DateTimeOffset? Deleted { get; set; }
+    public virtual bool IsDeleted => Deleted < DateTimeOffset.Now;
 }

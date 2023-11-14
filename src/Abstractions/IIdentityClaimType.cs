@@ -13,11 +13,8 @@ public interface IIdentityClaimType<TKey, TUser, TRole, TClaimType, TClaimValue>
     uri Uri { get; }
     string? Example { get; }
     string? Default { get; }
-    TKey ClaimValueTypeId { get; set; }
-    TClaimValue ClaimValueType { get; set; }
-
-    ICollection<TUser> Users { get; }
-    ICollection<TRole> Roles { get; }
+    uri ValueTypeUri { get; set; }
+    TClaimValue ValueType { get; set; }
 }
 
 public interface IIdentityClaimType
@@ -27,5 +24,4 @@ public interface IIdentityClaimType
         IIdentityRole,
         IIdentityClaimType,
         IIdentityClaimValueType
-    >
-{ }
+    > { }

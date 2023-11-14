@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dgmjr.Identity.EntityFrameworkCore.Migrations.Migrations
 {
-    [DbContext(typeof(IdentityDbContext))]
     [Migration("20231025035800_InitialUDFs")]
     partial class InitialUDFs
     {

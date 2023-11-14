@@ -30,16 +30,15 @@ public partial record class ClaimValueType<TValue> : ClaimValueType, IClaimValue
 
 public partial record class ClaimValueType : IdentityComponent, IClaimValueType
 {
-    // public virtual bool Equals(IIdentityComponent? other)
-    //     => Equals(other as IClaimValueType);
-
     public virtual bool Equals(IClaimValueType? other)
     {
-        return other is not null
-            && (ReferenceEquals(this, other) || ((IClaimValueType)this).Uri == other.Uri);
+        return other is not null && (ReferenceEquals(this, other) || Uri == other.Uri);
     }
 
     public object Value { get; set; }
+
+    public virtual string DefaultStringValue => string.Empty;
+    public virtual string ExampleStringValue => string.Empty;
 
     string IIdentityComponent.Name => string.Empty;
     string IHaveAUriString.UriString => "about:blank";
@@ -122,4 +121,26 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
             )
         { }
     }
+
+    public static ClaimValueType[] GetAll() =>
+        CurrentDomain
+            .GetAssemblies()
+            .SelectMany(
+                asm =>
+                    asm.GetExportedTypes()
+                        .Where(
+                            t =>
+                                !t.ContainsGenericParameters
+                                && typeof(ClaimValueType).IsAssignableFrom(t)
+                        )
+            )
+            .Select(
+                t =>
+                    t.GetField("Instance")?.GetValue(null)
+                    ?? t.GetProperty("Instance")?.GetValue(null)
+                    ?? null
+            )
+            .OfType<ClaimValueType>()
+            .WhereNotNull()
+            .ToArray();
 }

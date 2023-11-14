@@ -35,7 +35,8 @@ public class ApplicationRoleClaim<TKey>
             ApplicationUserToken<TKey>,
             ApplicationClaimType<TKey>,
             ApplicationClaimValueType<TKey>
-        >
+        >,
+        IEntityClaimBase<TKey>
     where TKey : IEquatable<TKey>, IComparable
 {
     public static implicit operator ApplicationRoleClaim<TKey>(C claim) => FromClaim(claim);
@@ -48,8 +49,7 @@ public class ApplicationRoleClaim<TKey>
 
     public virtual ApplicationRole<TKey> Role { get; set; } = default!;
 
-    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; } =
-        new Collection<ApplicationClaimType<TKey>>();
+    public virtual ApplicationClaimType<TKey> ClaimType { get; set; } = default!;
 }
 
 public class ApplicationRoleClaim : ApplicationRoleClaim<long> { }
@@ -58,19 +58,47 @@ public record struct ApplicationRoleClaimInsertDto
 {
     public ApplicationRoleClaimInsertDto() => Properties = new StringDictionary();
 
-    [Required, Url, StringLength(UriMaxLength, MinimumLength = 0)]
+    [
+        Required,
+        Url,
+        StringLength(
+            Dgmjr.EntityFrameworkCore.Constants.UriMaxLengthConstant.UriMaxLength,
+            MinimumLength = 0
+        )
+    ]
     public Uri Type { get; set; }
 
-    [Required, Url, StringLength(UriMaxLength, MinimumLength = 0)]
+    [
+        Required,
+        Url,
+        StringLength(
+            Dgmjr.EntityFrameworkCore.Constants.UriMaxLengthConstant.UriMaxLength,
+            MinimumLength = 0
+        )
+    ]
     public Uri ValueType { get; set; }
 
     [StringLength(int.MaxValue, MinimumLength = 0)]
     public string? Value { get; set; }
 
-    [Required, Url, StringLength(UriMaxLength, MinimumLength = 0)]
+    [
+        Required,
+        Url,
+        StringLength(
+            Dgmjr.EntityFrameworkCore.Constants.UriMaxLengthConstant.UriMaxLength,
+            MinimumLength = 0
+        )
+    ]
     public Uri Issuer { get; set; }
 
-    [Required, Url, StringLength(UriMaxLength, MinimumLength = 0)]
+    [
+        Required,
+        Url,
+        StringLength(
+            Dgmjr.EntityFrameworkCore.Constants.UriMaxLengthConstant.UriMaxLength,
+            MinimumLength = 0
+        )
+    ]
     public Uri OriginalIssuer { get; set; }
 
     [Required]

@@ -26,6 +26,6 @@ public class AppUserTokenConfiguration : IEntityTypeConfiguration<AppUserToken>
         builder
             .Property(e => e.Provider)
             .IsUnicode(false)
-            .HasConversion(v => v.Uri.ToString(), v => AppUserLoginProvider.Parse(v));
+            .HasConversion(v => v.Uri.ToString(), v => UserLoginProvider.Parse(v));
     }
 }

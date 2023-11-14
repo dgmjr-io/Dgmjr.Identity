@@ -76,7 +76,7 @@ public static class User
         public const string IsEmailConfirmed = nameof(IsEmailConfirmed);
         public const string IsLockoutEnabled = nameof(IsLockoutEnabled);
         public const string Username = nameof(Username);
-        public const string EmailAddress = nameof(Email);
+        public const string EmailAddress = nameof(EmailAddress);
         public const string NormalizedUsername = nameof(NormalizedUsername);
         public const string NormalizedEmail = nameof(NormalizedEmail);
         public const string AccessFailedCount = nameof(AccessFailedCount);

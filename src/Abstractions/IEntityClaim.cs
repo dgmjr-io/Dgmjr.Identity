@@ -10,46 +10,23 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
+using System.Collections.Generic;
+
 namespace Dgmjr.Identity.Abstractions;
 
-public interface IEntityClaim<TSelf, TEntity, TKey> : IIdentityEntity<TKey>
+public interface IEntityClaim<TSelf, TEntity, TKey, TClaimType, TClaimValueType>
+    : IEntityClaim<TSelf, TEntity, TKey>
+    where TSelf : IEntityClaim<TSelf, TEntity, TKey, TClaimType, TClaimValueType>
+    where TKey : IEquatable<TKey>, IComparable
+{
+    TClaimType ClaimType { get; set; }
+
+    TClaimValueType ClaimValueType { get; set; }
+}
+
+public interface IEntityClaim<TSelf, TEntity, TKey> : IIdentityEntity<TKey>, IEntityClaimBase<TKey>
     where TSelf : IEntityClaim<TSelf, TEntity, TKey>
     where TKey : IEquatable<TKey>, IComparable
 {
-    [Hashids]
-    TKey EntityId { get; set; }
-
     TEntity Entity { get; set; }
-
-    string? Value { get; set; }
-
-    [StringLength(UriMaxLength, MinimumLength = 1)]
-    [Required]
-    [Url]
-    [DefaultValue(DgmjrCt.DgmjrClaims.UriString)]
-    uri Type { get; set; }
-
-    [StringLength(UriMaxLength, MinimumLength = 1)]
-    [Required]
-    [Url]
-    [DefaultValue(ClaimValueTypes.String.UriString)]
-    uri ValueType { get; set; }
-
-    [StringLength(UriMaxLength, MinimumLength = 1)]
-    [Required]
-    [Url]
-    [DefaultValue(DgmjrCt.DgmjrClaims.BaseUri)]
-    uri Issuer { get; set; }
-
-    [StringLength(UriMaxLength, MinimumLength = 1)]
-    [Required]
-    [Url]
-    [DefaultValue(DgmjrCt.DgmjrClaims.BaseUri)]
-    uri OriginalIssuer { get; set; }
-
-    [DefaultValue("{}")]
-    IStringDictionary Properties { get; set; }
-
-    C ToClaim();
-    void InitializeFromClaim(C? claim);
 }

@@ -244,7 +244,7 @@ public record class CookiePath
 }
 
 /// <summary>The URI for a claim that specifies the common name of the user; </summary>
-/// /// <value><inheritdoc cref="CommonName.UriString" path="/value" /></value>
+/// <value><inheritdoc cref="CommonName.UriString" path="/value" /></value>
 public record class CommonName
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,

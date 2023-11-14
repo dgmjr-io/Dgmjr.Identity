@@ -1,27 +1,17 @@
 namespace Dgmjr.Identity.Abstractions;
 
-public interface IIdentityClaimIssuer<TKey, TUser, TRole, TUserClaim, TRoleClaim>
+public interface IIdentityClaimsIssuer<TKey, TUserClaim, TRoleClaim>
     : IIdentityEntity<TKey>,
-        IHaveAName
+        IHaveAName,
+        IHaveADescription
     where TKey : IEquatable<TKey>, IComparable
-    where TUser : IIdentityUser<TKey, TUser, TRole>
-    where TRole : IIdentityRole<TKey, TUser, TRole>
-    where TUserClaim : IEntityClaim<TUserClaim, TUser, TKey>
-    where TRoleClaim : IEntityClaim<TRoleClaim, TRole, TKey>
+    where TUserClaim : IEntityClaimBase<TKey>
+    where TRoleClaim : IEntityClaimBase<TKey>
 {
     uri Uri { get; set; }
-    ICollection<TUser> Users { get; }
-    ICollection<TRole> Roles { get; }
     ICollection<TUserClaim> UserClaims { get; }
     ICollection<TRoleClaim> RoleClaims { get; }
 }
 
 public interface IIdentityClaimIssuer
-    : IIdentityClaimIssuer<
-        long,
-        IIdentityUser,
-        IIdentityRole,
-        IIdentityUserClaim,
-        IIdentityRoleClaim
-    >
-{ }
+    : IIdentityClaimsIssuer<long, IIdentityUserClaim, IIdentityRoleClaim> { }

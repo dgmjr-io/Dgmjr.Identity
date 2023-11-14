@@ -17,14 +17,15 @@ using Microsoft.Extensions.Configuration;
 using Dgmjr.Identity.EntityFrameworkCore;
 using Dgmjr.Identity.Abstractions;
 using Dgmjr.Identity;
+using Dgmjr.EntityFrameworkCore.Migrations;
 
 namespace Dgmjr.Identity.EntityFrameworkCore;
 
-public class IdentityDbContextDesignTimeFactory : IDesignTimeDbContextFactory<IdentityDbContext>
+public class IdentityDbContextDesignTimeFactory : IDesignTimeDbContextFactory<AppIdentityDbContext>
 {
     public const string DefaultConnectionStringKey = "AZURE_APPCONFIGURATION_CONNECTIONSTRING";
 
-    public IdentityDbContext CreateDbContext(string[] args)
+    public AppIdentityDbContext CreateDbContext(string[] args)
     {
         var config =
             new ConfigurationManager().AddUserSecrets<IdentityDbContextDesignTimeFactory>();
@@ -38,11 +39,13 @@ public class IdentityDbContextDesignTimeFactory : IDesignTimeDbContextFactory<Id
             // )
             .Build()
             .GetConnectionString("IdentityDb");
-        var builder = new DbContextOptionsBuilder<IdentityDbContext>();
-        builder.UseSqlServer(
-            connectionString,
-            b => b.MigrationsAssembly("Dgmjr.Identity.EntityFrameworkCore.Migrations")
-        );
-        return new IdentityDbContext(builder.Options);
+        var builder = new DbContextOptionsBuilder<AppIdentityDbContext>();
+        builder
+            .UseSqlServer(
+                connectionString,
+                b => b.MigrationsAssembly("Dgmjr.Identity.EntityFrameworkCore.Migrations")
+            )
+            .UseCustomSqlMigrationsSqlGenerator();
+        return new AppIdentityDbContext(builder.Options);
     }
 }

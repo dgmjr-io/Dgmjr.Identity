@@ -44,6 +44,8 @@
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Extensions"  />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Migrations"  />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants"  />
+    <PackageReference Include="Dgmjr.Primitives.EntityFrameworkCore"  />
+    <PackageReference Include="Dgmjr.Identity.Constants"  />
     <PackageReference Include="Telegram.Bot.Extensions"  />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas"  />
     <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" ExcludeAssets="ContentFiles" VersionOverride="[5.2.0,)" />

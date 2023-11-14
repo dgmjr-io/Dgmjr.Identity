@@ -152,7 +152,9 @@ public interface IIdentityRoleClaim<
             TUserRole,
             TUserLogin,
             TRoleClaim,
-            TUserToken
+            TUserToken,
+            TClaimType,
+            TClaimValueType
         >
     where TUserRole : IIdentityUserRole<
             TUser,
@@ -182,7 +184,9 @@ public interface IIdentityRoleClaim<
             TUserRole,
             TUserLogin,
             TRoleClaim,
-            TUserToken
+            TUserToken,
+            TClaimType,
+            TClaimValueType
         >
     where TUserToken : IIdentityUserToken<
             TUser,
@@ -195,7 +199,7 @@ public interface IIdentityRoleClaim<
             TUserToken
         >
 {
-    ICollection<TClaimType> ClaimTypes { get; }
+    TClaimType ClaimType { get; }
 }
 
 public interface IIdentityRoleClaim
@@ -210,5 +214,4 @@ public interface IIdentityRoleClaim
         IIdentityUserToken,
         IIdentityClaimType,
         IIdentityClaimValueType
-    >
-{ }
+    > { }

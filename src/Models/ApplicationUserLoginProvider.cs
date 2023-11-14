@@ -13,51 +13,43 @@
 namespace Dgmjr.Identity.Models;
 
 using System.Text;
+
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
 using Dgmjr.Abstractions;
 using Dgmjr.Enumerations.Abstractions;
-using Dgmjr.Identity.Models;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using static Dgmjr.Identity.Models.Enums.ApplicationUserLoginProvider;
 using Dgmjr.Identity.Abstractions;
+using Dgmjr.Identity.Models;
 using Dgmjr.Identity.Models.Abstractions;
+using static Dgmjr.Identity.Models.Enums.UserLoginProvider;
 
-public class ApplicationUserLoginProviderConverter
-    : ValueConverter<IApplicationUserLoginProvider, int>
+public class UserLoginProviderConverter : ValueConverter<IUserLoginProvider, string>
 {
-    public ApplicationUserLoginProviderConverter()
-        : base(v => ((IIdentifiable<int>)v).Id, v => ApplicationUserLoginProvider.FromId(v)) { }
+    public UserLoginProviderConverter()
+        : base(v => v.ShortName, v => UserLoginProvider.Parse(v)) { }
 }
 
-public class ApplicationUserLoginProviderJsonConverter
-    : JsonConverter<IApplicationUserLoginProvider>
+public class UserLoginProviderJsonConverter : JsonConverter<IUserLoginProvider>
 {
-    public override IApplicationUserLoginProvider Read(
+    public override IUserLoginProvider Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
     )
     {
         var value = reader.GetInt32();
-        return ApplicationUserLoginProvider.FromId(value);
+        return UserLoginProvider.FromId(value);
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        IApplicationUserLoginProvider value,
+        IUserLoginProvider value,
         JsonSerializerOptions options
     )
     {
         writer.WriteNumberValue(((IIdentifiable<int>)value).Id);
     }
 }
-
-public partial record struct ApplicationUserLoginProvider
-{
-    public static Dgmjr.Identity.Models.Abstractions.IApplicationUserLoginProvider FromId(int id) =>
-        FromValue((Dgmjr.Identity.Models.Enums.ApplicationUserLoginProvider)id);
-}
-
-public record class UserLoginProvider { }
 
 // public partial record class UserLoginProvider //: Dgmjr.Enumerations.EnumerationClass<UserLoginProvider, int, UserLoginProviderEnum>
 // {

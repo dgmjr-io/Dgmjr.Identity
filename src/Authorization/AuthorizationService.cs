@@ -16,33 +16,33 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-public class AuthorizationService : Microsoft.AspNetCore.Authorization.DefaultAuthorizationService
-{
-    public AuthorizationService(
-        IAuthorizationPolicyProvider policyProvider,
-        IAuthorizationHandlerProvider handlers,
-        ILogger<DefaultAuthorizationService> logger,
-        IAuthorizationHandlerContextFactory contextFactory,
-        IAuthorizationEvaluator evaluator,
-        IOptions<AuthorizationOptions> options
-    )
-        : base(policyProvider, handlers, logger, contextFactory, evaluator, options) { }
+// public class AuthorizationService : Microsoft.AspNetCore.Authorization.DefaultAuthorizationService
+// {
+//     public AuthorizationService(
+//         IAuthorizationPolicyProvider policyProvider,
+//         IAuthorizationHandlerProvider handlers,
+//         ILogger<DefaultAuthorizationService> logger,
+//         IAuthorizationHandlerContextFactory contextFactory,
+//         IAuthorizationEvaluator evaluator,
+//         IOptions<AuthorizationOptions> options
+//     )
+//         : base(policyProvider, handlers, logger, contextFactory, evaluator, options) { }
 
-    public override Task<AuthorizationResult> AuthorizeAsync(
-        ClaimsPrincipal user,
-        object? resource,
-        IEnumerable<IAuthorizationRequirement> requirements
-    ) => base.AuthorizeAsync(user, resource, requirements);
+//     public override Task<AuthorizationResult> AuthorizeAsync(
+//         ClaimsPrincipal user,
+//         object? resource,
+//         IEnumerable<IAuthorizationRequirement> requirements
+//     ) => base.AuthorizeAsync(user, resource, requirements);
 
-    public override Task<AuthorizationResult> AuthorizeAsync(
-        ClaimsPrincipal user,
-        object? resource,
-        string policyName
-    ) => base.AuthorizeAsync(user, resource, policyName);
-}
+//     public override Task<AuthorizationResult> AuthorizeAsync(
+//         ClaimsPrincipal user,
+//         object? resource,
+//         string policyName
+//     ) => base.AuthorizeAsync(user, resource, policyName);
+// }
 
-public class AuthorizationHandler : IAuthorizationHandler
-{
-    public Task HandleAsync(AuthorizationHandlerContext context) =>
-        throw new NotImplementedException();
-}
+// public class AuthorizationHandler : IAuthorizationHandler
+// {
+//     public Task HandleAsync(AuthorizationHandlerContext context) =>
+//         throw new NotImplementedException();
+// }

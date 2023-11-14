@@ -51,14 +51,20 @@ public interface IIdentityUserBase : IHaveATelegramUsername, IIdentityEntity
     /// <summary>Gets or sets the email address for this user.</summary>
     [ProtectedPersonalData]
     [Column(nameof(EmailAddress))]
-    [StringLength(UriMaxLength, MinimumLength = 0)]
+    [StringLength(
+        Dgmjr.EntityFrameworkCore.Constants.UriMaxLengthConstant.UriMaxLength,
+        MinimumLength = 0
+    )]
     [EmailAddress]
     EmailAddress EmailAddress { get; set; }
 
     /// <summary>Gets or sets the normalized email address for this user.</summary>
     [ProtectedPersonalData]
     [Column(nameof(EmailAddress))]
-    [StringLength(UriMaxLength, MinimumLength = 0)]
+    [StringLength(
+        Dgmjr.EntityFrameworkCore.Constants.UriMaxLengthConstant.UriMaxLength,
+        MinimumLength = 0
+    )]
     [JIgnore, XIgnore]
     [EmailAddress]
     string? NormalizedEmailAddress { get; set; }
@@ -73,17 +79,6 @@ public interface IIdentityUserBase : IHaveATelegramUsername, IIdentityEntity
     [StringLength(int.MaxValue, MinimumLength = 0)]
     [JIgnore, XIgnore, Required]
     string? PasswordHash { get; }
-
-    // /// <summary>A random value that must change whenever a users credentials change (password changed, login removed)</summary>
-    // [DbGen(DbGen.Computed)]
-    // byte[] SecurityStamp { get; }
-
-    // /// <summary>A random value that must change whenever a user is persisted to the store</summary>
-    // [Timestamp]
-    // [Column(TypeName = RowVersion.ShortName)]
-    // [DbGen(DbGen.Computed)]
-    // [JIgnore, XIgnore, Required]
-    // byte[] ConcurrencyStamp { get; }
 
     /// <summary>Gets or sets a telephone number for the user.</summary>
     [ProtectedPersonalData]
@@ -121,11 +116,6 @@ public interface IIdentityUserBase : IHaveATelegramUsername, IIdentityEntity
 
     /// <summary>Gets or sets the user's gender</summary>
     IGender Gender { get; set; }
-
-    /// <summary>Gets a value indicating whether the user is a bot</summary>
-    /// <value><see langword="true" /> if the user is a bot, <see langword="false" /> otherwise</value>
-    [NotMapped, Required, DefaultValue(false)]
-    bool IsBot { get; }
 
     /// <summary>Returns the username for this user.</summary>
     string ToString();
