@@ -19,7 +19,7 @@ public abstract record class OtherClaimType : ClaimType<DgmjrId.ClaimValueTypes.
 public record class UnknownLoginProvider : OtherClaimType, IClaimType
 {
     /// <value>urn:users:login:provider:none</value>
-    public const string UriString = "urn:users:login:provider:none";
+    public new const string UriString = "urn:users:login:provider:none";
 
     /// <value>UnknownLoginProvider</value>
     public const string Name = "UnknownLoginProvider";
@@ -36,14 +36,14 @@ public record class UnknownLoginProvider : OtherClaimType, IClaimType
 
 /// <summary>The URI for a login provider</summary>
 /// <value>urn:users:login:provider:{provider}</value>
-public record class LoginProviderPattern : OtherClaimType, IClaimType, IIdentityComponent
+public record class LoginProviderPattern : OtherClaimType, IClaimType
 {
     private LoginProviderPattern() { }
 
     public static IClaimType Instance => new LoginProviderPattern();
 
     /// <value>urn:users:login:provider:{0}</value>
-    public const string UriString = "urn:users:login:provider:{0}";
+    public new const string UriString = "urn:users:login:provider:{0}";
 
     /// <value>LoginProviderPattern</value>
     public const string Name = "LoginProviderPattern";
@@ -60,14 +60,14 @@ public record class LoginProviderPattern : OtherClaimType, IClaimType, IIdentity
 
 /// <summary>The URI for a security stamp</summary>
 /// <value>urn:identity:securitystamp</value>
-public record class SecurityStamp : OtherClaimType, IClaimType, IIdentityComponent
+public record class SecurityStamp : OtherClaimType, IClaimType
 {
     private SecurityStamp() { }
 
     public static IClaimType Instance => new SecurityStamp();
 
     /// <value>urn:identity:securitystamp</value>
-    public const string UriString = "urn:identity:securitystamp";
+    public new const string UriString = "urn:identity:securitystamp";
 
     /// <value>SecurityStamp</value>
     public const string Name = "SecurityStamp";
@@ -84,14 +84,14 @@ public record class SecurityStamp : OtherClaimType, IClaimType, IIdentityCompone
 
 /// <summary>The URI for a generic claim type</summary>
 /// <value>urn:identity:claim:generic:{0}</value>
-public record class GenericClaimTypePattern : OtherClaimType, IClaimType, IIdentityComponent
+public record class GenericClaimTypePattern : OtherClaimType, IClaimType
 {
     private GenericClaimTypePattern() { }
 
     public static IClaimType Instance => new GenericClaimTypePattern();
 
     /// <value>urn:identity:claim:custom:{0}</value>
-    public const string UriString = "urn:identity:claim:custom:{0}";
+    public new const string UriString = "urn:identity:claim:custom:{0}";
 
     /// <value>GenericClaimTypePattern</value>
     public const string Name = "GenericClaimTypePattern";
@@ -115,7 +115,7 @@ public record class GenericClaimsIssuerTypePattern : OtherClaimType, IClaimType
     public static IClaimType Instance => new GenericClaimsIssuerTypePattern();
 
     /// <value>urn:identity:claim:issuer:custom:{0}</value>
-    public const string UriString = "urn:identity:claim:issuer:custom:{0}";
+    public new const string UriString = "urn:identity:claim:issuer:custom:{0}";
 
     /// <value>GenericClaimsIssuerTypePattern</value>
     public const string Name = "GenericClaimsIssuerTypePattern";
@@ -132,14 +132,14 @@ public record class GenericClaimsIssuerTypePattern : OtherClaimType, IClaimType
 
 /// <summary>The URI for a generic claims value type</summary>
 /// <value>urn:identity:claim:custom</value>
-public record class Custom : OtherClaimType, IClaimType, IIdentityComponent
+public record class Custom : OtherClaimType, IClaimType
 {
     private Custom() { }
 
     public static IClaimType Instance => new Custom();
 
     /// <value>urn:identity:claim:custom</value>
-    public const string UriString = "urn:identity:claim:custom";
+    public new const string UriString = "urn:identity:claim:custom";
 
     /// <value>Custom</value>
     public const string Name = "Custom";
@@ -156,14 +156,14 @@ public record class Custom : OtherClaimType, IClaimType, IIdentityComponent
 
 /// <summary>The URI for an unknown claim value type</summary>
 /// <value>urn:identity:claim:unknown</value>
-public record class Unknown : OtherClaimType, IClaimType, IIdentityComponent
+public record class Unknown : OtherClaimType, IClaimType
 {
     private Unknown() { }
 
     public static IClaimType Instance => new Unknown();
 
     /// <value>urn:identity:claim:unknown</value>
-    public const string UriString = "urn:identity:claim:unknown";
+    public new const string UriString = "urn:identity:claim:unknown";
 
     /// <value>Unknown</value>
     public const string Name = "Unknown";
