@@ -39,13 +39,13 @@ public class ApplicationClaimType<TKey>
 
     public virtual required uri Uri { get; set; }
 
-    public virtual required string Name { get; set; }
+public virtual required string Name { get; set; }
 
-    [ForeignKey(nameof(ValueType))]
-    public virtual required uri ValueTypeUri { get; set; }
-    public ApplicationClaimValueType<TKey> ValueType { get; set; } = default!;
+[ForeignKey(nameof(ValueType))]
+public virtual required uri ValueTypeUri { get; set; }
+public ApplicationClaimValueType<TKey> ValueType { get; set; } = default!;
 
-    public virtual string Description { get; set; }
+public virtual string Description { get; set; }
 
     // public ICollection<ApplicationUser<TKey>> Users { get; } =
     //     new Collection<ApplicationUser<TKey>>();
