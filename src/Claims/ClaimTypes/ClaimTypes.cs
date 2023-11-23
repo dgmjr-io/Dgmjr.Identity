@@ -17,7 +17,10 @@ namespace Dgmjr.Identity.ClaimTypes;
 public record class Actor
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Actor();
 
@@ -33,10 +36,13 @@ public record class Actor
     public const string Name = nameof(Actor);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -50,7 +56,10 @@ public record class Actor
 public record class Anonymous
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Anonymous();
 
@@ -66,10 +75,13 @@ public record class Anonymous
     public const string Name = nameof(Anonymous);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -83,7 +95,10 @@ public record class Anonymous
 public record class Authenticated
     : ClaimType<DgmjrId.ClaimValueTypes.Boolean>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Authenticated();
 
@@ -99,10 +114,13 @@ public record class Authenticated
     public const string Name = nameof(Authenticated);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -116,7 +134,10 @@ public record class Authenticated
 public record class AuthenticationInstant
     : ClaimType<DgmjrId.ClaimValueTypes._DateTime>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new AuthenticationInstant();
 
@@ -132,10 +153,13 @@ public record class AuthenticationInstant
     public const string Name = nameof(AuthenticationInstant);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -149,7 +173,10 @@ public record class AuthenticationInstant
 public record class AuthenticationMethod
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new AuthenticationMethod();
 
@@ -165,10 +192,13 @@ public record class AuthenticationMethod
     public const string Name = nameof(AuthenticationMethod);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -182,7 +212,10 @@ public record class AuthenticationMethod
 public record class AuthorizationDecision
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new AuthorizationDecision();
 
@@ -198,10 +231,13 @@ public record class AuthorizationDecision
     public const string Name = nameof(AuthorizationDecision);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -215,7 +251,10 @@ public record class AuthorizationDecision
 public record class CookiePath
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new CookiePath();
 
@@ -231,10 +270,13 @@ public record class CookiePath
     public const string Name = nameof(CookiePath);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -248,8 +290,14 @@ public record class CookiePath
 public record class CommonName
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName,
+        IIdentifiable<long>
 {
+    long IIdentifiable<long>.Id => 0;
+
     public static readonly IClaimType Instance = new CommonName();
 
     private CommonName() { }
@@ -264,10 +312,13 @@ public record class CommonName
     public const string Name = nameof(CommonName);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -281,7 +332,10 @@ public record class CommonName
 public record class Country
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Country();
 
@@ -297,10 +351,13 @@ public record class Country
     public const string Name = nameof(Country);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -314,7 +371,10 @@ public record class Country
 public record class DateOfBirth
     : ClaimType<DgmjrId.ClaimValueTypes._DateTime>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new DateOfBirth();
 
@@ -330,10 +390,13 @@ public record class DateOfBirth
     public const string Name = nameof(DateOfBirth);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -347,7 +410,10 @@ public record class DateOfBirth
 public record class DenyOnlyPrimaryGroupSid
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new DenyOnlyPrimaryGroupSid();
 
@@ -363,10 +429,13 @@ public record class DenyOnlyPrimaryGroupSid
     public const string Name = nameof(DenyOnlyPrimaryGroupSid);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -380,7 +449,10 @@ public record class DenyOnlyPrimaryGroupSid
 public record class DenyOnlyPrimarySid
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new DenyOnlyPrimarySid();
 
@@ -396,10 +468,13 @@ public record class DenyOnlyPrimarySid
     public const string Name = nameof(DenyOnlyPrimarySid);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -413,7 +488,10 @@ public record class DenyOnlyPrimarySid
 public record class DenyOnlySid
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new DenyOnlySid();
 
@@ -429,10 +507,13 @@ public record class DenyOnlySid
     public const string Name = nameof(DenyOnlySid);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -446,7 +527,10 @@ public record class DenyOnlySid
 public record class DenyOnlyWindowsDeviceGroup
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new DenyOnlyWindowsDeviceGroup();
 
@@ -462,10 +546,52 @@ public record class DenyOnlyWindowsDeviceGroup
     public const string Name = nameof(DenyOnlyWindowsDeviceGroup);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    public override uri ShortUri => ShortUriString;
+}
+
+/// <summary>The URI for a claim that specifies the Windows deny-only group SID of the device, </summary>
+/// <value><inheritdoc cref="DisplayName.UriString" path="/value" /></value>
+public record class DisplayName
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
+{
+    public static readonly IClaimType Instance = new DisplayName();
+
+    private DisplayName() { }
+
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/displayname</value>
+    public const string UriString = Namespace2008 + "/displayname";
+
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2008" path="/value" />:displayname</value>
+    public const string ShortUriString = ShortNamespace2008 + ":" + "displayname";
+
+    /// <value>DisplayName</value>
+    public const string Name = nameof(DisplayName);
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -476,7 +602,13 @@ public record class DenyOnlyWindowsDeviceGroup
 
 /// <summary>The URI for a claim that specifies the DNS name associated with the computer name or with the alternative name of either the subject or issuer of an X.509 certificate, </summary>
 /// <value><inheritdoc cref="Dns.UriString" path="/value" /></value>
-public record class Dns : ClaimType<DgmjrId.ClaimValueTypes.DnsName>, IClaimType, IIdentityComponent
+public record class Dns
+    : ClaimType<DgmjrId.ClaimValueTypes.DnsName>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Dns();
 
@@ -492,10 +624,13 @@ public record class Dns : ClaimType<DgmjrId.ClaimValueTypes.DnsName>, IClaimType
     public const string Name = nameof(Dns);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -509,7 +644,10 @@ public record class Dns : ClaimType<DgmjrId.ClaimValueTypes.DnsName>, IClaimType
 public record class Dsa
     : ClaimType<DgmjrId.ClaimValueTypes.DsaKeyValue>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Dsa();
 
@@ -525,10 +663,13 @@ public record class Dsa
     public const string Name = nameof(Dsa);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -542,7 +683,10 @@ public record class Dsa
 public record class Email2005
     : ClaimType<DgmjrId.ClaimValueTypes.Rfc822Name>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Email2005();
 
@@ -558,10 +702,13 @@ public record class Email2005
     public const string Name = nameof(Email2005);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -575,7 +722,10 @@ public record class Email2005
 public record class Email
     : ClaimType<DgmjrId.ClaimValueTypes.Rfc822Name>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Email();
 
@@ -591,10 +741,13 @@ public record class Email
     public const string Name = nameof(Email);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -608,7 +761,10 @@ public record class Email
 public record class Expiration
     : ClaimType<DgmjrId.ClaimValueTypes._DateTime>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Expiration();
 
@@ -624,10 +780,13 @@ public record class Expiration
     public const string Name = nameof(Expiration);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -641,7 +800,10 @@ public record class Expiration
 public record class Expired
     : ClaimType<DgmjrId.ClaimValueTypes.Boolean>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Expired();
 
@@ -657,10 +819,13 @@ public record class Expired
     public const string Name = nameof(Expired);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -674,7 +839,10 @@ public record class Expired
 public record class Gender
     : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Gender();
 
@@ -690,10 +858,13 @@ public record class Gender
     public const string Name = nameof(Gender);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -707,7 +878,10 @@ public record class Gender
 public record class GivenName
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new GivenName();
 
@@ -723,10 +897,13 @@ public record class GivenName
     public const string Name = nameof(GivenName);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -740,7 +917,10 @@ public record class GivenName
 public record class GroupSid
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new GroupSid();
 
@@ -756,10 +936,13 @@ public record class GroupSid
     public const string Name = nameof(GroupSid);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -770,7 +953,13 @@ public record class GroupSid
 
 /// <summary>The URI for a claim that specifies a hash value, </summary>
 /// <value><inheritdoc cref="Hash.UriString" path="/value" /></value>
-public record class Hash : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType, IIdentityComponent
+public record class Hash
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Hash();
 
@@ -786,10 +975,13 @@ public record class Hash : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType
     public const string Name = nameof(Hash);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -803,7 +995,10 @@ public record class Hash : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType
 public record class HomePhone
     : ClaimType<DgmjrId.ClaimValueTypes.PhoneNumber>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new HomePhone();
 
@@ -819,10 +1014,13 @@ public record class HomePhone
     public const string Name = nameof(HomePhone);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -836,7 +1034,10 @@ public record class HomePhone
 public record class IsPersistent
     : ClaimType<DgmjrId.ClaimValueTypes.Boolean>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new IsPersistent();
 
@@ -852,10 +1053,13 @@ public record class IsPersistent
     public const string Name = nameof(IsPersistent);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -869,7 +1073,10 @@ public record class IsPersistent
 public record class Locality
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Locality();
 
@@ -885,10 +1092,13 @@ public record class Locality
     public const string Name = nameof(Locality);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -902,7 +1112,10 @@ public record class Locality
 public record class MobilePhone
     : ClaimType<DgmjrId.ClaimValueTypes.PhoneNumber>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new MobilePhone();
 
@@ -918,10 +1131,13 @@ public record class MobilePhone
     public const string Name = "MobilePhone	";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -932,7 +1148,13 @@ public record class MobilePhone
 
 /// <summary>The URI for a claim that specifies the name of an entity, </summary>
 /// <value><inheritdoc cref="Name.UriString" path="/value" /></value>
-public record class Name : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType, IIdentityComponent
+public record class Name
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Name();
 
@@ -946,10 +1168,13 @@ public record class Name : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType
     public const string _Name = "Name";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => _Name;
+    string IHaveAName.Name => _Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -963,7 +1188,10 @@ public record class Name : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType
 public record class NameIdentifier
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new NameIdentifier();
 
@@ -979,10 +1207,13 @@ public record class NameIdentifier
     public const string Name = nameof(NameIdentifier);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -996,7 +1227,10 @@ public record class NameIdentifier
 public record class OtherPhone
     : ClaimType<DgmjrId.ClaimValueTypes.PhoneNumber>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new OtherPhone();
 
@@ -1012,10 +1246,13 @@ public record class OtherPhone
     public const string Name = nameof(OtherPhone);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1029,7 +1266,10 @@ public record class OtherPhone
 public record class PostalCode
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new PostalCode();
 
@@ -1045,10 +1285,13 @@ public record class PostalCode
     public const string Name = nameof(PostalCode);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1062,7 +1305,10 @@ public record class PostalCode
 public record class PrimaryGroupSid
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new PrimaryGroupSid();
 
@@ -1078,10 +1324,13 @@ public record class PrimaryGroupSid
     public const string Name = nameof(PrimaryGroupSid);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1095,7 +1344,10 @@ public record class PrimaryGroupSid
 public record class PrimarySid
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new PrimarySid();
 
@@ -1111,10 +1363,13 @@ public record class PrimarySid
     public const string Name = nameof(PrimarySid);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1125,7 +1380,13 @@ public record class PrimarySid
 
 /// <summary>The URI for a claim that specifies the role of an entity, </summary>
 /// <value><inheritdoc cref="Role.UriString" path="/value" /></value>
-public record class Role : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>, IClaimType, IIdentityComponent
+public record class Role
+    : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Role();
 
@@ -1141,10 +1402,13 @@ public record class Role : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>, IClaimType
     public const string Name = nameof(Role);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1158,7 +1422,10 @@ public record class Role : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>, IClaimType
 public record class Rsa
     : ClaimType<DgmjrId.ClaimValueTypes.RsaKeyValue>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Rsa();
 
@@ -1174,10 +1441,13 @@ public record class Rsa
     public const string Name = nameof(Rsa);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1191,7 +1461,10 @@ public record class Rsa
 public record class SerialNumber
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new SerialNumber();
 
@@ -1207,10 +1480,13 @@ public record class SerialNumber
     public const string Name = nameof(SerialNumber);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1221,7 +1497,13 @@ public record class SerialNumber
 
 /// <summary>The URI for a claim that specifies a security identifier (SID), </summary>
 /// <value><inheritdoc cref="Sid.UriString" path="/value" /></value>
-public record class Sid : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType, IIdentityComponent
+public record class Sid
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Sid();
 
@@ -1237,10 +1519,13 @@ public record class Sid : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType,
     public const string Name = nameof(Sid);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1251,7 +1536,13 @@ public record class Sid : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType,
 
 /// <summary>The URI for a claim that specifies a service principal name (SPN) claim, </summary>
 /// <value><inheritdoc cref="Spn.UriString" path="/value" /></value>
-public record class Spn : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType, IIdentityComponent
+public record class Spn
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Spn();
 
@@ -1267,10 +1558,13 @@ public record class Spn : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType,
     public const string Name = nameof(Spn);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1284,7 +1578,10 @@ public record class Spn : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType,
 public record class StateOrProvince
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new StateOrProvince();
 
@@ -1300,10 +1597,13 @@ public record class StateOrProvince
     public const string Name = nameof(StateOrProvince);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1317,7 +1617,10 @@ public record class StateOrProvince
 public record class StreetAddress
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new StreetAddress();
 
@@ -1333,10 +1636,13 @@ public record class StreetAddress
     public const string Name = nameof(StreetAddress);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1350,7 +1656,10 @@ public record class StreetAddress
 public record class Surname
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Surname();
 
@@ -1366,10 +1675,13 @@ public record class Surname
     public const string Name = nameof(Surname);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1383,7 +1695,10 @@ public record class Surname
 public record class System
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new System();
 
@@ -1399,10 +1714,13 @@ public record class System
     public const string Name = nameof(System);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1416,7 +1734,10 @@ public record class System
 public record class Thumbprint
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Thumbprint();
 
@@ -1437,10 +1758,13 @@ public record class Thumbprint
     public const string Name = nameof(Thumbprint);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1451,7 +1775,13 @@ public record class Thumbprint
 
 /// <summary>The URI for a claim that specifies a user principal name (UPN), </summary>
 /// <value><inheritdoc cref="Upn.UriString" path="/value" /></value>
-public record class Upn : ClaimType<DgmjrId.ClaimValueTypes.UpnName>, IClaimType, IIdentityComponent
+public record class Upn
+    : ClaimType<DgmjrId.ClaimValueTypes.UpnName>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Upn();
 
@@ -1467,10 +1797,13 @@ public record class Upn : ClaimType<DgmjrId.ClaimValueTypes.UpnName>, IClaimType
     public const string Name = nameof(Upn);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1484,7 +1817,10 @@ public record class Upn : ClaimType<DgmjrId.ClaimValueTypes.UpnName>, IClaimType
 public record class Upn2005
     : ClaimType<DgmjrId.ClaimValueTypes.UpnName>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Upn2005();
 
@@ -1500,10 +1836,13 @@ public record class Upn2005
     public const string Name = nameof(Upn2005);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1514,7 +1853,13 @@ public record class Upn2005
 
 /// <summary>The URI for a claim that specifies a URI, </summary>
 /// <value><inheritdoc cref="_Uri.UriString" path="/value" /></value>
-public record class _Uri : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>, IClaimType, IIdentityComponent
+public record class _Uri
+    : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new _Uri();
 
@@ -1530,10 +1875,13 @@ public record class _Uri : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>, IClaimType
     public const string Name = nameof(Uri);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1547,7 +1895,10 @@ public record class _Uri : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>, IClaimType
 public record class UserData
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new UserData();
 
@@ -1563,10 +1914,13 @@ public record class UserData
     public const string Name = nameof(UserData);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1580,7 +1934,10 @@ public record class UserData
 public record class Version
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Version();
 
@@ -1596,10 +1953,13 @@ public record class Version
     public const string Name = nameof(Version);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1613,7 +1973,10 @@ public record class Version
 public record class Webpage
     : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new Webpage();
 
@@ -1629,10 +1992,13 @@ public record class Webpage
     public const string Name = nameof(Webpage);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1646,7 +2012,10 @@ public record class Webpage
 public record class WindowsAccountName
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new WindowsAccountName();
 
@@ -1662,10 +2031,13 @@ public record class WindowsAccountName
     public const string Name = nameof(WindowsAccountName);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1679,7 +2051,10 @@ public record class WindowsAccountName
 public record class WindowsDeviceClaim
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new WindowsDeviceClaim();
 
@@ -1695,10 +2070,13 @@ public record class WindowsDeviceClaim
     public const string Name = nameof(WindowsDeviceClaim);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1712,7 +2090,10 @@ public record class WindowsDeviceClaim
 public record class WindowsDeviceGroup
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new WindowsDeviceGroup();
 
@@ -1728,10 +2109,13 @@ public record class WindowsDeviceGroup
     public const string Name = nameof(WindowsDeviceGroup);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1745,7 +2129,10 @@ public record class WindowsDeviceGroup
 public record class WindowsFqbnVersion
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new WindowsFqbnVersion();
 
@@ -1761,10 +2148,13 @@ public record class WindowsFqbnVersion
     public const string Name = nameof(WindowsFqbnVersion);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1778,7 +2168,10 @@ public record class WindowsFqbnVersion
 public record class WindowsSubAuthority
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new WindowsSubAuthority();
 
@@ -1794,10 +2187,13 @@ public record class WindowsSubAuthority
     public const string Name = nameof(WindowsSubAuthority);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1811,7 +2207,10 @@ public record class WindowsSubAuthority
 public record class WindowsUserClaim
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new WindowsUserClaim();
 
@@ -1827,10 +2226,13 @@ public record class WindowsUserClaim
     public const string Name = nameof(WindowsUserClaim);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1844,7 +2246,10 @@ public record class WindowsUserClaim
 public record class X500DistinguishedName
     : ClaimType<DgmjrId.ClaimValueTypes.X500Name>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new X500DistinguishedName();
 
@@ -1860,10 +2265,124 @@ public record class X500DistinguishedName
     public const string Name = nameof(X500DistinguishedName);
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    public override uri ShortUri => ShortUriString;
+}
+
+public record class PasswordExpirationDays
+    : ClaimType<DgmjrId.ClaimValueTypes.Integer32>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
+{
+    public static readonly IClaimType Instance = new PasswordExpirationDays();
+
+    private PasswordExpirationDays() { }
+
+    /// <value><inheritdoc cref="ClaimType.Namespace2012" path="/value" /><inheritdoc cref="ClaimType.Slash" path="/value" /><inheritdoc cref="Name" path="/value" /></value>
+    public const string UriString = Namespace2012 + Slash + Name;
+
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2012" path="/value" /><inheritdoc cref="ClaimType.Colon" path="/value" /><inheritdoc cref="Name" path="/value" /></value>
+    public const string ShortUriString = ShortNamespace2012 + Colon + Name;
+
+    /// <value>passwordexpirationtime</value>
+    public const string Name = "passwordexpirationdays";
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    public override uri ShortUri => ShortUriString;
+}
+
+public record class PasswordExpirationTime
+    : ClaimType<DgmjrId.ClaimValueTypes.Integer32>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
+{
+    public static readonly IClaimType Instance = new PasswordExpirationTime();
+
+    private PasswordExpirationTime() { }
+
+    /// <value><inheritdoc cref="ClaimType.Namespace2012" path="/value" /><inheritdoc cref="ClaimType.Slash" path="/value" /><inheritdoc cref="Name" path="/value" /></value>
+    public const string UriString = Namespace2012 + Slash + Name;
+
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2012" path="/value" /><inheritdoc cref="ClaimType.Colon" path="/value" /><inheritdoc cref="Name" path="/value" /></value>
+    public const string ShortUriString = ShortNamespace2012 + Colon + Name;
+
+    /// <value>passwordexpirationtime</value>
+    public const string Name = "passwordexpirationtime";
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    public override uri ShortUri => ShortUriString;
+}
+
+public record class PasswordChangeUrl
+    : ClaimType<DgmjrId.ClaimValueTypes.AnyUri>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
+{
+    public static readonly IClaimType Instance = new PasswordChangeUrl();
+
+    private PasswordChangeUrl() { }
+
+    /// <value><inheritdoc cref="ClaimType.Namespace2012" path="/value" /><inheritdoc cref="ClaimType.Slash" path="/value" /><inheritdoc cref="Name" path="/value" /></value>
+    public const string UriString = Namespace2012 + Slash + Name;
+
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2012" path="/value" /><inheritdoc cref="ClaimType.Colon" path="/value" /><inheritdoc cref="Name" path="/value" /></value>
+    public const string ShortUriString = ShortNamespace2012 + Colon + Name;
+
+    /// <value>passwordchangeurl</value>
+    public const string Name = "passwordchangeurl";
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;
@@ -1875,7 +2394,10 @@ public record class X500DistinguishedName
 public record class ObjectId
     : ClaimType<DgmjrId.ClaimValueTypes.ObjectId>,
         IClaimType,
-        IIdentityComponent
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
 {
     public static readonly IClaimType Instance = new ObjectId();
 
@@ -1891,10 +2413,13 @@ public record class ObjectId
     public const string Name = "objectid";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" /></value>
     string IIdentityComponent.ShortUriString => ShortUriString;

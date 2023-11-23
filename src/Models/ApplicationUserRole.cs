@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Identity;
 /// <summary>A join entity between <see cref="User" />s and <see cref="Role" />s</summary>
 [Table(EntityFrameworkCore.Constants.TableNames.UserRole, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Role ({Id} - User ID: {UserId}, Role: {Role})")]
+[Comment("A user role is a role that is assigned to a user.")]
 public class ApplicationUserRole<TKey>
     : ApplicationIdentityEntity<TKey>,
         IIdentityUserRole<

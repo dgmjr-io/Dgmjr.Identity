@@ -5,13 +5,13 @@ using System.Security.Claims;
 
 namespace Dgmjr.Identity.Models;
 
-public abstract class EntityClaim<TSelf, TEntity, TKey>
+public abstract class ApplicationEntityClaim<TSelf, TEntity, TKey>
     : ApplicationIdentityEntity<TKey>,
         IEntityClaim<TSelf, TEntity, TKey>
     where TKey : IEquatable<TKey>, IComparable
     where TSelf : IEntityClaim<TSelf, TEntity, TKey>, new()
 {
-    protected EntityClaim()
+    protected ApplicationEntityClaim()
     {
         Value = string.Empty;
         Type = DgmjrCt.Unknown.UriString;

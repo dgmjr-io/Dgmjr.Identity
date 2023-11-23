@@ -25,7 +25,7 @@ public record class UnknownLoginProvider : OtherClaimType, IClaimType
     public const string Name = "UnknownLoginProvider";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -49,7 +49,7 @@ public record class LoginProviderPattern : OtherClaimType, IClaimType, IIdentity
     public const string Name = "LoginProviderPattern";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -73,7 +73,7 @@ public record class SecurityStamp : OtherClaimType, IClaimType, IIdentityCompone
     public const string Name = "SecurityStamp";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -97,7 +97,7 @@ public record class GenericClaimTypePattern : OtherClaimType, IClaimType, IIdent
     public const string Name = "GenericClaimTypePattern";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -121,7 +121,7 @@ public record class GenericClaimsIssuerTypePattern : OtherClaimType, IClaimType
     public const string Name = "GenericClaimsIssuerTypePattern";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -145,7 +145,7 @@ public record class Custom : OtherClaimType, IClaimType, IIdentityComponent
     public const string Name = "Custom";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -169,7 +169,7 @@ public record class Unknown : OtherClaimType, IClaimType, IIdentityComponent
     public const string Name = "Unknown";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;

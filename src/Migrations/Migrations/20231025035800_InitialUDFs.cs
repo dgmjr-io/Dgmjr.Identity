@@ -1,4 +1,5 @@
-﻿using System.Domain;
+﻿using System;
+using System.Domain;
 using System.Net.Mail;
 
 using Microsoft.EntityFrameworkCore.Infrastructure;

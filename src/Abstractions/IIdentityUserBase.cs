@@ -115,7 +115,7 @@ public interface IIdentityUserBase : IHaveATelegramUsername, IIdentityEntity
     bool IsLockedOut { get; }
 
     /// <summary>Gets or sets the user's gender</summary>
-    IGender Gender { get; set; }
+    Gender Gender { get; set; }
 
     /// <summary>Returns the username for this user.</summary>
     string ToString();

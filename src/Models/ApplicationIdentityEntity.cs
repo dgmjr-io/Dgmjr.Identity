@@ -35,5 +35,7 @@ public abstract class ApplicationIdentityEntity<TKey> : IIdentityEntity<TKey>
 
     public virtual DateTimeOffset Created { get; } = DateTimeOffset.Now;
     public virtual DateTimeOffset? Deleted { get; set; }
+
+    [Projectable]
     public virtual bool IsDeleted => Deleted < DateTimeOffset.Now;
 }

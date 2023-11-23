@@ -107,25 +107,11 @@ public class AppRoleConfiguration<
         // builder.Property(e => e.NormalizedName).HasMaxLength(256);
         // builder.HasIndex(e => e.NormalizedName).IsUnique().HasName("RoleNameIndex").HasFilter("[NormalizedName] IS NOT NULL");
         builder.UriProperty(e => (e as IHaveAuri).Uri).IsUnicode(false);
-        builder.HasMany(
-            e => e.Users
-        ) /*
-            .WithMany(u => u.Roles)
-            .UsingEntity<TUserRole>(
-                ur =>
-                    ur.HasOne(ur => ur.User)
-                        .WithMany(u => u.UserRoles)
-                        .HasForeignKey(ur => ur.UserId)
-                        .HasPrincipalKey(u => u.Id),
-                ur =>
-                    ur.HasOne(ur => ur.Role)
-                        .WithMany(r => r.UserRoles)
-                        .HasForeignKey(ur => ur.RoleId)
-                        .HasPrincipalKey(r => r.Id),
-                ur => ur.HasKey(ur => ur.Id)
-            )*/
-        ;
-        builder.HasMany(e => e.RoleClaims).WithOne(e => e.Role).HasForeignKey(e => e.RoleId);
+        builder
+            .HasMany(e => e.RoleClaims)
+            .WithOne(e => e.Role)
+            .HasForeignKey(e => e.RoleId)
+            .HasPrincipalKey(e => e.Id);
     }
 }
 
@@ -141,5 +127,4 @@ public class AppRoleConfiguration
         AppUserToken,
         AppClaimType,
         AppClaimValueType
-    >
-{ }
+    > { }

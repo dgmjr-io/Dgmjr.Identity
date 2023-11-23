@@ -1,6 +1,5 @@
 <Project>
   <ItemGroup>
-    <Using Include="Dgmjr.Identity.ClaimValueTypes" />
     <Using Include="Dgmjr.Identity.ClaimValueTypes" Alias="DgmjrCvt" />
   </ItemGroup>
 </Project>

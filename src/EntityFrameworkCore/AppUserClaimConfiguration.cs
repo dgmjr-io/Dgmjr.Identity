@@ -119,11 +119,6 @@ public class AppUserClaimConfiguration<
             .WithMany()
             .HasForeignKey(e => e.Type)
             .HasPrincipalKey(e => e.Uri);
-        // builder
-        //     .HasOne(e => e.ClaimType)
-        //     .WithMany()
-        //     .HasForeignKey(e => e.ClaimType)
-        //     .HasPrincipalKey(e => e.Uri);
     }
 }
 

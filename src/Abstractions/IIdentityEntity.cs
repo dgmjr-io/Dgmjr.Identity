@@ -24,9 +24,7 @@ public interface IIdentityEntity<TKey>
     new TKey Id { get; set; }
 }
 
-public interface IIdentityEntity : IEntity
+public interface IIdentityEntity : IEntity, ISoftDeletable
 {
     DateTimeOffset Created { get; }
-    DateTimeOffset? Deleted { get; set; }
-    bool IsDeleted { get; }
 }

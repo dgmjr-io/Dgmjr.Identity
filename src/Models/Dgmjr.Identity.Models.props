@@ -43,6 +43,7 @@
     <Using Include="EntityFrameworkCore.Projectables" />
   </ItemGroup>
   <ItemGroup>
+    <Using Include="Dgmjr.Identity.Models.ApplicationClaimsIssuer&lt;long&gt;" Alias="AppClaimsIssuer" />
     <Using Include="Dgmjr.Identity.Models.ApplicationRole&lt;long&gt;" Alias="AppRole" />
     <Using Include="Dgmjr.Identity.Models.ApplicationUser&lt;long&gt;" Alias="AppUser" />
     <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim&lt;long&gt;" Alias="AppUserClaim" />

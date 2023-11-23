@@ -25,7 +25,7 @@ public enum Role
 {
     /// <summary>The base URI for roles</summary>
     /// <value><inheritdoc cref="Constants.UriString" path="/value" />/<inheritdoc cref="Names.Role" path="/value" /></value>
-    /// [Uri($"{Constants.UriString}/{Names.Role}")]
+    [Uri($"{Constants.UriString}/{Names.Role}")]
     BaseUri = 0,
 
     /// <summary>The <inheritdoc cref="Admin" path="/value" /> role</summary>

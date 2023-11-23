@@ -21,6 +21,7 @@ using Microsoft.AspNetCore;
 using static System.Guid;
 
 [DebuggerDisplay("ApplicationRole ({Id} - {Name} {Uri})")]
+[Comment("A role is a collection of claims that can be assigned to a user.")]
 public partial class ApplicationRole<TKey>
     : ApplicationIdentityEntity<TKey>,
         IIdentityRole<
@@ -69,8 +70,9 @@ public partial class ApplicationRole<TKey>
         new Collection<ApplicationUser<TKey>>();
     public virtual ICollection<ApplicationUserRole<TKey>> UserRoles { get; set; } =
         new Collection<ApplicationUserRole<TKey>>();
-    public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; set; } =
-        new Collection<ApplicationClaimType<TKey>>();
+
+    // public virtual ICollection<ApplicationClaimType<TKey>> ClaimTypes { get; set; } =
+    //     new Collection<ApplicationClaimType<TKey>>();
     public virtual ICollection<ApplicationRoleClaim<TKey>> RoleClaims { get; set; } =
         new Collection<ApplicationRoleClaim<TKey>>();
 }

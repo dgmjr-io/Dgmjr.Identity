@@ -32,6 +32,11 @@ public class AppRoleClaimConfiguration : IEntityTypeConfiguration<AppRoleClaim>
             .HasPrincipalKey(e => e.Uri);
         // builder
         //     .HasOne(e => e.ClaimType)
+        //     .WithMany(e => e.RoleClaims)
+        //     .HasForeignKey(e => e.Type)
+        //     .HasPrincipalKey(e => e.Uri);
+        // builder
+        //     .HasOne(e => e.ClaimType)
         //     .WithMany()
         //     .HasForeignKey(e => e.ClaimType)
         //     .HasPrincipalKey(e => e.Uri);

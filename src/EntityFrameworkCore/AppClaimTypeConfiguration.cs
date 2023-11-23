@@ -26,7 +26,7 @@ public class AppClaimTypeConfiguration : IEntityTypeConfiguration<AppClaimType>
         builder.UriProperty(e => e.Uri).IsUnicode(false);
         builder
             .HasOne(e => e.ValueType)
-            .WithMany()
+            .WithMany(e => e.ClaimTypes)
             .HasForeignKey(e => e.ValueTypeUri)
             .HasPrincipalKey(e => e.Uri);
         // builder

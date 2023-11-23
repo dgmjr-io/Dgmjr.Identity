@@ -19,6 +19,7 @@ using Telegram.Identity.ClaimTypes;
 
 namespace Dgmjr.Identity.Models;
 
+[Comment("A claim value type is a type of value that a claim can have.")]
 public class ApplicationClaimValueType<TKey>
     : ApplicationIdentityEntity<TKey>,
         IIdentityClaimValueType<

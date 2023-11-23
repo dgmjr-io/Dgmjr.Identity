@@ -9,6 +9,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
+using System.Collections;
 using static ClaimValueType;
 
 using Dgmjr.Primitives;
@@ -17,6 +18,8 @@ using SSCXmlKeyInfo = System.Security.Cryptography.Xml.KeyInfo;
 
 // the schema needs to be checked for all these types to ensure they allowed
 
+/// <summary>A claim value for a(n) Base64Binary</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Base64Binary : ClaimValueType<byte[]>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new Base64Binary();
@@ -24,10 +27,10 @@ public record class Base64Binary : ClaimValueType<byte[]>, IClaimValueType
     private Base64Binary() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />base64Binary</value>
-    public const string UriString = XmlSchemaNamespace + "base64Binary";
+    public new const string UriString = XmlSchemaNamespace + "base64Binary";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:base64Binary</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":base64Binary";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":base64Binary";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -50,6 +53,8 @@ public record class Base64Binary : ClaimValueType<byte[]>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) Boolean</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Boolean : ClaimValueType<bool>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new Boolean();
@@ -57,10 +62,10 @@ public record class Boolean : ClaimValueType<bool>, IClaimValueType
     private Boolean() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />boolean</value>
-    public const string UriString = XmlSchemaNamespace + "boolean";
+    public new const string UriString = XmlSchemaNamespace + "boolean";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:boolean</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":boolean";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":boolean";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -91,6 +96,8 @@ public record class Boolean : ClaimValueType<bool>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) Date</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Date : ClaimValueType<date>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new Date();
@@ -98,10 +105,10 @@ public record class Date : ClaimValueType<date>, IClaimValueType
     private Date() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />date</value>
-    public const string UriString = XmlSchemaNamespace + "date";
+    public new const string UriString = XmlSchemaNamespace + "date";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:date</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":date";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":date";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -128,6 +135,8 @@ public record class Date : ClaimValueType<date>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) _DateTime</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class _DateTime : ClaimValueType<datetime>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new _DateTime();
@@ -135,10 +144,10 @@ public record class _DateTime : ClaimValueType<datetime>, IClaimValueType
     private _DateTime() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />dateTime</value>
-    public const string UriString = XmlSchemaNamespace + "dateTime";
+    public new const string UriString = XmlSchemaNamespace + "dateTime";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:dateTime</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":dateTime";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":dateTime";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -177,6 +186,8 @@ public record class _DateTime : ClaimValueType<datetime>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) Double</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Double : ClaimValueType<double>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new Double();
@@ -184,10 +195,10 @@ public record class Double : ClaimValueType<double>, IClaimValueType
     private Double() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />double</value>
-    public const string UriString = XmlSchemaNamespace + "double";
+    public new const string UriString = XmlSchemaNamespace + "double";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:double</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":double";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":double";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -210,6 +221,8 @@ public record class Double : ClaimValueType<double>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) Fqbn</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Fqbn : ClaimValueType<string>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new Fqbn();
@@ -217,10 +230,10 @@ public record class Fqbn : ClaimValueType<string>, IClaimValueType
     private Fqbn() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />fqbn</value>
-    public const string UriString = XmlSchemaNamespace + "fqbn";
+    public new const string UriString = XmlSchemaNamespace + "fqbn";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value" />:fqbn</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":fqbn";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":fqbn";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -239,6 +252,8 @@ public record class Fqbn : ClaimValueType<string>, IClaimValueType
     public static implicit operator Fqbn(string value) => (Instance as Fqbn) with { Value = value };
 }
 
+/// <summary>A claim value for a(n) HexBinary</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class HexBinary : ClaimValueType<byte[]>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new HexBinary();
@@ -246,10 +261,10 @@ public record class HexBinary : ClaimValueType<byte[]>, IClaimValueType
     private HexBinary() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />hexBinary</value>
-    public const string UriString = XmlSchemaNamespace + "hexBinary";
+    public new const string UriString = XmlSchemaNamespace + "hexBinary";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:hexBinary</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":hexBinary";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":hexBinary";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -280,6 +295,8 @@ public record class HexBinary : ClaimValueType<byte[]>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) Integer</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Integer : ClaimValueType<int>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new Integer();
@@ -287,10 +304,10 @@ public record class Integer : ClaimValueType<int>, IClaimValueType
     private Integer() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />integer</value>
-    public const string UriString = XmlSchemaNamespace + "integer";
+    public new const string UriString = XmlSchemaNamespace + "integer";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:integer</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":integer";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":integer";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -321,6 +338,8 @@ public record class Integer : ClaimValueType<int>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) Integer32</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Integer32 : ClaimValueType<int>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new Integer32();
@@ -328,10 +347,10 @@ public record class Integer32 : ClaimValueType<int>, IClaimValueType
     private Integer32() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />integer32</value>
-    public const string UriString = XmlSchemaNamespace + "integer32";
+    public new const string UriString = XmlSchemaNamespace + "integer32";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:integer32</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":integer32";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":integer32";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -362,17 +381,68 @@ public record class Integer32 : ClaimValueType<int>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) UnixTimestamp</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
+public record class UnixTimestamp : Integer64, IClaimValueType
+{
+    public static new readonly IClaimValueType Instance = new UnixTimestamp();
+
+    private UnixTimestamp() { }
+
+    /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />unixTimestamp</value>
+    public new const string UriString = XmlSchemaNamespace + "unixTimestamp";
+
+    /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:unixTimestamp</value>
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":unixTimestamp";
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    public override uri ShortUri => ShortUriString;
+
+    public static implicit operator long(UnixTimestamp value) => value.Value;
+
+    public static implicit operator datetime(UnixTimestamp value) =>
+        datetime.FromFileTime(value.Value);
+
+    public static implicit operator UnixTimestamp(long value) =>
+        (Instance as UnixTimestamp) with
+        {
+            Value = value
+        };
+
+    public static implicit operator string(UnixTimestamp value) =>
+        value.Value.ToString(
+            CultureInfo.InvariantCulture.DateTimeFormat.UniversalSortableDateTimePattern
+        );
+
+    public static implicit operator UnixTimestamp(string value) =>
+        (Instance as UnixTimestamp) with
+        {
+            Value = datetime.Parse(value, CultureInfo.InvariantCulture).ToFileTime()
+        };
+}
+
+/// <summary>A claim value for a(n) Integer64</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Integer64 : ClaimValueType<long>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new Integer64();
 
-    private Integer64() { }
+    protected Integer64() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />integer64</value>
-    public const string UriString = XmlSchemaNamespace + "integer64";
+    public new const string UriString = XmlSchemaNamespace + "integer64";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:integer64</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":integer64";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":integer64";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -403,7 +473,57 @@ public record class Integer64 : ClaimValueType<long>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) Integer64</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
+public record class Enum<T> : ClaimValueType<T>, IClaimValueType
+    where T : System.Enum
+{
+    public static readonly IClaimValueType Instance = new Enum<T>();
+
+    protected Enum() { }
+
+    /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />integer32(of-T)</value>
+    public new static readonly string UriString =
+        XmlSchemaNamespace + $"integer32({typeof(T).Name})";
+
+    /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:integer32(of-T)</value>
+    public new static readonly string ShortUriString =
+        ShortXmlSchemaNamespace + $"integer32({typeof(T).Name})";
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    public override uri ShortUri => ShortUriString;
+
+    public static implicit operator int(Enum<T> value) => (int)(object)value.Value;
+
+    public static implicit operator T?(Enum<T> value) => value.Value;
+
+    public static implicit operator Enum<T>(long value) =>
+        (Instance as Enum<T>) with
+        {
+            Value = (T)Enum.ToObject(typeof(T), value)
+        };
+
+    public static implicit operator string(Enum<T> value) => value.Value.ToString();
+
+    public static implicit operator Enum<T>(string value) =>
+        (Instance as Enum<T>) with
+        {
+            Value = (T)Enum.Parse(typeof(T), value, true)
+        };
+}
+
 #if WINDOWS
+/// <summary>A claim value for a(n) Sid</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Sid
     : ClaimValueType<System.Security.Principal.SecurityIdentifier>,
         IClaimValueType
@@ -413,10 +533,10 @@ public record class Sid
     private Sid() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />sid</value>
-    public const string UriString = XmlSchemaNamespace + "sid";
+    public new const string UriString = XmlSchemaNamespace + "sid";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:sid</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":sid";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":sid";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -453,6 +573,8 @@ public record class Sid
 }
 #endif
 
+/// <summary>A claim value for a(n) String</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class String : ClaimValueType<string>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new String();
@@ -460,10 +582,10 @@ public record class String : ClaimValueType<string>, IClaimValueType
     private String() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />string</value>
-    public const string UriString = XmlSchemaNamespace + "string";
+    public new const string UriString = XmlSchemaNamespace + "string";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:string</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":string";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":string";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -486,6 +608,8 @@ public record class String : ClaimValueType<string>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) Time</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Time : ClaimValueType<time>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new Time();
@@ -493,10 +617,10 @@ public record class Time : ClaimValueType<time>, IClaimValueType
     private Time() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />time</value>
-    public const string UriString = XmlSchemaNamespace + "time";
+    public new const string UriString = XmlSchemaNamespace + "time";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:time</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":time";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":time";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -531,6 +655,8 @@ public record class Time : ClaimValueType<time>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) UInteger32</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class UInteger32 : ClaimValueType<uint>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new UInteger32();
@@ -538,10 +664,10 @@ public record class UInteger32 : ClaimValueType<uint>, IClaimValueType
     private UInteger32() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />uinteger32</value>
-    public const string UriString = XmlSchemaNamespace + "uinteger32";
+    public new const string UriString = XmlSchemaNamespace + "uinteger32";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:uinteger32</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":uinteger32";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":uinteger32";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -572,6 +698,8 @@ public record class UInteger32 : ClaimValueType<uint>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) UInteger64</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class UInteger64 : ClaimValueType<ulong>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new UInteger64();
@@ -579,10 +707,10 @@ public record class UInteger64 : ClaimValueType<ulong>, IClaimValueType
     private UInteger64() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />uinteger64</value>
-    public const string UriString = XmlSchemaNamespace + "uinteger64";
+    public new const string UriString = XmlSchemaNamespace + "uinteger64";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:uinteger64</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":uinteger64";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":uinteger64";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -613,6 +741,8 @@ public record class UInteger64 : ClaimValueType<ulong>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) DnsName</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class DnsName : ClaimValueType<string>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new DnsName();
@@ -620,10 +750,10 @@ public record class DnsName : ClaimValueType<string>, IClaimValueType
     private DnsName() { }
 
     /// <value><inheritdoc cref="SoapNamespace" path="/value" />/dns</value>
-    public const string UriString = SoapNamespace + "/dns";
+    public new const string UriString = SoapNamespace + "/dns";
 
     /// <value><inheritdoc cref="ShortSoapSchemaNamespace" path="/value"/>:dns</value>
-    public const string ShortUriString = ShortSoapSchemaNamespace + ":dns";
+    public new const string ShortUriString = ShortSoapSchemaNamespace + ":dns";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -646,6 +776,8 @@ public record class DnsName : ClaimValueType<string>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) Email</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Email : ClaimValueType<EmailAddress>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new Email();
@@ -653,10 +785,10 @@ public record class Email : ClaimValueType<EmailAddress>, IClaimValueType
     private Email() { }
 
     /// <value><inheritdoc cref="Soap2005Namespace" path="/value" />/emailaddress</value>
-    public const string UriString = Soap2005Namespace + "/emailaddress";
+    public new const string UriString = Soap2005Namespace + "/emailaddress";
 
     /// <value><inheritdoc cref="ShortSoapSchemaNamespace" path="/value"/>:emailaddress</value>
-    public const string ShortUriString = ShortSoapSchemaNamespace + ":emailaddress";
+    public new const string ShortUriString = ShortSoapSchemaNamespace + ":emailaddress";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -679,6 +811,8 @@ public record class Email : ClaimValueType<EmailAddress>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) Rsa</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Rsa : ClaimValueType<RSA>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new Rsa();
@@ -686,10 +820,10 @@ public record class Rsa : ClaimValueType<RSA>, IClaimValueType
     private Rsa() { }
 
     /// <value><inheritdoc cref="Soap2005Namespace" path="/value" />/rsa</value>
-    public const string UriString = Soap2005Namespace + "/rsa";
+    public new const string UriString = Soap2005Namespace + "/rsa";
 
     /// <value><inheritdoc cref="ShortSoapSchemaNamespace" path="/value" />:rsa</value>
-    public const string ShortUriString = ShortSoapSchemaNamespace + ":rsa";
+    public new const string ShortUriString = ShortSoapSchemaNamespace + ":rsa";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -714,6 +848,8 @@ public record class Rsa : ClaimValueType<RSA>, IClaimValueType
     public static implicit operator string(Rsa value) => value.Value.ToXmlString(false);
 }
 
+/// <summary>A claim value for a(n) UpnName</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class UpnName : ClaimValueType<EmailAddress>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new UpnName();
@@ -721,10 +857,10 @@ public record class UpnName : ClaimValueType<EmailAddress>, IClaimValueType
     private UpnName() { }
 
     /// <value><inheritdoc cref="SoapNamespace" path="/value" />UPN</value>
-    public const string UriString = SoapNamespace + "UPN";
+    public new const string UriString = SoapNamespace + "UPN";
 
     /// <value><inheritdoc cref="ShortSoapSchemaNamespace" path="/value"/>:UPN"</value>
-    public const string ShortUriString = ShortSoapSchemaNamespace + ":UPN";
+    public new const string ShortUriString = ShortSoapSchemaNamespace + ":UPN";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -747,6 +883,8 @@ public record class UpnName : ClaimValueType<EmailAddress>, IClaimValueType
         };
 };
 
+/// <summary>A claim value for a(n) DsaKeyValue</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class DsaKeyValue : ClaimValueType<XE>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new DsaKeyValue();
@@ -754,10 +892,10 @@ public record class DsaKeyValue : ClaimValueType<XE>, IClaimValueType
     private DsaKeyValue() { }
 
     /// <value><inheritdoc cref="XmlSignatureConstantsNamespace" path="/value" />DSAKeyValue</value>
-    public const string UriString = XmlSignatureConstantsNamespace + "DSAKeyValue";
+    public new const string UriString = XmlSignatureConstantsNamespace + "DSAKeyValue";
 
     /// <value><inheritdoc cref="ShortXmlSignatureConstantsNamespace" path="/value" />:DSAKeyValue</value>
-    public const string ShortUriString = ShortXmlSignatureConstantsNamespace + ":DSAKeyValue";
+    public new const string ShortUriString = ShortXmlSignatureConstantsNamespace + ":DSAKeyValue";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -800,17 +938,19 @@ public record class DsaKeyValue : ClaimValueType<XE>, IClaimValueType
     }
 }
 
-public record class KeyInfo : ClaimValueType, IClaimValueType
+/// <summary>A claim value for a(n) KeyInfo</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
+public record class KeyInfo : ClaimValueType<SSCXmlKeyInfo>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new KeyInfo();
 
     private KeyInfo() { }
 
     /// <value><inheritdoc cref="XmlSignatureConstantsNamespace" path="/value" />KeyInfo</value>
-    public const string UriString = XmlSignatureConstantsNamespace + "KeyInfo";
+    public new const string UriString = XmlSignatureConstantsNamespace + "KeyInfo";
 
     /// <value><inheritdoc cref="ShortXmlSignatureConstantsNamespace" path="/value" />:KeyInfo</value>
-    public const string ShortUriString = ShortXmlSignatureConstantsNamespace + ":KeyInfo";
+    public new const string ShortUriString = ShortXmlSignatureConstantsNamespace + ":KeyInfo";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -826,11 +966,14 @@ public record class KeyInfo : ClaimValueType, IClaimValueType
 
     public static implicit operator string(KeyInfo value) => value.Value.ToString();
 
-    public static implicit operator KeyInfo(string value) =>
-        (Instance as KeyInfo) with
-        {
-            Value = value.ToXElement()
-        };
+    public static implicit operator KeyInfo(string value)
+    {
+        var keyInfo = new SSCXmlKeyInfo();
+        var xDoc = new XmlDocument();
+        xDoc.LoadXml(value);
+        keyInfo.LoadXml(xDoc.DocumentElement);
+        return (Instance as KeyInfo) with { Value = keyInfo };
+    }
 
     public static implicit operator SSCXmlKeyInfo(KeyInfo value)
     {
@@ -844,15 +987,15 @@ public record class KeyInfo : ClaimValueType, IClaimValueType
     public static implicit operator KeyInfo(SSCXmlKeyInfo value)
     {
         var instance = Instance as KeyInfo;
-        using var sw = new StringWriter();
-        using var xmlw = new XmlTextWriter(sw);
-        value.GetXml().WriteTo(xmlw);
-        xmlw.Flush();
-        instance.Value = sw.ToString().ToXElement();
+        var xElement = value.GetXml();
+        instance.Value = new SSCXmlKeyInfo();
+        instance.Value.LoadXml(xElement);
         return instance;
     }
 }
 
+/// <summary>A claim value for a(n) RsaKeyValue</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class RsaKeyValue : ClaimValueType<XE>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new RsaKeyValue();
@@ -860,10 +1003,10 @@ public record class RsaKeyValue : ClaimValueType<XE>, IClaimValueType
     private RsaKeyValue() { }
 
     /// <value><inheritdoc cref="XmlSignatureConstantsNamespace" path="/value" />RSAKeyValue</value>
-    public const string UriString = XmlSignatureConstantsNamespace + "RSAKeyValue";
+    public new const string UriString = XmlSignatureConstantsNamespace + "RSAKeyValue";
 
     /// <value><inheritdoc cref="ShortXmlSignatureConstantsNamespace" path="/value" />:RSAKeyValue</value>
-    public const string ShortUriString = ShortXmlSignatureConstantsNamespace + ":RSAKeyValue";
+    public new const string ShortUriString = ShortXmlSignatureConstantsNamespace + ":RSAKeyValue";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -906,6 +1049,8 @@ public record class RsaKeyValue : ClaimValueType<XE>, IClaimValueType
     }
 }
 
+/// <summary>A claim value for a(n) DaytimeDuration</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class DaytimeDuration : ClaimValueType<DayTimeDuration>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new DaytimeDuration();
@@ -913,10 +1058,10 @@ public record class DaytimeDuration : ClaimValueType<DayTimeDuration>, IClaimVal
     private DaytimeDuration() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />dayTimeDuration</value>
-    public const string UriString = XmlSchemaNamespace + "dayTimeDuration";
+    public new const string UriString = XmlSchemaNamespace + "dayTimeDuration";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:dayTimeDuration</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":dayTimeDuration";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":dayTimeDuration";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -939,6 +1084,8 @@ public record class DaytimeDuration : ClaimValueType<DayTimeDuration>, IClaimVal
         };
 }
 
+/// <summary>A claim value for a(n) YearMonthDuration</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class YearMonthDuration
     : ClaimValueType<Primitives.YearMonthDuration>,
         IClaimValueType
@@ -948,10 +1095,10 @@ public record class YearMonthDuration
     private YearMonthDuration() { }
 
     /// <value><inheritdoc cref="XmlSchemaNamespace" path="/value" />yearMonthDuration</value>
-    public const string UriString = XmlSchemaNamespace + "yearMonthDuration";
+    public new const string UriString = XmlSchemaNamespace + "yearMonthDuration";
 
     /// <value><inheritdoc cref="ShortXmlSchemaNamespace" path="/value"/>:yearMonthDuration</value>
-    public const string ShortUriString = ShortXmlSchemaNamespace + ":yearMonthDuration";
+    public new const string ShortUriString = ShortXmlSchemaNamespace + ":yearMonthDuration";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -974,6 +1121,8 @@ public record class YearMonthDuration
         };
 }
 
+/// <summary>A claim value for a(n) Rfc822Name</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Rfc822Name : ClaimValueType<EmailAddress>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new Rfc822Name();
@@ -981,10 +1130,10 @@ public record class Rfc822Name : ClaimValueType<EmailAddress>, IClaimValueType
     private Rfc822Name() { }
 
     /// <value><inheritdoc cref="Xacml10Namespace" path="/value" />:data-type:rfc822Name</value>
-    public const string UriString = Xacml10Namespace + ":data-type:rfc822Name";
+    public new const string UriString = Xacml10Namespace + ":data-type:rfc822Name";
 
     /// <value><inheritdoc cref="ShortXacml10Namespace" path="/value"/>:rfc822Name</value>
-    public const string ShortUriString = ShortXacml10Namespace + ":rfc822Name";
+    public new const string ShortUriString = ShortXacml10Namespace + ":rfc822Name";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -1009,6 +1158,8 @@ public record class Rfc822Name : ClaimValueType<EmailAddress>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) PhoneNumber</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class PhoneNumber : ClaimValueType<System.Domain.PhoneNumber>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new PhoneNumber();
@@ -1016,10 +1167,10 @@ public record class PhoneNumber : ClaimValueType<System.Domain.PhoneNumber>, ICl
     private PhoneNumber() { }
 
     /// <value><inheritdoc cref="PhoneNumberUri" path="/value" /></value>
-    public const string UriString = PhoneNumberUri;
+    public new const string UriString = PhoneNumberUri;
 
     /// <value><inheritdoc cref="PhoneNumberShortUri" path="/value"/></value>
-    public const string ShortUriString = PhoneNumberShortUri;
+    public new const string ShortUriString = PhoneNumberShortUri;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -1044,6 +1195,8 @@ public record class PhoneNumber : ClaimValueType<System.Domain.PhoneNumber>, ICl
         };
 }
 
+/// <summary>A claim value for a(n) X500Name</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class X500Name : ClaimValueType<X500DistinguishedName>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new X500Name();
@@ -1051,10 +1204,10 @@ public record class X500Name : ClaimValueType<X500DistinguishedName>, IClaimValu
     private X500Name() { }
 
     /// <value><inheritdoc cref="Xacml10Namespace" path="/value" />:data-type:x500Name</value>
-    public const string UriString = Xacml10Namespace + ":data-type:x500Name";
+    public new const string UriString = Xacml10Namespace + ":data-type:x500Name";
 
     /// <value><inheritdoc cref="ShortXacml10Namespace" path="/value"/>:x500Name</value>
-    public const string ShortUriString = ShortXacml10Namespace + ":x500Name";
+    public new const string ShortUriString = ShortXacml10Namespace + ":x500Name";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -1077,6 +1230,8 @@ public record class X500Name : ClaimValueType<X500DistinguishedName>, IClaimValu
         };
 }
 
+/// <summary>A claim value for a(n) XacmlDnsName</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class XacmlDnsName : ClaimValueType<string>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new XacmlDnsName();
@@ -1084,10 +1239,10 @@ public record class XacmlDnsName : ClaimValueType<string>, IClaimValueType
     private XacmlDnsName() { }
 
     /// <value><inheritdoc cref="Xacml20Namespace" path="/value" />:data-type:dnsName</value>
-    public const string UriString = Xacml20Namespace + ":data-type:dnsName";
+    public new const string UriString = Xacml20Namespace + ":data-type:dnsName";
 
     /// <value><inheritdoc cref="ShortXacml20Namespace" path="/value"/>:dnsName</value>
-    public const string ShortUriString = ShortXacml20Namespace + ":dnsName";
+    public new const string ShortUriString = ShortXacml20Namespace + ":dnsName";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -1110,6 +1265,8 @@ public record class XacmlDnsName : ClaimValueType<string>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) AnyUri</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class AnyUri : ClaimValueType<uri>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new AnyUri();
@@ -1117,10 +1274,10 @@ public record class AnyUri : ClaimValueType<uri>, IClaimValueType
     private AnyUri() { }
 
     /// <value>https://www.w3.org/2001/XMLSchema#anyURI</value>
-    public const string UriString = "https://www.w3.org/2001/XMLSchema#anyURI";
+    public new const string UriString = "https://www.w3.org/2001/XMLSchema#anyURI";
 
     /// <value>xs:anyURI</value>
-    public const string ShortUriString = "xs:anyURI";
+    public new const string ShortUriString = "xs:anyURI";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -1151,6 +1308,188 @@ public record class AnyUri : ClaimValueType<uri>, IClaimValueType
         };
 }
 
+/// <summary>A claim value for a(n) Array<T></summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
+public record class Array<T> : ClaimValueType<T[]>, IClaimValueType, IEnumerable<T>
+    where T : IClaimValueType
+{
+    public static readonly IClaimValueType Instance = new Array<T>();
+
+    public virtual IEnumerator<T> GetEnumerator() => Value.OfType<T>().GetEnumerator();
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+    private Array() { }
+
+    /// <value>https://www.w3.org/2001/XMLSchema#sequence</value>
+    public new const string UriString = "https://www.w3.org/2001/XMLSchema#list";
+
+    /// <value>xs:list</value>
+    public new const string ShortUriString = "xs:list";
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    public override uri ShortUri => ShortUriString;
+
+    public static implicit operator string(Array<T> value) =>
+        Serialize(value.Select(v => v.ToString()).ToArray());
+
+    public static implicit operator Array<T>(string value) =>
+        (Instance as Array<T>) with
+        {
+            Value = JNode.Parse(value).AsArray().Select(x => x.AsValue().GetValue<T>()).ToArray()
+        };
+}
+
+/// <summary>A claim value for a(n) Json</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
+public record class Json : ClaimValueType<JElem>, IClaimValueType
+{
+    public static readonly IClaimValueType Instance = new Json();
+
+    private Json() { }
+
+    /// <value>https://www.w3.org/2001/XMLSchema#json</value>
+    public new const string UriString = "https://www.w3.org/2001/XMLSchema#json";
+
+    /// <value>xs:json</value>
+    public new const string ShortUriString = "xs:json";
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    public override uri ShortUri => ShortUriString;
+
+    public static implicit operator string(Json value) => value.Value.ToString();
+
+    public static implicit operator Json(string value)
+    {
+        var utf8Span = value.ToUTF8Bytes().AsSpan();
+        var utf8Reader = new Utf8JsonReader(utf8Span);
+        var elem = JElem.ParseValue(ref utf8Reader);
+        return (Instance as Json) with { Value = elem };
+    }
+}
+
+/// <summary>A claim value for a(n) Guid</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
+public record class Guid : ClaimValueType<guid>, IClaimValueType
+{
+    public static readonly IClaimValueType Instance = new Guid();
+
+    private Guid() { }
+
+    /// <value>https://www.w3.org/2001/XMLSchema#uuidType</value>
+    public new const string UriString = "https://www.w3.org/2001/XMLSchema#uuidType";
+
+    /// <value>xs:uuidType</value>
+    public new const string ShortUriString = "xs:uuidType";
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    public override uri ShortUri => ShortUriString;
+
+    public static implicit operator string(Guid value) => value.Value.ToString();
+
+    public static implicit operator Guid(string value) =>
+        (Instance as Guid) with
+        {
+            Value = guid.Parse(value)
+        };
+}
+
+/// <summary>A claim value for a(n) OneOf<T,</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
+public record class OneOf<T, U>
+    : ClaimValueType<AnyOf<T, U>>,
+        IHaveAValue<AnyOf<T, U>>,
+        IHaveAUriString,
+        IIdentityComponent
+    where T : class, IClaimValueType, IIdentityComponent, IHaveAUriString
+    where U : class, IClaimValueType, IIdentityComponent, IHaveAUriString
+{
+    public static readonly IClaimValueType Instance = new OneOf<T, U>();
+
+    private OneOf() { }
+
+    public override AnyOf<T, U> Value { get; set; }
+
+    /// <value><inheritdoc cref="Dgmjr.Identity.Core.Constants.DgmjrIdentity" path="/value" />/oneof/T/or/U</value>
+    public new const string UriString =
+        Dgmjr.Identity.Core.Constants.DgmjrIdentity + "/oneof/T/or/U";
+
+    /// <value><inheritdoc cref="Dgmjr.Identity.Core.Constants.Dgmjr" path="/value" />:oneof-T-or-U</value>
+    public new const string ShortUriString = Dgmjr.Identity.Core.Constants.Dgmjr + ":oneof-T-or-U";
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString =>
+        $"{DgmjrIdentity}/oneof/{Activator.CreateInstance<T>().ShortUriString}/or/{Activator.CreateInstance<U>().ShortUriString}";
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    string IIdentityComponent.ShortUriString =>
+        $"dgmjr:oneof:{Activator.CreateInstance<T>().ShortUriString}:or:{Activator.CreateInstance<U>().ShortUriString}";
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    public override uri ShortUri => ShortUriString;
+
+    public static implicit operator string(OneOf<T, U> value) => value.Value.ToString();
+
+    public static implicit operator OneOf<T, U>(string value)
+    {
+        T? t = default;
+        U? u = default;
+        try
+        {
+            t = value as object as T;
+            if (t is null)
+            {
+                throw new InvalidCastException();
+            }
+        }
+        catch
+        {
+            /* it's the other type */
+            try
+            {
+                u = value as object as U;
+            }
+            catch
+            {
+                /* it's neither type 🤷‍♂️ */
+            }
+        }
+        return (Instance as OneOf<T, U>) with { Value = t is not null ? t : u };
+    }
+}
+
+/// <summary>A claim value for a(n) ObjectId</summary>
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class ObjectId : ClaimValueType<System.ObjectId>, IClaimValueType
 {
     public static readonly IClaimValueType Instance = new ObjectId();
@@ -1158,10 +1497,11 @@ public record class ObjectId : ClaimValueType<System.ObjectId>, IClaimValueType
     private ObjectId() { }
 
     /// <value>https://www.mongodb.com/docs/manual/reference/method/ObjectId</value>
-    public const string UriString = "https://www.mongodb.com/docs/manual/reference/method/ObjectId";
+    public new const string UriString =
+        "https://www.mongodb.com/docs/manual/reference/method/ObjectId";
 
     /// <value>mongodb:objectid</value>
-    public const string ShortUriString = "mongodb:objectid";
+    public new const string ShortUriString = "mongodb:objectid";
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -1211,10 +1551,10 @@ public partial record class IpAddress : IClaimValueType<System.Net.IPAddress>
     public const string Name = "ipAddress";
 
     /// <value><inheritdoc cref="Xacml30Namespace" path="/value" />:data-type:<inheritdoc cref="Name" path="/value" /></value>
-    public const string UriString = Xacml30Namespace + ":data-type:" + Name;
+    public new const string UriString = Xacml30Namespace + ":data-type:" + Name;
 
     /// <value><inheritdoc cref="ShortXacml30Namespace" path="/value"/>:ipAddress</value>
-    public const string ShortUriString = ShortXacml30Namespace + ":" + Name;
+    public new const string ShortUriString = ShortXacml30Namespace + ":" + Name;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
     string IHaveAUriString.UriString => UriString;
@@ -1226,13 +1566,13 @@ public partial record class IpAddress : IClaimValueType<System.Net.IPAddress>
     string IIdentityComponent.Namespace => Namespace;
 
     /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    uri IIdentityComponent.Uri => UriString;
+    uri IHaveAuri.Uri => UriString;
 
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IIdentityComponent.Name => Name;
+    string IHaveAName.Name => Name;
     uri IIdentityComponent.ShortUri => ShortUriString;
 
-    public bool Equals(IIdentityComponent? other) => UriString == other.UriString;
+    public override bool Equals(IIdentityComponent? other) => UriString == other.UriString;
     // public static implicit operator string(IpAddress value) => value.ToString();
 
     // public static implicit operator IpAddress(string value) => (Instance as IpAddress) with { Value = System.Net.IPAddress.Parse(value) };

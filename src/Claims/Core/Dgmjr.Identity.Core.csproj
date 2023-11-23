@@ -19,5 +19,6 @@
   <ItemGroup>
     <PackageReference Include="System.Security.Claims" />
     <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="System.Collections.Immutable" />
   </ItemGroup>
 </Project>

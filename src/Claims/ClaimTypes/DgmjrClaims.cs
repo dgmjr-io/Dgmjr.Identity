@@ -15,10 +15,10 @@ namespace Dgmjr.Identity.ClaimTypes;
 public abstract record class DgmjrClaims : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType
 {
     /// <inheritdoc cref="DgmjrIdentity" />
-    public const string UriString = DgmjrIdentity;
+    public new const string UriString = DgmjrIdentity;
 
     /// <value>DGMJR-IO Identity</value>
-    public const string Name = "DGMJR-IO Identity";
+    public new const string Name = "DGMJR-IO Identity";
 
     string IHaveAUriString.UriString => UriString;
 
@@ -26,7 +26,7 @@ public abstract record class DgmjrClaims : ClaimType<DgmjrId.ClaimValueTypes.Str
 
     /// <summary>The base URI for claims in the <inheritdoc cref="BaseUri" path="/value" /> namespace</summary>
     /// <value>https://dgmjr.io</value>
-    public const string BaseUri = "https://dgmjr.io";
+    public new const string BaseUri = "https://dgmjr.io";
 
     /// <value>/identity</value>
     public const string Identity = "/identity";

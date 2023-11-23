@@ -37,6 +37,7 @@ using Telegram.Bot.Types;
 
 [Table(EntityFrameworkCore.Constants.TableNames.User, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay($"User ({{{nameof(Username)}}} - {{{nameof(EmailAddress)}}})")]
+[Comment("A user is a person who can be authenticated.")]
 public class ApplicationUser<TKey>
     : ApplicationIdentityEntity<TKey>,
         IIdentityUser<
@@ -138,7 +139,7 @@ public class ApplicationUser<TKey>
         }
     }
 
-    public virtual IGender Gender { get; set; }
+    public virtual Gender Gender { get; set; }
 
     public override bool Equals(object? obj) =>
         obj

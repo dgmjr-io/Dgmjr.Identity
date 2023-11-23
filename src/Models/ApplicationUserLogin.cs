@@ -22,6 +22,7 @@ using Microsoft.EntityFrameworkCore.Query.Internal;
 
 [Table(EntityFrameworkCore.Constants.TableNames.UserLogin, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Login (Id} - {LoginProvider}: {ProviderKey})")]
+[Comment("A user login is a login that is assigned to a user.")]
 public class ApplicationUserLogin<TKey>
     : ApplicationIdentityEntity<TKey>,
         IUserLoginEntity<

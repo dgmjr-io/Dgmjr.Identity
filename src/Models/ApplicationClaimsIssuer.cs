@@ -4,6 +4,7 @@ using System.Security.Principal;
 
 namespace Dgmjr.Identity.Models;
 
+[Comment("A claims issuer is an entity that issues claims.")]
 public class ApplicationClaimsIssuer<TKey>
     : ApplicationIdentityEntity<TKey>,
         IIdentityClaimsIssuer<TKey, ApplicationUserClaim<TKey>, ApplicationRoleClaim<TKey>>

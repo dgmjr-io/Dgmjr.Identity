@@ -19,11 +19,13 @@ using global::System.Security;
 
 public partial record class ClaimValueType<TValue> : ClaimValueType, IClaimValueType<TValue>
 {
-    public new virtual TValue Value
+    public new virtual TValue? Value
     {
-        get => (TValue)base.Value;
+        get => (TValue?)base.Value;
         set => base.Value = value;
     }
+
+    string IHaveAName.Name => typeof(TValue).Name;
 
     public static implicit operator TValue(ClaimValueType<TValue> cvt) => cvt.Value;
 }
@@ -40,10 +42,14 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
     public virtual string DefaultStringValue => string.Empty;
     public virtual string ExampleStringValue => string.Empty;
 
-    string IIdentityComponent.Name => string.Empty;
-    string IHaveAUriString.UriString => "about:blank";
-    public virtual uri Uri => ((IIdentityComponent)this).UriString;
-    public virtual uri ShortUri => ((IIdentityComponent)this).ShortUriString;
+    string IHaveAName.Name => string.Empty;
+
+    public new virtual string UriString => "about:blank";
+    public virtual string ShortUriString => "about:blank";
+    public virtual uri Uri => UriString;
+    public virtual uri ShortUri => ShortUriString;
+
+    public static ClaimValueType FromUri(uri uri) => GetAll().First(ct => ct.Uri == uri);
 
     // public override bool Equals(object? other) => Equals(other as IClaimValueType);
 
@@ -118,8 +124,7 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
             : base(
                 v => (TPersistedType)v.Value,
                 v => (TClaimValueType)Activator.CreateInstance(typeof(TClaimValueType), v)
-            )
-        { }
+            ) { }
     }
 
     public static ClaimValueType[] GetAll() =>

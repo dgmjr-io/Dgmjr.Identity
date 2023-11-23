@@ -21,9 +21,10 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 
 [DebuggerDisplay("Role Claim ({Id} Role ID: {RoleId}, {Type}: {Value})")]
+[Comment("A role claim is a claim that is assigned to a role.")]
 // [JSerializable(typeof(ApplicationRoleClaim<TSelf, TKey>))]
 public class ApplicationRoleClaim<TKey>
-    : EntityClaim<ApplicationRoleClaim<TKey>, ApplicationRole<TKey>, TKey>,
+    : ApplicationEntityClaim<ApplicationRoleClaim<TKey>, ApplicationRole<TKey>, TKey>,
         IIdentityRoleClaim<
             ApplicationUser<TKey>,
             ApplicationRole<TKey>,

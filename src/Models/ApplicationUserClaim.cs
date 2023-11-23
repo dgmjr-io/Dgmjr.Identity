@@ -26,8 +26,9 @@ using static Dgmjr.Identity.EntityFrameworkCore.Constants.UriMaxLengthConstant;
 
 [Table(EntityFrameworkCore.Constants.TableNames.UserClaim, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Claim ({Id} - User ID: {UserId}, {Type}: {Value})")]
+[Comment("A user claim is a claim that is assigned to a user.")]
 public class ApplicationUserClaim<TKey>
-    : EntityClaim<ApplicationUserClaim<TKey>, ApplicationUser<TKey>, TKey>,
+    : ApplicationEntityClaim<ApplicationUserClaim<TKey>, ApplicationUser<TKey>, TKey>,
         IIdentityUserClaim<
             ApplicationUser<TKey>,
             ApplicationRole<TKey>,

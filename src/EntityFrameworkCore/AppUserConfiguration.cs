@@ -111,6 +111,17 @@ public class AppUserConfiguration<
                     ufn_ + nameof(AppIdentityDbContext.IsValidGender),
                     IdentitySchema.ShortName
                 );
+                tb.HasCheckConstraint(
+                    nameof(AppUser.TelegramUsername),
+                    $@"
+                    [{nameof(AppUser.TelegramUsername)}] IS NULL
+                    OR (
+                            len([{nameof(AppUser.TelegramUsername)}]) >= {Account.UsernameMinLength}
+                            AND len([{nameof(AppUser.TelegramUsername)}]) <= ({Account.UsernameMaxLength} + 1)
+                            AND [{nameof(AppUser.TelegramUsername)}] LIKE '@%'
+                        )
+                    "
+                );
                 // tb.HasCheckConstraint(
                 //     CK_ + nameof(AppUser.EmailAddress),
                 //     $"[data].{ufn_ + nameof(IdentityDbContext.IsValidEmailAddress)}([{nameof(AppUser.TelegramUsername)}]) = 1)"
@@ -139,16 +150,11 @@ public class AppUserConfiguration<
         );
         builder.Property(e => e.Id).ValueGeneratedNever();
         builder.HasKey(e => e.Id).HasName(pk_ + TableNames.User);
-        builder
-            .Property(e => e.IsLockedOut)
-            .HasComputedColumnSql(
-                $"cast(CASE WHEN {nameof(AppUser.LockoutEnd)} IS NOT NULL AND {nameof(AppUser.LockoutEnd)} > GetUtcDate() THEN 1 ELSE 0 END as bit)"
-            );
-        builder
-            .Property(e => e.Gender)
-            .HasMaxLength(8)
-            .IsUnicode(false)
-            .HasConversion<string>(new Gender.EfCoreValueConverter());
+        // builder
+        //     .Property(e => e.IsLockedOut)
+        //     .HasComputedColumnSql(
+        //         $"cast(CASE WHEN {nameof(AppUser.LockoutEnd)} IS NOT NULL AND {nameof(AppUser.LockoutEnd)} > GetUtcDate() THEN 1 ELSE 0 END as bit)"
+        //     );
         builder
             .HasIndex(e => e.EmailAddress)
             .HasDatabaseName(ix_ + TableNames.User + IdentityConstants.User.Columns.EmailAddress);
@@ -162,7 +168,7 @@ public class AppUserConfiguration<
             );
         builder
             .Property(e => e.TelegramUsername)
-            .HasMaxLength(Account.UsernameMaxLength)
+            .HasMaxLength(Account.UsernameMaxLength + 1)
             .IsUnicode(false);
         builder
             .HasIndex(e => e.NormalizedEmailAddress)
@@ -203,7 +209,6 @@ public class AppUserConfiguration<
             .WithOne(e => e.User)
             .HasForeignKey(e => e.UserId)
             .HasPrincipalKey(e => e.Id);
-        builder.HasMany(e => e.Roles).WithMany(e => e.Users).UsingEntity<AppUserRole>();
         /*.WithMany(r => r.Users)
         .UsingEntity<TUserRole>(
             ur =>
@@ -234,5 +239,4 @@ public class AppUserConfiguration
         AppUserToken,
         AppClaimType,
         AppClaimValueType
-    >
-{ }
+    > { }

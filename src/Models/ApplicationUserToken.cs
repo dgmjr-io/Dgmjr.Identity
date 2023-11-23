@@ -21,6 +21,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 
 [Table(EntityFrameworkCore.Constants.TableNames.UserToken, Schema = IdentitySchema.ShortName)]
 [DebuggerDisplay("User Token ({UserId} - {LoginProvider}, Created: {DateTimeCreated})")]
+[Comment("A user token is a token that is assigned to a user.")]
 public class ApplicationUserToken<TKey>
     : ApplicationIdentityEntity<TKey>,
         IIdentityUserToken<

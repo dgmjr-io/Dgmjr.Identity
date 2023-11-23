@@ -12,34 +12,7 @@
 #pragma warning disable
 namespace Dgmjr.Identity;
 
-using System;
-using System.Data;
-using System.Domain;
-using System.Net.Mail;
-
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Abstractions;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.EntityFrameworkCore.Extensions;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-
-using Dgmjr.EntityFrameworkCore;
-using static Dgmjr.EntityFrameworkCore.DbSchemas;
-using Dgmjr.Identity.Abstractions;
-using Dgmjr.Identity.EntityFrameworkCore.Constants;
-using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
-using Dgmjr.Identity.Models;
-
-using MSID = Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
-using Telegram.Bot.Types;
-using Microsoft.AspNetCore.JsonPatch.Internal;
 
 // [GenerateInterface]
 public class IdentityDbContext<

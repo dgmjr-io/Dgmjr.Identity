@@ -23,10 +23,12 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Azure.Core" />
     <PackageReference Include="Azure.Identity" />
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore" />
+    <PackageReference Include="Dgmjr.Primitives.Gender.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" />
     <PackageReference Include="System.Collections.Generic.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
@@ -37,21 +39,20 @@
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Extensions" />
-    <PackageReference Include="Dgmjr.Primitives.EntityFrameworkCore" />
-    <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+    <PackageReference Include="Dgmjr.Primitives.All" />
     <PackageReference Include="Dgmjr.System.Extensions" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" />
     <PackageReference Include="Telegram.Identity" />
-    <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+    <PackageReference Include="SendPulse.Identity" />
   </ItemGroup>
   <ItemGroup Condition="true">
     <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" />
+    <ProjectReference Include="../Claims/Claims/Dgmjr.Identity.Claims.csproj" />
     <ProjectReference Include="../Constants/Dgmjr.Identity.Constants.csproj" />
     <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
-    <!-- <ProjectReference Include="../Migrations/Dgmjr.Identity.EntityFrameworkCore.Migrations.csproj" /> -->
-    <!-- <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" /> -->
-    <PackageReference Include="Dgmjr.Identity.Models" />
+    <ProjectReference Include="../Models/Dgmjr.Identity.Models.csproj" />
     <Reference Include="System.Runtime" Version="4.3.1.0" />
   </ItemGroup>
   <ItemGroup>

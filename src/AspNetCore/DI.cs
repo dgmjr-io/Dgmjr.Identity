@@ -14,7 +14,7 @@ using Dgmjr.Identity;
 using Dgmjr.Identity.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using IdentityDbContext = Dgmjr.Identity.IdentityDbContext;
+using IdentityDbContext = Dgmjr.Identity.AppIdentityDbContext;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
