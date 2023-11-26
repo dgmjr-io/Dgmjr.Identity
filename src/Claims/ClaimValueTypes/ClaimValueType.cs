@@ -122,7 +122,8 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
             : base(
                 v => (TPersistedType)v.Value,
                 v => (TClaimValueType)Activator.CreateInstance(typeof(TClaimValueType), v)
-            ) { }
+            )
+        { }
     }
 
     public static ClaimValueType[] GetAll() =>
