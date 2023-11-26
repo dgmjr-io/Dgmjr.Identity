@@ -14,8 +14,6 @@ namespace System.Security.Claims;
 
 public static class ClaimsPrincipalExtensions
 {
-    // public static string? FindFirstValue(this ClaimsPrincipal principal, string claimType)
-    //     => principal.FindFirst(claimType)?.Value;
     public static IEnumerable<string> FindAllValues(
         this ClaimsPrincipal principal,
         string claimType
@@ -42,10 +40,10 @@ public static class ClaimsPrincipalExtensions
         principal.GetRoles().Contains(role, StringComparer.OrdinalIgnoreCase);
 
     public static bool IsInAnyRole(this ClaimsPrincipal principal, params string[] roles) =>
-        roles.Any(principal.IsInRole);
+        Exists(roles, principal.IsInRole);
 
     public static bool IsInAllRoles(this ClaimsPrincipal principal, params string[] roles) =>
-        roles.All(principal.IsInRole);
+        Exists(roles, principal.IsInRole);
 
     public static string GetDisplayName(this ClaimsPrincipal principal)
     {

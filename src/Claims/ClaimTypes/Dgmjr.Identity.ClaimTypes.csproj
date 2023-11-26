@@ -19,6 +19,10 @@
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.Primitives" />
     <PackageReference Include="System.Security.Claims" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens.Saml" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.WsFederation" />
     <ProjectReference Include="../Core/Dgmjr.Identity.Core.csproj" />
     <ProjectReference Include="../ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.csproj" />
   </ItemGroup>

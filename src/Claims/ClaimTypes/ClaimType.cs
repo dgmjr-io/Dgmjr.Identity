@@ -5,9 +5,11 @@ using global::System.Security;
 
 public abstract record class ClaimType : IClaimType
 {
+    /// <summary>The forward slash ("<inheritdoc cref="Slash" path="/value" />") character</summary>
     /// <value>/</value>
     public const string Slash = "/";
 
+    /// <summary>The colon ("<inheritdoc cref="Colon" path="/value" />") character</summary>
     /// <value>:</value>
     public const string Colon = ":";
 
@@ -32,8 +34,8 @@ public abstract record class ClaimType : IClaimType
     public const string Namespace2012 = NamespacePrefix + "/ws/2012/01";
 
     /// <summary>Claim Type Namespace</summary>
-    /// <value><inheritdoc cref="NamespacePrefix" path="/value" />/claims</value>
-    public const string Namespace = NamespacePrefix + "/claims";
+    /// <value><inheritdoc cref="NamespacePrefix" path="/value" />/identity/claims</value>
+    public const string Namespace = NamespacePrefix + "/identity/claims";
 
     /// <summary>Short Claim Type Namespace</summary>
     /// <value>ws</value>
@@ -42,6 +44,10 @@ public abstract record class ClaimType : IClaimType
     /// <summary>Short Claim Type 2008 Namespace</summary>
     /// <value>ws:2008</value>
     public const string ShortNamespace2008 = "ws:2009";
+
+    /// <summary>Short SAML Namespace</summary>
+    /// <value>saml</value>
+    public const string ShortSamlNamespace = "saml";
 
     /// <summary>Short Claim Type 2012 Namespace</summary>
     /// <value>saml:2012</value>
@@ -103,7 +109,8 @@ public abstract record class ClaimType : IClaimType
             && (ReferenceEquals(this, other) || ((IClaimType)this).Uri == other.Uri);
     }
 
-    public abstract uri? ClaimTypeUri { get; }
+    /// <summary>The URI of the claim value type</summary>
+    public abstract uri? ClaimValueTypeUri { get; }
 
     public override int GetHashCode() => Uri.GetHashCode();
 
@@ -125,9 +132,8 @@ public abstract record class ClaimType : IClaimType
             )
             .Select(
                 t =>
-                    t.GetField("Instance")?.GetValue(null)
-                    ?? t.GetProperty("Instance")?.GetValue(null)
-                    ?? null
+                    t.GetRuntimeField("Instance")?.GetValue(null)
+                    ?? (t.GetRuntimeProperty("Instance")?.GetValue(null))
             )
             .OfType<ClaimType>()
             .WhereNotNull()
@@ -137,12 +143,11 @@ public abstract record class ClaimType : IClaimType
 public partial record class ClaimType<TValueType> : ClaimType, IClaimType<TValueType>
     where TValueType : IEquatable<TValueType>, IClaimValueType
 {
-    public override uri? ClaimTypeUri =>
+    public override uri? ClaimValueTypeUri =>
         (
             (
-                typeof(TValueType).GetField("Instance")?.GetValue(null)
-                ?? typeof(TValueType).GetProperty("Instance")?.GetValue(null)
-                ?? null
+                typeof(TValueType).GetRuntimeField("Instance")?.GetValue(null)
+                ?? (typeof(TValueType).GetRuntimeProperty("Instance")?.GetValue(null))
             ) as IClaimValueType
         )?.Uri;
 }

@@ -8,13 +8,11 @@ public record class Actort : ClaimType<Dgmjr.Identity.ClaimValueTypes.String>, I
 
     private Actort() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + Colon + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + Colon + Name;
 
     /// <value>actort</value>
     public const string Name = "actort";
@@ -45,13 +43,11 @@ public record class AccessToken
 
     private AccessToken() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + Colon + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + Colon + Name;
 
     /// <value>access_token</value>
     public const string Name = "access_token";
@@ -83,13 +79,11 @@ public record class Acrs
 
     private Acrs() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + Colon + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + Colon + Name;
 
     /// <value>aud</value>
     public const string Name = "aud";
@@ -124,13 +118,11 @@ public record class Aud
 
     private Aud() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>aud</value>
     public const string Name = "aud";
@@ -160,13 +152,11 @@ public record class Iss : ClaimType<DgmjrCvt.AnyUri>, IClaimType
 
     private Iss() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>iss</value>
     public const string Name = "iss";
@@ -196,13 +186,11 @@ public record class Iat : ClaimType<DgmjrCvt.Integer32>, IClaimType
 
     private Iat() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>iat</value>
     public const string Name = "iat";
@@ -232,13 +220,11 @@ public record class Idp : ClaimType<DgmjrCvt.AnyUri>, IClaimType
 
     private Idp() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>idp</value>
     public const string Name = "idp";
@@ -268,13 +254,11 @@ public record class Nbf : ClaimType<DgmjrCvt.Integer32>, IClaimType
 
     private Nbf() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>nbf</value>
     public const string Name = "nbf";
@@ -304,13 +288,11 @@ public record class Exp : ClaimType<DgmjrCvt.Integer32>, IClaimType
 
     private Exp() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>exp</value>
     public const string Name = "exp";
@@ -340,13 +322,11 @@ public record class AppId : ClaimType<DgmjrCvt.Guid>, IClaimType
 
     private AppId() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>exp</value>
     public const string Name = "appid";
@@ -376,13 +356,11 @@ public record class Azp : ClaimType<DgmjrCvt.Guid>, IClaimType
 
     private Azp() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>exp</value>
     public const string Name = "azp";
@@ -412,13 +390,11 @@ public record class CHash : ClaimType<DgmjrCvt.String>, IClaimType
 
     private CHash() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>c_hash</value>
     public const string Name = "c_hash";
@@ -448,13 +424,11 @@ public record class AtHash : ClaimType<DgmjrCvt.String>, IClaimType
 
     private AtHash() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>at_hash</value>
     public const string Name = "at_hash";
@@ -484,13 +458,11 @@ public record class Aio : ClaimType<DgmjrCvt.String>, IClaimType
 
     private Aio() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>aio</value>
     public const string Name = "aio";
@@ -520,13 +492,11 @@ public record class PreferredUsername : ClaimType<DgmjrCvt.String>, IClaimType
 
     private PreferredUsername() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>preferred_username</value>
     public const string Name = "preferred_username";
@@ -556,13 +526,11 @@ public record class Email : ClaimType<DgmjrCvt.Email>, IClaimType
 
     private Email() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>email</value>
     public const string Name = "email";
@@ -592,13 +560,11 @@ public record class _Name : ClaimType<DgmjrCvt.String>, IClaimType
 
     private _Name() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>name</value>
     public const string Name = "name";
@@ -628,13 +594,11 @@ public record class GivenName : ClaimType<DgmjrCvt.String>, IClaimType
 
     private GivenName() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>givenname</value>
     public const string Name = "givenname";
@@ -664,13 +628,11 @@ public record class FamilyName : ClaimType<DgmjrCvt.String>, IClaimType
 
     private FamilyName() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>familyname</value>
     public const string Name = "familyname";
@@ -700,12 +662,11 @@ public record class NameId : ClaimType<DgmjrCvt.Integer64>, IClaimType
 
     private NameId() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>nameid</value>
     public const string Name = "nameid";
@@ -735,12 +696,11 @@ public record class Website : ClaimType<DgmjrCvt.AnyUri>, IClaimType
 
     private Website() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>website</value>
     public const string Name = "website";
@@ -770,11 +730,11 @@ public record class Birthdate : ClaimType<DgmjrCvt.Date>, IClaimType
 
     private Birthdate() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
-    public new const string UriString = JwtNamespace + Slash + Name;
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>birthdate</value>
     public const string Name = "birthdate";
@@ -804,13 +764,11 @@ public record class Nonce : ClaimType<DgmjrCvt.String>, IClaimType
 
     private Nonce() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>nonce</value>
     public const string Name = "nonce";
@@ -840,13 +798,11 @@ public record class Oid : ClaimType<DgmjrCvt.Guid>, IClaimType
 
     private Oid() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>oid</value>
     public const string Name = "oid";
@@ -876,52 +832,14 @@ public record class Roles : ClaimType<DgmjrCvt.Array<DgmjrCvt.AnyUri>>, IClaimTy
 
     private Roles() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>roles</value>
     public const string Name = "roles";
-
-    /// <value><inheritdoc cref="Name" path="/value" /></value>
-    string IHaveAName.Name => Name;
-
-    /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    string IHaveAUriString.UriString => UriString;
-
-    /// <value><inheritdoc cref="UriString" path="/value" /></value>
-    uri IHaveAuri.Uri => UriString;
-
-    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    string IIdentityComponent.ShortUriString => ShortUriString;
-
-    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
-    public override uri ShortUri => ShortUriString;
-}
-
-/// <summary>Opaque String</summary>
-/// <remarks>An internal claim used to revalidate tokens. Should be ignored.</remarks>
-/// <value><inheritdoc cref="UriString"/></value>
-public record class Rh : ClaimType<DgmjrCvt.String>, IClaimType
-{
-    public static readonly IClaimType Instance = new Rh();
-
-    private Rh() { }
-
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
-
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
-
-    /// <value>rh</value>
-    public const string Name = "rh";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -948,13 +866,11 @@ public record class Sub : ClaimType<DgmjrCvt.String>, IClaimType
 
     private Sub() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>sub</value>
     public const string Name = "sub";
@@ -984,13 +900,11 @@ public record class Tid : ClaimType<DgmjrCvt.Guid>, IClaimType
 
     private Tid() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>tid</value>
     public const string Name = "tid";
@@ -1020,13 +934,11 @@ public record class UniqueName : ClaimType<DgmjrCvt.String>, IClaimType
 
     private UniqueName() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>unique_name</value>
     public const string Name = "unique_name";
@@ -1056,13 +968,11 @@ public record class Uti : ClaimType<DgmjrCvt.String>, IClaimType
 
     private Uti() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>uti</value>
     public const string Name = "uti";
@@ -1092,13 +1002,11 @@ public record class Ver : ClaimType<DgmjrCvt.String>, IClaimType
 
     private Ver() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>ver</value>
     public const string Name = "ver";
@@ -1128,13 +1036,11 @@ public record class HasGroups : ClaimType<DgmjrCvt.Boolean>, IClaimType
 
     private HasGroups() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>hasgroups</value>
     public const string Name = "hasgroups";
@@ -1166,13 +1072,11 @@ public record class GroupsSrc1 : ClaimType<DgmjrCvt.Json>, IClaimType
 
     private GroupsSrc1() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>groups:src1</value>
     public const string Name = "groups:src1";
@@ -1200,13 +1104,11 @@ public record class Acr : ClaimType<DgmjrCvt.Integer32>, IClaimType
 
     private Acr() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>acr</value>
     public const string Name = "acr";
@@ -1234,13 +1136,11 @@ public record class Amr : ClaimType<DgmjrCvt.Array<DgmjrCvt.String>>, IClaimType
 
     private Amr() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>amr</value>
     public const string Name = "amr";
@@ -1272,13 +1172,11 @@ public record class AzpAcr : ClaimType<DgmjrCvt.Integer32>, IClaimType
 
     private AzpAcr() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>azpacr</value>
     public const string Name = "azpacr";
@@ -1310,13 +1208,11 @@ public record class AppIdAcr : ClaimType<DgmjrCvt.Integer32>, IClaimType
 
     private AppIdAcr() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>appidacr</value>
     public const string Name = "appidacr";
@@ -1345,13 +1241,11 @@ public record class Wids : ClaimType<DgmjrCvt.Array<DgmjrCvt.Guid>>, IClaimType
 
     private Wids() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>wids</value>
     public const string Name = "wids";
@@ -1380,13 +1274,11 @@ public record class Scp : ClaimType<DgmjrCvt.String>, IClaimType
 
     private Scp() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + Slash + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>scp</value>
     public const string Name = "scp";
@@ -1410,20 +1302,18 @@ public record class Scp : ClaimType<DgmjrCvt.String>, IClaimType
 /// <summary>Provides object IDs that represent the group memberships of the subject. The groupMembershipClaims property of the application manifest configures the groups claim on a per-application basis. A value of null excludes all groups, a value of SecurityGroup includes only Active Directory Security Group memberships, and a value of All includes both Security Groups and Microsoft 365 Distribution Lists.
 /// See the <seealso cref="HasGroups" /> claim for details on using the groups claim with the implicit grant. For other flows, if the number of groups the user is in goes over 150 for SAML and 200 for JWT, then Microsoft Entra ID adds an overage claim to the claim sources. The claim sources point to the Microsoft Graph endpoint that contains the list of groups for the user.		</summary>
 /// <value>JSON array of GUIDs		</value>
-/// <remarks>These values can be used for managing access, such as enforcing authorization to access a resource.</remarks>
-public record class Groups : ClaimType<DgmjrCvt.String>, IClaimType
+/// <remarks>These values can be used for managing access, such as enforcing authorization to access a resource.  If the number of groups the user is in goes over a limit (150 for SAML, 200 for JWT) then an overage claim will be added the claim sources pointing at the Graph endpoint containing the list of groups for the user.</remarks>
+public record class Groups : ClaimType<DgmjrCvt.Array<DgmjrCvt.Guid>>, IClaimType
 {
     public static readonly IClaimType Instance = new Groups();
 
     private Groups() { }
 
-    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    /// <value><inheritdoc cref="ClaimType.Namespace2008" path="/value" />/<inheritdoc cref="Name" path="/value" /></value
+    public new const string UriString = Namespace2008 + "/" + Name;
 
-    public new const string UriString = JwtNamespace + Slash + Name;
-
-    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
-
-    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+    /// <value><inheritdoc cref="ClaimType.ShortSamlNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value
+    public const string ShortUriString = ShortSamlNamespace + ":" + Name;
 
     /// <value>groups</value>
     public const string Name = "groups";

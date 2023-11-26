@@ -21,8 +21,8 @@ public static partial class ClaimValueTypeUris
         /// <value><c>phone-number</c></value>
         public const string PhoneNumber = "phone-number";
 
-        /// <value><c>#json</c></value>
-        public const string Json = "#json";
+        /// <value><c>json</c></value>
+        public const string Json = "json";
 
         /// <value><c>generic</c></value>
         public const string Generic = "generic";

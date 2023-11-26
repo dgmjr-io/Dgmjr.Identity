@@ -19,9 +19,9 @@ using global::System.Security;
 
 public partial record class ClaimValueType<TValue> : ClaimValueType, IClaimValueType<TValue>
 {
-    public new virtual TValue? Value
+    public new virtual TValue Value
     {
-        get => (TValue?)base.Value;
+        get => (TValue?)base.Value!;
         set => base.Value = value;
     }
 
@@ -50,8 +50,6 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
     public virtual uri ShortUri => ShortUriString;
 
     public static ClaimValueType FromUri(uri uri) => GetAll().First(ct => ct.Uri == uri);
-
-    // public override bool Equals(object? other) => Equals(other as IClaimValueType);
 
     public override int GetHashCode() => Uri.GetHashCode();
 
@@ -113,7 +111,7 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
     /// <value>soap</value>
     public const string ShortSoapSchemaNamespace = "soap";
 
-    public override string? ToString() => Value?.ToString();
+    public override string ToString() => Value?.ToString()!;
 
     public class EFCoreConverter<TClaimValueType, TPersistedType>
         : ValueConverter<TClaimValueType?, TPersistedType?>
@@ -124,8 +122,7 @@ public partial record class ClaimValueType : IdentityComponent, IClaimValueType
             : base(
                 v => (TPersistedType)v.Value,
                 v => (TClaimValueType)Activator.CreateInstance(typeof(TClaimValueType), v)
-            )
-        { }
+            ) { }
     }
 
     public static ClaimValueType[] GetAll() =>

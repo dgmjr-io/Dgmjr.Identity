@@ -1729,7 +1729,7 @@ public record class System
     public override uri ShortUri => ShortUriString;
 }
 
-/// <summary>The URI for a claim that specifies a thumbprint, </summary>
+/// <summary>The URI for a claim that specifies a thumbprint.  A thumbprint is a globally unique SHA-1 hash of an X.509 certificate</summary>
 /// <value><inheritdoc cref="Thumbprint.UriString" path="/value" /></value>
 public record class Thumbprint
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
@@ -1737,18 +1737,23 @@ public record class Thumbprint
         IIdentityComponent,
         IHaveAuri,
         IHaveAUriString,
-        IHaveAName
+        IHaveAName,
+        IHaveADescription
 {
     public static readonly IClaimType Instance = new Thumbprint();
 
     private Thumbprint() { }
 
-    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/thumbprint. A thumbprint is a globally unique SHA-1 hash of an X.509 certificate</value>
+    public const string Description = "A thumbprint is a globally unique SHA-1 hash of an X.509 certificate";
+
+    string IHaveADescription.Description => Description;
+
+    /// <value><inheritdoc cref="ClaimType.Namespace2005" path="/value" />/thumbprint</value>
     public const string UriString =
         Namespace2005
         + "/thumbprint. A thumbprint is a globally unique SHA-1 hash of an X.509 certificate";
 
-    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:thumbprint. A thumbprint is a globally unique SHA-1 hash of an X.509 certificate</value>
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace2005" path="/value" />:thumbprint</value>
     public const string ShortUriString =
         ShortNamespace2005
         + ":"

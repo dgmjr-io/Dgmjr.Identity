@@ -18,7 +18,7 @@ public abstract record class DgmjrClaims : ClaimType<DgmjrId.ClaimValueTypes.Str
     public new const string UriString = DgmjrIdentity;
 
     /// <value>DGMJR-IO Identity</value>
-    public new const string Name = "DGMJR-IO Identity";
+    public const string Name = "DGMJR-IO Identity";
 
     string IHaveAUriString.UriString => UriString;
 
@@ -26,7 +26,7 @@ public abstract record class DgmjrClaims : ClaimType<DgmjrId.ClaimValueTypes.Str
 
     /// <summary>The base URI for claims in the <inheritdoc cref="BaseUri" path="/value" /> namespace</summary>
     /// <value>https://dgmjr.io</value>
-    public new const string BaseUri = "https://dgmjr.io";
+    public const string BaseUri = "https://dgmjr.io";
 
     /// <value>/identity</value>
     public const string Identity = "/identity";
@@ -39,7 +39,7 @@ public abstract record class DgmjrClaims : ClaimType<DgmjrId.ClaimValueTypes.Str
 public record class UnknownClaimType : ClaimType<DgmjrId.ClaimValueTypes.String>, IClaimType
 {
     /// <value><inheritdoc cref="DgmjrClaims.DgmjrIdentity" />/unknown</value>
-    public const string UriString = $"{DgmjrClaims.DgmjrIdentity}/unknown";
+    public new const string UriString = $"{DgmjrClaims.DgmjrIdentity}/unknown";
 
     /// <value>Unknown</value>
     public const string Name = "Unknown";
