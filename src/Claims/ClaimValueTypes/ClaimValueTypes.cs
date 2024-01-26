@@ -106,6 +106,8 @@ public record class Boolean : ClaimValueType<bool>, IClaimValueType
         {
             Value = value.Equals(bool.TrueString, InvariantCultureIgnoreCase)
         };
+
+    public static implicit operator Boolean(int i) => (Instance as Boolean) with { Value = i != 0 };
 }
 
 /// <summary>A claim value for a(n) Date</summary>
@@ -488,6 +490,9 @@ public record class UnixTimestamp : Integer64, IClaimValueType
         {
             Value = datetime.Parse(value, CultureInfo.InvariantCulture).ToFileTime()
         };
+
+    public static implicit operator DateTimeOffset(UnixTimestamp value) =>
+        DateTimeOffset.FromUnixTimeSeconds(value.Value);
 }
 
 /// <summary>A claim value for a(n) Integer64</summary>
@@ -848,10 +853,10 @@ public record class DnsName : ClaimValueType<string>, IClaimValueType
     /// <value>dns</value>
     public const string Name = "dns";
 
-    /// <value><inheritdoc cref="SoapNamespace" path="/value" />/dns</value>
-    public new const string UriString = SoapNamespace + "/dns";
+    /// <value><inheritdoc cref="SoapNamespace" path="/value" />/<inheritdoc cref="Name" path="/value"/></value>
+    public new const string UriString = SoapNamespace + "/" + Name;
 
-    /// <value><inheritdoc cref="ShortSoapSchemaNamespace" path="/value"/>:dns</value>
+    /// <value><inheritdoc cref="ShortSoapSchemaNamespace" path="/value"/>:<inheritdoc cref="Name" path="/value"/></value>
     public new const string ShortUriString = ShortSoapSchemaNamespace + ":dns";
 
     /// <inheritdoc cref="Name" path="/value" />

@@ -36,6 +36,8 @@
         <Using Include="Dgmjr.Identity" Alias="DgmjrId" />
         <Using Include="Dgmjr.Identity.ClaimTypes" Alias="DgmjrCt" />
         <Using Include="Dgmjr.Identity.ClaimValueTypes" Alias="DgmjrCvt" />
+        <Using Include="Dgmjr.Identity.ClaimTypes.JwtClaimTypes" Alias="JwtCt" />
+        <Using Include="Dgmjr.Identity.ClaimTypes.SamlClaimTypes" Alias="SamlCt" />
         <!-- <Using Include="Dgmjr.Identity.Roles" Alias="DgmjrR" /> -->
         <!-- <Using Include="Dgmjr.Identity.Uris" Alias="JwcIdUris" />
         <Using Include="System.Uri" Alias="@uri" />

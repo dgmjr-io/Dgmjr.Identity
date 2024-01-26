@@ -25,9 +25,6 @@ public class ClaimsPrincipal : SystemClaimsPrincipal
 public class ClaimsIdentity : SystemClaimsIdentity
 {
     public ClaimsIdentity(IHaveClaims user)
-        : base(
-            user.Claims /*.Select(c => c.ToClaim())*/
-        )
-    { }
+        : base(user.Claims) { }
 }
 // #endif

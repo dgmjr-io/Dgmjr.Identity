@@ -16,7 +16,7 @@
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AspNetCore.Hashids" Condition="!$(TargetFramework.Contains('netstandard'))" />
+    <PackageReference Include="AspNetCore.Hashids" />
     <PackageReference Include="AutoMapper" />
     <PackageReference Include="Dgmjr.ComponentModel" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
@@ -35,7 +35,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../Abstractions/Dgmjr.Identity.Abstractions.csproj" />
-    <ProjectReference Include="../Claims/Dgmjr.Identity.Claims.csproj" />
+    <ProjectReference Include="../Claims/Claims/Dgmjr.Identity.Claims.csproj" />
     <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
   </ItemGroup>
   <ItemGroup>
