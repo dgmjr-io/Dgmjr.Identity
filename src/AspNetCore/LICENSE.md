@@ -22,7 +22,7 @@ license: MIT
 slug: mit-license
 title: MIT License
 type: license
----
+-------------
 
 # MIT License
 
