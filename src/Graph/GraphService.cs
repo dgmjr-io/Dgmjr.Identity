@@ -11,33 +11,33 @@ public abstract class GraphService(
 ) : IDisposable
 {
     protected GraphServiceClient GraphServiceClient => graphServiceClient;
-    private readonly MicrosoftIdentityOptions _options = options?.Value;
-    protected string ClientId =>
-        _options?.ClientId ?? throw new InvalidOperationException("ClientId is required");
-    private bool _disposedValue;
+private readonly MicrosoftIdentityOptions _options = options?.Value;
+protected string ClientId =>
+    _options?.ClientId ?? throw new InvalidOperationException("ClientId is required");
+private bool _disposedValue;
 
-    protected virtual async Task<Application> GetApplication() =>
-        (
-            await GraphServiceClient.Applications
-                .Request()
-                .Filter($"appId eq '{ClientId}'")
-                .GetAsync()
-        ).FirstOrDefault();
+protected virtual async Task<Application> GetApplication() =>
+    (
+        await GraphServiceClient.Applications
+            .Request()
+            .Filter($"appId eq '{ClientId}'")
+            .GetAsync()
+    ).FirstOrDefault();
 
-    protected virtual void Dispose(bool disposing)
+protected virtual void Dispose(bool disposing)
+{
+    if (!_disposedValue)
     {
-        if (!_disposedValue)
-        {
-            if (disposing) { }
+        if (disposing) { }
 
-            _disposedValue = true;
-        }
+        _disposedValue = true;
     }
+}
 
-    public void Dispose()
-    {
-        // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-        Dispose(disposing: true);
-        GC.SuppressFinalize(this);
-    }
+public void Dispose()
+{
+    // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+    Dispose(disposing: true);
+    GC.SuppressFinalize(this);
+}
 }
