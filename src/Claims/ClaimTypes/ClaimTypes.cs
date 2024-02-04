@@ -1147,6 +1147,43 @@ public record class MobilePhone
 }
 
 /// <summary>The URI for a claim that specifies the name of an entity, </summary>
+/// <value><inheritdoc cref="Username.UriString" path="/value" /></value>
+public record class Username
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
+{
+    public static readonly IClaimType Instance = new Username();
+
+    private Username() { }
+
+    /// <value><inheritdoc cref="Name.UriString" path="/value" /></value>
+    public const string UriString = Namespace2005 + "/name";
+
+    /// <value><inheritdoc cref="Name.ShortUriString" path="/value" />:name</value>
+    public const string ShortUriString = ShortNamespace2005 + ":" + "name";
+    public const string _Name = Name._Name;
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name._Name;
+
+    /// <value><inheritdoc cref="Name.UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="Name.UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => Name.UriString;
+
+    /// <value><inheritdoc cref="Name.ShortUriString" /></value>
+    string IIdentityComponent.ShortUriString => Name.ShortUriString;
+
+    /// <value><inheritdoc cref="Name.ShortUriString" /></value>
+    public override uri ShortUri => Name.ShortUriString;
+}
+
+/// <summary>The URI for a claim that specifies the name of an entity, </summary>
 /// <value><inheritdoc cref="Name.UriString" path="/value" /></value>
 public record class Name
     : ClaimType<DgmjrId.ClaimValueTypes.String>,
@@ -1744,7 +1781,8 @@ public record class Thumbprint
 
     private Thumbprint() { }
 
-    public const string Description = "A thumbprint is a globally unique SHA-1 hash of an X.509 certificate";
+    public const string Description =
+        "A thumbprint is a globally unique SHA-1 hash of an X.509 certificate";
 
     string IHaveADescription.Description => Description;
 
@@ -2416,6 +2454,43 @@ public record class ObjectId
 
     /// <value>objectid</value>
     public const string Name = "objectid";
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    public override uri ShortUri => ShortUriString;
+}
+
+public record class Scope
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
+{
+    public static readonly IClaimType Instance = new Scope();
+
+    private Scope() { }
+
+    /// <value><inheritdoc cref="ClaimType.Namespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    public const string UriString = $"{Namespace}/{Name}";
+
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
+    public const string ShortUriString = $"{ShortNamespace}:{Name}";
+
+    /// <value>scope</value>
+    public const string Name = "scope";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;

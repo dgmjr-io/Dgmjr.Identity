@@ -1,4 +1,5 @@
 namespace Dgmjr.Identity.ClaimTypes.JwtClaimTypes;
+using Microsoft.IdentityModel.JsonWebTokens;
 
 /// <summary>The user's access token</summary>
 /// <value><inheritdoc cref="UriString"/></value>
@@ -125,7 +126,7 @@ public record class Aud
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>aud</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Aud;
+    public const string Name = JwtRegisteredClaimNames.Aud;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -159,7 +160,7 @@ public record class Iss : ClaimType<DgmjrCvt.AnyUri>, IClaimType
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>iss</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Iss;
+    public const string Name = JwtRegisteredClaimNames.Iss;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -193,7 +194,7 @@ public record class Iat : ClaimType<DgmjrCvt.UnixTimestamp>, IClaimType
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>iat</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Iat;
+    public const string Name = JwtRegisteredClaimNames.Iat;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -261,7 +262,7 @@ public record class Nbf : ClaimType<DgmjrCvt.UnixTimestamp>, IClaimType
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>nbf</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Nbf;
+    public const string Name = JwtRegisteredClaimNames.Nbf;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -295,7 +296,7 @@ public record class Exp : ClaimType<DgmjrCvt.UnixTimestamp>, IClaimType
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>exp</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Exp;
+    public const string Name = JwtRegisteredClaimNames.Exp;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -363,7 +364,7 @@ public record class Azp : ClaimType<DgmjrCvt.Guid>, IClaimType
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>exp</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Azp;
+    public const string Name = JwtRegisteredClaimNames.Azp;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -397,7 +398,7 @@ public record class CHash : ClaimType<DgmjrCvt.String>, IClaimType
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>c_hash</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.CHash;
+    public const string Name = JwtRegisteredClaimNames.CHash;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -431,7 +432,7 @@ public record class AtHash : ClaimType<DgmjrCvt.String>, IClaimType
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>at_hash</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.AtHash;
+    public const string Name = JwtRegisteredClaimNames.AtHash;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -483,6 +484,13 @@ public record class Aio : ClaimType<DgmjrCvt.String>, IClaimType
     public override uri ShortUri => ShortUriString;
 }
 
+public record class Username :  PreferredUsername
+{
+    public static new readonly IClaimType Instance = new Username();
+
+    private Username() { }
+}
+
 /// <summary>The primary username that represents the user. It could be an email address, phone number, or a generic username without a specified format. Its value is mutable and might change over time. Since it's mutable, this value can't be used to make authorization decisions. It can be used for username hints and in human-readable UI as a username. The profile scope is required to receive this claim. Present only in v2.0 tokens.</summary>
 /// <remarks>String</remarks>
 /// <value><inheritdoc cref="UriString"/></value>
@@ -490,7 +498,7 @@ public record class PreferredUsername : ClaimType<DgmjrCvt.String>, IClaimType
 {
     public static readonly IClaimType Instance = new PreferredUsername();
 
-    private PreferredUsername() { }
+    protected PreferredUsername() { }
 
     /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
     public new const string UriString = JwtNamespace + Slash + Name;
@@ -533,7 +541,7 @@ public record class Email : ClaimType<DgmjrCvt.Email>, IClaimType
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>email</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Email;
+    public const string Name = JwtRegisteredClaimNames.Email;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -567,7 +575,7 @@ public record class _Name : ClaimType<DgmjrCvt.String>, IClaimType
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>name</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Name;
+    public const string Name = JwtRegisteredClaimNames.Name;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -677,7 +685,7 @@ public record class NameId : ClaimType<DgmjrCvt.Integer64>, IClaimType
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>nameid</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.NameId;
+    public const string Name = JwtRegisteredClaimNames.NameId;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -787,7 +795,7 @@ public record class Nonce : ClaimType<DgmjrCvt.String>, IClaimType
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>nonce</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Nonce;
+    public const string Name = JwtRegisteredClaimNames.Nonce;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -923,7 +931,7 @@ public record class Sub : ClaimType<DgmjrCvt.String>, IClaimType
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>sub</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Sub;
+    public const string Name = JwtRegisteredClaimNames.Sub;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -1165,7 +1173,7 @@ public record class Acr : ClaimType<DgmjrCvt.OneOf<DgmjrCvt.Integer32, DgmjrCvt.
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>acr</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Acr;
+    public const string Name = JwtRegisteredClaimNames.Acr;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -1197,7 +1205,7 @@ public record class Amr : ClaimType<DgmjrCvt.Array<DgmjrCvt.String>>, IClaimType
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
     /// <value>amr</value>
-    public const string Name = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Amr;
+    public const string Name = JwtRegisteredClaimNames.Amr;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;

@@ -4,7 +4,7 @@
     <ProjectGuid>852898f8-d9f0-45e2-af51-2e6e26c2cb91</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build;Compile;Runtime" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles" PrivateAssets="All" />
     <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.ComponentModel" ExcludeAssets="ContentFiles" />
