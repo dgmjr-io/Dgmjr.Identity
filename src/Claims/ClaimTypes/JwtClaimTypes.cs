@@ -484,7 +484,7 @@ public record class Aio : ClaimType<DgmjrCvt.String>, IClaimType
     public override uri ShortUri => ShortUriString;
 }
 
-public record class Username :  PreferredUsername
+public record class Username : PreferredUsername
 {
     public static new readonly IClaimType Instance = new Username();
 
