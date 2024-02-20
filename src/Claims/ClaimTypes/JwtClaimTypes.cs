@@ -1427,3 +1427,35 @@ public record class EmailVerified : ClaimType<DgmjrCvt.Boolean>, IClaimType
     /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
     public override uri ShortUri => ShortUriString;
 }
+
+/// <value><inheritdoc cref="UriString" path="/value" /></value>
+public record class Language : ClaimType<DgmjrCvt.Boolean>, IClaimType
+{
+    public static readonly IClaimType Instance = new Language();
+
+    private Language() { }
+
+    /// <value><inheritdoc cref="ClaimType.JwtNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    public new const string UriString = JwtNamespace + Slash + Name;
+
+    /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
+    public const string ShortUriString = ShortJwtNamespace + ":" + Name;
+
+    /// <value>lang</value>
+    public const string Name = "lang";
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="ShortUriString" path="/value" /></value>
+    public override uri ShortUri => ShortUriString;
+}

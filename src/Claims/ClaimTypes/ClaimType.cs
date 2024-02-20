@@ -37,6 +37,10 @@ public abstract record class ClaimType : IClaimType
     /// <value><inheritdoc cref="NamespacePrefix" path="/value" />/identity/claims</value>
     public const string Namespace = NamespacePrefix + "/identity/claims";
 
+    /// <summary>Claim Type Namespace</summary>
+    /// <value><inheritdoc cref="NamespacePrefix" path="/value" />/claims</value>
+    public const string MicrosoftNamespace = NamespacePrefix + "/claims";
+
     /// <summary>Short Claim Type Namespace</summary>
     /// <value>ws</value>
     public const string ShortNamespace = "ws";

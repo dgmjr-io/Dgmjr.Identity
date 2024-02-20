@@ -16,7 +16,7 @@
     <Description>This package contains security-related constants such as [`Dgmjr.Security.Operations`](https://github.com/dgmjr-io/Dgmjr.Identity/blob/main/src/Security/Constants/src/Operations.cs).</Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build;Compile;Runtime" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles" PrivateAssets="All" />
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
     <!-- <PackageReference Include="Dgmjr.Enumerations.Enumeration" /> -->
@@ -24,6 +24,7 @@
     <PackageReference Include="System.Security.Cryptography.Algorithms" />
     <PackageReference Include="Dgmjr.System.Extensions" />
     <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="Humanizer.Core" VersionOverride="[2.14.1,)" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="System.Runtime.CompilerServices" />

@@ -167,6 +167,83 @@ public record class AuthenticationInstant
     /// <value><inheritdoc cref="ShortUriString" /></value>
     public override uri ShortUri => ShortUriString;
 }
+/// <summary>The URI for a claim that specifies the instant at which an entity was authenticated; </summary>
+/// <value><inheritdoc cref="AuthenticationClassReference.UriString" path="/value" /></value>
+public record class AuthenticationClassReference
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
+{
+    public static readonly IClaimType Instance = new AuthenticationClassReference();
+
+    private AuthenticationClassReference() { }
+
+    /// <value><inheritdoc cref="ClaimType.MicrosoftNamespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    public const string UriString = MicrosoftNamespace + "/" + Name;
+
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
+    public const string ShortUriString = ShortNamespace + ":" + Name;
+
+    /// <value>authnclassreference</value>
+    public const string Name = "authnclassreference";
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    public override uri ShortUri => ShortUriString;
+}
+
+/// <summary>The URI for a claim that specifies the instant at which an entity was authenticated; </summary>
+/// <value><inheritdoc cref="IdentityProvider.UriString" path="/value" /></value>
+public record class IdentityProvider
+    : ClaimType<DgmjrId.ClaimValueTypes.String>,
+        IClaimType,
+        IIdentityComponent,
+        IHaveAuri,
+        IHaveAUriString,
+        IHaveAName
+{
+    public static readonly IClaimType Instance = new IdentityProvider();
+
+    private IdentityProvider() { }
+
+    /// <value><inheritdoc cref="ClaimType.Namespace" path="/value" />/<inheritdoc cref="Name" path="/value" /></value>
+    public const string UriString = Namespace + "/" + Name;
+
+    /// <value><inheritdoc cref="ClaimType.ShortNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
+    public const string ShortUriString = ShortNamespace + ":" + Name;
+
+    /// <value>identityprovider</value>
+    public const string Name = "identityprovider";
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    uri IHaveAuri.Uri => UriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    string IIdentityComponent.ShortUriString => ShortUriString;
+
+    /// <value><inheritdoc cref="ShortUriString" /></value>
+    public override uri ShortUri => ShortUriString;
+}
 
 /// <summary>The URI for a claim that specifies the method with which an entity was authenticated; </summary>
 /// <value><inheritdoc cref="AuthenticationMethod.UriString" path="/value" /></value>

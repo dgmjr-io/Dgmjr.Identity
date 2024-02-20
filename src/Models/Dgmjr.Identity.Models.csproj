@@ -53,14 +53,14 @@
     <PackageReference Include="Dgmjr.Enumerations.Enumeration" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
     <PackageReference Include="SendPulse.Identity" />
-    <PackageReference Include="SendPulse.Telegram" />
+    <!-- <PackageReference Include="SendPulse.Telegram" /> -->
     <PackageReference Include="System.Runtime" />
     <PackageReference Include="Telegram.Bot.Extensions" />
     <PackageReference Include="Telegram.Identity" />
     <!-- <Reference Include="Dgmjr.ComponentModel" Aliases="DgmjrCm" /> -->
     <!-- <Reference Remove="Dgmjr.Enumerations.CodeGenerator" /> -->
     <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
-    <PackageReference Include="System.Private.CoreLib.Polyfills" IncludeAssets="ContentFiles;Build;BuildTransitive;BuildMultitargeting" ExcludeAssets="Analyzers;Runtime;Native" PrivateAssets="All" />
+    <PackageReference Include="System.Polyfills" />
   </ItemGroup>
   <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" Condition="Exists('../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props')" />
   <Import Project="../Claims/Core/Dgmjr.Identity.Core.props" Condition="Exists('../Claims/Core/Dgmjr.Identity.Core.props')" />
