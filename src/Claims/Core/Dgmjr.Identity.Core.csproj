@@ -12,7 +12,7 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <Description>Contains base interface and class for claim types and claim value types</Description>
     <ProjectGuid>7faad424-eaeb-49ba-b204-10db87772e86</ProjectGuid>
   </PropertyGroup>

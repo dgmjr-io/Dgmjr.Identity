@@ -16,6 +16,7 @@ public enum authnmethodsreferences
         Name = "hbk",
         Description = " Use of geolocation information for authentication, such as that provided by [W3C.REC-geolocation-API-20161108]."
     )]
+    [Uri("https://www.w3.org/TR/2016/REC-geolocation-API-20161108/")]
     geo,
 
     [Display(

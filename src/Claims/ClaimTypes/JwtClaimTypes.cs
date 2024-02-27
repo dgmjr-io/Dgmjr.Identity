@@ -86,8 +86,8 @@ public record class Acrs
     /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
     public const string ShortUriString = ShortJwtNamespace + Colon + Name;
 
-    /// <value>aud</value>
-    public const string Name = "aud";
+    /// <value>acrs</value>
+    public const string Name = "acrs";
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
     string IHaveAName.Name => Name;
@@ -363,7 +363,7 @@ public record class Azp : ClaimType<DgmjrCvt.Guid>, IClaimType
     /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
-    /// <value>exp</value>
+    /// <value>azp</value>
     public const string Name = JwtRegisteredClaimNames.Azp;
 
     /// <value><inheritdoc cref="Name" path="/value" /></value>
@@ -608,7 +608,7 @@ public record class GivenName : ClaimType<DgmjrCvt.String>, IClaimType
     /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
-    /// <value>givenname</value>
+    /// <value>given_name</value>
     public const string Name = Microsoft
         .IdentityModel
         .JsonWebTokens
@@ -646,7 +646,7 @@ public record class FamilyName : ClaimType<DgmjrCvt.String>, IClaimType
     /// <value><inheritdoc cref="ClaimType.ShortJwtNamespace" path="/value" />:<inheritdoc cref="Name" path="/value" /></value>
     public const string ShortUriString = ShortJwtNamespace + ":" + Name;
 
-    /// <value>familyname</value>
+    /// <value>family_name</value>
     public const string Name = Microsoft
         .IdentityModel
         .JsonWebTokens

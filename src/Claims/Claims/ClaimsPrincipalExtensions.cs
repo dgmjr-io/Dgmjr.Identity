@@ -39,6 +39,9 @@ public static class ClaimsPrincipalExtensions
     public static string? GetEmail(this ClaimsPrincipal principal) =>
         principal.FindFirstValue(Ct.Email) ?? principal.FindFirstValue(JwtCt.Email.UriString) ?? principal.FindFirstValue(JwtCt.Email.Name);
 
+    public static string[] GetEmails(this ClaimsPrincipal principal) =>
+        (principal.FindAllValues(Ct.Email) ?? []).Concat(principal.FindAllValues(JwtCt.Email.UriString) ?? []).Concat(principal.FindAllValues(JwtCt.Email.Name) ?? []).ToArray();
+
     public static Claim GetEmailClaim(this ClaimsPrincipal principal) =>
         principal.FindClaim(Ct.Email) ?? principal.FindClaim(JwtCt.Email.UriString) ?? principal.FindClaim(JwtCt.Email.Name);
 
@@ -52,8 +55,8 @@ public static class ClaimsPrincipalExtensions
         ?? principal.FindFirstValue(Ct.HomePhone)
         ?? principal.FindFirstValue(Ct.OtherPhone);
 
-    public static IEnumerable<string> GetRoles(this ClaimsPrincipal principal) =>
-        principal.FindAllValues(Ct.Role) ?? principal.FindAllValues(JwtCt.Roles.UriString) ?? principal.FindAllValues(JwtCt.Roles.Name);
+    public static string[] GetRoles(this ClaimsPrincipal principal) =>
+        (principal.FindAllValues(Ct.Role) ?? []).Concat(principal.FindAllValues(JwtCt.Roles.UriString) ?? []).Concat(principal.FindAllValues(JwtCt.Roles.Name) ?? []).ToArray();
 
     public static bool IsInRole(this ClaimsPrincipal principal, string role) =>
         principal.GetRoles().Contains(role, StringComparer.OrdinalIgnoreCase);

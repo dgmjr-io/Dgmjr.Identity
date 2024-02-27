@@ -16,8 +16,8 @@ using Dgmjr.Identity;
 using Dgmjr.Identity.Abstractions;
 using System.Security.Claims;
 
-using ClaimsIdentity = ClaimsIdentity;
-using ClaimsPrincipal = ClaimsPrincipal;
+using ClaimsIdentity = System.Security.Claims.ClaimsIdentity;
+using ClaimsPrincipal = System.Security.Claims.ClaimsPrincipal;
 
 public static class ClaimsPrincipalExtensions
 {
