@@ -1,0 +1,29 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Dgmjr.Identity.Db", "Dgmjr.Identity.Db.sqlproj", "{D058FD85-4A80-4745-B729-717CEA89066F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Local|Any CPU = Local|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Testing|Any CPU = Testing|Any CPU
+		Staging|Any CPU = Staging|Any CPU
+		Production|Any CPU = Production|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D058FD85-4A80-4745-B729-717CEA89066F}.Local|Any CPU.ActiveCfg = Release|Any CPU
+		{D058FD85-4A80-4745-B729-717CEA89066F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D058FD85-4A80-4745-B729-717CEA89066F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D058FD85-4A80-4745-B729-717CEA89066F}.Testing|Any CPU.ActiveCfg = Release|Any CPU
+		{D058FD85-4A80-4745-B729-717CEA89066F}.Staging|Any CPU.ActiveCfg = Release|Any CPU
+		{D058FD85-4A80-4745-B729-717CEA89066F}.Production|Any CPU.ActiveCfg = Release|Any CPU
+		{D058FD85-4A80-4745-B729-717CEA89066F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D058FD85-4A80-4745-B729-717CEA89066F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBCB3BE9-D6CA-420C-8E14-0B4EF6676584}
+	EndGlobalSection
+EndGlobal

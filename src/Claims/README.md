@@ -1,34 +1,38 @@
-# Dgmjr.Identity.Claims
+---
 
-Defines a set of claim types and claim value types for use with the `Dgmjr.Identity` library.
+title: Dgmjr.Identity.Claims Readme
+lastmod: 2023-23-22T19:23:03.3056-04:00Z
+date: 2023-23-22T19:23:03.3056-04:00Z
+license: MIT
+slug: Dgmjr.Identity.Claims-readme
+version: 0.0.1
+authors:
+- dgmjr
+description: Dgmjr.Identity.Claims Readme #TODO: write description for Dgmjr.Identity.Claims Readme
+keywords:
+- Dgmjr.Identity.Claims
+- dgmjr
+- dgmjr-io
+type: readme
+------------
 
-## Claim Types
+# Dgmjr.Identity.Claims Readme
 
-#### `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier`
-    The claim type for the user's unique identifier.
+<!-- TODO: Write the contents of the Dgmjr.Identity.Claims Readme file -->
 
-#### `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`
-    The claim type for the user's name.
+## Package Description
 
-#### `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`
-    The claim type for the user's email address.
+## Getting Started
 
-#### `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/role`
-    The claim type for the user's role(s).
+## Prerequisites
 
-## Claim Value Types
+## Installation
 
-#### `http://www.w3.org/2001/XMLSchema#string`
-    The claim value type for string values.
+## Usage
 
-#### `http://www.w3.org/2001/XMLSchema#boolean`
-    The claim value type for boolean values.
+## Contributing
 
-#### `http://www.w3.org/2001/XMLSchema#integer`
-    The claim value type for integer values.
+## Versioning
 
-#### `http://www.w3.org/2001/XMLSchema#dateTime`
-    The claim value type for date/time values.
-
-#### `http://www.w3.org/2001/XMLSchema#double`
-    The claim value type for double values.
+Built from [commit  on branch  at]
+(/tree/)

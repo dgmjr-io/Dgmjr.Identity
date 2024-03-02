@@ -12,161 +12,210 @@
 #pragma warning disable
 namespace Dgmjr.Identity;
 
+using System;
+using System.Data;
+using System.Domain;
 using System.Net.Mail;
-using Dgmjr.EntityFrameworkCore;
-using Dgmjr.Identity.Models;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Abstractions;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.EntityFrameworkCore.Extensions;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Telegram.Bot.Types;
-using static Dgmjr.EntityFrameworkCore.Constants.Schemas;
-using static Dgmjr.Identity.EntityFrameworkCore.Constants;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+
+using Dgmjr.EntityFrameworkCore;
+using static Dgmjr.EntityFrameworkCore.DbSchemas;
+using Dgmjr.Identity.Abstractions;
+using Dgmjr.Identity.EntityFrameworkCore.Constants;
 using static Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames;
-using IdentityClaimType = Dgmjr.Identity.Models.ClaimType;
+using Dgmjr.Identity.Models;
+
 using MSID = Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using RoleModel = Dgmjr.Identity.Models.Role;
-using UserModel = Dgmjr.Identity.Models.User;
-using User = Dgmjr.Identity.Models.User;
 
-public class IdentityDbContext : MSID.IdentityDbContext<User, RoleModel, long, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>, IIdentityDbContext, IDbContext<IIdentityDbContext>
+using Telegram.Bot.Types;
+
+public class IdentityDbContext(DbContextOptions options)
+    : DbContext(options),
+        IDbContext,
+        IIdentityDbContext
 {
-    // public virtual DbSet<UserContactId> UserContactIds { get; set; }
-    public virtual DbSet<Dgmjr.Identity.Models.User> Users { get; set; }
-    public virtual DbSet<RoleModel> Roles { get; set; }
-    public virtual DbSet<Dgmjr.Identity.Models.UserClaim> UserClaims { get; set; }
-    public virtual DbSet<Dgmjr.Identity.Models.UserRole> UserRoles { get; set; }
-    public virtual DbSet<Dgmjr.Identity.Models.UserLogin> UserLogins { get; set; }
-    public virtual DbSet<Dgmjr.Identity.Models.RoleClaim> RoleClaims { get; set; }
-    public virtual DbSet<Dgmjr.Identity.Models.UserToken> UserTokens { get; set; }
+    public static string DefaultConnectionStringConfigurationKey => "IdentityDb";
 
-    static string DefaultConnectionStringConfigurationKey => "IdentityDb";
+public IdentityDbContext(DbContextOptions<IdentityDbContext> options)
+    : this(options as DbContextOptions) { }
 
-    public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(options) { }
-    protected override void OnModelCreating(ModelBuilder builder)
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    optionsBuilder
+        .EnableSensitiveDataLogging()
+        .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
+        .EnableDetailedErrors()
+        .ConfigureWarnings(_ => { })
+        .UseSqlServer(options =>
+        {
+            options.MigrationsAssembly(typeof(AppIdentityDbContext).Assembly.FullName);
+            options.EnableRetryOnFailure();
+        })
+        .UseProjectables()
+        .AddInterceptors(new SoftDeleteInterceptor());
+
+    base.OnConfiguring(optionsBuilder);
+}
+
+protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+{
+    base.ConfigureConventions(configurationBuilder);
+    configurationBuilder
+        .Properties<uri>()
+        .AreUnicode(false)
+        .HaveMaxLength(Dgmjr.EntityFrameworkCore.Constants.UriMaxLengthConstant.UriMaxLength)
+        .HaveConversion<UriEfCoreValueConverter>();
+    configurationBuilder
+        .Properties<BotApiToken>()
+        .AreUnicode(false)
+        .AreFixedLength(true)
+        .HaveMaxLength(BotApiToken.Length)
+        .HaveColumnType(Format(DbTypeNames.CharX.ShortName, BotApiToken.Length))
+        .HaveConversion<BotApiTokenConverter>();
+    configurationBuilder
+        .Properties<ObjectId>()
+        .AreUnicode(false)
+        .AreFixedLength(true)
+        .HaveMaxLength(ObjectId.Length)
+        .HaveColumnType(Format(DbTypeNames.CharX.ShortName, ObjectId.Length))
+        .HaveConversion<RegexValueObjectEfCoreConverter<ObjectId>>();
+    configurationBuilder
+        .Properties<PhoneNumber>()
+        .AreUnicode(false)
+        .HaveMaxLength(PhoneNumber.MaxLength)
+        .HaveConversion<RegexValueObjectEfCoreConverter<PhoneNumber>>();
+    configurationBuilder
+        .Properties<EmailAddress>()
+        .HaveMaxLength(Dgmjr.EntityFrameworkCore.Constants.UriMaxLengthConstant.UriMaxLength)
+        .HaveConversion<RegexValueObjectEfCoreConverter<EmailAddress>>();
+    configurationBuilder
+        .Properties<IStringDictionary>()
+        .HaveColumnType(DbTypeNames.NVarCharMax.ShortName)
+        .HaveConversion<JsonObjectConverter<IStringDictionary>>();
+    configurationBuilder
+        .Properties<StringDictionary>()
+        .HaveColumnType(DbTypeNames.NVarCharMax.ShortName)
+        .HaveConversion<JsonObjectConverter<StringDictionary>>();
+    configurationBuilder
+        .Properties<IGender>()
+        .HaveMaxLength(8)
+        .AreUnicode(false)
+        .HaveConversion<GenderEfCoreValueConverter>();
+    configurationBuilder
+        .Properties<Models.Abstractions.IUserLoginProvider>()
+        .AreUnicode(false)
+        .HaveMaxLength(32)
+        .HaveConversion<UserLoginProviderConverter>();
+
+    configurationBuilder.DefaultTypeMapping<BotApiToken>(
+        b => b.HasConversion<BotApiTokenConverter>()
+    );
+    configurationBuilder.DefaultTypeMapping<ObjectId>(
+        b => b.HasConversion<RegexValueObjectEfCoreConverter<ObjectId>>()
+    );
+    configurationBuilder.DefaultTypeMapping<PhoneNumber>(
+        b => b.HasConversion<RegexValueObjectEfCoreConverter<PhoneNumber>>()
+    );
+    configurationBuilder.DefaultTypeMapping<EmailAddress>(
+        b => b.HasConversion<RegexValueObjectEfCoreConverter<EmailAddress>>()
+    );
+    configurationBuilder.DefaultTypeMapping<StringDictionary>(
+        b => b.HasConversion<JsonObjectConverter<StringDictionary>>()
+    );
+    configurationBuilder.DefaultTypeMapping<UserLoginProvider>(
+        b => b.HasConversion<UserLoginProviderConverter>()
+    );
+    // configurationBuilder.DefaultTypeMapping<Gender>(
+    //     b => b.HasConversion<GenderEfCoreValueConverter>()
+    // );
+}
+
+[DbFunction(ufn_ + nameof(IsBot), Schema = IdentitySchema.ShortName)]
+public virtual bool IsBot(long userId) => !GetBotToken(userId).IsEmpty;
+
+[DbFunction(ufn_ + nameof(IsBot), Schema = IdentitySchema.ShortName)]
+public virtual BotApiToken GetBotToken(long userId) => throw new NotImplementedException();
+
+[DbFunction(ufn_ + nameof(GetSendPulseId), Schema = IdentitySchema.ShortName)]
+public virtual ObjectId GetSendPulseId(long userId) => throw new NotImplementedException();
+
+[DbFunction(ufn_ + nameof(IsValidBotToken), Schema = DataSchema.ShortName)]
+public virtual bool IsValidBotToken(string token) => BotApiToken.TryParse(token, out _);
+
+[DbFunction(ufn_ + nameof(IsValidEmailAddress), Schema = IdentitySchema.ShortName)]
+public virtual bool IsValidEmailAddress(string email) => EmailAddress.TryParse(email, out _);
+
+[DbFunction(ufn_ + nameof(IsValidPhoneNumber), Schema = IdentitySchema.ShortName)]
+public virtual bool IsValidPhoneNumber(string phoneNumber) =>
+    PhoneNumber.TryParse(phoneNumber, out _);
+
+[DbFunction(ufn_ + nameof(IsValidGender), Schema = IdentitySchema.ShortName)]
+public virtual bool IsValidGender(string gender) => Gender.TryParse(gender, out _);
+
+[DbFunction(ufn_ + nameof(IsUri), Schema = IdentitySchema.ShortName)]
+public virtual bool IsUri(string uri) => System.uri.TryParse(uri, out _);
+
+[DbFunction(ufn_ + nameof(IsUrn), Schema = IdentitySchema.ShortName)]
+public virtual bool IsUrn(string urn) => System.urn.TryParse(urn, out _);
+
+[DbFunction(ufn_ + nameof(IsUrl), Schema = IdentitySchema.ShortName)]
+public virtual bool IsUrl(string url) => System.url.TryParse(url, out _);
+
+[DbFunction(ufn_ + nameof(IsValidObjectId), Schema = IdentitySchema.ShortName)]
+public virtual bool IsValidObjectId(string objectId) => ObjectId.TryParse(objectId, out _);
+
+public override int SaveChanges(bool acceptAllChangesOnSuccess)
+{
+    OnBeforeSaving();
+    return base.SaveChanges(acceptAllChangesOnSuccess);
+}
+
+public override async Task<int> SaveChangesAsync(
+    bool acceptAllChangesOnSuccess,
+    CancellationToken cancellationToken = default(CancellationToken)
+)
+{
+    OnBeforeSaving();
+    return (await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken));
+}
+
+protected virtual void OnBeforeSaving()
+{
+    var entries = ChangeTracker.Entries();
+    var utcNow = DateTimeOffset.UtcNow;
+
+    foreach (var entry in entries)
     {
-        base.OnModelCreating(builder);
-        builder.Entity<User>(entity =>
+        // for entities that inherit from BaseEntity,
+        // set UpdatedOn / CreatedOn appropriately
+        if (entry.Entity is IIdentityEntity trackable)
         {
-            entity.ToTable(TableNames.User, IdSchema);
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
-            entity.HasKey(e => e.Id);
-            // entity.Property(e => e.ConcurrencyStamp).IsConcurrencyToken();
-            entity.Ignore(e => e.ConcurrencyStamp);
-            entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
-            entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
-            entity.Property(e => e.Email).HasMaxLength(255);
-            entity.Property(e => e.UserName).HasMaxLength(256);
-            entity.Ignore(e => e.EmailAddress);
-            entity.Ignore(e => e.NormalizedEmailAddress);
-            // entity.Property(e => e.Phone).HasConversion<System.Domain.PhoneNumber.EfCoreValueConverter>();
-            // entity.HasMany(u => u.Bots).WithMany(b => b.Contacts).UsingEntity<UserContactId>(
-            //     uc => uc.HasOne(uc => uc.Bot).WithMany(bot => bot.ContactIds).HasForeignKey(uc => uc.BotId),
-            //     uc => uc.HasOne(uc => uc.User).WithMany(user => user.ContactIds).HasForeignKey(uc => uc.UserId),
-            //     uc => uc.HasKey(uc => new { uc.UserId, uc.BotId })
-            // );
-            // // entity.Property(e => e.SendPulseId).HasConversion<SendPulse.Data.ValueObjects.SendPulseIdConverter>();
-            // entity.HasIndex(e => e.NormalizedEmail)/*.HasName("EmailIndex")*/;
-            // entity.HasIndex(e => e.NormalizedUserName).IsUnique()/*.HasName("UserNameIndex").HasFilter("[NormalizedUserName] IS NOT NULL")*/;
-        });
-        builder.Entity<RoleModel>(entity =>
-        {
-            entity.ToTable(TableNames.Role, IdSchema);
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
-            entity.Property(e => e.ConcurrencyStamp).IsConcurrencyToken();
-            // entity.Property(e => e.Name).HasMaxLength(256);
-            // entity.Property(e => e.NormalizedName).HasMaxLength(256);
-            // entity.HasIndex(e => e.NormalizedName).IsUnique().HasName("RoleNameIndex").HasFilter("[NormalizedName] IS NOT NULL");
-            entity.Property(e => e.Uri).HasConversion<System.uri.EfCoreValueConverter>();
-            entity.HasMany(e => e.Users).WithMany(u => u.Roles).UsingEntity<UserRole>(
-                ur => ur.HasOne(ur => ur.User).WithMany(u => u.UserRoles).HasForeignKey(ur => ur.UserId).HasPrincipalKey(u => u.Id),
-                ur => ur.HasOne(ur => ur.Role).WithMany(r => r.UserRoles).HasForeignKey(ur => ur.RoleId).HasPrincipalKey(r => r.Id),
-                ur => ur.HasKey(ur => new { ur.UserId, ur.RoleId })
-            );
-        });
-        builder.Entity<UserRole>(entity =>
-        {
-            entity.ToTable(TableNames.UserRole, IdSchema);
-            entity.HasKey(e => new { e.UserId, e.RoleId });
-            entity.HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId).HasPrincipalKey(e => e.Id);
-        });
-        builder.Entity<UserClaim>(entity =>
-        {
-            entity.ToTable(TableNames.UserClaim, IdSchema,
-                tb =>
-                {
-                    // (tb as TableBuilder).HasTrigger("SomeTrigger");
-                });
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
-            entity.Property(e => e.Properties).HasConversion<JsonObjectConverter<IStringDictionary>>();
-            entity.Property(e => e.Type).HasConversion<uri.EfCoreValueConverter>();
-            entity.Property(e => e.Issuer).HasConversion<uri.EfCoreValueConverter>();
-            entity.Property(e => e.OriginalIssuer).HasConversion<uri.EfCoreValueConverter>();
-            entity.Property(e => e.ValueType).HasConversion<uri.EfCoreValueConverter>();
-            entity.HasOne(e => e.User).WithMany(u => u.Claims).HasForeignKey(e => e.UserId).HasPrincipalKey(e => e.Id);
-        });
-        builder.Entity<UserLogin>(entity =>
-        {
-            entity.ToTable(TableNames.UserLogin, IdSchema);
-            entity.HasKey(e => new { e.LoginProvider, e.ProviderKey, e.ProviderDisplayName });
-            entity.HasOne(e => e.User).WithMany(u => u.Logins).HasForeignKey(e => e.UserId).HasPrincipalKey(e => e.Id);
-            entity.HasOne(e => e.Provider).WithMany().HasForeignKey(e => e.ProviderId).HasPrincipalKey(e => e.Id);
-        });
-        builder.Entity<RoleClaim>(entity =>
-        {
-            entity.ToTable(TableNames.RoleClaim, IdSchema);
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
-            entity.Property(e => e.Properties).HasConversion<JsonObjectConverter<IStringDictionary>>();
-            entity.Property(e => e.Type).HasConversion<uri.EfCoreValueConverter>();
-            entity.Property(e => e.Issuer).HasConversion<uri.EfCoreValueConverter>();
-            entity.Property(e => e.OriginalIssuer).HasConversion<uri.EfCoreValueConverter>();
-            entity.Property(e => e.ValueType).HasConversion<uri.EfCoreValueConverter>();
-            entity.HasOne(e => e.Role).WithMany().HasForeignKey(e => e.RoleId).HasPrincipalKey(e => e.Id);
-        });
-        builder.Entity<UserToken>(entity =>
-        {
-            entity.ToTable(TableNames.UserToken, IdSchema);
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
-            entity.HasOne(e => e.User).WithMany(u => u.Tokens).HasForeignKey(e => e.UserId).HasPrincipalKey(e => e.Id);
-        });
-        // builder.Entity<Bot>(entity =>
-        // {
-        //     entity.Property(e => e.Id).ValueGeneratedOnAdd();
-        //     entity.Property(e => e.ApiToken).HasConversion<BotApiToken.EfCoreValueConverter>();
-        //     entity.Property(e => e.SendPulseId).HasConversion<ObjectId.EfCoreValueConverter>();
-        // });
-        // builder.Entity<UserContactId>(entity =>
-        // {
-        //     entity.Property(e => e.ContactId).HasConversion<ObjectId.EfCoreValueConverter>();
-        // });
-        builder.Entity<IdentityClaimType>(entity =>
-        {
-            entity.ToTable(TableNames.ClaimType, IdSchema);
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
-            entity.HasKey(e => e.Id);
-            entity.Property(e => e.Uri).HasConversion<uri.EfCoreValueConverter>();
-            // entity.HasMany(e => e.Users).WithMany(u => u.ClaimTypes).UsingEntity<UserClaim>(
-            //     uc => uc.HasOne(uc => uc.User).WithMany().HasForeignKey(uc => uc.UserId).HasPrincipalKey(u => u.Id),
-            //     uc => uc.HasOne<IdentityClaimType>("ClaimType").WithMany().HasForeignKey<int>("ClaimTypeId").HasPrincipalKey(ct => ct.Id
-            //     uc => uc.HasKey(uc => new { uc.UserId, uc.ClaimTypeId })
-            // );
-            // entity.HasMany(e => e.Roles).WithMany().UsingEntity<RoleClaim>();
-        });
+            switch (entry.State)
+            {
+                case EntityState.Modified:
+                    /* do nothing */
+                    break;
+                case EntityState.Added:
+                    /* do nothing */
+                    break;
+                case EntityState.Deleted:
+                    // mark the entity as deleted and set it to modified instead of deleted
+                    trackable.Deleted = utcNow;
+                    entry.State = EntityState.Modified;
+                    break;
+            }
+        }
     }
-
-    public override DbSet<TEntity> Set<TEntity>()
-    {
-        return typeof(TEntity) switch
-        {
-            var t when t == typeof(UserClaim) => (UserClaims.Include(uc => uc.ClaimType) as DbSet<TEntity> ?? UserClaims as DbSet<TEntity>) as DbSet<TEntity>,
-            var t when t == typeof(User) => Users.Include(u => u.Roles).Include(u => u.Claims) as DbSet<TEntity> ?? Users as DbSet<TEntity>,
-            var t when t == typeof(UserRole) => UserRoles as DbSet<TEntity>,
-            var t when t == typeof(Role) => Roles.Include(r => r.Users) as DbSet<TEntity>,
-            var t when t == typeof(RoleClaim) => RoleClaims.Include(rc => rc.ClaimType) as DbSet<TEntity>,
-            var t when t == typeof(UserLogin) => UserLogins as DbSet<TEntity>,
-            var t when t == typeof(UserToken) => UserTokens as DbSet<TEntity>,
-            // var t when t == typeof(Bot) => Bots as DbSet<TEntity>,
-            // var t when t == typeof(UserContactId) => UserContactIds as DbSet<TEntity>,
-            _ => base.Set<TEntity>()
-        };
-    }
+}
 }

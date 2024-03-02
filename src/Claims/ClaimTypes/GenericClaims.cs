@@ -10,35 +10,170 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace Dgmjr.Identity;
+namespace Dgmjr.Identity.ClaimTypes;
 
-public static partial class ClaimTypeUris
+public abstract record class OtherClaimType : ClaimType<DgmjrId.ClaimValueTypes.String> { }
+
+/// <summary>The URI for an unknown user login provider</summary>
+/// <value>urn:users:login:provider:none</value>
+public record class UnknownLoginProvider : OtherClaimType, IClaimType
 {
-    /// <summary>The URI for an unknown user login provider</summary>
     /// <value>urn:users:login:provider:none</value>
-    public const string UnknownLoginProvider = "urn:users:login:provider:none";
+    public new const string UriString = "urn:users:login:provider:none";
 
-    /// <summary>The URI for a login provider</summary>
-    /// <value>urn:users:login:provider:{provider}</value>
-    public const string LoginProviderPattern = "urn:users:login:provider:{0}";
+    /// <value>UnknownLoginProvider</value>
+    public const string Name = "UnknownLoginProvider";
 
-    /// <summary>The URI for a security stamp</summary>
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+}
+
+/// <summary>The URI for a login provider</summary>
+/// <value>urn:users:login:provider:{provider}</value>
+public record class LoginProviderPattern : OtherClaimType, IClaimType
+{
+    private LoginProviderPattern() { }
+
+    public static IClaimType Instance => new LoginProviderPattern();
+
+    /// <value>urn:users:login:provider:{0}</value>
+    public new const string UriString = "urn:users:login:provider:{0}";
+
+    /// <value>LoginProviderPattern</value>
+    public const string Name = "LoginProviderPattern";
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+}
+
+/// <summary>The URI for a security stamp</summary>
+/// <value>urn:identity:securitystamp</value>
+public record class SecurityStamp : OtherClaimType, IClaimType
+{
+    private SecurityStamp() { }
+
+    public static IClaimType Instance => new SecurityStamp();
+
     /// <value>urn:identity:securitystamp</value>
-    public const string SecurityStamp = "urn:identity:securitystamp";
+    public new const string UriString = "urn:identity:securitystamp";
 
-    /// <summary>The URI for a generic claim type</summary>
-    /// <value>urn:identity:claim:generic:{0}</value>
-    public const string GenericClaimTypePattern = "urn:identity:claim:custom:{0}";
+    /// <value>SecurityStamp</value>
+    public const string Name = "SecurityStamp";
 
-    /// <summary>The URI for a generic claims issuer</summary>
-    /// <value>urn:identity:claim:issuer:generic:{0}</value>
-    public const string GenericClaimsIssuerTypePattern = "urn:identity:claim:issuer:custom:{0}";
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
 
-    /// <summary>The URI for a generic claims value type</summary>
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+}
+
+/// <summary>The URI for a generic claim type</summary>
+/// <value>urn:identity:claim:generic:{0}</value>
+public record class GenericClaimTypePattern : OtherClaimType, IClaimType
+{
+    private GenericClaimTypePattern() { }
+
+    public static IClaimType Instance => new GenericClaimTypePattern();
+
+    /// <value>urn:identity:claim:custom:{0}</value>
+    public new const string UriString = "urn:identity:claim:custom:{0}";
+
+    /// <value>GenericClaimTypePattern</value>
+    public const string Name = "GenericClaimTypePattern";
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+}
+
+/// <summary>The URI for a generic claims issuer</summary>
+/// <value>urn:identity:claim:issuer:generic:{0}</value>
+public record class GenericClaimsIssuerTypePattern : OtherClaimType, IClaimType
+{
+    private GenericClaimsIssuerTypePattern() { }
+
+    public static IClaimType Instance => new GenericClaimsIssuerTypePattern();
+
+    /// <value>urn:identity:claim:issuer:custom:{0}</value>
+    public new const string UriString = "urn:identity:claim:issuer:custom:{0}";
+
+    /// <value>GenericClaimsIssuerTypePattern</value>
+    public const string Name = "GenericClaimsIssuerTypePattern";
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+}
+
+/// <summary>The URI for a generic claims value type</summary>
+/// <value>urn:identity:claim:custom</value>
+public record class Custom : OtherClaimType, IClaimType
+{
+    private Custom() { }
+
+    public static IClaimType Instance => new Custom();
+
     /// <value>urn:identity:claim:custom</value>
-    public const string Custom = "urn:identity:claim:custom";
+    public new const string UriString = "urn:identity:claim:custom";
 
-    /// <summary>The URI for a generic claims value type</summary>
+    /// <value>Custom</value>
+    public const string Name = "Custom";
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
+}
+
+/// <summary>The URI for an unknown claim value type</summary>
+/// <value>urn:identity:claim:unknown</value>
+public record class Unknown : OtherClaimType, IClaimType
+{
+    private Unknown() { }
+
+    public static IClaimType Instance => new Unknown();
+
     /// <value>urn:identity:claim:unknown</value>
-    public const string Unknown = "urn:identity:claim:unknown";
+    public new const string UriString = "urn:identity:claim:unknown";
+
+    /// <value>Unknown</value>
+    public const string Name = "Unknown";
+
+    /// <value><inheritdoc cref="Name" path="/value" /></value>
+    string IHaveAName.Name => Name;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    string IHaveAUriString.UriString => UriString;
+
+    /// <value><inheritdoc cref="UriString" path="/value" /></value>
+    public override uri Uri => UriString;
 }

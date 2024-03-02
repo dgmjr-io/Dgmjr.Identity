@@ -1,11 +1,11 @@
 <!--
  * Dgmjr.Identiy.EntityFrameworkCore.Constants.csproj
- * 
+ *
  *   Created: 2022-12-01-05:13:41
  *   Modified: 2022-12-01-05:13:41
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
@@ -13,9 +13,9 @@
 <Project>
   <ItemGroup>
     <Using Include="Dgmjr.Identity.EntityFrameworkCore" />
-    <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants" Static="true" />
+    <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants" />
     <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames" Static="true" />
     <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames" Alias="Tables" />
-    <Using Include="Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant" Static="true" />
+    <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants.UriMaxLengthConstant" Static="true" />
   </ItemGroup>
 </Project>

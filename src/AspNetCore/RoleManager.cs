@@ -11,14 +11,22 @@
  */
 
 using Dgmjr.Identity.Models;
+using Dgmjr.Identity.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
 namespace Dgmjr.Identity;
 
-public class RoleManager : Microsoft.AspNetCore.Identity.RoleManager<Role>
+public class RoleManager<TRole> : MSID.RoleManager<TRole>
+    where TRole : class, IIdentityRoleBase
 {
-    public RoleManager(IRoleStore<Role> store, IEnumerable<IRoleValidator<Role>> roleValidators, ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors, ILogger<RoleManager<Role>> logger) : base(store, roleValidators, keyNormalizer, errors, logger)
-    {
-    }
+    public RoleManager(
+        IRoleStore<TRole> store,
+        IEnumerable<IRoleValidator<TRole>> roleValidators,
+        ILookupNormalizer keyNormalizer,
+        IdentityErrorDescriber errors,
+        ILogger<RoleManager<TRole>> logger
+    )
+        : base(store, roleValidators, keyNormalizer, errors as MSID.IdentityErrorDescriber, logger)
+    { }
 }

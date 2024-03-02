@@ -11,51 +11,145 @@
  */
 
 using System.Net;
-using System.Xml.Serialization;
-using Dgmjr.Payloads;
-using Microsoft.AspNetCore.Identity;
 using static System.Net.HttpStatusCode;
-using HttpStatus = System.Net.HttpStatusCode;
+using System.Xml.Serialization;
+
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
+using Microsoft.OpenApi.Models;
+
+using Azure;
+
+using Dgmjr.Payloads;
+
 using MSIDR = Microsoft.AspNetCore.Identity.IdentityResult;
+
+using HttpStatus = System.Net.HttpStatusCode;
+
 using SC = System.Net.HttpStatusCode;
+using ApplicationMediaTypeNames = Dgmjr.Mime.ApplicationMediaTypeNames;
+using TextMediaTypeNames = Dgmjr.Mime.TextMediaTypeNames;
 
 namespace Dgmjr.Identity;
 
-public class IdentityResultTuple<TValue> : Tuple<MSIDR, TValue>
+public class IdentityResult : MSIDR, IResponsePayload<MSIDR>
 {
-    public IdentityResultTuple(MSIDR msidr, TValue value) : base(msidr, value) { }
-}
-
-public class IdentityResult : ResponsePayload<IdentityResultTuple<object>>
-{
-    public IdentityResult(MSIDR result, object? value = default, string? message = null, HttpStatus statusCode = SC.InternalServerError)
-        : base(new IdentityResultTuple<object>(result, value), stringValue: value?.ToString() ?? message, message: message, statusCode: result != null && result.Succeeded ? OK : result != null ? statusCode! : throw new ArgumentNullException(nameof(result)))
+    public IdentityResult(MSIDR result, string? message = null, SC statusCode = InternalServerError)
     {
+        Result = result;
+        Message = message ?? string.Empty;
+        StatusCode = statusCode;
+        ContentTypes.Add(new MediaTypeHeaderValue(ApplicationMediaTypeNames.Json));
+        ContentTypes.Add(new MediaTypeHeaderValue(ApplicationMediaTypeNames.Xml));
+        ContentTypes.Add(new MediaTypeHeaderValue(ApplicationMediaTypeNames.MessagePack));
+        ContentTypes.Add(new MediaTypeHeaderValue(ApplicationMediaTypeNames.Bson));
+        ContentTypes.Add(new MediaTypeHeaderValue(TextMediaTypeNames.Plain));
     }
 
-    [JProp("result"), JIgnore(Condition = JIgnoreCond.WhenWritingNull), XmlAttribute("value")]
-    public virtual MSIDR Result => base.Value.Item1;
+    [JProp("isSuccess"), XAttribute("isSuccess")]
+    public virtual bool IsSuccess =>
+        StatusCode.HasValue && StatusCode.Value >= OK && StatusCode.Value <= (SC)299;
 
-    [JProp("value"), JIgnore(Condition = JIgnoreCond.WhenWritingNull), XmlAttribute("value")]
-    public new virtual object Value => base.Value.Item2;
+    [XAttribute("message"), JProp("message"), JIgnore(Condition = JIgnore.WhenWritingNull)]
+    public virtual string Message { get; set; }
 
-    public static IdentityResult Failed(HttpStatus statusCode = SC.InternalServerError, params IdentityError[] errors) => new(MSIDR.Failed(errors), statusCode: statusCode);
-    public static IdentityResult Failed(HttpStatus statusCode = SC.InternalServerError, params string[] errors) => new(MSIDR.Failed(errors.Select(e => new IdentityError { Description = e }).ToArray()), statusCode: statusCode);
-    public static IdentityResult Failed(IdentityError error, HttpStatus statusCode = SC.InternalServerError) => new(MSIDR.Failed(error), statusCode: statusCode);
-    public static IdentityResult Failed(string error, HttpStatus statusCode = SC.InternalServerError) => new(MSIDR.Failed(new IdentityError { Description = error }), statusCode: statusCode);
-    public static IdentityResult Failed(MSIDR result, HttpStatus statusCode = SC.InternalServerError) => new(result, statusCode: statusCode);
-    public static IdentityResult Failed(HttpStatus statusCode = SC.InternalServerError) => new(MSIDR.Failed(), statusCode: statusCode);
+    [XIgnore, JIgnore]
+    public virtual string? StringValue
+    {
+        get => Message;
+        set => Message = value!;
+    }
 
-    public static IdentityResult Success(string message = "Success", HttpStatus statusCode = OK) => new(MSIDR.Success, message: message, statusCode: statusCode);
+    [JIgnore, XIgnore]
+    public virtual SC? StatusCode { get; set; }
 
-    public static implicit operator IdentityResult(MSIDR result) => new(result);
-    public static implicit operator MSIDR?(IdentityResult result) => result?.Result;
+    [JIgnore, XIgnore]
+    int? IStatusCodeActionResult.StatusCode => (int?)StatusCode;
+
+    [JProp("result"), JIgnore(Condition = JIgnore.WhenWritingNull), XAttribute("result")]
+    public virtual MSIDR Result { get; set; }
+
+    [JProp("value"), JIgnore(Condition = JIgnore.WhenWritingNull), XAttribute("value")]
+    public virtual MSIDR? Value
+    {
+        get => Result;
+        set => Result = value;
+    }
+
+    [JIgnore, XIgnore]
+    object? IPayload.Value
+    {
+        get => Result;
+        set => Result = value as MSIDR;
+    }
+
+    [JsonIgnore, XIgnore]
+    public ICollection<IOutputFormatter> OutputFormatters { get; } = new List<IOutputFormatter>();
+
+    [JsonIgnore, XIgnore]
+    public MediaTypeCollection ContentTypes { get; } = new MediaTypeCollection();
+
+    public static IdentityResult Failed(
+        SC statusCode = InternalServerError,
+        params IdentityError[] errors
+    ) => new(Failed(errors), statusCode: statusCode);
+
+    public static IdentityResult Failed(
+        SC statusCode = InternalServerError,
+        params string[] errors
+    ) =>
+        new(
+            Failed(errors.Select(e => new IdentityError { Description = e }).ToArray()),
+            statusCode: statusCode
+        );
+
+    public static IdentityResult Failed(IdentityError error, SC statusCode = InternalServerError) =>
+        new(MSIDR.Failed(error), statusCode: statusCode);
+
+    public static IdentityResult Failed(string error, SC statusCode = InternalServerError) =>
+        new(MSIDR.Failed(new IdentityError { Description = error }), statusCode: statusCode);
+
+    public static IdentityResult Failed(MSIDR result, SC statusCode = InternalServerError) =>
+        new(result, statusCode: statusCode);
+
+    public static IdentityResult Failed(SC statusCode = InternalServerError) =>
+        new(MSIDR.Failed(), statusCode: statusCode);
+
+    public static new IdentityResult Success(string message = "Success", SC statusCode = OK) =>
+        new(MSIDR.Success, message: message, statusCode: statusCode);
+
+    public virtual async Task ExecuteResultAsync(ActionContext context)
+    {
+        var executor = context.HttpContext.RequestServices.GetRequiredService<
+            IActionResultExecutor<IdentityResult>
+        >();
+        await executor.ExecuteAsync(context, this);
+    }
+
+    public virtual void OnFormatting(OutputFormatterWriteContext context) { }
+
+    // public static implicit operator IdentityResult(MSIDR result) => new(result);
+
+    // public static implicit operator MSIDR?(IdentityResult result) => result?.Result;
 }
 
-public class IdentityResult<TValue> : IdentityResult
-{
-    public IdentityResult(MSIDR result, TValue value, string? message = null, HttpStatus statusCode = SC.InternalServerError) : base(result, value, message, statusCode) { }
-    public static implicit operator IdentityResult<TValue>(MSIDR result) => new(result, default);
+// public class IdentityResult<TValue> : IdentityResult
+// {
+//     public IdentityResult(
+//         MSIDR result,
+//         TValue value,
+//         string? message = null,
+//         SC statusCode = InternalServerError
+//     )
+//         : base(result, value, message, statusCode) { }
 
-    public new TValue Value => (TValue)base.Value;
-}
+//     public static implicit operator IdentityResult<TValue>(MSIDR result) => new(result, default);
+
+//     public new TValue Value => (TValue)base.Value;
+// }

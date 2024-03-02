@@ -1,44 +1,47 @@
 ---
-author: 
-  - dgmjr
-title: Commmonly-Assigned Roles
-lastmod: 2023-02-15-02:19:27
-created: 2023-02-15-02:19:27
-license: MIT
-keywords: 
-  - dgmjr
-  - roles
-tags: 
-  - dgmjr
-  - roles
-categories: 
-  - dgmjr
-  - admin
-  - roles
----
 
-# Commmonly-Assigned Roles
+authors:
+- dgmjr
+title: Commonly-Assigned Roles
+lastmod: 2023-02-15T02:19:27:00.0000Z
+created: 2023-02-15T02:19:27:00.0000Z
+license: MIT
+keywords:
+- dgmjr
+- roles
+tags:
+- dgmjr
+- roles
+categories:
+- dgmjr
+- admin
+- roles
+type: readme
+------------
+
+# Commonly-Assigned Roles
 
 This project contains an enumeration of roles that can be assigned to users.
 
 ## Roles
 
-### `urn:identity:role:administrator`
+### `https://dgmjr.io/roles/administrator`
 
-### `urn:identity:role:user`
+### `https://dgmjr.io/roles/user`
 
-### `urn:identity:role:group_member`
+### `https://dgmjr.io/roles/group_member`
 
-### `urn:identity:role:administrator`
+### `https://dgmjr.io/roles/administrator`
 
-### `urn:identity:role:guest`
+### `https://dgmjr.io/roles/guest`
 
-### `urn:identity:role:anonymous`
+### `https://dgmjr.io/roles/anonymous`
 
-### `urn:identity:role:owner`
+### `https://dgmjr.io/roles/owner`
 
-### `urn:identity:role:group_member`
+### `https://dgmjr.io/roles/group_member`
 
-### `urn:identity:role:contestant`
+### `https://dgmjr.io/roles/contestant`
 
-### `urn:identity:role:voter`
+### `https://dgmjr.io/roles/voter`
+

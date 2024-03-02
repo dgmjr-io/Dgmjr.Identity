@@ -1,38 +1,54 @@
 <!--
  * Dgmjr.Identity.EntityFrameworkCore.Abstractions.csproj
- * 
+ *
  *   Created: 2022-12-01-04:52:03
  *   Modified: 2022-12-01-04:52:03
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0</TargetFrameworks>
-    <!-- <TargetFramework>net7.0</TargetFramework> -->
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
+    <ProjectGuid>828e6f24-cf9b-460c-8b98-a7d36e01d5c2</ProjectGuid>
+    <Description>This package contains a set of interfaces (abstractions) used by the DGMJR identity services</Description>
   </PropertyGroup>
-  
+
   <ItemGroup Condition="true">
-    <PackageReference Include="libphonenumber-csharp" />
+    <PackageReference Include="Dgmjr.Abstractions" />
+    <PackageReference Include="Dgmjr.AspNetCore.Hashids" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas" />
+    <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="Dgmjr.System.Extensions" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-    <PackageReference Include="System.Collections.Generic.Usings" />
-    <PackageReference Include="System.ComponentModel.Usings" />
-    <PackageReference Include="System.Text.Json.Usings" />
-    <PackageReference Include="System.Text.Json" />
-    <PackageReference Include="System.Security.Usings" />
-    <PackageReference Include="Telegram.Bot.Extensions" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
+    <PackageReference Include="System.Security.Claims" />
+    <PackageReference Include="System.Text.Json" />
+    <PackageReference Include="SendPulse.Identity" />
+    <PackageReference Include="Telegram.Bot.Extensions" />
+    <PackageReference Include="Telegram.Constants" />
+    <PackageReference Include="Dgmjr.Primitives.Gender" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
 
-    <PackageReference Include="Dgmjr.Abstractions" />
-    <PackageReference Include="Dgmjr.System.Extensions" />
-    <PackageReference Include="Dgmjr.Primitives" />
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
-    <SourceGenerator  Include="Dgmjr.InterfaceGenerator" />
+    <ProjectReference Include="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.csproj" />
+    <ProjectReference Include="../Claims/ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.csproj" />
+    <ProjectReference Include="../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.csproj" />
+
+    <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+
+    <PackageReference Include="System.Collections.Generic.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.ComponentModel.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.Security.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
   </ItemGroup>
-  <Import Project="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.props" />
+  <Import Project="../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas.props" Condition="Exists('../../../EntityFrameworkCore/src/Constants/Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas.props')" />
+  <Import Project="../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props" Condition="Exists('../EntityFrameworkCore.Constants/Dgmjr.Identity.EntityFrameworkCore.Constants.props')" />
+  <Import Project="../Claims/ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.props" />
+  <Import Project="../Claims/ClaimTypes/Dgmjr.Identity.ClaimTypes.props" />
 </Project>

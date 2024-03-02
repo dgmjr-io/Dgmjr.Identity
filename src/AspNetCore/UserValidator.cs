@@ -15,9 +15,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Dgmjr.Identity;
 
-public class UserValidator : UserValidator<User>
-{
-    public UserValidator(IdentityErrorDescriber? errors = null) : base(errors)
-    {
-    }
-}
+public class UserValidator<TUser>(IdentityErrorDescriber? errors = null)
+    : MSID.UserValidator<TUser>(errors)
+    where TUser : class, IIdentityUserBase { }

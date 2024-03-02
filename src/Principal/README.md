@@ -1,17 +1,18 @@
 ---
+
 author: David G. Moore, Jr.
 author_email: david@dgmjr.io
 title: Claims Principal Extensions
 lastmod: 2023-01-31-10:56:35
 created: 2023-01-31-10:56:35
 license: MIT
-keywords: 
-  - justinwritescode
-tags: 
-  - justinwritescode
-categories: 
-  - justinwritescode
----
+keywords:
+- dgmjr
+tags:
+- dgmjr
+categories:
+- dgmjr
+-------
 
 # Claims Principal Extensions
 

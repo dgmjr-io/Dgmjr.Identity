@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Authorization.Infrastructure;
 
 namespace Dgmjr.Identity.Authorization.Enums
 {
-
     [GenerateEnumerationClass("Operations", "Dgmjr.Identity.Authorization")]
     public enum Operation
     {

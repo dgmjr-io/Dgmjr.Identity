@@ -30,7 +30,8 @@ public static class ProtectorAlgorithmHelper
         ProtectorAlgorithm algorithmId,
         out SymmetricAlgorithm encryptionAlgorithm,
         out KeyedHashAlgorithm signingAlgorithm,
-        out int keyDerivationIterationCount)
+        out int keyDerivationIterationCount
+    )
     {
         switch (algorithmId)
         {

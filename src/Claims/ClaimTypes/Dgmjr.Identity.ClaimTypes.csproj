@@ -1,0 +1,31 @@
+<!--
+ * Dgmjr.Identity.Claims.csproj
+ *
+ *   Created: 2023-08-29-07:44:05
+ *   Modified: 2023-08-29-07:44:05
+ *
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <ProjectGuid>7fa352fe-0bff-49d1-a8e0-69faa02a2990</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dgmjr.Abstractions" />
+    <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="System.Security.Claims" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens.Saml" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.WsFederation" />
+    <ProjectReference Include="../Core/Dgmjr.Identity.Core.csproj" />
+    <ProjectReference Include="../ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.csproj" />
+  </ItemGroup>
+  <Import Project="../Core/Dgmjr.Identity.Core.props" Condition="Exists('../Core/Dgmjr.Identity.Core.props')" />
+  <Import Project="../ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.props" Condition="Exists('../ClaimValueTypes/Dgmjr.Identity.ClaimValueTypes.props')" />
+</Project>

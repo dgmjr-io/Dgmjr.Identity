@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <UsingMicrosoftNetSdk>true</UsingMicrosoftNetSdk>
+    <IsPackable>false</IsPackable>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IsNuGetized>false</IsNuGetized>
+    <PackingProject>false</PackingProject>
+  </PropertyGroup>
+</Project>

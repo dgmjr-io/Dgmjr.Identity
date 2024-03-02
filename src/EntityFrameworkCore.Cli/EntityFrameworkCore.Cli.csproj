@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IsNuGetized>false</IsNuGetized>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+  <Import Project="../EntityFrameworkCore/Dgmjr.Identity.EntityFrameworkCore.props" />
+
+</Project>

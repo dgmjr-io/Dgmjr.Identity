@@ -1,55 +1,72 @@
 <!--
  * Dgmjr.Identity.Models.props
- * 
+ *
  *   Created: 2023-03-19-03:05:09
  *   Modified: 2023-03-25-12:49:57
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
-
-<!--
- * Dgmjr.Identity.Models copy.csproj
- * 
- *   Created: 2022-12-01-05:08:42
- *   Modified: 2022-12-01-05:08:42
- * 
- *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
- *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
- *      License: MIT (https://opensource.org/licenses/MIT)
--->
-
 <Project>
   <ItemGroup>
 
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.All.Usings" />
-    <PackageReference Include="System.ComponentModel.Usings" />
+    <PackageReference Include="System.All.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.ComponentModel.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.ComponentModel.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
   </ItemGroup>
   <ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" />
-		<PackageReference Include="Microsoft.Extensions.Identity.Core" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-  </ItemGroup>
-  <ItemGroup>
-    <Using Include="Dgmjr.Identity" Alias="DgmjrId" />
+    <!-- <Using Include="Dgmjr.Identity.ClaimTypeUris" Alias="DgmjrCt" /> -->
     <Using Include="Dgmjr.Abstractions" />
-    <Using Include="Dgmjr.EntityFrameworkCore.Constants.DbTypeNames" Static="true" />
+    <!-- <Using Include="Dgmjr.EntityFrameworkCore.Constants.DbTypeNames" Static="true" /> -->
     <Using Include="Dgmjr.Enumerations.Abstractions" />
-    <Using Include="Dgmjr.Identity.ClaimTypeUris" Alias="DgmjrCt" />
-    <Using Include="Dgmjr.Identity.ClaimValueTypeUris" Alias="DgmjrCvt" />
+    <Using Include="Dgmjr.Identity.Abstractions" />
+    <Using Include="Dgmjr.Identity.ClaimValueTypes" Alias="DgmjrCvt" />
     <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants.TableNames" Static="true" />
-    <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants" Static="true" />
-    <Using Include="Dgmjr.Identity.EntityFrameworkCore.UriMaxLengthConstant" Static="true" />
+    <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants" />
+    <Using Include="Dgmjr.Identity.EntityFrameworkCore.Constants.UriMaxLengthConstant" Static="true" />
+    <Using Include="Dgmjr.Identity.Models.Abstractions" />
+    <Using Include="Dgmjr.Identity.Models" />
+    <Using Include="Dgmjr.Identity.Models" Alias="DgmjrIdM" />
+    <Using Include="Dgmjr.Identity" Alias="DgmjrId" />
     <Using Include="Microsoft.AspNetCore.Identity" />
     <Using Include="Microsoft.AspNetCore" />
     <Using Include="System.ComponentModel.DataAnnotations.Schema" />
     <Using Include="System.ComponentModel.DataAnnotations" />
+    <Using Include="System.DateTime" />
     <Using Include="System.Diagnostics" />
     <Using Include="System.String" Static="true" />
+    <Using Include="EntityFrameworkCore.Projectables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Dgmjr.Identity.Models.ApplicationClaimsIssuer&lt;long&gt;" Alias="AppClaimsIssuer" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationRole&lt;long&gt;" Alias="AppRole" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUser&lt;long&gt;" Alias="AppUser" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim&lt;long&gt;" Alias="AppUserClaim" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLogin&lt;long&gt;" Alias="AppUserLogin" />
+    <!-- <Using Include="Dgmjr.Identity.Models.ApplicationUserLoginProvider" Alias="AppUserLoginProvider" /> -->
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserRole&lt;long&gt;" Alias="AppUserRole" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationClaimValueType&lt;long&gt;" Alias="AppClaimValueType" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationClaimType&lt;long&gt;" Alias="AppClaimType" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserToken&lt;long&gt;" Alias="AppUserToken" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationRoleClaim&lt;long&gt;" Alias="AppRoleClaim" />
+<!--
+    <Using Include="Dgmjr.Identity.Models.ApplicationUser&lt;long&gt;" Alias="AppUser" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim&lt;long&gt;" Alias="AppUserClaim" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLogin&lt;long&gt;" Alias="AppUserLogin" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLoginProvider" Alias="AppUserLoginProvider" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserRole&lt;long&gt;" Alias="AppUserRole" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserToken&lt;long&gt;" Alias="AppUserToken" />
+
+    <Using Include="Dgmjr.Identity.Models.ApplicationUser&lt;long&gt;" Alias="ApplicationUser" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserClaim&lt;long&gt;" Alias="ApplicationUserClaim" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLogin&lt;long&gt;" Alias="ApplicationUserLogin" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserLoginProvider" Alias="ApplicationUserLoginProvider" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserRole&lt;long&gt;" Alias="ApplicationUserRole" />
+    <Using Include="Dgmjr.Identity.Models.ApplicationUserToken&lt;long&gt;" Alias="ApplicationUserToken" /> -->
   </ItemGroup>
 </Project>

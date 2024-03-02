@@ -10,7 +10,7 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace Dgmjr.Identity.EntityFrameworkCore;
+namespace Dgmjr.Identity.EntityFrameworkCore.Constants;
 
 public static class UriMaxLengthConstant
 {
