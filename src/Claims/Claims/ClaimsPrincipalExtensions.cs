@@ -98,9 +98,6 @@ public static class ClaimsPrincipalExtensions
 #if !NET6_0_OR_GREATER
     public static string? FindFirstValue(this ClaimsPrincipal principal, string claimType) =>
         principal.FindFirst(c => string.Equals(c.Type, claimType, CurrentCultureIgnoreCase))?.Value;
-#endif
-    public static string? FindFirstValue(this ClaimsPrincipal principal, Predicate<Claim> pred) =>
-        principal.FindFirst(pred)?.Value;
 
     public static T? FindFirstValue<T>(this ClaimsPrincipal principal, string claimType)
         where T : IClaimValueType
@@ -108,4 +105,7 @@ public static class ClaimsPrincipalExtensions
         var value = principal.FindFirstValue(c => string.Equals(c.Type, claimType, CurrentCultureIgnoreCase));
         return (T?)(object?)value;
     }
+#endif
+    public static string? FindFirstValue(this ClaimsPrincipal principal, Predicate<Claim> pred) =>
+        principal.FindFirst(pred)?.Value;
 }
