@@ -3,7 +3,7 @@ namespace Dgmjr.Identity;
 using global::System;
 using global::System.Security;
 
-public abstract record class ClaimType : IClaimType, IEquatable<ClaimType>
+public abstract record sealed class ClaimType : IClaimType, IEquatable<ClaimType>
 {
     /// <summary>The forward slash ("<inheritdoc cref="Slash" path="/value" />") character</summary>
     /// <value>/</value>
