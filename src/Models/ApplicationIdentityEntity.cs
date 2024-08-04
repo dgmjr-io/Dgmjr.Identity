@@ -30,7 +30,7 @@ public abstract class ApplicationIdentityEntity<TKey> : IIdentityEntity<TKey>
     public override bool Equals(object? obj) => obj is IEntity<TKey> entity && Equals(entity);
 
     public virtual bool Equals(IEntity<TKey>? other) =>
-        ((other?.GetType().IsInstanceOfType(this) ?? false) || GetType().IsInstanceOfType(other))
+        ((other?.GetType().IsInstanceOfType(this) == true) || GetType().IsInstanceOfType(other))
         && Id.Equals(other.Id);
 
     public virtual DateTimeOffset Created { get; } = DateTimeOffset.Now;
