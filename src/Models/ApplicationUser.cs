@@ -231,7 +231,7 @@ public record class ApplicationUserInsertDto<TKey> : ApplicationUserDto<TKey>
     public string? Password { get; set; } = ApplicationUser<long>.DefaultPassword;
 }
 
-public record class ApplicationUserInsertDto : ApplicationUserInsertDto<long> { }
+public record ApplicationUserInsertDto : ApplicationUserInsertDto<long>;
 
 public record class ApplicationUserDto<TKey>
 {
@@ -245,7 +245,7 @@ public record class ApplicationUserDto<TKey>
     public EmailAddress? EmailAddress { get; set; }
 }
 
-public record class ApplicationUserDto : ApplicationUserDto<long> { }
+public record ApplicationUserDto : ApplicationUserDto<long>;
 
 // //[AutoGenerateBuilder(typeof(BackroomUser))]
 // //public partial class BackroomUserBuilder { }

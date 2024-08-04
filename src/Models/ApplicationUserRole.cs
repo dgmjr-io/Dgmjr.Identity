@@ -66,4 +66,4 @@ public record class ApplicationUserUserRoleInsertDto<TKey>
     public long RoleId { get; set; }
 }
 
-public record class ApplicationUserUserRoleInsertDto : ApplicationUserUserRoleInsertDto<long> { }
+public record ApplicationUserUserRoleInsertDto : ApplicationUserUserRoleInsertDto<long>;
