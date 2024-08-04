@@ -1542,7 +1542,7 @@ public record class Json : ClaimValueType<JElem>, IClaimValueType
 /// <value><inheritdoc cref="UriString" path="/value" /></value>
 public record class Guid : ClaimValueType<guid>, IClaimValueType
 {
-    public static readonly IClaimValueType Instance = new Guid();
+    public static readonly IClaimValueType Instance = Guid.Empty;
 
     private Guid() { }
 
